@@ -173,15 +173,20 @@
                     render: true
                 }),
                 [
-                    'checkbox',
+                    'checkbox', // Button group type
+                    'vertical', // Button display orientation
                     { icon: 'icon-camera' },
                     { icon: 'icon-print' }
                 ],
                 [ /*empty button group*/ ],
-                new Y.Button({
-                    label: 'From constructor',
-                    render: true
-                }),
+                [
+                    new Y.Button({
+                        label: 'From constructor'
+                    }),
+                    new Y.ToggleButton({
+                        label: 'Toggle button'
+                    })
+                ],
                 [ /*empty button group*/ ],
                 [ /*empty button group*/ ],
                 {
