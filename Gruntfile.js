@@ -11,7 +11,6 @@ var path  = require('path');
 var spawn = require('child_process').spawn;
 
 // -- Globals ------------------------------------------------------------------
-var CURRENT_DIR = process.env.PWD;
 var ROOT        = process.cwd();
 
 // -- Config -------------------------------------------------------------------
@@ -51,7 +50,7 @@ module.exports = function(grunt) {
                 'replace-version': '<%= pkg["yui-version"] %>',
             },
             aui: {
-                'src': CURRENT_DIR,
+                'src': path.join(ROOT, 'src'),
                 'dist': path.join(ROOT, 'build'),
                 'cache': false,
                 'coverage': false,
@@ -59,6 +58,13 @@ module.exports = function(grunt) {
                 'replace-yuivar': 'A',
                 'replace-version': '<%= pkg["version"] %>',
             }
+        },
+
+        cdn: {
+            combine: true,
+            comboBase: 'http://cdn.alloyui.com/combo/combo.php?',
+            filter: 'min',
+            root: '../<%= pkg["version"] %>/'
         },
 
         compass: {
@@ -137,7 +143,7 @@ module.exports = function(grunt) {
         },
 
         watch: {
-            'src': CURRENT_DIR,
+            'src': ROOT,
             'replace-yuivar': 'A',
             'replace-version': '<%= pkg["version"] %>'
         }
@@ -154,7 +160,7 @@ module.exports = function(grunt) {
     grunt.registerTask('all', ['bootstrap', 'build']);
     grunt.registerTask('api-deploy', ['api-build', 'api-push']);
     grunt.registerTask('bootstrap', ['compass', 'copy:css', 'cssmin', 'copy:img', 'clean']);
-    grunt.registerTask('cdn', ['all', 'cdn-config', 'compress:cdn', 'build:aui']);
     grunt.registerTask('format', ['jsbeautifier']);
     grunt.registerTask('release', ['all', 'compress:release']);
+    grunt.registerTask('release-cdn', ['all', 'cdn', 'compress:cdn', 'build:aui']);
 };
