@@ -101,8 +101,7 @@ var LoadingMask = A.Component.create(
 			},
 
 			/**
-			 * Strings used on the LoadingMask. See
-		     * <a href="Widget.html#method_strings">strings</a>.
+			 * Collection of strings used to label elements of the UI.
 			 *
 			 * @attribute strings
 			 * @default { loading: 'Loading&hellip;' }
