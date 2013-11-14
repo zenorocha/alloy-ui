@@ -121,7 +121,7 @@ var SchedulerEventRecorder = A.Component.create({
         content: {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The duration of an `event` in minutes.
          *
          * @attribute duration
          * @default 60
