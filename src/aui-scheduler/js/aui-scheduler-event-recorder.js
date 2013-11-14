@@ -105,7 +105,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Determines whether a new event will take place all day. When enabled,
          * the event will not contain 24-hour clock date inputs.
          *
-         * @attribute allDay
+         * @ATTRSibute allDay
          * @default false
          * @type Boolean
          */
@@ -114,7 +114,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the content of an `event`.
          *
          * @attribute content
          */
