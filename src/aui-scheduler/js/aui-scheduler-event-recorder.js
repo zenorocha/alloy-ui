@@ -144,7 +144,8 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * A scheduler `event` is the wrapper object that contains an `event`
+         * title, start and end times and a description.
          *
          * @attribute event
          */
