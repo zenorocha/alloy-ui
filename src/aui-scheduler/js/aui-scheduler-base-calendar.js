@@ -43,7 +43,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles `color` events.
      *
      * @method _afterColorChange
      * @param event
@@ -60,7 +60,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles `disabled` events.
      *
      * @method _afterDisabledChange
      * @param event
@@ -77,7 +77,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles `events` events.
      *
      * @method _afterEventsChange
      * @param event
@@ -98,7 +98,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles `visible` events.
      *
      * @method _afterVisibleChange
      * @param event

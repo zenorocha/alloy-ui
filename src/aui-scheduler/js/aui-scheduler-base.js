@@ -696,7 +696,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `activeView` events.
          *
          * @method _afterActiveViewChange
          * @param event

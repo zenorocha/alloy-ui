@@ -257,14 +257,21 @@ var SchedulerEventRecorder = A.Component.create({
             instance.popover.after(VISIBLE_CHANGE, A.bind(instance._afterPopoverVisibleChange, instance));
         },
 
-        _afterEventChange: function() {
+        /**
+         * Handles `event` events.
+         *
+         * @method _afterEventChange
+         * @param event
+         * @protected
+         */
+        _afterEventChange: function(event) {
             var instance = this;
 
             instance.populateForm();
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `popoverVisible` events.
          *
          * @method _afterPopoverVisibleChange
          * @param event
@@ -296,7 +303,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `scheduler` events.
          *
          * @method _afterSchedulerChange
          * @param event

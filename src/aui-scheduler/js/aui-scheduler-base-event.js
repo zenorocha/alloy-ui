@@ -881,7 +881,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `allday` events.
          *
          * @method _afterAllDayChange
          * @param event
@@ -894,7 +894,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `color` events.
          *
          * @method _afterColorChange
          * @param event
@@ -907,7 +907,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `disabled` events.
          *
          * @method _afterDisabledChange
          * @param event
@@ -920,7 +920,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `enddate` events.
          *
          * @method _afterEndDateChange
          * @param event
@@ -933,7 +933,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `meeting` events.
          *
          * @method _afterMeetingChange
          * @param event
@@ -946,7 +946,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `reminder` events.
          *
          * @method _afterReminderChange
          * @param event
@@ -959,7 +959,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `repeated` events.
          *
          * @method _afterRepeatedChange
          * @param event
@@ -972,7 +972,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `visible` events.
          *
          * @method _afterVisibleChange
          * @param event
