@@ -315,7 +315,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handler for `cancel` event.
          *
          * @method _defCancelEventFn
          * @param event
@@ -330,7 +330,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handler for `delete` event.
          *
          * @method _defDeleteEventFn
          * @param event
@@ -348,7 +348,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handler for `edit` event.
          *
          * @method _defEditEventFn
          * @param event
