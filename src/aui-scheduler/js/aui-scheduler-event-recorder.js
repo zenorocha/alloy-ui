@@ -132,7 +132,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The default date format for an `event`.
          *
          * @attribute dateFormat
          * @default '%a, %B %d,'
