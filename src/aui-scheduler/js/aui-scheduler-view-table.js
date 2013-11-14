@@ -171,7 +171,7 @@ var SchedulerTableView = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property SchedulerTableView.NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: SCHEDULER_VIEW_TABLE,
@@ -181,71 +181,72 @@ var SchedulerTableView = A.Component.create({
      * configuration for the SchedulerTableView.
      *
      * @property SchedulerTableView.ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines the content of Scheduler table view's body section.
          *
          * @attribute bodyContent
          * @default ''
-         * @type String
+         * @type {String}
          */
         bodyContent: {
             value: _EMPTY_STR
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the number of days to display per interval in the
+         * `SchedulerTableView`.
          *
          * @attribute displayDaysInterval
          * @default 42
-         * @type Number
+         * @type {Number}
          */
         displayDaysInterval: {
             value: 42
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the number of rows to display in the `SchedulerTableView`.
          *
          * @attribute displayRows
          * @default 3
-         * @type Number
+         * @type {Number}
          */
         displayRows: {
             value: 3
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether the height of the `SchedulerTableView` is fixed.
          *
          * @attribute fixedHeight
          * @default true
-         * @type Boolean
+         * @type {Boolean}
          */
         fixedHeight: {
             value: true
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines the name for this `SchedulerTableView`.
          *
          * @attribute name
          * @default 'table'
-         * @type String
+         * @type {String}
          */
         name: {
             value: TABLE
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the header date.
          *
          * @attribute headerDateFormatter
-         * @type String
+         * @type {String}
          */
         headerDateFormatter: {
             value: function(date) {
@@ -263,10 +264,10 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the navigation date.
          *
          * @attribute navigationDateFormatter
-         * @type Function
+         * @type {Function}
          */
         navigationDateFormatter: {
             value: function(date) {
@@ -284,20 +285,21 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether the `SchedulerTableView` is scrollable.
          *
          * @attribute scrollable
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         scrollable: {
             value: false
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the collection of strings used to label elements of the UI.
          *
          * @attribute strings
+         * @type {typeName}
          */
         strings: {
             value: {
@@ -308,9 +310,10 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `headerTable` node.
          *
          * @attribute headerTableNode
+         * @type {Node}
          */
         headerTableNode: {
             valueFn: function() {
@@ -319,18 +322,20 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `colHeaderDays` node.
          *
          * @attribute colHeaderDaysNode
+         * @type {Node}
          */
         colHeaderDaysNode: {
             valueFn: '_valueColHeaderDaysNode'
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `rowsContainer` node.
          *
          * @attribute rowsContainerNode
+         * @type {Node}
          */
         rowsContainerNode: {
             valueFn: function() {
@@ -339,9 +344,10 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `tableGrid` node.
          *
          * @attribute tableGridNode
+         * @type {Node}
          */
         tableGridNode: {
             valueFn: '_valueTableGridNode'
@@ -349,10 +355,11 @@ var SchedulerTableView = A.Component.create({
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Contains an object hash, defining how attribute values are to be parsed
+     * from markup contained in the widget's bounding box.
      *
      * @property SchedulerTableView.HTML_PARSER
-     * @type Object
+     * @type {typeName}
      * @static
      */
     HTML_PARSER: {
@@ -366,7 +373,7 @@ var SchedulerTableView = A.Component.create({
      * Static property used to define which component it extends.
      *
      * @property SchedulerTableView.EXTENDS
-     * @type Object
+     * @type {Object}
      * @static
      */
     EXTENDS: A.SchedulerView,
@@ -400,7 +407,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Bind the events on the SchedulerTableView UI. Lifecycle.
+         * Binds the events on the SchedulerTableView UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -413,7 +420,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Render the SchedulerTableView component instance. Lifecycle.
+         * Renders the SchedulerTableView component instance. Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -436,12 +443,13 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Builds a row of events.
          *
          * @method buildEventsRow
-         * @param rowStartDate
-         * @param rowEndDate
-         * @param rowDisplayIndex
+         * @param {Date} rowStartDate
+         * @param {Date} rowEndDate
+         * @param {Number} rowDisplayIndex
+         * @return {Node}
          */
         buildEventsRow: function(rowStartDate, rowEndDate, rowDisplayIndex) {
             var instance = this;
@@ -502,11 +510,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Builds a table of events.
          *
          * @method buildEventsTable
-         * @param rowStartDate
-         * @param rowEndDate
+         * @param {Date} rowStartDate
+         * @param {Date} rowEndDate
+         * @return {Node}
          */
         buildEventsTable: function(rowStartDate, rowEndDate) {
             var instance = this,
@@ -537,12 +546,13 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Builds a row with the title and today's date.
          *
          * @method buildEventsTitleRow
-         * @param tableNode
-         * @param rowStartDate
-         * @param rowEndDate
+         * @param {Node} tableNode
+         * @param {Date} rowStartDate
+         * @param {Date} rowEndDate
+         * @return {Node} titleRowNode The title row `Node`.
          */
         buildEventsTitleRow: function(tableNode, rowStartDate, rowEndDate) {
             var instance = this;
@@ -576,10 +586,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Builds a new row `Node` and appends a table grid `Node`. Returns the
+         * row `Node`.
          *
          * @method buildGridRowNode
-         * @param rowIndex
+         * @param {Number} rowIndex
+         * @return {Node} A row `Node`.
          */
         buildGridRowNode: function(rowIndex) {
             var instance = this;
@@ -605,7 +617,8 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes all data from `evtDateStack`, `evtRenderedStack` and
+         * `rowDateTableStack`.
          *
          * @method flushViewCache
          */
@@ -618,10 +631,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the list of all events that intersect with a given date.
          *
          * @method getIntersectEvents
-         * @param date
+         * @param {Date} date
+         * @return {Array} The list of all events that intersect with a given
+         * date.
          */
         getIntersectEvents: function(date) {
             var instance = this;
@@ -641,9 +656,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the date that follows the `SchedulerTableView`'s
+         current date.
          *
          * @method getNextDate
+         * @return {Date} The value of the date that follows the
+         * `SchedulerTableView`'scurrent date.
          */
         getNextDate: function() {
             var instance = this;
@@ -655,9 +673,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the date that preceeds the
+         * `SchedulerTableView`'s current date.
          *
          * @method getPrevDate
+         * @return {Date} The value of the date that preceeds the
+         * `SchedulerTableView`'s current date.
          */
         getPrevDate: function() {
             var instance = this;
@@ -669,7 +690,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Hides this `SchedulerViewTable` event's `overlay` component.
          *
          * @method hideEventsOverlay
          */
@@ -680,14 +701,17 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Applies a given function to each date between `startDate` and
+         * `endDate`.
          *
          * @method loopDates
-         * @param startDate
-         * @param endDate
-         * @param fn
-         * @param incrementBy
-         * @param factor
+         * @param {Date} startDate
+         * @param {Date} endDate
+         * @param {Function} fn
+         * @param {String} incrementBy  The field constant to be used for
+         * performing addition.
+         * @param {Number} factor   The ratio used to calculate the number of
+         * units (measured in the field constant) to add to the date.
          */
         loopDates: function(startDate, endDate, fn, incrementBy, factor) {
             var instance = this;
@@ -703,7 +727,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Plots all events in the current view.
          *
          * @method plotEvents
          */
@@ -736,7 +760,8 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Updates the `SchedulerTableView`'s `colHeaderDaysNode` to reflect
+         * any changes made to the instance attributes.
          *
          * @method syncDaysHeaderUI
          */
@@ -758,7 +783,8 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Updates the `SchedulerTableView`'s column grid by moving styling to
+         * the current day cell `Node`.
          *
          * @method syncGridUI
          */
@@ -790,7 +816,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sync SchedulerView StdContent.
          *
          * @method syncStdContent
          */
@@ -805,10 +831,11 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns this `SchedulerTableView`'s date ending interval.
          *
          * @method _findCurrentIntervalEnd
          * @protected
+         * @return {Date} This `SchedulerTableView`'s date ending interval.
          */
         _findCurrentIntervalEnd: function() {
             var instance = this;
@@ -820,10 +847,11 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns this `SchedulerTableView`'s date starting interval.
          *
          * @method _findCurrentIntervalStart
          * @protected
+         * @return {Date} This `SchedulerTableView`'s date starting interval.
          */
         _findCurrentIntervalStart: function() {
             var instance = this;
@@ -833,11 +861,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the first day of the week.
          *
          * @method _findFirstDayOfWeek
-         * @param date
+         * @param {Date} date
          * @protected
+         * @return {Date} The first day of the week.
          */
         _findFirstDayOfWeek: function(date) {
             var instance = this;
@@ -848,11 +877,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the cell index at a given `position`.
          *
          * @method _getCellIndex
-         * @param position
+         * @param {Array} position
          * @protected
+         * @return {Number} The cell index at a given `position`.
          */
         _getCellIndex: function(position) {
             var instance = this;
@@ -861,10 +891,11 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the display rows count.
          *
          * @method _getDisplayRowsCount
          * @protected
+         * @return {Number} The display rows count.
          */
         _getDisplayRowsCount: function() {
             var instance = this;
@@ -874,10 +905,11 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the display row days count.
          *
          * @method _getDisplayRowDaysCount
          * @protected
+         * @return {Number} The display row days count.
          */
         _getDisplayRowDaysCount: function() {
             var instance = this;
@@ -887,11 +919,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the label that belongs to a given `A.SchedulerEvent`.
          *
          * @method _getEvtLabel
-         * @param evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @protected
+         * @return {String} The label that belongs to a given `A.SchedulerEvent`.
          */
         _getEvtLabel: function(evt) {
             var instance = this;
@@ -902,13 +935,16 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns nn object containing the `colspan`, `left` and
+         * `right` values that determine a `SchedulerEvent`'s split information.
          *
          * @method _getEvtSplitInfo
-         * @param evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @param celDate
-         * @param rowStartDate
-         * @param rowEndDate
+         * @param {Date} rowStartDate
+         * @param {Date} rowEndDate
+         * @return {Object} info An object containing the `colspan`, `left` and
+         * `right` values that determine a `SchedulerEvent`'s split information.
          * @protected
          */
         _getEvtSplitInfo: function(evt, celDate, rowStartDate, rowEndDate) {
@@ -928,13 +964,18 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns either a `SchedulerEvent` that is not yet rendered and has a
+         * `startDate` that does not overlap with with a given `celDate` or is
+         * a continuation of an existing event.
          *
          * @method _getRenderableEvent
-         * @param events
-         * @param rowStartDate
-         * @param rowEndDate
-         * @param celDate
+         * @param {Event.Facade} event Event Facade objects
+         * @param {Date} rowStartDate
+         * @param {Date} rowEndDate
+         * @param {Date} celDate
+         * @return {A.SchedulerEvent|null} Either a `SchedulerEvent` that is not
+         * * yet rendered and has a`startDate` that does not overlap with with a
+         * given `celDate` or is a continuation of an existing event.
          * @protected
          */
         _getRenderableEvent: function(events, rowStartDate, rowEndDate, celDate) {
@@ -966,10 +1007,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the table grid `Node` for a given `rowIndex`.
          *
          * @method _getTableGridNode
-         * @param rowIndex
+         * @param {Number} rowIndex
+         * @return {Node} tableGridNode The table grid `Node` from a given
+         * `rowIndex`.
          * @protected
          */
         _getTableGridNode: function(rowIndex) {
@@ -995,10 +1038,10 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `SchedulerEvent` `click` events for the `SchedulerViewTable`.
          *
          * @method _onClickMore
-         * @param event
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _onClickMore: function(event) {
@@ -1034,7 +1077,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders this `SchedulerViewTable` event's `overlay` component.
          *
          * @method _renderEventsOverlay
          * @protected
@@ -1064,12 +1107,15 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Updates a given `Node`'s UI with a given `evtSplitInfo` value.
+         * any changes made to the instance attributes.
          *
          * @method _syncEventNodeContainerUI
-         * @param evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @param node
-         * @param evtSplitInfo
+         * @param {Object} evtSplitInfo An object containing the `colspan`,
+         * `left` and `right` values that determine a `SchedulerEvent`'s split
+         * information.
          * @protected
          */
         _syncEventNodeContainerUI: function(evt, node, evtSplitInfo) {
@@ -1087,10 +1133,11 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Updates a given `SchedulerEvent` `Node` with the given `celDate` and
+         * appends it to a given `container` `Node`.
          *
          * @method _syncEventNodeUI
-         * @param evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @param container
          * @param celDate
          * @protected
@@ -1127,10 +1174,10 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets `date` on the UI.
          *
          * @method _uiSetDate
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetDate: function(val) {
@@ -1141,7 +1188,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of `colHeaderDaysNode`.
          *
          * @method _valueColHeaderDaysNode
          * @protected
@@ -1156,7 +1203,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of `tableGridNode`.
          *
          * @method _valueTableGridNode
          * @protected
@@ -1171,7 +1218,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the a new `NodeList` with a given size and template.
          *
          * @method _valueNodeList
          * @param size
