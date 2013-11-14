@@ -152,7 +152,7 @@ var SchedulerEventRecorder = A.Component.create({
         event: {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the scheduler's `A.Popover` instance.
          *
          * @attribute popover
          * @type Object
