@@ -154,17 +154,6 @@ var SchedulerEventRecorder = A.Component.create({
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @attribute eventClass
-         */
-        eventClass: {
-            valueFn: function() {
-                return A.SchedulerEvent;
-            }
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
          * @attribute popover
          * @type Object
          */
