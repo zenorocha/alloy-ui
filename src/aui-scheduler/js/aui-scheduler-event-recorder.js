@@ -391,14 +391,14 @@ var SchedulerEventRecorder = A.Component.create({
                         on: {
                             click: A.bind(instance._handleSaveEvent, instance)
                         }
-     },
+                    },
                     {
                         label: strings[CANCEL],
                         on: {
                             click: A.bind(instance._handleCancelEvent, instance)
                         }
-     }
-    ];
+                    }
+                ];
 
             if (event) {
                 children.push({
