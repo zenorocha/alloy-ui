@@ -377,9 +377,10 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Converts this event recorder's form node object to a string.
          *
          * @method serializeForm
+         * @return {String} A stringified copy of this event recorder's form.
          */
         serializeForm: function() {
             var instance = this;
