@@ -552,6 +552,7 @@ var SchedulerEventRecorder = A.Component.create({
          *
          * @method _getFooterToolbar
          * @protected
+         * @return {Array} Footer toolbar
          */
         _getFooterToolbar: function() {
             var instance = this,
@@ -734,6 +735,13 @@ var SchedulerEventRecorder = A.Component.create({
             schedulerBB.on(CLICKOUTSIDE, A.bind(instance._handleClickOutSide, instance));
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _renderPopover
+         * @protected
+         * @return
+         */
         _setPopover: function(val) {
             var instance = this;
 
