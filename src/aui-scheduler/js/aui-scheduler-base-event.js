@@ -704,7 +704,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines if an `event` interescts with this `event`.
          *
          * @method intersects
          * @param evt
