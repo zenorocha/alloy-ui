@@ -680,6 +680,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @method isAfter
          * @param {Object} evt
+         * @return {Boolean}
          */
         isAfter: function(evt) {
             var instance = this;
@@ -694,6 +695,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @method isBefore
          * @param {Object} evt
+         * @return {Boolean}
          */
         isBefore: function(evt) {
             var instance = this;
@@ -708,6 +710,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @method intersects
          * @param {Object} evt
+         * @return {Boolean}
          */
         intersects: function(evt) {
             var instance = this;
@@ -724,6 +727,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @method intersectHours
          * @param {Object} evt
+         * @return {Boolean}
          */
         intersectHours: function(evt) {
             var instance = this;
@@ -741,6 +745,7 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method isDayBoundaryEvent
+         * @return {Boolean}
          */
         isDayBoundaryEvent: function() {
             var instance = this;
@@ -753,6 +758,7 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method isDayOverlapEvent
+         * @return {Boolean}
          */
         isDayOverlapEvent: function() {
             var instance = this;
@@ -996,6 +1002,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @method _isPastEvent
          * @protected
+         * @return {Boolean}
          */
         _isPastEvent: function() {
             var instance = this,
