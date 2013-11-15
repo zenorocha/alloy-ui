@@ -164,7 +164,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type Object
@@ -191,6 +191,8 @@ var SchedulerEventRecorder = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute bodyTemplate
+         * @default ''
+         * @type String
          */
         bodyTemplate: {
             value: TPL_BODY_CONTENT
