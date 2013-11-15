@@ -84,7 +84,7 @@ var Lang = A.Lang,
     DAY = 'day',
     DAYS = 'days',
     DELEGATE_CONFIG = 'delegateConfig',
-    DISABLED = 'disabled',
+    DISABLED = 'enabled',
     DIVISION = 'division',
     DRAGGING_EVENT = 'draggingEvent',
     DURATION = 'duration',
@@ -1373,7 +1373,7 @@ var SchedulerDayView = A.Component.create({
             var scheduler = instance.get(SCHEDULER);
             var recorder = scheduler.get(EVENT_RECORDER);
 
-            if (recorder && !scheduler.get(DISABLED)) {
+            if (recorder && scheduler.get(ENABLED)) {
                 recorder.hidePopover();
 
                 if (target.test(_DOT + CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM)) {
@@ -1426,7 +1426,7 @@ var SchedulerDayView = A.Component.create({
             var target = event.currentTarget;
             var evt = target.getData(SCHEDULER_EVENT);
 
-            if (evt && !evt.get(DISABLED)) {
+            if (evt && !evt.get(ENABLED)) {
                 instance[RESIZER_NODE].appendTo(target);
             }
         },
@@ -1506,7 +1506,7 @@ var SchedulerDayView = A.Component.create({
             var scheduler = instance.get(SCHEDULER);
             var recorder = scheduler.get(EVENT_RECORDER);
 
-            if (recorder && !scheduler.get(DISABLED)) {
+            if (recorder && scheduler.get(ENABLED)) {
                 if (instance[CREATION_START_DATE]) {
                     instance.plotEvent(recorder);
 

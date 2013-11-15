@@ -69,7 +69,7 @@ var Lang = A.Lang,
     CONTROLS_NODE = 'controlsNode',
     DATE = 'date',
     DAY = 'day',
-    DISABLED = 'disabled',
+    DISABLED = 'enabled',
     END_DATE = 'endDate',
     EVENT_RECORDER = 'eventRecorder',
     HD = 'hd',
@@ -318,11 +318,11 @@ var SchedulerEvent = A.Component.create({
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @attribute disabled
+         * @attribute enabled
          * @default false
          * @type Boolean
          */
-        disabled: {
+        enabled: {
             value: false,
             validator: isBoolean
         },
@@ -457,7 +457,7 @@ var SchedulerEvent = A.Component.create({
             instance.after({
                 allDayChange: instance._afterAllDayChange,
                 colorChange: instance._afterColorChange,
-                disabledChange: instance._afterDisabledChange,
+                enabledChange: instance._afterEnabledChange,
                 endDateChange: instance._afterEndDateChange,
                 meetingChange: instance._afterMeetingChange,
                 reminderChange: instance._afterReminderChange,
@@ -481,8 +481,8 @@ var SchedulerEvent = A.Component.create({
             instance._uiSetColor(
                 instance.get(COLOR));
 
-            instance._uiSetDisabled(
-                instance.get(DISABLED));
+            instance._uiSetEnabled(
+                instance.get(ENABLED));
 
             instance._uiSetEndDate(
                 instance.get(END_DATE));
@@ -914,16 +914,16 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Handles `disabled` events.
+         * Handles `enabled` events.
          *
-         * @method _afterDisabledChange
+         * @method _afterEnabledChange
          * @param event {Event.Facade} Event Facade object
          * @protected
          */
-        _afterDisabledChange: function(event) {
+        _afterEnabledChange: function(event) {
             var instance = this;
 
-            instance._uiSetDisabled(event.newVal);
+            instance._uiSetEnabled(event.newVal);
         },
 
         /**
@@ -1109,11 +1109,11 @@ var SchedulerEvent = A.Component.create({
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @method _uiSetDisabled
+         * @method _uiSetEnabled
          * @param val
          * @protected
          */
-        _uiSetDisabled: function(val) {
+        _uiSetEnabled: function(val) {
             var instance = this;
 
             instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_DISABLED, !! val);

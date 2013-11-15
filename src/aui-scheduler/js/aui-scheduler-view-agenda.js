@@ -33,7 +33,7 @@ var Lang = A.Lang,
     DATE = 'date',
     DATES = 'dates',
     DAY = 'day',
-    DISABLED = 'disabled',
+    DISABLED = 'enabled',
     END_DATE = 'endDate',
     EVENT = 'event',
     EVENT_RECORDER = 'eventRecorder',
@@ -575,7 +575,7 @@ var SchedulerAgendaView = A.Component.create({
                 currentTarget.setData(SCHEDULER_EVENT, schedulerEvent);
             }
 
-            if (schedulerEvent && recorder && !scheduler.get(DISABLED)) {
+            if (schedulerEvent && recorder && scheduler.get(ENABLED)) {
                 recorder.set(EVENT, schedulerEvent, {
                     silent: true
                 });

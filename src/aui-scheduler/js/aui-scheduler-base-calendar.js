@@ -26,7 +26,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         var instance = this;
 
         instance.after('colorChange', instance._afterColorChange);
-        instance.after('disabledChange', instance._afterDisabledChange);
+        instance.after('enabledChange', instance._afterEnabledChange);
         instance.after('visibleChange', instance._afterVisibleChange);
         instance.after(['add', 'remove', 'reset'], instance._afterEventsChange);
         instance.on(['remove', 'reset'], instance._onRemoveEvents);
@@ -37,7 +37,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
 
         instance._setModelsAttrs({
             color: instance.get(COLOR),
-            disabled: instance.get(DISABLED),
+            enabled: instance.get(ENABLED),
             visible: instance.get(VISIBLE)
         });
     },
@@ -60,17 +60,17 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * Handles `disabled` events.
+     * Handles `enabled` events.
      *
-     * @method _afterDisabledChange
+     * @method _afterEnabledChange
      * @param event {Event.Facade} Event Facade object
      * @protected
      */
-    _afterDisabledChange: function(event) {
+    _afterEnabledChange: function(event) {
         var instance = this;
 
         instance._setModelsAttrs({
-            disabled: instance.get(DISABLED)
+            enabled: instance.get(ENABLED)
         }, {
             silent: event.silent
         });
@@ -88,7 +88,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
 
         instance._setModelsAttrs({
             color: instance.get(COLOR),
-            disabled: instance.get(DISABLED),
+            enabled: instance.get(ENABLED),
             visible: instance.get(VISIBLE)
         }, {
             silent: true
@@ -194,11 +194,11 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @attribute disabled
+         * @attribute enabled
          * @default false
          * @type Boolean
          */
-        disabled: {
+        enabled: {
             value: false,
             validator: isBoolean
         },

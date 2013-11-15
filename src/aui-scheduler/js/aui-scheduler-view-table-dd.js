@@ -25,7 +25,7 @@ var Lang = A.Lang,
     DD = 'dd',
     DELEGATE = 'delegate',
     DELEGATE_CONFIG = 'delegateConfig',
-    DISABLED = 'disabled',
+    DISABLED = 'enabled',
     DISPLAY_DAYS_INTERVAL = 'displayDaysInterval',
     DRAG_NODE = 'dragNode',
     DRAGGING = 'dragging',
@@ -472,7 +472,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
         var recorder = scheduler.get(EVENT_RECORDER);
         var target = event.target;
 
-        if (recorder && !scheduler.get(DISABLED) &&
+        if (recorder && scheduler.get(ENABLED) &&
             target.test([_DOT + CSS_SVT_COLGRID, _DOT + CSS_SVT_TABLE_DATA_COL].join())) {
 
             instance._recording = true;
@@ -522,7 +522,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
         var scheduler = instance.get(SCHEDULER);
         var recorder = scheduler.get(EVENT_RECORDER);
 
-        if (recorder && instance._recording && !scheduler.get(DISABLED)) {
+        if (recorder && instance._recording && scheduler.get(ENABLED)) {
             var startPositionDate = instance._getPositionDate(instance.lassoStartPosition);
             var endPositionDate = instance._getPositionDate(instance.lassoLastPosition);
 
