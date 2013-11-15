@@ -227,6 +227,9 @@ var SchedulerEventRecorder = A.Component.create({
         initializer: function() {
             var instance = this;
 
+            console.log('schedulerEvent: ', schedulerEvent);
+            window.schedulerEvent = schedulerEvent;
+
             instance.get(NODE).addClass(CSS_SCHEDULER_EVENT_RECORDER);
 
             instance.publish('cancel', {
@@ -266,7 +269,8 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the formatted date including start and end hours if the event
+         * is not `allDay`.
          *
          * @method getFormattedDate
          */
@@ -290,9 +294,11 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns this scheduler event's `content`, and dates.
          *
          * @method getTemplateData
+         * @return {Object} Copy of this events `content`, `date`, `endDate` and
+         * `startDate`
          */
         getTemplateData: function() {
             var instance = this,
