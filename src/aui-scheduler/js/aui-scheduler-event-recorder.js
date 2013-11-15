@@ -319,10 +319,11 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns an updated event and also merges in any additional attributes
+         * passed in as `optAttrMap`.
          *
          * @method getUpdatedSchedulerEvent
-         * @param optAttrMap
+         * @param {Object} optAttrMap (optional) Attributes map.
          */
         getUpdatedSchedulerEvent: function(optAttrMap) {
             var instance = this,
