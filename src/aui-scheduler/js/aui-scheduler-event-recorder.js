@@ -349,7 +349,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Hides this scheduler event's `popover` component.
          *
          * @method hidePopover
          */
@@ -360,7 +360,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Loads template data into the scheduler event's form.
          *
          * @method populateForm
          */
