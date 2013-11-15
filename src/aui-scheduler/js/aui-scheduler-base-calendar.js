@@ -175,7 +175,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The `color` of the scheduler calendar.
          *
          * @attribute color
          * @type String

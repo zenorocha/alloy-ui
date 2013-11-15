@@ -228,7 +228,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The `color` of a calendar event.
          *
          * @attribute color
          * @default '#D96666'
@@ -241,7 +241,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * A color brightness factor is applied to the `color` attribute.
          *
          * @attribute colorBrightnessFactor
          * @default 1.4
@@ -253,7 +253,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * A color saturation factor is applied to the `color` attribute.
          *
          * @attribute colorSaturationFactor
          * @default 0.88
