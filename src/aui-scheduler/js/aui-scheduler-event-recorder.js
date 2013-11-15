@@ -419,7 +419,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handler for `cancel` event.
          *
          * @method _handleCancelEvent
          * @param event {Event.Facade} Event Facade object
@@ -438,7 +438,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handler for `clickOutSide` event.
          *
          * @method _handleClickOutSide
          * @param event {Event.Facade} Event Facade object
@@ -451,7 +451,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handler for `delete` event.
          *
          * @method _handleDeleteEvent
          * @param event {Event.Facade} Event Facade object
@@ -472,7 +472,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handler for `escape` event.
          *
          * @method _handleEscapeEvent
          * @param event {Event.Facade} Event Facade object
@@ -489,7 +489,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handler for `save` event.
          *
          * @method _handleSaveEvent
          * @param event {Event.Facade} Event Facade object
@@ -511,7 +511,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handler for `click` event on the scheduler.
          *
          * @method _onClickSchedulerEvent
          * @param event {Event.Facade} Event Facade object
