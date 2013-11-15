@@ -1341,7 +1341,7 @@ var SchedulerDayView = A.Component.create({
             if (draggingEvent) {
                 var placeholder = instance[EVENT_PLACEHOLDER];
 
-                placeholder.copyPropagateAttrValues(draggingEvent, null, {
+                placeholder.copyPropagateAttrValues(draggingEvent, true, {
                     silent: true
                 });
 

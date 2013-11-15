@@ -550,7 +550,7 @@ var SchedulerEvent = A.Component.create({
 
             if (scheduler) {
                 cloned = new scheduler.eventModel();
-                cloned.copyPropagateAttrValues(instance, null, {
+                cloned.copyPropagateAttrValues(instance, true, {
                     silent: true
                 });
             }
@@ -579,18 +579,18 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method copyPropagateAttrValues
-         * @param evt
-         * @param dontCopyMap
+         * @param {Object} evt
+         * @param {Boolean} copyMap
          * @param options
          */
-        copyPropagateAttrValues: function(evt, dontCopyMap, options) {
+        copyPropagateAttrValues: function(evt, copyMap, options) {
             var instance = this,
                 attrMap = {};
 
             instance.copyDates(evt, options);
 
             A.Array.each(instance.constructor.PROPAGATE_ATTRS, function(attrName) {
-                if (!((dontCopyMap || {}).hasOwnProperty(attrName))) {
+                if (!((!copyMap || {}).hasOwnProperty(attrName))) {
                     var value = evt.get(attrName);
 
                     if (!isObject(value)) {
