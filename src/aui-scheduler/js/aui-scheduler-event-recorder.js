@@ -385,7 +385,6 @@ var SchedulerEventRecorder = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getFooterToolbar
-         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _getFooterToolbar: function() {
