@@ -298,7 +298,7 @@ var SchedulerView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method syncEventUI
-         * @param evt
+         * @param {Object} evt
          */
         syncEventUI: function(evt) {},
 

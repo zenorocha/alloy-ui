@@ -707,7 +707,7 @@ var SchedulerEvent = A.Component.create({
          * Determines if an `event` interescts with this `event`.
          *
          * @method intersects
-         * @param evt
+         * @param {Object} evt
          */
         intersects: function(evt) {
             var instance = this;
@@ -723,7 +723,7 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method intersectHours
-         * @param evt
+         * @param {Object} evt
          */
         intersectHours: function(evt) {
             var instance = this;

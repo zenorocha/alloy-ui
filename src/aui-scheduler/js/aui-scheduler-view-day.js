@@ -810,7 +810,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method plotEvent
-         * @param evt
+         * @param {Object} evt
          */
         plotEvent: function(evt) {
             var instance = this;
@@ -976,7 +976,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method syncEventHeightUI
-         * @param evt
+         * @param {Object} evt
          */
         syncEventHeightUI: function(evt) {
             var instance = this;
@@ -1005,7 +1005,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method syncEventTopUI
-         * @param evt
+         * @param {Object} evt
          */
         syncEventTopUI: function(evt) {
             var instance = this;
@@ -1059,7 +1059,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method findEventIntersections
-         * @param evt
+         * @param {Object} evt
          * @param events
          */
         findEventIntersections: function(evt, events) {
