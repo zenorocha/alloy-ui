@@ -115,7 +115,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles `remove` events.
      *
      * @method _onRemoveEvents
      * @param event {Event.Facade} Event Facade object
