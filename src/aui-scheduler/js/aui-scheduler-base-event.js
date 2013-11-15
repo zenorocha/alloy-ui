@@ -266,10 +266,12 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * A formatted title date for this scheduler event, taking into account
+         * ISO time. The value will not contain and `endDate` if this event is
+         * `allDay`.
          *
          * @attribute titleDateFormat
-         * @type Function
+         * @type Object
          */
         titleDateFormat: {
             getter: '_getTitleDateFormat',
@@ -1051,7 +1053,8 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getTitleDateFormat
-         * @param val
+         * @param {String|Function} val
+         * @return {Mixed}
          * @protected
          */
         _getTitleDateFormat: function(val) {
