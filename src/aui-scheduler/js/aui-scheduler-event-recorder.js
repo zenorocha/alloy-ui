@@ -253,6 +253,151 @@ var SchedulerEventRecorder = A.Component.create({
             instance.popover.after(VISIBLE_CHANGE, A.bind(instance._afterPopoverVisibleChange, instance));
         },
 
+        getContentNode: function() {
+            var instance = this;
+            var popoverBB = instance.popover.get(BOUNDING_BOX);
+
+            return popoverBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_CONTENT);
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method getFormattedDate
+         */
+        getFormattedDate: function() {
+            var instance = this,
+                evt = (instance.get(EVENT) || instance),
+                endDate = evt.get(END_DATE),
+                startDate = evt.get(START_DATE),
+                formattedDate = evt._formatDate(startDate, instance.get(DATE_FORMAT));
+
+            if (evt.get(ALL_DAY)) {
+                return formattedDate;
+            }
+
+            formattedDate = formattedDate.concat(_COMMA);
+
+            var scheduler = evt.get(SCHEDULER),
+                fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
+
+            return [formattedDate, fmtHourFn(startDate), _DASH, fmtHourFn(endDate)].join(_SPACE);
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method getTemplateData
+         */
+        getTemplateData: function() {
+            var instance = this,
+                strings = instance.get(STRINGS),
+                evt = instance.get(EVENT) || instance,
+                content = evt.get(CONTENT);
+
+            if (isUndefined(content)) {
+                content = strings['description-hint'];
+            }
+
+            return {
+                content: content,
+                date: instance.getFormattedDate(),
+                endDate: evt.get(END_DATE).getTime(),
+                startDate: evt.get(START_DATE).getTime()
+            };
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method getUpdatedSchedulerEvent
+         * @param optAttrMap
+         */
+        getUpdatedSchedulerEvent: function(optAttrMap) {
+            var instance = this,
+                schedulerEvent = instance.get(EVENT),
+                options = {
+                    silent: !schedulerEvent
+                },
+                formValues = instance.serializeForm();
+
+            if (!schedulerEvent) {
+                schedulerEvent = instance.clone();
+            }
+
+            schedulerEvent.set(SCHEDULER, instance.get(SCHEDULER), {
+                silent: true
+            });
+            schedulerEvent.setAttrs(A.merge(formValues, optAttrMap), options);
+
+            return schedulerEvent;
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method hidePopover
+         */
+        hidePopover: function() {
+            var instance = this;
+
+            instance.popover.hide();
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method populateForm
+         */
+        populateForm: function() {
+            var instance = this,
+                bodyTemplate = instance.get(BODY_TEMPLATE),
+                headerTemplate = instance.get(HEADER_TEMPLATE),
+                templateData = instance.getTemplateData();
+
+            instance.popover.setStdModContent('body', A.Lang.sub(bodyTemplate, templateData));
+            instance.popover.setStdModContent('header', A.Lang.sub(headerTemplate, templateData));
+
+            instance.popover.addToolbar(instance._getFooterToolbar(), 'footer');
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method serializeForm
+         */
+        serializeForm: function() {
+            var instance = this;
+
+            return A.QueryString.parse(_serialize(instance.formNode.getDOM()));
+        },
+
+        showPopover: function(node) {
+            var instance = this,
+                event = instance.get(EVENT);
+
+            if (!instance.popover.get(RENDERED)) {
+                instance._renderPopover();
+            }
+
+            if (!node) {
+                if (event) {
+                    node = event.get(NODE);
+                }
+                else {
+                    node = instance.get(NODE);
+                }
+            }
+
+            if (isNodeList(node)) {
+                node = node.item(0);
+            }
+
+            instance.popover.set('align.node', node);
+
+            instance.popover.show();
+        },
+
         /**
          * Handles `event` events.
          *
@@ -588,151 +733,6 @@ var SchedulerEventRecorder = A.Component.create({
                 },
                 val
             );
-        },
-
-        getContentNode: function() {
-            var instance = this;
-            var popoverBB = instance.popover.get(BOUNDING_BOX);
-
-            return popoverBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_CONTENT);
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @method getFormattedDate
-         */
-        getFormattedDate: function() {
-            var instance = this,
-                evt = (instance.get(EVENT) || instance),
-                endDate = evt.get(END_DATE),
-                startDate = evt.get(START_DATE),
-                formattedDate = evt._formatDate(startDate, instance.get(DATE_FORMAT));
-
-            if (evt.get(ALL_DAY)) {
-                return formattedDate;
-            }
-
-            formattedDate = formattedDate.concat(_COMMA);
-
-            var scheduler = evt.get(SCHEDULER),
-                fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
-
-            return [formattedDate, fmtHourFn(startDate), _DASH, fmtHourFn(endDate)].join(_SPACE);
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @method getTemplateData
-         */
-        getTemplateData: function() {
-            var instance = this,
-                strings = instance.get(STRINGS),
-                evt = instance.get(EVENT) || instance,
-                content = evt.get(CONTENT);
-
-            if (isUndefined(content)) {
-                content = strings['description-hint'];
-            }
-
-            return {
-                content: content,
-                date: instance.getFormattedDate(),
-                endDate: evt.get(END_DATE).getTime(),
-                startDate: evt.get(START_DATE).getTime()
-            };
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @method getUpdatedSchedulerEvent
-         * @param optAttrMap
-         */
-        getUpdatedSchedulerEvent: function(optAttrMap) {
-            var instance = this,
-                schedulerEvent = instance.get(EVENT),
-                options = {
-                    silent: !schedulerEvent
-                },
-                formValues = instance.serializeForm();
-
-            if (!schedulerEvent) {
-                schedulerEvent = instance.clone();
-            }
-
-            schedulerEvent.set(SCHEDULER, instance.get(SCHEDULER), {
-                silent: true
-            });
-            schedulerEvent.setAttrs(A.merge(formValues, optAttrMap), options);
-
-            return schedulerEvent;
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @method hidePopover
-         */
-        hidePopover: function() {
-            var instance = this;
-
-            instance.popover.hide();
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @method populateForm
-         */
-        populateForm: function() {
-            var instance = this,
-                bodyTemplate = instance.get(BODY_TEMPLATE),
-                headerTemplate = instance.get(HEADER_TEMPLATE),
-                templateData = instance.getTemplateData();
-
-            instance.popover.setStdModContent('body', A.Lang.sub(bodyTemplate, templateData));
-            instance.popover.setStdModContent('header', A.Lang.sub(headerTemplate, templateData));
-
-            instance.popover.addToolbar(instance._getFooterToolbar(), 'footer');
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @method serializeForm
-         */
-        serializeForm: function() {
-            var instance = this;
-
-            return A.QueryString.parse(_serialize(instance.formNode.getDOM()));
-        },
-
-        showPopover: function(node) {
-            var instance = this,
-                event = instance.get(EVENT);
-
-            if (!instance.popover.get(RENDERED)) {
-                instance._renderPopover();
-            }
-
-            if (!node) {
-                if (event) {
-                    node = event.get(NODE);
-                }
-                else {
-                    node = instance.get(NODE);
-                }
-            }
-
-            if (isNodeList(node)) {
-                node = node.item(0);
-            }
-
-            instance.popover.set('align.node', node);
-
-            instance.popover.show();
         }
     }
 });
