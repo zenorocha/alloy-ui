@@ -364,7 +364,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handler for `save` event.
          *
          * @method _defSaveEventFn
          * @param event
@@ -381,6 +381,13 @@ var SchedulerEventRecorder = A.Component.create({
             scheduler.syncEventsUI();
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _getFooterToolbar
+         * @param event
+         * @protected
+         */
         _getFooterToolbar: function() {
             var instance = this,
                 event = instance.get(EVENT),

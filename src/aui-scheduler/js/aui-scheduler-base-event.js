@@ -507,7 +507,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request. Lifecycle.
+         * Does cleanup by removing the `node` from DOM.
          *
          * @method destroy
          * @protected
@@ -519,7 +519,14 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sometimes an event will require a padding node that mimics the
+         * behavior of the scheduler `event`'s `node`. This can occur in the
+         * week view when an event spans multiple days.
+
+         * For example, an event beginning at 10pm on January 1 and ending on
+         * 3am January 2nd would require a padding node. The `event`'s `node`
+         * appears from January 1 from 10:00pm to 11:59pm and the `paddingNode`
+         * is rendered on the table from January 2 from 12:00am to 3:00am.
          *
          * @method addPaddingNode
          */
