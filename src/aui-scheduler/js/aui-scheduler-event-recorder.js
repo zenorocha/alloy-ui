@@ -382,7 +382,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the `toolbar` belonging to the event recorder `footer`.
          *
          * @method _getFooterToolbar
          * @protected
