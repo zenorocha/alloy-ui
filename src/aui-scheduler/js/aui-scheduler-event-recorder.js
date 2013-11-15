@@ -444,7 +444,7 @@ var SchedulerEventRecorder = A.Component.create({
          * @param event {Event.Facade} Event Facade object
          * @protected
          */
-        _handleClickOutSide: function() {
+        _handleClickOutSide: function(event) {
             var instance = this;
 
             instance.fire('cancel');
