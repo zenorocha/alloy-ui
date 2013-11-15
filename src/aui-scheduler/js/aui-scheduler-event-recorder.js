@@ -533,7 +533,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handler for `submitForm`.
          *
          * @method _onSubmitForm
          * @param event {Event.Facade} Event Facade object
