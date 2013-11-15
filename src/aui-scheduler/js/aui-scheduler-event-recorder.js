@@ -253,6 +253,11 @@ var SchedulerEventRecorder = A.Component.create({
             instance.popover.after(VISIBLE_CHANGE, A.bind(instance._afterPopoverVisibleChange, instance));
         },
 
+        /**
+         * Get the content node belonging to the `popover`.
+         *
+         * @method getContentNode
+         */
         getContentNode: function() {
             var instance = this;
             var popoverBB = instance.popover.get(BOUNDING_BOX);
