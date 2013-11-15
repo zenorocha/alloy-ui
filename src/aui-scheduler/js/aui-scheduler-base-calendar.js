@@ -46,7 +46,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `color` events.
      *
      * @method _afterColorChange
-     * @param event {Event.Facade} Event Facade object
+     * @param {Event.Facade} event Event Facade object
      * @protected
      */
     _afterColorChange: function(event) {
@@ -63,7 +63,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `enabled` events.
      *
      * @method _afterEnabledChange
-     * @param event {Event.Facade} Event Facade object
+     * @param {Event.Facade} event Event Facade object
      * @protected
      */
     _afterEnabledChange: function(event) {
@@ -80,7 +80,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `events` events.
      *
      * @method _afterEventsChange
-     * @param event {Event.Facade} Event Facade object
+     * @param {Event.Facade} event Event Facade object
      * @protected
      */
     _afterEventsChange: function(event) {
@@ -101,7 +101,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `visible` events.
      *
      * @method _afterVisibleChange
-     * @param event {Event.Facade} Event Facade object
+     * @param {Event.Facade} event Event Facade object
      * @protected
      */
     _afterVisibleChange: function(event) {
@@ -118,7 +118,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `remove` events.
      *
      * @method _onRemoveEvents
-     * @param event {Event.Facade} Event Facade object
+     * @param {Event.Facade} event Event Facade object
      * @protected
      */
     _onRemoveEvents: function(event) {

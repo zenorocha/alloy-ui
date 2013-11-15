@@ -423,7 +423,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Handles `event` events.
          *
          * @method _afterEventChange
-         * @param event {Event.Facade} Event Facade object
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _afterEventChange: function(event) {
@@ -436,7 +436,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Handles `popoverVisible` events.
          *
          * @method _afterPopoverVisibleChange
-         * @param event {Event.Facade} Event Facade object
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _afterPopoverVisibleChange: function(event) {
@@ -468,7 +468,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Handles `scheduler` events.
          *
          * @method _afterSchedulerChange
-         * @param event {Event.Facade} Event Facade object
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _afterSchedulerChange: function(event) {
@@ -484,7 +484,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Handler for `cancel` event.
          *
          * @method _defCancelEventFn
-         * @param event {Event.Facade} Event Facade object
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _defCancelEventFn: function() {
@@ -499,7 +499,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Handler for `delete` event.
          *
          * @method _defDeleteEventFn
-         * @param event {Event.Facade} Event Facade object
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _defDeleteEventFn: function() {
@@ -517,7 +517,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Handler for `edit` event.
          *
          * @method _defEditEventFn
-         * @param event {Event.Facade} Event Facade object
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _defEditEventFn: function() {
@@ -533,7 +533,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Handler for `save` event.
          *
          * @method _defSaveEventFn
-         * @param event {Event.Facade} Event Facade object
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _defSaveEventFn: function(event) {
@@ -589,7 +589,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Handler for `cancel` event.
          *
          * @method _handleCancelEvent
-         * @param event {Event.Facade} Event Facade object
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _handleCancelEvent: function(event) {
@@ -608,7 +608,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Handler for `clickOutSide` event.
          *
          * @method _handleClickOutSide
-         * @param event {Event.Facade} Event Facade object
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _handleClickOutSide: function(event) {
@@ -621,7 +621,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Handler for `delete` event.
          *
          * @method _handleDeleteEvent
-         * @param event {Event.Facade} Event Facade object
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _handleDeleteEvent: function(event) {
@@ -642,7 +642,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Handler for `escape` event.
          *
          * @method _handleEscapeEvent
-         * @param event {Event.Facade} Event Facade object
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _handleEscapeEvent: function(event) {
@@ -659,7 +659,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Handler for `save` event.
          *
          * @method _handleSaveEvent
-         * @param event {Event.Facade} Event Facade object
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _handleSaveEvent: function(event) {
@@ -681,7 +681,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Handler for `click` event on the scheduler.
          *
          * @method _onClickSchedulerEvent
-         * @param event {Event.Facade} Event Facade object
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _onClickSchedulerEvent: function(event) {
@@ -703,7 +703,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Handler for `submitForm`.
          *
          * @method _onSubmitForm
-         * @param event {Event.Facade} Event Facade object
+         * @param {Event.Facade} event Event Facade object
          * @protected
          */
         _onSubmitForm: function(event) {
@@ -740,7 +740,9 @@ var SchedulerEventRecorder = A.Component.create({
          *
          * @method _renderPopover
          * @protected
-         * @return
+         * @param {Object} val The new `popover`.
+         * @return {Object} The new `popover` value merged some default popover
+         * configuration properties.
          */
         _setPopover: function(val) {
             var instance = this;
