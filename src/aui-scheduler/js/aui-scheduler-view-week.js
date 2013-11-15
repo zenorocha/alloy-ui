@@ -56,7 +56,7 @@ var SchedulerWeekView = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determine the content of Scheduler week view's body section.
          *
          * @attribute bodyContent
          * @default ''

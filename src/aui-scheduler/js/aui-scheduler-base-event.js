@@ -206,7 +206,8 @@ var SchedulerEvent = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines whether a new event will take place all day. When enabled,
+         * the event will not contain 24-hour clock date inputs.
          *
          * @attribute allDay
          * @default false
@@ -218,7 +219,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determine the content of Scheduler event's body section.
          *
          * @attribute content
          */

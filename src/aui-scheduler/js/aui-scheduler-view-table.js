@@ -187,7 +187,7 @@ var SchedulerTableView = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determine the content of Scheduler table view's body section.
          *
          * @attribute bodyContent
          * @default ''

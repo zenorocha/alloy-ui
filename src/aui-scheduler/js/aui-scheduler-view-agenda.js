@@ -178,7 +178,7 @@ var SchedulerAgendaView = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determine the content of Scheduler view agenda's body section.
          *
          * @attribute bodyContent
          * @default ''

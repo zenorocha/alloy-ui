@@ -114,7 +114,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Returns the content of an `event`.
+         * Determine the content of this Scheduler event recorder's body section.
          *
          * @attribute content
          */
@@ -298,7 +298,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Returns this scheduler event's `content`, and dates.
+         * Returns this Scheduler event recorder's `content`, and dates.
          *
          * @method getTemplateData
          * @return {Object} Copy of this events `content`, `date`, `endDate` and
@@ -351,7 +351,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Hides this scheduler event's `popover` component.
+         * Hides this Scheduler event recorder's `popover` component.
          *
          * @method hidePopover
          */
@@ -362,7 +362,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Loads template data into the scheduler event's form.
+         * Loads template data into the Scheduler event recorder's form.
          *
          * @method populateForm
          */
@@ -391,7 +391,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Hides this scheduler event's `popover` component.
+         * Hides this Scheduler event recorder's `popover` component.
          *
          * @method showPopover
          */
