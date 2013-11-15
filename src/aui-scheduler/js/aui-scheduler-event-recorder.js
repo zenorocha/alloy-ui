@@ -388,6 +388,11 @@ var SchedulerEventRecorder = A.Component.create({
             return A.QueryString.parse(_serialize(instance.formNode.getDOM()));
         },
 
+        /**
+         * Hides this scheduler event's `popover` component.
+         *
+         * @method showPopover
+         */
         showPopover: function(node) {
             var instance = this,
                 event = instance.get(EVENT);
