@@ -273,6 +273,8 @@ var SchedulerEventRecorder = A.Component.create({
          * is not `allDay`.
          *
          * @method getFormattedDate
+         * @return {String} Formated date including start and end hours if the event
+         * is not `allDay`..
          */
         getFormattedDate: function() {
             var instance = this,
@@ -298,7 +300,7 @@ var SchedulerEventRecorder = A.Component.create({
          *
          * @method getTemplateData
          * @return {Object} Copy of this events `content`, `date`, `endDate` and
-         * `startDate`
+         * `startDate`.
          */
         getTemplateData: function() {
             var instance = this,
@@ -324,6 +326,7 @@ var SchedulerEventRecorder = A.Component.create({
          *
          * @method getUpdatedSchedulerEvent
          * @param {Object} optAttrMap (optional) Attributes map.
+         * @return {Object} schedulerEvent (optional) Attributes map.
          */
         getUpdatedSchedulerEvent: function(optAttrMap) {
             var instance = this,
