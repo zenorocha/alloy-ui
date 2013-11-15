@@ -603,7 +603,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the number of days an `event` is scheduled to take place.
          *
          * @method getDaysDuration
          */
@@ -615,7 +615,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the number of hours an `event` is scheduled to take place.
          *
          * @method getHoursDuration
          */
@@ -627,7 +627,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the number of minutes an `event` is scheduled to take place.
          *
          * @method getMinutesDuration
          */
@@ -639,7 +639,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the number of seconds an `event` is scheduled to take place.
          *
          * @method getSecondsDuration
          */
@@ -651,10 +651,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines if an `event`'s end date is this same as this `event`.
          *
          * @method sameEndDate
-         * @param evt
+         * @param {Object} evt
          */
         sameEndDate: function(evt) {
             var instance = this;
@@ -663,10 +663,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines if an `event`'s start date is this same as this `event`.
          *
          * @method sameStartDate
-         * @param evt
+         * @param {Object} evt
          */
         sameStartDate: function(evt) {
             var instance = this;
