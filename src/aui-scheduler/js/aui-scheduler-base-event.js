@@ -676,10 +676,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines if an `event` is after this `event`.
          *
          * @method isAfter
-         * @param evt
+         * @param {Object} evt
          */
         isAfter: function(evt) {
             var instance = this;
@@ -690,10 +690,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines if an `event` is before this `event`.
          *
          * @method isBefore
-         * @param evt
+         * @param {Object} evt
          */
         isBefore: function(evt) {
             var instance = this;
