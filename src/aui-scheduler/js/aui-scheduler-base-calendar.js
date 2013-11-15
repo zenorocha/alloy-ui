@@ -135,7 +135,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      *
      * @method _setModelsAttrs
      * @param attrMap
-     * @param options
+     * @param {Object} options (optional) Zero or more options.
      * @protected
      */
     _setModelsAttrs: function(attrMap, options) {

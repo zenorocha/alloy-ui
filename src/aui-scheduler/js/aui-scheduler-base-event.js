@@ -581,7 +581,7 @@ var SchedulerEvent = A.Component.create({
          * @method copyPropagateAttrValues
          * @param {Object} evt
          * @param {Boolean} copyMap
-         * @param options
+         * @param {Object} options (optional) Zero or more options.
          */
         copyPropagateAttrValues: function(evt, copyMap, options) {
             var instance = this,
@@ -788,7 +788,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @method move
          * @param date
-         * @param options
+         * @param {Object} options (optional) Zero or more options.
          */
         move: function(date, options) {
             var instance = this;
