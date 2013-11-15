@@ -539,7 +539,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Clones the scheduler `event`.
          *
          * @method clone
          */
