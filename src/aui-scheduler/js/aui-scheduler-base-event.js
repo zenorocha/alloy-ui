@@ -559,11 +559,11 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Copy the dates from the `event` parameter to the instance `event`.
          *
          * @method copyDates
-         * @param evt
-         * @param options
+         * @param {Object} evt Scheduler event.
+         * @param {Object} options (optional) Zero or more options.
          */
         copyDates: function(evt, options) {
             var instance = this;
