@@ -236,7 +236,7 @@ A.mix(SchedulerEventSupport.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _afterAddEvent
-     * @param event
+     * @param event {Event.Facade} Event Facade object
      * @protected
      */
     _afterAddEvent: function(event) {
@@ -699,7 +699,7 @@ var SchedulerBase = A.Component.create({
          * Handles `activeView` events.
          *
          * @method _afterActiveViewChange
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _afterActiveViewChange: function(event) {
@@ -729,7 +729,7 @@ var SchedulerBase = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterRender
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _afterRender: function(event) {
@@ -808,7 +808,7 @@ var SchedulerBase = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onClickToday
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onClickToday: function(event) {
@@ -826,7 +826,7 @@ var SchedulerBase = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onClickNextIcon
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onClickNextIcon: function(event) {
@@ -844,7 +844,7 @@ var SchedulerBase = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onClickPrevIcon
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onClickPrevIcon: function(event) {
@@ -862,7 +862,7 @@ var SchedulerBase = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onButtonGroupSelectionChange
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onButtonGroupSelectionChange: function(event) {

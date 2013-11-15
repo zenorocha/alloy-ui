@@ -528,7 +528,7 @@ var SchedulerAgendaView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onEventsHeaderClick
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onEventsHeaderClick: function(event) {
@@ -554,7 +554,7 @@ var SchedulerAgendaView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onEventsHeaderClick
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onSchedulerEventClick: function(event) {

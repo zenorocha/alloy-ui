@@ -315,7 +315,7 @@ var SchedulerView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterRender
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _afterRender: function(event) {

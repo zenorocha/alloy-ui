@@ -891,7 +891,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `allday` events.
          *
          * @method _afterAllDayChange
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _afterAllDayChange: function(event) {
@@ -904,7 +904,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `color` events.
          *
          * @method _afterColorChange
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _afterColorChange: function(event) {
@@ -917,7 +917,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `disabled` events.
          *
          * @method _afterDisabledChange
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _afterDisabledChange: function(event) {
@@ -930,7 +930,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `enddate` events.
          *
          * @method _afterEndDateChange
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _afterEndDateChange: function(event) {
@@ -943,7 +943,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `meeting` events.
          *
          * @method _afterMeetingChange
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _afterMeetingChange: function(event) {
@@ -956,7 +956,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `reminder` events.
          *
          * @method _afterReminderChange
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _afterReminderChange: function(event) {
@@ -969,7 +969,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `repeated` events.
          *
          * @method _afterRepeatedChange
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _afterRepeatedChange: function(event) {
@@ -982,7 +982,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `visible` events.
          *
          * @method _afterVisibleChange
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _afterVisibleChange: function(event) {

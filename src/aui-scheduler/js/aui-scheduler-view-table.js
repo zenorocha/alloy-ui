@@ -931,7 +931,7 @@ var SchedulerTableView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getRenderableEvent
-         * @param events
+         * @param event {Event.Facade} Event Facade objects
          * @param rowStartDate
          * @param rowEndDate
          * @param celDate
@@ -998,7 +998,7 @@ var SchedulerTableView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onClickMore
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onClickMore: function(event) {

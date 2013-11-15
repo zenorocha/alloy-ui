@@ -1060,7 +1060,7 @@ var SchedulerDayView = A.Component.create({
          *
          * @method findEventIntersections
          * @param {Object} evt
-         * @param events
+         * @param event {Event.Facade} Event Facade objects
          */
         findEventIntersections: function(evt, events) {
             var instance = this;
@@ -1079,7 +1079,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getXYDelta
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          */
         getXYDelta: function(event) {
             var instance = this;
@@ -1123,7 +1123,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterDragAlign
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _afterDragAlign: function(event) {
@@ -1170,7 +1170,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _dragTickAlignY
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _dragTickAlignY: function(event) {
@@ -1277,7 +1277,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onClickDaysHeader
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onClickDaysHeader: function(event) {
@@ -1302,7 +1302,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onEventDragEnd
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onEventDragEnd: function(event) {
@@ -1331,7 +1331,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onEventDragStart
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onEventDragStart: function(event) {
@@ -1364,7 +1364,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onMouseDownTableCol
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onMouseDownTableCol: function(event) {
@@ -1418,7 +1418,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onMouseEnterEvent
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onMouseEnterEvent: function(event) {
@@ -1435,7 +1435,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onMouseLeaveEvent
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onMouseLeaveEvent: function(event) {
@@ -1450,7 +1450,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onMouseMoveTableCol
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onMouseMoveTableCol: function(event) {
@@ -1498,7 +1498,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onMouseUpTableCol
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onMouseUpTableCol: function(event) {
@@ -1526,7 +1526,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onSchedulerChange
-         * @param event
+         * @param event {Event.Facade} Event Facade object
          * @protected
          */
         _onSchedulerChange: function(event) {

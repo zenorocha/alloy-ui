@@ -264,7 +264,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _afterDragAlign
-     * @param event
+     * @param event {Event.Facade} Event Facade object
      * @protected
      */
     _afterDragAlign: function(event) {
@@ -388,7 +388,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _onEventDragEnd
-     * @param event
+     * @param event {Event.Facade} Event Facade object
      * @protected
      */
     _onEventDragEnd: function(event) {
@@ -421,7 +421,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _onEventDragStart
-     * @param event
+     * @param event {Event.Facade} Event Facade object
      * @protected
      */
     _onEventDragStart: function(event) {
@@ -463,7 +463,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _onMouseDownGrid
-     * @param event
+     * @param event {Event.Facade} Event Facade object
      * @protected
      */
     _onMouseDownGrid: function(event) {
@@ -493,7 +493,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _onMouseMoveGrid
-     * @param event
+     * @param event {Event.Facade} Event Facade object
      * @protected
      */
     _onMouseMoveGrid: function(event) {
@@ -514,7 +514,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _onMouseUpGrid
-     * @param event
+     * @param event {Event.Facade} Event Facade object
      * @protected
      */
     _onMouseUpGrid: function(event) {
