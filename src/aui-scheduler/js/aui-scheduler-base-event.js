@@ -641,6 +641,7 @@ var SchedulerEvent = A.Component.create({
          * Gets the number of minutes an `event` is scheduled to take place.
          *
          * @method getMinutesDuration
+         * @return {Number}
          */
         getMinutesDuration: function() {
             var instance = this;
