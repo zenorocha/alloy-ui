@@ -681,6 +681,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @method sameStartDate
          * @param {Object} evt
+         * @return {Boolean}
          */
         sameStartDate: function(evt) {
             var instance = this;
