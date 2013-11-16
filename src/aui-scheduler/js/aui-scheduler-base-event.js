@@ -826,7 +826,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Replaces each node's current content with the content.
+         * Replaces each node's current content with the `content`.
          *
          * @method setContent
          * @param content
@@ -842,7 +842,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Replaces each node's current title with the `content`.
          *
          * @method setTitle
          * @param content
