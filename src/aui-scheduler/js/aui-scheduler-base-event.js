@@ -786,6 +786,7 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getClearEndDate
+         * @return {Date}
          */
         getClearEndDate: function() {
             var instance = this;
