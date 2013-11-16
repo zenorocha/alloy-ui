@@ -858,7 +858,8 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the content of the Scheduler event to the content attribute
+         * value.
          *
          * @method syncNodeContentUI
          */
