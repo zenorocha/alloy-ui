@@ -568,7 +568,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Copy the dates from the `event` parameter to the instance `event`.
+         * Copys the dates from the `event` parameter to the instance `event`.
          *
          * @method copyDates
          * @param {Object} evt Scheduler event.
@@ -585,7 +585,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Copys the attribute vales from an `event` to this `event`.
          *
          * @method copyPropagateAttrValues
          * @param {Object} evt
