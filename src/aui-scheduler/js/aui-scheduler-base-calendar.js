@@ -236,7 +236,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         scheduler: {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether the calendar is visible.
          *
          * @attribute visible
          * @default true

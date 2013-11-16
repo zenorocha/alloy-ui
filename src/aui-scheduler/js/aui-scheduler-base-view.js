@@ -175,7 +175,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether the calendar is visible.
          *
          * @attribute visible
          * @default false

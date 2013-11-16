@@ -303,9 +303,13 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The date corresponding to the current ending date of a scheduled
+         * event. By default, the value is one hour after the date set on the
+         * user's computer.
          *
          * @attribute endDate
+         * @type Date
+         * @default Today's date as set on the user's computer.
          */
         endDate: {
             setter: '_setDate',
@@ -385,9 +389,11 @@ var SchedulerEvent = A.Component.create({
         scheduler: {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The date corresponding to the current starting date of a scheduled
+         * event. By default, the value is the date set on the user's computer.
          *
          * @attribute startDate
+         * @type Date
          */
         startDate: {
             setter: '_setDate',
@@ -397,7 +403,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether the event is visible.
          *
          * @attribute visible
          * @default true
