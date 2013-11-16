@@ -826,7 +826,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Replaces each node's current content with the content.
          *
          * @method setContent
          * @param content
