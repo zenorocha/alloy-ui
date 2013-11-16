@@ -192,7 +192,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determine if the calender is enbabled.
          *
          * @attribute enabled
          * @default false

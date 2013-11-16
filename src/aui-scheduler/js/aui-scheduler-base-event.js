@@ -323,7 +323,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determine if the event is enbabled.
          *
          * @attribute enabled
          * @default false
@@ -892,9 +892,11 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * An event can span across multiple days. In the week view, this event
+         * would need to be split into chunks for each day column.
          *
          * @method split
+         * @return {Array}
          */
         split: function() {
             var instance = this,
