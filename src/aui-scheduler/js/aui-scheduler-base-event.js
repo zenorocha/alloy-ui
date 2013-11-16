@@ -628,6 +628,7 @@ var SchedulerEvent = A.Component.create({
          * Gets the number of hours an `event` is scheduled to take place.
          *
          * @method getHoursDuration
+         * @return {Number}
          */
         getHoursDuration: function() {
             var instance = this;
