@@ -870,8 +870,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
+         * Sets the title of the Scheduler event to the a formated date.
          * @method syncNodeTitleUI
          */
         syncNodeTitleUI: function() {
