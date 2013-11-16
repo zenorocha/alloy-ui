@@ -667,7 +667,8 @@ var SchedulerEvent = A.Component.create({
          * Determines if an `event`'s end date is this same as this `event`.
          *
          * @method sameEndDate
-         * @param {Object} evt
+         * @param {Object} evt Scheduler Event
+         * @return {Boolean}
          */
         sameEndDate: function(evt) {
             var instance = this;
