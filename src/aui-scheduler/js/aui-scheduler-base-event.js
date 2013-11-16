@@ -807,7 +807,8 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Move this Scheduler event to a new date specified by the date
+         * parameter.
          *
          * @method move
          * @param date
