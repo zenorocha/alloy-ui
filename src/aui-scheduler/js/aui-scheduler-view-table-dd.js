@@ -126,7 +126,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Bind the scheduler view DD Delegate events on the UI. Lifecycle.
      *
      * @method viewDDBindUI
      */
@@ -153,7 +153,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Render the scheduler view DD Delegate instance. Lifecycle.
      *
      * @method viewDDRenderUI
      */
