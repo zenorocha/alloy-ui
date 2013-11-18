@@ -335,7 +335,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determine if the event is a meeting.
          *
          * @attribute meeting
          * @default false
