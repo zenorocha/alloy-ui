@@ -370,7 +370,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determine if the event is to be repeated.
          *
          * @attribute repeated
          * @default false
