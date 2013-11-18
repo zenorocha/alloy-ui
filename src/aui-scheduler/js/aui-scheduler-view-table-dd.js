@@ -187,7 +187,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Removes the table view proxy node.
      *
      * @method removeProxy
      */
