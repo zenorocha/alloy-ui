@@ -516,7 +516,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Does cleanup by removing the `node` from DOM.
+         * Removes the `node` from DOM.
          *
          * @method destroy
          * @protected
