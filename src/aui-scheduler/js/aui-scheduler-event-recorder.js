@@ -229,9 +229,6 @@ var SchedulerEventRecorder = A.Component.create({
         initializer: function() {
             var instance = this;
 
-            console.log('schedulerEvent: ', schedulerEvent);
-            window.schedulerEvent = schedulerEvent;
-
             instance.get(NODE).addClass(CSS_SCHEDULER_EVENT_RECORDER);
 
             instance.publish('cancel', {

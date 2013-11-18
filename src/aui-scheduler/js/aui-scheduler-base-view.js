@@ -242,16 +242,20 @@ var SchedulerView = A.Component.create({
         flushViewCache: function() {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the date that follows the view's current
+         * date.
          *
          * @method getNextDate
+         * @return {Date}
          */
         getNextDate: function() {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the date that preceeds the view's current
+         * date.
          *
          * @method getPrevDate
+         * @return {Date}
          */
         getPrevDate: function() {},
 

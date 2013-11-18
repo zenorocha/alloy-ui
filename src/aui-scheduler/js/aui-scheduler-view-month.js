@@ -132,9 +132,11 @@ var SchedulerMonthView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the date that follows the month view's current
+         * date.
          *
          * @method getNextDate
+         * @return {Date}
          */
         getNextDate: function() {
             var instance = this;
@@ -146,9 +148,11 @@ var SchedulerMonthView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the date that preceeds the month view's current
+         * date.
          *
          * @method getPrevDate
+         * @return {Date}
          */
         getPrevDate: function() {
             var instance = this;
