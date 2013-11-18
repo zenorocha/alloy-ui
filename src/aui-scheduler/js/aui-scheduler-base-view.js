@@ -222,7 +222,8 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a date value of the date with its time adjusted
+         * to midnight.
          *
          * @method getAdjustedViewDate
          * @param val {Any} The value of the property.

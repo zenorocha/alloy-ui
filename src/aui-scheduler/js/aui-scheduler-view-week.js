@@ -100,7 +100,7 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * A formatted navigation date formatter for this week view.
          *
          * @attribute navigationDateFormatter
          * @type Function
@@ -125,7 +125,8 @@ var SchedulerWeekView = A.Component.create({
     prototype: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a date value of the first day of the week with its time adjusted
+         * to midnight.
          *
          * @method getAdjustedViewDate
          * @param val {Any} The value of the property.

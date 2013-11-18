@@ -119,7 +119,8 @@ var SchedulerMonthView = A.Component.create({
     prototype: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a date value of the first day of the month with its time
+         * adjusted to midnight.
          *
          * @method getAdjustedViewDate
          * @param val {Any} The value of the property.
