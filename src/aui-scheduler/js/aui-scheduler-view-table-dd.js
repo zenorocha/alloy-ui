@@ -163,7 +163,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sync the scheduler view DD Delegate instance. Lifecycle.
      *
      * @method viewDDSyncUI
      */
