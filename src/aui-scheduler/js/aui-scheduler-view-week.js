@@ -183,10 +183,11 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the first day of week in this view.
          *
          * @method _firstDayOfWeek
          * @param date
+         * @return {Date}
          * @protected
          */
         _firstDayOfWeek: function(date) {
@@ -198,10 +199,11 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a formatted navigation date formatter for this week view.
          *
          * @method _valueNavigationDateFormatter
          * @param date
+         * @return {Date}
          * @protected
          */
         _valueNavigationDateFormatter: function(date) {
