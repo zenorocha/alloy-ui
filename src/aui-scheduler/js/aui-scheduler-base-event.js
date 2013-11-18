@@ -738,7 +738,8 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines if an `event`'s hours' interescts with this `event`'s
+         * hours.
          *
          * @method intersectHours
          * @param {Object} evt
