@@ -200,21 +200,21 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Renders the table view lasso at the given xy coordinates.
      *
      * @method renderLasso
-     * @param startPos
-     * @param endPos
+     * @param startPosition {Number} The starting X/Y posiiton to lasso.
+     * @param endPosition {Number} The ending X/Y posiiton to lasso.
      */
-    renderLasso: function(startPos, endPos) {
+    renderLasso: function(startPosition, endPosition) {
         var instance = this;
 
-        var minPos = startPos;
-        var maxPos = endPos;
+        var minPos = startPosition;
+        var maxPos = endPosition;
 
-        if (startPos[1] > endPos[1]) {
-            minPos = endPos;
-            maxPos = startPos;
+        if (startPosition[1] > endPosition[1]) {
+            minPos = endPosition;
+            maxPos = startPosition;
         }
 
         var imin = minPos[0],
