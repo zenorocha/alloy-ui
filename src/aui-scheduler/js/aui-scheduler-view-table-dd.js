@@ -261,7 +261,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles `dragAlign` events.
      *
      * @method _afterDragAlign
      * @param {Event.Facade} event Event Facade object
