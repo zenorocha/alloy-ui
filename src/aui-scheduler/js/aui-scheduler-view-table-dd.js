@@ -174,7 +174,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Removes the table view lasso.
      *
      * @method removeLasso
      */
