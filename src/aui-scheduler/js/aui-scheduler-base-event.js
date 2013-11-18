@@ -382,7 +382,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the scheduler class.
          *
          * @attribute scheduler
          */
