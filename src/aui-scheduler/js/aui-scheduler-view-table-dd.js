@@ -78,7 +78,7 @@ A.SchedulerTableViewDD = function() {};
 A.SchedulerTableViewDD.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Configures this view's DD Delegate.
      *
      * @attribute delegateConfig
      * @default {}
