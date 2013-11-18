@@ -260,9 +260,10 @@ var SchedulerView = A.Component.create({
         getPrevDate: function() {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the current date.
          *
          * @method getToday
+         * @return {Date}
          */
         getToday: function() {
             return DateMath.clearTime(new Date());

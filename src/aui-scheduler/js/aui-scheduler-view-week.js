@@ -170,9 +170,10 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the week view's current date.
          *
          * @method getToday
+         * @return {Date}
          */
         getToday: function() {
             var instance = this;
