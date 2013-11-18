@@ -128,7 +128,7 @@ var SchedulerWeekView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getAdjustedViewDate
-         * @param val
+         * @param val {Any} The value of the property.
          */
         getAdjustedViewDate: function(val) {
             var instance = this;

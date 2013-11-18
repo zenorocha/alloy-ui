@@ -1035,7 +1035,7 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _setDate
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _setDate: function(val) {
@@ -1094,7 +1094,7 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetAllDay
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetAllDay: function(val) {
@@ -1107,7 +1107,7 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetColor
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetColor: function(val) {
@@ -1138,7 +1138,7 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetEnabled
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetEnabled: function(val) {
@@ -1151,7 +1151,7 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetEndDate
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetEndDate: function(val) {
@@ -1164,7 +1164,7 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetMeeting
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetMeeting: function(val) {
@@ -1177,7 +1177,7 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetPast
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetPast: function(val) {
@@ -1190,7 +1190,7 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetReminder
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetReminder: function(val) {
@@ -1203,7 +1203,7 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetRepeated
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetRepeated: function(val) {
@@ -1216,7 +1216,7 @@ var SchedulerEvent = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetVisible
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetVisible: function(val) {

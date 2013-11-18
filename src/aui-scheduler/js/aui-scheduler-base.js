@@ -249,7 +249,7 @@ A.mix(SchedulerEventSupport.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _toSchedulerEvents
-     * @param values
+     * @param val {Any} The value of the property.ues
      * @protected
      */
     _toSchedulerEvents: function(values) {
@@ -891,7 +891,7 @@ var SchedulerBase = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _setEventRecorder
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _setEventRecorder: function(val) {
@@ -912,7 +912,7 @@ var SchedulerBase = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _setViews
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _setViews: function(val) {
@@ -942,7 +942,7 @@ var SchedulerBase = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetActiveView
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetActiveView: function(val) {
@@ -963,7 +963,7 @@ var SchedulerBase = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetDate
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetDate: function(val) {

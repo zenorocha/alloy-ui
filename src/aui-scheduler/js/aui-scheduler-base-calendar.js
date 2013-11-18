@@ -150,7 +150,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _uiSetEvents
-     * @param val
+     * @param val {Any} The value of the property.
      * @protected
      */
     _uiSetEvents: function(val) {

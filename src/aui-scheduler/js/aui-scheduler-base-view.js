@@ -225,7 +225,7 @@ var SchedulerView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getAdjustedViewDate
-         * @param val
+         * @param val {Any} The value of the property.
          */
         getAdjustedViewDate: function(val) {
             var instance = this;
@@ -306,7 +306,7 @@ var SchedulerView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetDate
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetDate: function(val) {},
@@ -331,7 +331,7 @@ var SchedulerView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _setScheduler
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _setScheduler: function(val) {
@@ -355,7 +355,7 @@ var SchedulerView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetScrollable
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetScrollable: function(val) {

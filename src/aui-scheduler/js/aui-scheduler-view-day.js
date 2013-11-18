@@ -1263,7 +1263,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetDate
-         * @param val
+         * @param val {Any} The value of the property.
          * @protected
          */
         _uiSetDate: function(val) {
