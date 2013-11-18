@@ -404,7 +404,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determine the name for this day view.
          *
          * @attribute name
          * @default 'day'

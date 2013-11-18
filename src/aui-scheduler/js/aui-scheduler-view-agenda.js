@@ -307,7 +307,7 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determine the name for this agenda.
          *
          * @attribute name
          * @default 'agenda'

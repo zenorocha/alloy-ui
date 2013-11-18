@@ -204,7 +204,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * * Determine the name for this calendar.
          *
          * @attribute name
          * @default '(no name)'

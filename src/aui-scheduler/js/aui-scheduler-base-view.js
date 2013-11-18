@@ -90,7 +90,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determine the name for this view.
          *
          * @attribute name
          * @default ''
