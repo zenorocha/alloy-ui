@@ -271,7 +271,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The number of day columns this view displays.
          *
          * @attribute days
          * @default 1

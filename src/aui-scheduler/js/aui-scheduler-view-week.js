@@ -67,7 +67,7 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The number of days in a week.
          *
          * @attribute days
          * @default 7
