@@ -1070,7 +1070,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the format for the title date.
          *
          * @method _getTitleDateFormat
          * @param {String|Function} val
