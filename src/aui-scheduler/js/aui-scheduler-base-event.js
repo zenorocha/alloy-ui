@@ -1035,7 +1035,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the date to the given value.
          *
          * @method _setDate
          * @param val {Any} The value of the property.
