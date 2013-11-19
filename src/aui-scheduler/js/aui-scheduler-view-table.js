@@ -1145,7 +1145,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of `colHeaderDaysNode`.
          *
          * @method _valueColHeaderDaysNode
          * @protected
@@ -1160,7 +1160,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of `tableGridNode`.
          *
          * @method _valueTableGridNode
          * @protected
@@ -1175,7 +1175,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the a new `NodeList` with a given size and template.
          *
          * @method _valueNodeList
          * @param size
