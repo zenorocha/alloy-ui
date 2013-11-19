@@ -1052,7 +1052,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Format the given date with the given format.
          *
          * @method _formatDate
          * @param date
