@@ -147,7 +147,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Set the `events` on the UI.
      *
      * @method _uiSetEvents
      * @param val {Any} The value of the property.

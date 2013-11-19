@@ -939,7 +939,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set `activeView` on the UI.
          *
          * @method _uiSetActiveView
          * @param val {Any} The value of the property.
@@ -960,7 +960,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set `date` on the UI.
          *
          * @method _uiSetDate
          * @param val {Any} The value of the property.

@@ -1264,7 +1264,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set `date` on the UI.
          *
          * @method _uiSetDate
          * @param val {Any} The value of the property.

@@ -1094,7 +1094,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set `allDay` on the UI.
          *
          * @method _uiSetAllDay
          * @param val {Any} The value of the property.
@@ -1107,7 +1107,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set `color` on the UI.
          *
          * @method _uiSetColor
          * @param val {Any} The value of the property.
@@ -1138,7 +1138,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set `enabled` on the UI.
          *
          * @method _uiSetEnabled
          * @param val {Any} The value of the property.
@@ -1151,7 +1151,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set `endDate` on the UI.
          *
          * @method _uiSetEndDate
          * @param val {Any} The value of the property.
@@ -1164,7 +1164,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set `meeting` on the UI.
          *
          * @method _uiSetMeeting
          * @param val {Any} The value of the property.
@@ -1177,7 +1177,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set `past` on the UI.
          *
          * @method _uiSetPast
          * @param val {Any} The value of the property.
@@ -1190,7 +1190,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set `reminder` on the UI.
          *
          * @method _uiSetReminder
          * @param val {Any} The value of the property.
@@ -1203,7 +1203,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set `repeated` on the UI.
          *
          * @method _uiSetRepeated
          * @param val {Any} The value of the property.
@@ -1216,7 +1216,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set `visible` on the UI.
          *
          * @method _uiSetVisible
          * @param val {Any} The value of the property.

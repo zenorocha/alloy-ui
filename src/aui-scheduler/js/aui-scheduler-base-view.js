@@ -309,7 +309,7 @@ var SchedulerView = A.Component.create({
         syncEventUI: function(evt) {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set `date` on the UI.
          *
          * @method _uiSetDate
          * @param val {Any} The value of the property.
@@ -355,10 +355,10 @@ var SchedulerView = A.Component.create({
             }
 
             return val;
-        },
+        }
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set `scrollable` on the UI.
          *
          * @method _uiSetScrollable
          * @param val {Any} The value of the property.
@@ -372,7 +372,7 @@ var SchedulerView = A.Component.create({
                 bodyNode.toggleClass(CSS_SCHEDULER_VIEW_SCROLLABLE, val);
                 bodyNode.toggleClass(CSS_SCHEDULER_VIEW_NOSCROLL, !val);
             }
-        }
+        },
     }
 });
 
