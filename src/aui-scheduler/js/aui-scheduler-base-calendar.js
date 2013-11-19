@@ -131,7 +131,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Set the model attributes for the base calendar.
      *
      * @method _setModelsAttrs
      * @param attrMap
