@@ -216,7 +216,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * A list of colors for the calendar.
          *
          * @attribute palette
          * @default ['#d93636', '#e63973', '#b22eb3', '#6e36d9', '#2d70b3', '#376cd9', '#25998c', '#249960',
