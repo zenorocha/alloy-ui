@@ -797,7 +797,8 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Clear the time fields from the `startDate`, effectively setting the
+         * time to 12 noon.
          *
          * @method getClearStartDate
          * @return {Date}
