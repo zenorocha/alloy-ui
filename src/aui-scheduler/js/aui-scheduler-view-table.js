@@ -231,7 +231,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * * Determine the name for this table view.
+         * Determine the name for this table view.
          *
          * @attribute name
          * @default 'table'

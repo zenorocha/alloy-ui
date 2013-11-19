@@ -204,7 +204,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         },
 
         /**
-         * * Determine the name for this calendar.
+         * Determine the name for this calendar.
          *
          * @attribute name
          * @default '(no name)'
@@ -219,7 +219,9 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute palette
-         * @default '(no name)'
+         * @default ['#d93636', '#e63973', '#b22eb3', '#6e36d9', '#2d70b3', '#376cd9', '#25998c', '#249960',
+                '#24992e', '#6b9926', '#999926', '#a68f29', '#b3782d', '#bf6030', '#bf6060', '#997399', '#617181',
+                '#6b7a99', '#548c85', '#747446', '#997e5c', '#b34d1b', '#993d48', '#802d70']
          * @type Array
          */
         palette: {

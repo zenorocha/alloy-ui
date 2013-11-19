@@ -89,7 +89,7 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * * Determine the name for this week view.
+         * Determine the name for this week view.
          *
          * @attribute name
          * @default 'week'
