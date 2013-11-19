@@ -758,7 +758,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines if a this `event` ...
          *
          * @method isDayBoundaryEvent
          * @return {Boolean}
@@ -771,7 +771,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Check if the passed date is between `startDate` and `endDate`.
          *
          * @method isDayOverlapEvent
          * @return {Boolean}
