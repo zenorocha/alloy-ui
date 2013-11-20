@@ -210,7 +210,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the number of rows to display in the table view.
          *
          * @attribute displayRows
          * @default 3
