@@ -126,7 +126,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * Bind the scheduler view DD Delegate events on the UI. Lifecycle.
+     * Binds the scheduler view DD Delegate events on the UI. Lifecycle.
      *
      * @method viewDDBindUI
      */
@@ -153,7 +153,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * Render the scheduler view DD Delegate instance. Lifecycle.
+     * Renders the scheduler view DD Delegate instance. Lifecycle.
      *
      * @method viewDDRenderUI
      */
@@ -163,7 +163,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * Sync the scheduler view DD Delegate instance. Lifecycle.
+     * Syncs the scheduler view DD Delegate instance. Lifecycle.
      *
      * @method viewDDSyncUI
      */

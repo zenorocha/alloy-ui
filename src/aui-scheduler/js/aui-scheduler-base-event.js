@@ -219,7 +219,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determine the content of Scheduler event's body section.
+         * Contains the content of Scheduler event's body section.
          *
          * @attribute content
          */
@@ -229,7 +229,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * The `color` of a calendar event.
+         * Contains the `color` of a calendar event.
          *
          * @attribute color
          * @default '#D96666'
@@ -242,7 +242,8 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * A color brightness factor is applied to the `color` attribute.
+         * Contains the color brightness factor is applied to the `color`
+         * attribute.
          *
          * @attribute colorBrightnessFactor
          * @default 1.4
@@ -254,7 +255,8 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * A color saturation factor is applied to the `color` attribute.
+         * Contains the color saturation factor is applied to the `color`
+         * attribute.
          *
          * @attribute colorSaturationFactor
          * @default 0.88
@@ -266,9 +268,9 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * A formatted title date for this scheduler event, taking into account
-         * ISO time. The value will not contain and `endDate` if this event is
-         * `allDay`.
+         * Contains the formatted title date for this scheduler event, taking
+         * into account ISO time. The value will not contain and `endDate` if
+         * this event is `allDay`.
          *
          * @attribute titleDateFormat
          * @type {Object}
@@ -303,7 +305,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * The date corresponding to the current ending date of a scheduled
+         * Contains the date corresponding to the current ending date of a scheduled
          * event. By default, the value is one hour after the date set on the
          * user's computer.
          *
@@ -323,7 +325,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determine if the event is enbabled.
+         * Determines if the event is enbabled.
          *
          * @attribute enabled
          * @default false
@@ -335,7 +337,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determine if the event is a meeting.
+         * Determines if the event is a meeting.
          *
          * @attribute meeting
          * @default false
@@ -358,7 +360,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determine if the event is requires reminder.
+         * Determines if the event is requires reminder.
          *
          * @attribute reminder
          * @default false
@@ -370,7 +372,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determine if the event is to be repeated.
+         * Determines if the event is to be repeated.
          *
          * @attribute repeated
          * @default false
@@ -389,8 +391,9 @@ var SchedulerEvent = A.Component.create({
         scheduler: {},
 
         /**
-         * The date corresponding to the current starting date of a scheduled
-         * event. By default, the value is the date set on the user's computer.
+         * Contains the date corresponding to the current starting date of a
+         * scheduled event. By default, the value is the date set on the user's
+         * computer.
          *
          * @attribute startDate
          * @type {Date}
@@ -455,7 +458,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Bind the events on the SchedulerEvent UI. Lifecycle.
+         * Binds the events on the SchedulerEvent UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -476,7 +479,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Sync the SchedulerEvent UI. Lifecycle.
+         * Syncs the SchedulerEvent UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -568,7 +571,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Copys the dates from the `event` parameter to the instance `event`.
+         * Copies the dates from the `event` parameter to the instance `event`.
          *
          * @method copyDates
          * @param {Object} evt Scheduler event.
@@ -585,7 +588,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Copys the attribute vales from an `event` to this `event`.
+         * Copies the attribute vales from an `event` to this `event`.
          *
          * @method copyPropagateAttrValues
          * @param {Object} evt
@@ -758,7 +761,8 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Determines if a this `event` ...
+         * Determines if a this `event` starts or ends at the beginning or end
+         * of a day.
          *
          * @method isDayBoundaryEvent
          * @return {Boolean}
@@ -771,7 +775,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Check if the passed date is between `startDate` and `endDate`.
+         * Checks if the passed date is between `startDate` and `endDate`.
          *
          * @method isDayOverlapEvent
          * @return {Boolean}
@@ -784,7 +788,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Clear the time fields from the `endDate`, effectively setting the
+         * Clears the time fields from the `endDate`, effectively setting the
          * time to 12 noon.
          *
          * @method getClearEndDate
@@ -797,7 +801,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Clear the time fields from the `startDate`, effectively setting the
+         * Clears the time fields from the `startDate`, effectively setting the
          * time to 12 noon.
          *
          * @method getClearStartDate
@@ -810,7 +814,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Move this Scheduler event to a new date specified by the date
+         * Moves this Scheduler event to a new date specified by the date
          * parameter.
          *
          * @method move
@@ -895,8 +899,9 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * An event can span across multiple days. In the week view, this event
-         * would need to be split into chunks for each day column.
+         * Splits an event into multiple days. Since an event can span across
+         * multiple days in the week view, this event will be split into chunks
+         * for each day column.
          *
          * @method split
          * @return {Array}
@@ -1035,7 +1040,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Set the date to the given value.
+         * Sets the date to the given value.
          *
          * @method _setDate
          * @param val {Any} The value of the property.
@@ -1052,7 +1057,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Format the given date with the given format.
+         * Formats the given date with the given format.
          *
          * @method _formatDate
          * @param {Date} date
@@ -1094,7 +1099,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Set `allDay` on the UI.
+         * Sets `allDay` on the UI.
          *
          * @method _uiSetAllDay
          * @param val {Any} The value of the property.
@@ -1107,7 +1112,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Set `color` on the UI.
+         * Sets `color` on the UI.
          *
          * @method _uiSetColor
          * @param val {Any} The value of the property.
@@ -1138,7 +1143,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Set `enabled` on the UI.
+         * Sets `enabled` on the UI.
          *
          * @method _uiSetEnabled
          * @param val {Any} The value of the property.
@@ -1151,7 +1156,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Set `endDate` on the UI.
+         * Sets `endDate` on the UI.
          *
          * @method _uiSetEndDate
          * @param val {Any} The value of the property.
@@ -1164,7 +1169,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Set `meeting` on the UI.
+         * Sets `meeting` on the UI.
          *
          * @method _uiSetMeeting
          * @param val {Any} The value of the property.
@@ -1177,7 +1182,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Set `past` on the UI.
+         * Sets `past` on the UI.
          *
          * @method _uiSetPast
          * @param val {Any} The value of the property.
@@ -1190,7 +1195,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Set `reminder` on the UI.
+         * Sets `reminder` on the UI.
          *
          * @method _uiSetReminder
          * @param val {Any} The value of the property.
@@ -1203,7 +1208,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Set `repeated` on the UI.
+         * Sets `repeated` on the UI.
          *
          * @method _uiSetRepeated
          * @param val {Any} The value of the property.
@@ -1216,7 +1221,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Set `visible` on the UI.
+         * Sets `visible` on the UI.
          *
          * @method _uiSetVisible
          * @param val {Any} The value of the property.

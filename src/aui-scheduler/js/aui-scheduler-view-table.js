@@ -187,7 +187,7 @@ var SchedulerTableView = A.Component.create({
     ATTRS: {
 
         /**
-         * Determine the content of Scheduler table view's body section.
+         * Determines the content of Scheduler table view's body section.
          *
          * @attribute bodyContent
          * @default ''
@@ -231,7 +231,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Determine the name for this table view.
+         * Determines the name for this table view.
          *
          * @attribute name
          * @default 'table'
@@ -295,7 +295,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Collection of strings used to label elements of the UI.
+         * Contains the collection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type {Object}
@@ -401,7 +401,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Bind the events on the SchedulerTableView UI. Lifecycle.
+         * Binds the events on the SchedulerTableView UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -414,7 +414,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Render the SchedulerTableView component instance. Lifecycle.
+         * Renders the SchedulerTableView component instance. Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -1132,7 +1132,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Set `date` on the UI.
+         * Sets `date` on the UI.
          *
          * @method _uiSetDate
          * @param val {Any} The value of the property.

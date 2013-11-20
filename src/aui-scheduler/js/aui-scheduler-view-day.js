@@ -260,7 +260,7 @@ var SchedulerDayView = A.Component.create({
     ATTRS: {
 
         /**
-         * Determine the content of Scheduler day view's body section.
+         * Determines the content of Scheduler day view's body section.
          *
          * @attribute bodyContent
          * @default ''
@@ -271,7 +271,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * The number of day columns this view displays.
+         * Contains the number of day columns this view displays.
          *
          * @attribute days
          * @default 1
@@ -404,7 +404,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Determine the name for this day view.
+         * Determines the name for this day view.
          *
          * @attribute name
          * @default 'day'
@@ -436,7 +436,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Collection of strings used to label elements of the UI.
+         * Contains the collection of strings used to label elements of the UI.
          *
          * @attribute strings
          */
@@ -598,7 +598,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Render the SchedulerDayView component instance. Lifecycle.
+         * Renders the SchedulerDayView component instance. Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -619,7 +619,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Bind the events on the SchedulerDayView UI. Lifecycle.
+         * Binds the events on the SchedulerDayView UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -648,7 +648,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Sync the SchedulerDayView UI. Lifecycle.
+         * Syncs the SchedulerDayView UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -1264,7 +1264,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Set `date` on the UI.
+         * Sets `date` on the UI.
          *
          * @method _uiSetDate
          * @param val {Any} The value of the property.

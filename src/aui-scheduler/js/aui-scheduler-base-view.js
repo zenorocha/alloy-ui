@@ -1,5 +1,5 @@
 /**
- * The Scheduler Component
+ * Contains the Scheduler Component
  *
  * @module aui-scheduler
  * @submodule aui-scheduler-base-view
@@ -44,7 +44,7 @@ var SchedulerView = A.Component.create({
     ATTRS: {
 
         /**
-         * Determine the content of Scheduler view's body section.
+         * Determines the content of Scheduler view's body section.
          *
          * @attribute bodyContent
          * @default ''
@@ -90,7 +90,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * Determine the name for this view.
+         * Determines the name for this view.
          *
          * @attribute name
          * @default ''
@@ -102,7 +102,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * The function to format the navigation header date.
+         * Contains the function to format the navigation header date.
          *
          * @attribute navigationDateFormatter
          * @default %A - %d %b %Y
@@ -210,7 +210,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * Sync the SchedulerView UI. Lifecycle.
+         * Syncs the SchedulerView UI. Lifecycle.
          *
          * @method syncUI
          * @protected

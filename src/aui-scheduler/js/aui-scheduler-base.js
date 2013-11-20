@@ -10,7 +10,8 @@
  *
  * @class A.SchedulerEvents
  * @extends A.ModelList
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ * properties.
  * @constructor
  */
 A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
@@ -71,7 +72,8 @@ A.mix(SchedulerEventSupport.prototype, {
     eventsModel: A.SchedulerEvents,
 
     /**
-     * Construction logic executed during SchedulerEventSupport instantiation. Lifecycle.
+     * Construction logic executed during SchedulerEventSupport instantiation.
+     * Lifecycle.
      *
      * @method initializer
      * @param config
@@ -341,7 +343,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Collection of strings used to label elements of the UI.
+         * Contains the collection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type {Object}
@@ -358,7 +360,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * The function to format the navigation header date.
+         * Contains the function to format the navigation header date.
          *
          * @attribute navigationDateFormatter
          * @default %A - %d %b %Y
@@ -545,7 +547,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Bind the events on the SchedulerBase UI. Lifecycle.
+         * Binds the events on the SchedulerBase UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -557,7 +559,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Sync the SchedulerBase UI. Lifecycle.
+         * Syncs the SchedulerBase UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -939,7 +941,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Set `activeView` on the UI.
+         * Sets `activeView` on the UI.
          *
          * @method _uiSetActiveView
          * @param val {Any} The value of the property.
@@ -960,7 +962,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Set `date` on the UI.
+         * Sets `date` on the UI.
          *
          * @method _uiSetDate
          * @param val {Any} The value of the property.

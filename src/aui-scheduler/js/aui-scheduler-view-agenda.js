@@ -178,7 +178,7 @@ var SchedulerAgendaView = A.Component.create({
     ATTRS: {
 
         /**
-         * Determine the content of Scheduler view agenda's body section.
+         * Determines the content of Scheduler view agenda's body section.
          *
          * @attribute bodyContent
          * @default ''
@@ -307,7 +307,7 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * Determine the name for this agenda.
+         * Determines the name for this agenda.
          *
          * @attribute name
          * @default 'agenda'
@@ -318,7 +318,7 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * Collection of strings used to label elements of the UI.
+         * Contains the collection of strings used to label elements of the UI.
          *
          * @attribute strings
          */
@@ -341,7 +341,7 @@ var SchedulerAgendaView = A.Component.create({
     prototype: {
 
         /**
-         * Bind the events on the SchedulerAgendaView UI. Lifecycle.
+         * Binds the events on the SchedulerAgendaView UI. Lifecycle.
          *
          * @method bindUI
          * @protected

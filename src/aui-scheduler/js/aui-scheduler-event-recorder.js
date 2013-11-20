@@ -114,14 +114,15 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Determine the content of this Scheduler event recorder's body section.
+         * Determines the content of this Scheduler event recorder's body
+         * section.
          *
          * @attribute content
          */
         content: {},
 
         /**
-         * The duration of an `event` in minutes.
+         * Contains the duration of an `event` in minutes.
          *
          * @attribute duration
          * @default 60
@@ -132,7 +133,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * The default date format for an `event`.
+         * Contains the default date format for an `event`.
          *
          * @attribute dateFormat
          * @default '%a, %B %d,'
@@ -164,7 +165,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Collection of strings used to label elements of the UI.
+         * Contains the collection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type {Object}
@@ -256,7 +257,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Get the content node belonging to the `popover`.
+         * Gets the content node belonging to the `popover`.
          *
          * @method getContentNode
          */
@@ -272,8 +273,8 @@ var SchedulerEventRecorder = A.Component.create({
          * is not `allDay`.
          *
          * @method getFormattedDate
-         * @return {String} Formated date including start and end hours if the event
-         * is not `allDay`..
+         * @return {String} Formated date including start and end hours if the
+         * event is not `allDay`..
          */
         getFormattedDate: function() {
             var instance = this,
@@ -480,7 +481,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Handler for `cancel` event.
+         * Handles `cancel` events.
          *
          * @method _defCancelEventFn
          * @param {Event.Facade} event Event Facade object
@@ -495,7 +496,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Handler for `delete` event.
+         * Handles `delete` events.
          *
          * @method _defDeleteEventFn
          * @param {Event.Facade} event Event Facade object
@@ -513,7 +514,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Handler for `edit` event.
+         * Handles `edit` events.
          *
          * @method _defEditEventFn
          * @param {Event.Facade} event Event Facade object
@@ -529,7 +530,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Handler for `save` event.
+         * Handles `save` events.
          *
          * @method _defSaveEventFn
          * @param {Event.Facade} event Event Facade object
@@ -585,7 +586,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Handler for `cancel` event.
+         * Handles `cancel` events.
          *
          * @method _handleCancelEvent
          * @param {Event.Facade} event Event Facade object
@@ -604,7 +605,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Handler for `clickOutSide` event.
+         * Handles `clickOutSide` events.
          *
          * @method _handleClickOutSide
          * @param {Event.Facade} event Event Facade object
@@ -617,7 +618,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Handler for `delete` event.
+         * Handles `delete` events.
          *
          * @method _handleDeleteEvent
          * @param {Event.Facade} event Event Facade object
@@ -638,7 +639,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Handler for `escape` event.
+         * Handles `escape` events.
          *
          * @method _handleEscapeEvent
          * @param {Event.Facade} event Event Facade object
@@ -655,7 +656,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Handler for `save` event.
+         * Handles `save` events.
          *
          * @method _handleSaveEvent
          * @param {Event.Facade} event Event Facade object
@@ -677,7 +678,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Handler for `click` event on the scheduler.
+         * Handles `click` event on the scheduler.
          *
          * @method _onClickSchedulerEvent
          * @param {Event.Facade} event Event Facade object
@@ -699,7 +700,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Handler for `submitForm`.
+         * Handles `submitForm` events.
          *
          * @method _onSubmitForm
          * @param {Event.Facade} event Event Facade object
@@ -712,7 +713,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders this `EventRecorder`'s `popover` component.
          *
          * @method _renderPopover
          * @protected

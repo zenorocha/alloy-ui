@@ -56,7 +56,7 @@ var SchedulerWeekView = A.Component.create({
     ATTRS: {
 
         /**
-         * Determine the content of Scheduler week view's body section.
+         * Determines the content of Scheduler week view's body section.
          *
          * @attribute bodyContent
          * @default ''
@@ -67,7 +67,7 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * The number of days in a week.
+         * Contains the number of days in a week.
          *
          * @attribute days
          * @default 7
@@ -89,7 +89,7 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * Determine the name for this week view.
+         * Determines the name for this week view.
          *
          * @attribute name
          * @default 'week'
@@ -100,7 +100,7 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * A formatted navigation date formatter for this week view.
+         * Contains the formatted navigation date formatter for this week view.
          *
          * @attribute navigationDateFormatter
          * @type {Function}
@@ -125,8 +125,8 @@ var SchedulerWeekView = A.Component.create({
     prototype: {
 
         /**
-         * Returns a date value of the first day of the week with its time adjusted
-         * to midnight.
+         * Returns a date value of the first day of the week with its time
+         * adjusted to midnight.
          *
          * @method getAdjustedViewDate
          * @param val {Any} The value of the property.

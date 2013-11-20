@@ -131,7 +131,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * Set the model attributes for the base calendar.
+     * Sets the model attributes for the base calendar.
      *
      * @method _setModelsAttrs
      * @param attrMap
@@ -147,7 +147,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * Set the `events` on the UI.
+     * Sets the `events` on the UI.
      *
      * @method _uiSetEvents
      * @param val {Any} The value of the property.
@@ -175,7 +175,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     ATTRS: {
 
         /**
-         * The `color` of the scheduler calendar.
+         * Contains the `color` of the scheduler calendar.
          *
          * @attribute color
          * @type {String}
@@ -192,7 +192,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         },
 
         /**
-         * Determine if the calender is enbabled.
+         * Determines if the calender is enbabled.
          *
          * @attribute enabled
          * @default false
@@ -204,7 +204,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         },
 
         /**
-         * Determine the name for this calendar.
+         * Determines the name for this calendar.
          *
          * @attribute name
          * @default '(no name)'
@@ -216,12 +216,9 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         },
 
         /**
-         * A list of colors for the calendar.
+         * Contains a list of colors for the calendar.
          *
          * @attribute palette
-         * @default ['#d93636', '#e63973', '#b22eb3', '#6e36d9', '#2d70b3', '#376cd9', '#25998c', '#249960',
-                '#24992e', '#6b9926', '#999926', '#a68f29', '#b3782d', '#bf6030', '#bf6060', '#997399', '#617181',
-                '#6b7a99', '#548c85', '#747446', '#997e5c', '#b34d1b', '#993d48', '#802d70']
          * @type {Array}
          */
         palette: {

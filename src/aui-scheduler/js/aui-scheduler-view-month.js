@@ -75,7 +75,7 @@ var SchedulerMonthView = A.Component.create({
         },
 
         /**
-         * Determine the name for this month view.
+         * Determines the name for this month view.
          *
          * @attribute name
          * @default 'month'
