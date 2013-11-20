@@ -137,10 +137,11 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the event by matching it's `clientId`.
      *
      * @method getEventByClientId
-     * @param clientId
+     * @param {String} clientId
+     * @return {Object}
      */
     getEventByClientId: function(clientId) {
         var instance = this;
