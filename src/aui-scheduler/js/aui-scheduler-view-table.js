@@ -622,7 +622,7 @@ var SchedulerTableView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getIntersectEvents
-         * @param date
+         * @param {Date} date
          */
         getIntersectEvents: function(date) {
             var instance = this;
@@ -841,7 +841,7 @@ var SchedulerTableView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _findFirstDayOfWeek
-         * @param date
+         * @param {Date} date
          * @protected
          */
         _findFirstDayOfWeek: function(date) {

@@ -321,7 +321,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _getDatePosition
-     * @param date
+     * @param {Date} date
      * @protected
      */
     _getDatePosition: function(date) {

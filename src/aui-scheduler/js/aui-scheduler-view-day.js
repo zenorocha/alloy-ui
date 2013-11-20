@@ -701,7 +701,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method calculateTop
-         * @param date
+         * @param {Date} date
          */
         calculateTop: function(date) {
             var instance = this;
@@ -742,7 +742,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getColumnByDate
-         * @param date
+         * @param {Date} date
          */
         getColumnByDate: function(date) {
             var instance = this;
@@ -754,7 +754,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getColumnShimByDate
-         * @param date
+         * @param {Date} date
          */
         getColumnShimByDate: function(date) {
             var instance = this;
@@ -780,7 +780,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getDateDaysOffset
-         * @param date
+         * @param {Date} date
          */
         getDateDaysOffset: function(date) {
             var instance = this;
@@ -1111,7 +1111,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method roundToNearestHour
-         * @param date
+         * @param {Date} date
          * @param time
          */
         roundToNearestHour: function(date, time) {

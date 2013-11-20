@@ -170,7 +170,7 @@ A.mix(SchedulerEventSupport.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method getEventsByDay
-     * @param date
+     * @param {Date} date
      * @param includeOverlap
      */
     getEventsByDay: function(date, includeOverlap) {
@@ -188,7 +188,7 @@ A.mix(SchedulerEventSupport.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method getIntersectEvents
-     * @param date
+     * @param {Date} date
      */
     getIntersectEvents: function(date) {
         var instance = this;

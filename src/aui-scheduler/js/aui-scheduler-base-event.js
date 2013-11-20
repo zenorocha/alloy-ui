@@ -814,7 +814,7 @@ var SchedulerEvent = A.Component.create({
          * parameter.
          *
          * @method move
-         * @param date
+         * @param {Date} date
          * @param [options] {Object} Zero or more options.
          */
         move: function(date, options) {
@@ -1055,7 +1055,7 @@ var SchedulerEvent = A.Component.create({
          * Format the given date with the given format.
          *
          * @method _formatDate
-         * @param date
+         * @param {Date} date
          * @param format
          * @protected
          */
