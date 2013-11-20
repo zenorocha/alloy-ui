@@ -366,7 +366,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Configures the header day view.
          *
          * @attribute headerViewConfig
          * @default {}

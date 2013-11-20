@@ -78,7 +78,7 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Configures the header week view.
          *
          * @attribute headerViewConfig
          */
