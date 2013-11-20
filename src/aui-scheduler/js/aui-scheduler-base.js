@@ -36,7 +36,7 @@ A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
      * configuration for the SchedulerEvents.
      *
      * @property SchedulerEvents.ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
@@ -58,7 +58,7 @@ var SchedulerEventSupport = function() {};
  * configuration for the SchedulerEventSupport.
  *
  * @property SchedulerEventSupport.ATTRS
- * @type Object
+ * @type {Object}
  * @static
  */
 SchedulerEventSupport.ATTRS = {};
@@ -295,7 +295,7 @@ var SchedulerBase = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property SchedulerBase.NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: SCHEDULER_BASE,
@@ -305,7 +305,7 @@ var SchedulerBase = A.Component.create({
      * configuration for the SchedulerBase.
      *
      * @property SchedulerBase.ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
@@ -324,7 +324,7 @@ var SchedulerBase = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute date
-         * @type Date
+         * @type {Date}
          */
         date: {
             value: new Date(),
@@ -344,7 +344,7 @@ var SchedulerBase = A.Component.create({
          * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
-         * @type Object
+         * @type {Object}
          */
         strings: {
             value: {
@@ -362,7 +362,7 @@ var SchedulerBase = A.Component.create({
          *
          * @attribute navigationDateFormatter
          * @default %A - %d %b %Y
-         * @type Function
+         * @type {Function}
          */
         navigationDateFormatter: {
             value: function(date) {
@@ -405,7 +405,7 @@ var SchedulerBase = A.Component.create({
          *
          * @attribute firstDayOfWeek
          * @default 0
-         * @type Number
+         * @type {Number}
          */
         firstDayOfWeek: {
             value: 0,
@@ -457,7 +457,7 @@ var SchedulerBase = A.Component.create({
          *
          * @attribute todayDate
          * @default new Date()
-         * @type Date
+         * @type {Date}
          */
         todayDate: {
             value: new Date(),
@@ -483,7 +483,7 @@ var SchedulerBase = A.Component.create({
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @property SchedulerBase.HTML_PARSER
-     * @type Object
+     * @type {Object}
      * @static
      */
     HTML_PARSER: {

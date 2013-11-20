@@ -72,7 +72,7 @@ A.SchedulerTableViewDD = function() {};
  * configuration for the SchedulerTableViewDD.
  *
  * @property SchedulerTableViewDD.ATTRS
- * @type Object
+ * @type {Object}
  * @static
  */
 A.SchedulerTableViewDD.ATTRS = {
@@ -82,7 +82,7 @@ A.SchedulerTableViewDD.ATTRS = {
      *
      * @attribute delegateConfig
      * @default {}
-     * @type Object
+     * @type {Object}
      */
     delegateConfig: {
         value: {},

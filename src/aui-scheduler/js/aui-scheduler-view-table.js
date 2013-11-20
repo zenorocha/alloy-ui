@@ -171,7 +171,7 @@ var SchedulerTableView = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property SchedulerTableView.NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: SCHEDULER_VIEW_TABLE,
@@ -181,7 +181,7 @@ var SchedulerTableView = A.Component.create({
      * configuration for the SchedulerTableView.
      *
      * @property SchedulerTableView.ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
@@ -191,7 +191,7 @@ var SchedulerTableView = A.Component.create({
          *
          * @attribute bodyContent
          * @default ''
-         * @type String
+         * @type {String}
          */
         bodyContent: {
             value: _EMPTY_STR
@@ -202,7 +202,7 @@ var SchedulerTableView = A.Component.create({
          *
          * @attribute displayDaysInterval
          * @default 42
-         * @type Number
+         * @type {Number}
          */
         displayDaysInterval: {
             value: 42
@@ -213,7 +213,7 @@ var SchedulerTableView = A.Component.create({
          *
          * @attribute displayRows
          * @default 3
-         * @type Number
+         * @type {Number}
          */
         displayRows: {
             value: 3
@@ -224,7 +224,7 @@ var SchedulerTableView = A.Component.create({
          *
          * @attribute fixedHeight
          * @default true
-         * @type Boolean
+         * @type {Boolean}
          */
         fixedHeight: {
             value: true
@@ -235,7 +235,7 @@ var SchedulerTableView = A.Component.create({
          *
          * @attribute name
          * @default 'table'
-         * @type String
+         * @type {String}
          */
         name: {
             value: TABLE
@@ -245,7 +245,7 @@ var SchedulerTableView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute headerDateFormatter
-         * @type String
+         * @type {String}
          */
         headerDateFormatter: {
             value: function(date) {
@@ -266,7 +266,7 @@ var SchedulerTableView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute navigationDateFormatter
-         * @type Function
+         * @type {Function}
          */
         navigationDateFormatter: {
             value: function(date) {
@@ -288,7 +288,7 @@ var SchedulerTableView = A.Component.create({
          *
          * @attribute scrollable
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         scrollable: {
             value: false
@@ -298,6 +298,7 @@ var SchedulerTableView = A.Component.create({
          * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
+         * @type {Object}
          */
         strings: {
             value: {
@@ -352,7 +353,7 @@ var SchedulerTableView = A.Component.create({
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @property SchedulerTableView.HTML_PARSER
-     * @type Object
+     * @type {Object}
      * @static
      */
     HTML_PARSER: {
@@ -366,7 +367,7 @@ var SchedulerTableView = A.Component.create({
      * Static property used to define which component it extends.
      *
      * @property SchedulerTableView.EXTENDS
-     * @type Object
+     * @type {Object}
      * @static
      */
     EXTENDS: A.SchedulerView,

@@ -19,7 +19,7 @@ var SchedulerView = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property SchedulerView.NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: SCHEDULER_VIEW,
@@ -38,7 +38,7 @@ var SchedulerView = A.Component.create({
      * configuration for the SchedulerView.
      *
      * @property SchedulerView.ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
@@ -48,7 +48,7 @@ var SchedulerView = A.Component.create({
          *
          * @attribute bodyContent
          * @default ''
-         * @type String
+         * @type {String}
          */
         bodyContent: {
             value: _EMPTY_STR
@@ -71,7 +71,7 @@ var SchedulerView = A.Component.create({
          *
          * @attribute height
          * @default 600
-         * @type Number
+         * @type {Number}
          */
         height: {
             value: 600
@@ -82,7 +82,7 @@ var SchedulerView = A.Component.create({
          *
          * @attribute isoTime
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         isoTime: {
             value: false,
@@ -94,7 +94,7 @@ var SchedulerView = A.Component.create({
          *
          * @attribute name
          * @default ''
-         * @type String
+         * @type {String}
          */
         name: {
             value: _EMPTY_STR,
@@ -106,7 +106,7 @@ var SchedulerView = A.Component.create({
          *
          * @attribute navigationDateFormatter
          * @default %A - %d %b %Y
-         * @type Function
+         * @type {Function}
          */
         navigationDateFormatter: {
             value: function(date) {
@@ -158,7 +158,7 @@ var SchedulerView = A.Component.create({
          *
          * @attribute scrollable
          * @default true
-         * @type Boolean
+         * @type {Boolean}
          */
         scrollable: {
             value: true,
@@ -179,7 +179,7 @@ var SchedulerView = A.Component.create({
          *
          * @attribute visible
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         visible: {
             value: false

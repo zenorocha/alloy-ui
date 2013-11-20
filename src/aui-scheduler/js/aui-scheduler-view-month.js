@@ -46,7 +46,7 @@ var SchedulerMonthView = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property SchedulerMonthView.NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: SCHEDULER_VIEW_MONTH,
@@ -56,7 +56,7 @@ var SchedulerMonthView = A.Component.create({
      * configuration for the SchedulerMonthView.
      *
      * @property SchedulerMonthView.ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
@@ -66,7 +66,7 @@ var SchedulerMonthView = A.Component.create({
          *
          * @attribute displayDaysInterval
          * @default 42
-         * @type Number
+         * @type {Number}
          * @readyOnly
          */
         displayDaysInterval: {
@@ -79,7 +79,7 @@ var SchedulerMonthView = A.Component.create({
          *
          * @attribute name
          * @default 'month'
-         * @type String
+         * @type {String}
          */
         name: {
             value: MONTH
@@ -89,7 +89,7 @@ var SchedulerMonthView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute navigationDateFormatter
-         * @type Function
+         * @type {Function}
          */
         navigationDateFormatter: {
             value: function(date) {
@@ -111,7 +111,7 @@ var SchedulerMonthView = A.Component.create({
      * Static property used to define which component it extends.
      *
      * @property SchedulerMonthView.EXTENDS
-     * @type Object
+     * @type {Object}
      * @static
      */
     EXTENDS: A.SchedulerTableView,

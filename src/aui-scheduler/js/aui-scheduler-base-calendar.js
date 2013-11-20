@@ -169,7 +169,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * configuration for the SchedulerCalendar.
      *
      * @property SchedulerCalendar.ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
@@ -178,7 +178,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
          * The `color` of the scheduler calendar.
          *
          * @attribute color
-         * @type String
+         * @type {String}
          */
         color: {
             valueFn: function() {
@@ -196,7 +196,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
          *
          * @attribute enabled
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         enabled: {
             value: false,
@@ -208,7 +208,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
          *
          * @attribute name
          * @default '(no name)'
-         * @type String
+         * @type {String}
          */
         name: {
             value: '(no name)',
@@ -243,7 +243,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
          *
          * @attribute visible
          * @default true
-         * @type Boolean
+         * @type {Boolean}
          */
         visible: {
             value: true,

@@ -40,7 +40,7 @@ var SchedulerWeekView = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property SchedulerWeekView.NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: SCHEDULER_VIEW_WEEK,
@@ -50,7 +50,7 @@ var SchedulerWeekView = A.Component.create({
      * configuration for the SchedulerWeekView.
      *
      * @property SchedulerWeekView.ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
@@ -60,7 +60,7 @@ var SchedulerWeekView = A.Component.create({
          *
          * @attribute bodyContent
          * @default ''
-         * @type String
+         * @type {String}
          */
         bodyContent: {
             value: _EMPTY_STR
@@ -71,7 +71,7 @@ var SchedulerWeekView = A.Component.create({
          *
          * @attribute days
          * @default 7
-         * @type Number
+         * @type {Number}
          */
         days: {
             value: 7
@@ -93,7 +93,7 @@ var SchedulerWeekView = A.Component.create({
          *
          * @attribute name
          * @default 'week'
-         * @type String
+         * @type {String}
          */
         name: {
             value: WEEK
@@ -103,7 +103,7 @@ var SchedulerWeekView = A.Component.create({
          * A formatted navigation date formatter for this week view.
          *
          * @attribute navigationDateFormatter
-         * @type Function
+         * @type {Function}
          */
         navigationDateFormatter: {
             valueFn: function() {
@@ -117,7 +117,7 @@ var SchedulerWeekView = A.Component.create({
      * Static property used to define which component it extends.
      *
      * @property SchedulerWeekView.EXTENDS
-     * @type Object
+     * @type {Object}
      * @static
      */
     EXTENDS: A.SchedulerDayView,

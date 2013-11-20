@@ -86,7 +86,7 @@ var SchedulerEventRecorder = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property SchedulerEventRecorder.NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: SCHEDULER_EVENT_RECORDER,
@@ -96,7 +96,7 @@ var SchedulerEventRecorder = A.Component.create({
      * configuration for the SchedulerEventRecorder.
      *
      * @property SchedulerEventRecorder.ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
@@ -107,7 +107,7 @@ var SchedulerEventRecorder = A.Component.create({
          *
          * @attribute allDay
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         allDay: {
             value: false
@@ -125,7 +125,7 @@ var SchedulerEventRecorder = A.Component.create({
          *
          * @attribute duration
          * @default 60
-         * @type Number
+         * @type {Number}
          */
         duration: {
             value: 60
@@ -136,7 +136,7 @@ var SchedulerEventRecorder = A.Component.create({
          *
          * @attribute dateFormat
          * @default '%a, %B %d,'
-         * @type String
+         * @type {String}
          */
         dateFormat: {
             validator: isString,
@@ -155,7 +155,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Contains the scheduler event recorder's `popover` instance.
          *
          * @attribute popover
-         * @type Object
+         * @type {Object}
          */
         popover: {
             setter: '_setPopover',
@@ -167,7 +167,7 @@ var SchedulerEventRecorder = A.Component.create({
          * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
-         * @type Object
+         * @type {Object}
          */
         strings: {
             value: {},
@@ -192,7 +192,7 @@ var SchedulerEventRecorder = A.Component.create({
          *
          * @attribute bodyTemplate
          * @default ''
-         * @type String
+         * @type {String}
          */
         bodyTemplate: {
             value: TPL_BODY_CONTENT
@@ -212,7 +212,7 @@ var SchedulerEventRecorder = A.Component.create({
      * Static property used to define which component it extends.
      *
      * @property SchedulerEventRecorder.EXTENDS
-     * @type Object
+     * @type {Object}
      * @static
      */
     EXTENDS: A.SchedulerEvent,

@@ -244,7 +244,7 @@ var SchedulerDayView = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property SchedulerDayView.NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: SCHEDULER_VIEW_DAY,
@@ -254,7 +254,7 @@ var SchedulerDayView = A.Component.create({
      * configuration for the SchedulerDayView.
      *
      * @property SchedulerDayView.ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
@@ -264,7 +264,7 @@ var SchedulerDayView = A.Component.create({
          *
          * @attribute bodyContent
          * @default ''
-         * @type String
+         * @type {String}
          */
         bodyContent: {
             value: _EMPTY_STR
@@ -275,7 +275,7 @@ var SchedulerDayView = A.Component.create({
          *
          * @attribute days
          * @default 1
-         * @type Number
+         * @type {Number}
          */
         days: {
             value: 1,
@@ -287,7 +287,7 @@ var SchedulerDayView = A.Component.create({
          *
          * @attribute delegateConfig
          * @default {}
-         * @type Object
+         * @type {Object}
          */
         delegateConfig: {
             value: {},
@@ -314,7 +314,7 @@ var SchedulerDayView = A.Component.create({
          *
          * @attribute eventWidth
          * @default 95
-         * @type Number
+         * @type {Number}
          */
         eventWidth: {
             value: 95,
@@ -336,7 +336,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute headerDateFormatter
-         * @type String
+         * @type {String}
          */
         headerDateFormatter: {
             value: function(date) {
@@ -358,7 +358,7 @@ var SchedulerDayView = A.Component.create({
          *
          * @attribute headerView
          * @default true
-         * @type Boolean
+         * @type {Boolean}
          */
         headerView: {
             value: true,
@@ -370,7 +370,7 @@ var SchedulerDayView = A.Component.create({
          *
          * @attribute headerViewConfig
          * @default {}
-         * @type Object
+         * @type {Object}
          */
         headerViewConfig: {
             setter: function(val) {
@@ -396,7 +396,7 @@ var SchedulerDayView = A.Component.create({
          *
          * @attribute hourHeight
          * @default 52
-         * @type Number
+         * @type {Number}
          */
         hourHeight: {
             value: 52,
@@ -408,7 +408,7 @@ var SchedulerDayView = A.Component.create({
          *
          * @attribute name
          * @default 'day'
-         * @type String
+         * @type {String}
          */
         name: {
             value: DAY
@@ -418,7 +418,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute navigationDateFormatter
-         * @type Function
+         * @type {Function}
          */
         navigationDateFormatter: {
             value: function(date) {
@@ -558,7 +558,7 @@ var SchedulerDayView = A.Component.create({
      * Static property used to define which component it extends.
      *
      * @property SchedulerDayView.EXTENDS
-     * @type Object
+     * @type {Object}
      * @static
      */
     EXTENDS: A.SchedulerView,

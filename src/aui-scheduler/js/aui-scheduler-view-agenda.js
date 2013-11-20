@@ -162,7 +162,7 @@ var SchedulerAgendaView = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property SchedulerAgendaView.NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: SCHEDULER_VIEW_AGENDA,
@@ -172,7 +172,7 @@ var SchedulerAgendaView = A.Component.create({
      * configuration for the SchedulerAgendaView.
      *
      * @property SchedulerAgendaView.ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
@@ -182,7 +182,7 @@ var SchedulerAgendaView = A.Component.create({
          *
          * @attribute bodyContent
          * @default ''
-         * @type String
+         * @type {String}
          */
         bodyContent: {
             value: _EMPTY_STR
@@ -192,7 +192,7 @@ var SchedulerAgendaView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute eventsDateFormatter
-         * @type Function
+         * @type {Function}
          */
         eventsDateFormatter: {
             value: function(startDate, endDate) {
@@ -239,7 +239,7 @@ var SchedulerAgendaView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute headerDayDateFormatter
-         * @type Function
+         * @type {Function}
          */
         headerDayDateFormatter: {
             value: function(date) {
@@ -266,7 +266,7 @@ var SchedulerAgendaView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute headerExtraDateFormatter
-         * @type Function
+         * @type {Function}
          */
         headerExtraDateFormatter: {
             validator: isFunction,
@@ -277,7 +277,7 @@ var SchedulerAgendaView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute infoDayDateFormatter
-         * @type Function
+         * @type {Function}
          */
         infoDayDateFormatter: {
             validator: isFunction,
@@ -288,7 +288,7 @@ var SchedulerAgendaView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute infoLabelBigDateFormatter
-         * @type Function
+         * @type {Function}
          */
         infoLabelBigDateFormatter: {
             validator: isFunction,
@@ -299,7 +299,7 @@ var SchedulerAgendaView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute infoLabelSmallDateFormatter
-         * @type Function
+         * @type {Function}
          */
         infoLabelSmallDateFormatter: {
             validator: isFunction,
@@ -311,7 +311,7 @@ var SchedulerAgendaView = A.Component.create({
          *
          * @attribute name
          * @default 'agenda'
-         * @type String
+         * @type {String}
          */
         name: {
             value: AGENDA
@@ -333,7 +333,7 @@ var SchedulerAgendaView = A.Component.create({
      * Static property used to define which component it extends.
      *
      * @property SchedulerAgendaView.EXTENDS
-     * @type Object
+     * @type {Object}
      * @static
      */
     EXTENDS: A.SchedulerView,

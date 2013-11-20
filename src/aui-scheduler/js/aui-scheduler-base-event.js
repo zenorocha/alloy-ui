@@ -190,7 +190,7 @@ var SchedulerEvent = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property SchedulerEvent.NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: SCHEDULER_EVENT,
@@ -200,7 +200,7 @@ var SchedulerEvent = A.Component.create({
      * configuration for the SchedulerEvent.
      *
      * @property SchedulerEvent.ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
@@ -211,7 +211,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @attribute allDay
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         allDay: {
             setter: A.DataType.Boolean.parse,
@@ -233,7 +233,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @attribute color
          * @default '#D96666'
-         * @type String
+         * @type {String}
          */
         color: {
             lazyAdd: false,
@@ -246,7 +246,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @attribute colorBrightnessFactor
          * @default 1.4
-         * @type Number
+         * @type {Number}
          */
         colorBrightnessFactor: {
             value: 1.4,
@@ -258,7 +258,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @attribute colorSaturationFactor
          * @default 0.88
-         * @type Number
+         * @type {Number}
          */
         colorSaturationFactor: {
             value: 0.88,
@@ -271,7 +271,7 @@ var SchedulerEvent = A.Component.create({
          * `allDay`.
          *
          * @attribute titleDateFormat
-         * @type Object
+         * @type {Object}
          */
         titleDateFormat: {
             getter: '_getTitleDateFormat',
@@ -308,7 +308,7 @@ var SchedulerEvent = A.Component.create({
          * user's computer.
          *
          * @attribute endDate
-         * @type Date
+         * @type {Date}
          * @default Today's date as set on the user's computer.
          */
         endDate: {
@@ -327,7 +327,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @attribute enabled
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         enabled: {
             value: false,
@@ -339,7 +339,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @attribute meeting
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         meeting: {
             value: false,
@@ -362,7 +362,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @attribute reminder
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         reminder: {
             value: false,
@@ -374,7 +374,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @attribute repeated
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         repeated: {
             value: false,
@@ -393,7 +393,7 @@ var SchedulerEvent = A.Component.create({
          * event. By default, the value is the date set on the user's computer.
          *
          * @attribute startDate
-         * @type Date
+         * @type {Date}
          */
         startDate: {
             setter: '_setDate',
@@ -407,7 +407,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @attribute visible
          * @default true
-         * @type Boolean
+         * @type {Boolean}
          */
         visible: {
             value: true,
@@ -419,7 +419,7 @@ var SchedulerEvent = A.Component.create({
      * Static property used to define which component it extends.
      *
      * @property SchedulerEvent.EXTENDS
-     * @type Object
+     * @type {Object}
      * @static
      */
     EXTENDS: A.Model,
