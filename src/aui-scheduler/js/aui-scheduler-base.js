@@ -23,6 +23,7 @@ A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
      *
      * @method comparator
      * @param {Object} model
+     * @return {Number}
      */
     comparator: function(model) {
         var startDateTime = model.get(START_DATE),
@@ -123,7 +124,7 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Deletes each event in the collection of `Scheduler` events.
      *
      * @method flushEvents
      */
