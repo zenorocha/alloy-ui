@@ -17,10 +17,12 @@
 A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Compares the inputs of a start and end date to see if adding `1` to the
+     * start date time is larger than the difference between start and end date
+     * times.
      *
      * @method comparator
-     * @param model
+     * @param {Object} model
      */
     comparator: function(model) {
         var startDateTime = model.get(START_DATE),
@@ -97,7 +99,7 @@ A.mix(SchedulerEventSupport.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method addEvents
-     * @param models
+     * @param {Object} models
      */
     addEvents: function(models) {
         var instance = this,
@@ -212,7 +214,7 @@ A.mix(SchedulerEventSupport.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method removeEvents
-     * @param models
+     * @param {Object} models
      */
     removeEvents: function(models) {
         var instance = this,
@@ -225,7 +227,7 @@ A.mix(SchedulerEventSupport.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method resetEvents
-     * @param models
+     * @param {Object} models
      */
     resetEvents: function(models) {
         var instance = this,
