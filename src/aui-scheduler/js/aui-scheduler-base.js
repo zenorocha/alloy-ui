@@ -100,6 +100,7 @@ A.mix(SchedulerEventSupport.prototype, {
      *
      * @method addEvents
      * @param {Object} models
+     * @return {SchedulerEvents}
      */
     addEvents: function(models) {
         var instance = this,
@@ -109,10 +110,11 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Applies a `function` to the collection of `Scheduler` events.
      *
      * @method eachEvent
      * @param fn
+     * @return {SchedulerEvents}
      */
     eachEvent: function(fn) {
         var instance = this;
