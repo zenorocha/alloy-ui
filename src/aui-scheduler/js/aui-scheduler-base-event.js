@@ -428,7 +428,7 @@ var SchedulerEvent = A.Component.create({
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @property SchedulerEvent.PROPAGATE_ATTRS
-     * @type Array
+     * @type {Array}
      * @static
      */
     PROPAGATE_ATTRS: [ALL_DAY, START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR,

@@ -540,7 +540,7 @@ var SchedulerDayView = A.Component.create({
      *
      * @property SchedulerDayView.HTML_PARSER
      * @default defaultName
-     * @type typeName
+     * @type {typeName}
      * @static
      */
     HTML_PARSER: {

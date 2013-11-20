@@ -28,7 +28,7 @@ var SchedulerView = A.Component.create({
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @property SchedulerView.AUGMENTS
-     * @type Array
+     * @type {Array}
      * @static
      */
     AUGMENTS: [A.WidgetStdMod],
@@ -190,7 +190,7 @@ var SchedulerView = A.Component.create({
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @property SchedulerView.BIND_UI_ATTRS
-     * @type Array
+     * @type {Array}
      * @static
      */
     BIND_UI_ATTRS: [SCROLLABLE],

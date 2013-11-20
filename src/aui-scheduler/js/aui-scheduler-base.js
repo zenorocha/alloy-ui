@@ -314,7 +314,7 @@ var SchedulerBase = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute activeView
-         * @type SchedulerView
+         * @type {SchedulerView}
          */
         activeView: {
             validator: isSchedulerView
@@ -501,7 +501,7 @@ var SchedulerBase = A.Component.create({
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @property SchedulerBase.UI_ATTRS
-     * @type Array
+     * @type {Array}
      * @static
      */
     UI_ATTRS: [DATE, ACTIVE_VIEW],
@@ -510,7 +510,7 @@ var SchedulerBase = A.Component.create({
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @property SchedulerBase.AUGMENTS
-     * @type Array
+     * @type {Array}
      * @static
      */
     AUGMENTS: [A.SchedulerEventSupport, A.WidgetStdMod],
