@@ -243,7 +243,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the header date.
          *
          * @attribute headerDateFormatter
          * @type {String}
@@ -264,7 +264,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the navigation date.
          *
          * @attribute navigationDateFormatter
          * @type {Function}

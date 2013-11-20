@@ -189,7 +189,7 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the events date.
          *
          * @attribute eventsDateFormatter
          * @type {Function}
@@ -236,7 +236,7 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the header day date.
          *
          * @attribute headerDayDateFormatter
          * @type {Function}
@@ -263,7 +263,7 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the header extra date.
          *
          * @attribute headerExtraDateFormatter
          * @type {Function}
@@ -274,7 +274,7 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the info day date.
          *
          * @attribute infoDayDateFormatter
          * @type {Function}
@@ -285,7 +285,7 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the info label date.
          *
          * @attribute infoLabelBigDateFormatter
          * @type {Function}
@@ -296,7 +296,7 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the info label small date.
          *
          * @attribute infoLabelSmallDateFormatter
          * @type {Function}

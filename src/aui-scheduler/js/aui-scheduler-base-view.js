@@ -102,7 +102,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * Contains the function to format the navigation header date.
+         * Contains the function that formats the navigation date.
          *
          * @attribute navigationDateFormatter
          * @default %A - %d %b %Y

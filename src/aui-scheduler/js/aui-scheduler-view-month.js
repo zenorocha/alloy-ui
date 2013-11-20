@@ -86,7 +86,7 @@ var SchedulerMonthView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that formats the navigation date.
          *
          * @attribute navigationDateFormatter
          * @type {Function}
