@@ -690,7 +690,7 @@ var SchedulerTableView = A.Component.create({
          * @method loopDates
          * @param startDate
          * @param endDate
-         * @param fn
+         * @param {Function} fn
          * @param incrementBy
          * @param factor
          */

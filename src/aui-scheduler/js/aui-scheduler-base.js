@@ -114,7 +114,7 @@ A.mix(SchedulerEventSupport.prototype, {
      * Applies a `function` to the collection of `Scheduler` events.
      *
      * @method eachEvent
-     * @param fn
+     * @param {Function} fn
      * @return {SchedulerEvents}
      */
     eachEvent: function(fn) {
