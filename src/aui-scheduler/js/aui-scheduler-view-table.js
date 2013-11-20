@@ -198,7 +198,8 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the number of days to display per interval in the table
+         * view.
          *
          * @attribute displayDaysInterval
          * @default 42
