@@ -96,7 +96,7 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Adds and returns the collection of events for this `Scheduler`.
      *
      * @method addEvents
      * @param {Object} models
