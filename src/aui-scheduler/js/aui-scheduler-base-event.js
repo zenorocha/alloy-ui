@@ -428,7 +428,7 @@ var SchedulerEvent = A.Component.create({
     EXTENDS: A.Model,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines the propegate attribute keys for `Scheduler` events.
      *
      * @property SchedulerEvent.PROPAGATE_ATTRS
      * @type {Array}
@@ -588,7 +588,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Copies the attribute vales from an `event` to this `event`.
+         * Copies the propagate attribute vales from an `event` to this `event`.
          *
          * @method copyPropagateAttrValues
          * @param {Object} evt
