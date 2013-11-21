@@ -355,10 +355,11 @@ var SchedulerTableView = A.Component.create({
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Contains an object hash, defining how attribute values are to be parsed
+     * from markup contained in the widget's bounding box.
      *
      * @property SchedulerTableView.HTML_PARSER
-     * @type {Object}
+     * @type {typeName}
      * @static
      */
     HTML_PARSER: {
