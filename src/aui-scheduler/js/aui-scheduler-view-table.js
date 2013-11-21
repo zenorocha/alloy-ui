@@ -443,12 +443,13 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Builds a row of events.
          *
          * @method buildEventsRow
-         * @param rowStartDate
-         * @param rowEndDate
-         * @param rowDisplayIndex
+         * @param {Date} rowStartDate
+         * @param {Date} rowEndDate
+         * @param {Number} rowDisplayIndex
+         * @return {Node}
          */
         buildEventsRow: function(rowStartDate, rowEndDate, rowDisplayIndex) {
             var instance = this;
@@ -512,8 +513,8 @@ var SchedulerTableView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method buildEventsTable
-         * @param rowStartDate
-         * @param rowEndDate
+         * @param {Date} rowStartDate
+         * @param {Date} rowEndDate
          */
         buildEventsTable: function(rowStartDate, rowEndDate) {
             var instance = this,
@@ -548,8 +549,8 @@ var SchedulerTableView = A.Component.create({
          *
          * @method buildEventsTitleRow
          * @param tableNode
-         * @param rowStartDate
-         * @param rowEndDate
+         * @param {Date} rowStartDate
+         * @param {Date} rowEndDate
          */
         buildEventsTitleRow: function(tableNode, rowStartDate, rowEndDate) {
             var instance = this;
@@ -918,8 +919,8 @@ var SchedulerTableView = A.Component.create({
          * @method _getEvtSplitInfo
          * @param {Object} evt
          * @param celDate
-         * @param rowStartDate
-         * @param rowEndDate
+         * @param {Date} rowStartDate
+         * @param {Date} rowEndDate
          * @protected
          */
         _getEvtSplitInfo: function(evt, celDate, rowStartDate, rowEndDate) {
@@ -943,8 +944,8 @@ var SchedulerTableView = A.Component.create({
          *
          * @method _getRenderableEvent
          * @param {Event.Facade} event Event Facade objects
-         * @param rowStartDate
-         * @param rowEndDate
+         * @param {Date} rowStartDate
+         * @param {Date} rowEndDate
          * @param celDate
          * @protected
          */
