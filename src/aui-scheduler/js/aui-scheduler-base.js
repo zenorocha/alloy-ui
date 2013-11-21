@@ -487,6 +487,8 @@ var SchedulerBase = A.Component.create({
         }
     },
 
+    AUGMENTS: [A.SchedulerEventSupport, A.WidgetStdMod],
+
     /**
      * Contains an object hash, defining how attribute values are to be parsed
      * from markup contained in the widget's bounding box.
@@ -514,15 +516,6 @@ var SchedulerBase = A.Component.create({
      * @static
      */
     UI_ATTRS: [DATE, ACTIVE_VIEW],
-
-    /**
-     * TODO. Wanna help? Please send a Pull Request.
-     *
-     * @property SchedulerBase.AUGMENTS
-     * @type {Array}
-     * @static
-     */
-    AUGMENTS: [A.SchedulerEventSupport, A.WidgetStdMod],
 
     prototype: {
         viewStack: null,

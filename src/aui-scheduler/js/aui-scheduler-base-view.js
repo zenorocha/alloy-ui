@@ -25,15 +25,6 @@ var SchedulerView = A.Component.create({
     NAME: SCHEDULER_VIEW,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
-     *
-     * @property SchedulerView.AUGMENTS
-     * @type {Array}
-     * @static
-     */
-    AUGMENTS: [A.WidgetStdMod],
-
-    /**
      * Static property used to define the default attribute
      * configuration for the SchedulerView.
      *
@@ -185,6 +176,8 @@ var SchedulerView = A.Component.create({
             value: false
         }
     },
+
+    AUGMENTS: [A.WidgetStdMod],
 
     /**
      * TODO. Wanna help? Please send a Pull Request.
