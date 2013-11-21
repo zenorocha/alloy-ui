@@ -510,11 +510,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Builds a table of events.
          *
          * @method buildEventsTable
          * @param {Date} rowStartDate
          * @param {Date} rowEndDate
+         * @return {Node}
          */
         buildEventsTable: function(rowStartDate, rowEndDate) {
             var instance = this,
