@@ -585,7 +585,8 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Builds a new row `Node` and appends a table grid `Node`. Returns the
+         * row `Node`.
          *
          * @method buildGridRowNode
          * @param {Number} rowIndex
