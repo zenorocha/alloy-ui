@@ -1051,7 +1051,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders this `SchedulerViewTable` event's `overlay` component.
          *
          * @method _renderEventsOverlay
          * @protected
