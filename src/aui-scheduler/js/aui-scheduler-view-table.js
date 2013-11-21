@@ -285,7 +285,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Indicates whether
+         * Indicates whether the `SchedulerTableView` is scrollable.
          *
          * @attribute scrollable
          * @default false
