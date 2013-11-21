@@ -546,10 +546,10 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Builds a row with the title and today's date.
          *
          * @method buildEventsTitleRow
-         * @param tableNode
+         * @param {Node} tableNode
          * @param {Date} rowStartDate
          * @param {Date} rowEndDate
          */
