@@ -263,11 +263,13 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a clone of a given `date` that will adjust to the `maxDate`
+         * if it occurs after `maxDate`.
          *
          * @method limitDate
          * @param {Date} date
-         * @param maxDate
+         * @param {Date} maxDate
+         * @return {Date}
          */
         limitDate: function(date, maxDate) {
             var instance = this;
