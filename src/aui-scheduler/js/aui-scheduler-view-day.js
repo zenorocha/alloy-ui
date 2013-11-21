@@ -392,7 +392,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the height of an hour in pixels.
          *
          * @attribute hourHeight
          * @default 52
