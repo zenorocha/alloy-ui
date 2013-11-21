@@ -310,9 +310,10 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `headerTable` node.
          *
          * @attribute headerTableNode
+         * @type {Node}
          */
         headerTableNode: {
             valueFn: function() {
@@ -321,18 +322,20 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `colHeaderDays` node.
          *
          * @attribute colHeaderDaysNode
+         * @type {Node}
          */
         colHeaderDaysNode: {
             valueFn: '_valueColHeaderDaysNode'
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `rowsContainer` node.
          *
          * @attribute rowsContainerNode
+         * @type {Node}
          */
         rowsContainerNode: {
             valueFn: function() {
@@ -341,9 +344,10 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `tableGrid` node.
          *
          * @attribute tableGridNode
+         * @type {Node}
          */
         tableGridNode: {
             valueFn: '_valueTableGridNode'
