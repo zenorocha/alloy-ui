@@ -697,14 +697,17 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Applies a given function to each date between `startDate` and
+         * `endDate`.
          *
          * @method loopDates
-         * @param startDate
-         * @param endDate
+         * @param {Date} startDate
+         * @param {Date} endDate
          * @param {Function} fn
-         * @param incrementBy
-         * @param factor
+         * @param {String} incrementBy  The field constant to be used for
+         * performing addition.
+         * @param {Number} factor   The ratio used to calculate the number of
+         * units (measured in the field constant) to add to the date.
          */
         loopDates: function(startDate, endDate, fn, incrementBy, factor) {
             var instance = this;
