@@ -193,10 +193,12 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the list of all events that intersect with a given date. Events
+     * that are not visible are not included in this list.
      *
      * @method getIntersectEvents
      * @param {Date} date
+     * @return {Array}
      */
     getIntersectEvents: function(date) {
         var instance = this;

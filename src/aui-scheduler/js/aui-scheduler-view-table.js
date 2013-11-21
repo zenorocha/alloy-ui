@@ -630,10 +630,11 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the list of all events that intersect with a given date.
          *
          * @method getIntersectEvents
          * @param {Date} date
+         * @return {Array}
          */
         getIntersectEvents: function(date) {
             var instance = this;
