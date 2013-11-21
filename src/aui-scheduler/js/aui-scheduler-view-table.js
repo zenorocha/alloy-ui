@@ -198,8 +198,8 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Contains the number of days to display per interval in the table
-         * view.
+         * Contains the number of days to display per interval in the
+         * `SchedulerTableView`.
          *
          * @attribute displayDaysInterval
          * @default 42
@@ -210,7 +210,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Contains the number of rows to display in the table view.
+         * Contains the number of rows to display in the `SchedulerTableView`.
          *
          * @attribute displayRows
          * @default 3
@@ -221,7 +221,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether the height of the `SchedulerTableView` is fixed.
          *
          * @attribute fixedHeight
          * @default true
@@ -232,7 +232,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Determines the name for this table view.
+         * Determines the name for this `SchedulerTableView`.
          *
          * @attribute name
          * @default 'table'
@@ -285,7 +285,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether
          *
          * @attribute scrollable
          * @default false
@@ -588,7 +588,8 @@ var SchedulerTableView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method buildGridRowNode
-         * @param rowIndex
+         * @param {Number} rowIndex
+         * @return {Node}
          */
         buildGridRowNode: function(rowIndex) {
             var instance = this;
@@ -650,7 +651,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Returns the value of the date that follows the table view's current
+         * Returns the value of the date that follows the `SchedulerTableView`'s current
          * date.
          *
          * @method getNextDate
@@ -666,7 +667,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Returns the value of the date that preceeds the table view's current
+         * Returns the value of the date that preceeds the `SchedulerTableView`'s current
          * date.
          *
          * @method getPrevDate
@@ -982,7 +983,7 @@ var SchedulerTableView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getTableGridNode
-         * @param rowIndex
+         * @param {Number} rowIndex
          * @protected
          */
         _getTableGridNode: function(rowIndex) {
