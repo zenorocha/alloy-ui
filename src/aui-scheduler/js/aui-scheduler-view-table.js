@@ -299,7 +299,7 @@ var SchedulerTableView = A.Component.create({
          * Contains the collection of strings used to label elements of the UI.
          *
          * @attribute strings
-         * @type {Object}
+         * @type {typeName}
          */
         strings: {
             value: {

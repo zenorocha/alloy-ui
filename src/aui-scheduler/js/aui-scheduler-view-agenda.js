@@ -321,6 +321,7 @@ var SchedulerAgendaView = A.Component.create({
          * Contains the collection of strings used to label elements of the UI.
          *
          * @attribute strings
+         * @type {typeName}
          */
         strings: {
             value: {
