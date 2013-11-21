@@ -448,9 +448,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `headerTable` node.
          *
          * @attribute headerTableNode
+         * return {Node}
          */
         headerTableNode: {
             valueFn: function() {
@@ -459,9 +460,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `headerViewLabel` node.
          *
          * @attribute headerViewLabelNode
+         * return {Node}
          */
         headerViewLabelNode: {
             valueFn: function() {
@@ -478,9 +480,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `resizer` node.
          *
          * @attribute resizerNode
+         * return {Node}
          */
         resizerNode: {
             valueFn: function() {
@@ -489,9 +492,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `table` node.
          *
          * @attribute tableNode
+         * return {Node}
          */
         tableNode: {
             valueFn: function() {
@@ -500,36 +504,40 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `colDays` node.
          *
          * @attribute colDaysNode
+         * return {Node}
          */
         colDaysNode: {
             valueFn: '_valueColDaysNode'
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `colHeaderDays` node.
          *
          * @attribute colHeaderDaysNode
+         * return {Node}
          */
         colHeaderDaysNode: {
             valueFn: '_valueColHeaderDaysNode'
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `markercells` node.
          *
          * @attribute markercellsNode
+         * return {Node}
          */
         markercellsNode: {
             valueFn: '_valueMarkercellsNode'
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the function that returns the `times` node.
          *
          * @attribute timesNode
+         * return {Node}
          */
         timesNode: {
             valueFn: '_valueTimesNode'
