@@ -250,7 +250,7 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles `add` events.
      *
      * @method _afterAddEvent
      * @param {Event.Facade} event Event Facade object
