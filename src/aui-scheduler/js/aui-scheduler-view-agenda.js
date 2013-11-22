@@ -387,7 +387,7 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Plots all events in the current view.
          *
          * @method plotEvents
          */
