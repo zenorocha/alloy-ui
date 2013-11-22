@@ -236,7 +236,7 @@ A.mix(SchedulerEventSupport.prototype, {
 
     /**
      * * Completely replaces all `SchedulerEvents` in the list with the given
-     * `SchedulerEvents`s.
+     * `SchedulerEvents`.
      *
      * @method resetEvents
      * @param {Object} models
@@ -263,10 +263,11 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Converts given values to `SchedulerEvents`.
      *
      * @method _toSchedulerEvents
      * @param val {Any} The value of the property.ues
+     * @returns {A.SchedulerEvents} The values converted to `SchedulerEvents`.
      * @protected
      */
     _toSchedulerEvents: function(values) {
