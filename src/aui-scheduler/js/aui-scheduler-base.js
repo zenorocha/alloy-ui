@@ -177,11 +177,13 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets a collection of events within a given day. It will filter
+     * overlapping events by default unless `includeOverlap` is true.
      *
      * @method getEventsByDay
      * @param {Date} date
-     * @param includeOverlap
+     * @param {Boolean} includeOverlap
+     * @return {Array}
      */
     getEventsByDay: function(date, includeOverlap) {
         var instance = this;
