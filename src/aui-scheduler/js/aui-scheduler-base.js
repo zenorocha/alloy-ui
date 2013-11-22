@@ -329,7 +329,7 @@ var SchedulerBase = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the active view.
          *
          * @attribute activeView
          * @type {SchedulerView}
