@@ -221,10 +221,11 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Removes given `SchedulerEvents` from the scheduler.
      *
      * @method removeEvents
      * @param {Object} models
+     * @return {A.SchedulerEvents}
      */
     removeEvents: function(models) {
         var instance = this,
