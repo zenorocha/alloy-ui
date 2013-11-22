@@ -221,9 +221,7 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * Completely replaces all `SchedulerEvents` in the list with the given
-     * `SchedulerEvents`s.
-
+     * Removes given `SchedulerEvents` from the scheduler.
      *
      * @method removeEvents
      * @param {Object} models
@@ -237,7 +235,8 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * Removes given `SchedulerEvents` from the scheduler.
+     * * Completely replaces all `SchedulerEvents` in the list with the given
+     * `SchedulerEvents`s.
      *
      * @method resetEvents
      * @param {Object} models
