@@ -150,10 +150,12 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets a collection of events.
      *
      * @method getEvents
-     * @param filterFn
+     * @param {Function} filterFn (optional) Filters `events` and returns a list
+     * of events.
+     * @return {Array}
      */
     getEvents: function(filterFn) {
         var instance = this,
@@ -393,6 +395,7 @@ var SchedulerBase = A.Component.create({
          *
          * @attribute views
          * @default []
+         * @type {Array}
          */
         views: {
             setter: '_setViews',
