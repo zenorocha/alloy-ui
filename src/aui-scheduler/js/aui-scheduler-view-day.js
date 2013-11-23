@@ -1298,7 +1298,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `clickDays` events.
          *
          * @method _onClickDaysHeader
          * @param {Event.Facade} event Event Facade object
@@ -1323,7 +1323,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `eventDrag` events.
          *
          * @method _onEventDragEnd
          * @param {Event.Facade} event Event Facade object
@@ -1352,7 +1352,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `eventDrag` events.
          *
          * @method _onEventDragStart
          * @param {Event.Facade} event Event Facade object
@@ -1385,7 +1385,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `mouseDownTableCol` events.
          *
          * @method _onMouseDownTableCol
          * @param {Event.Facade} event Event Facade object
@@ -1439,7 +1439,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `mouseEnter` events.
          *
          * @method _onMouseEnterEvent
          * @param {Event.Facade} event Event Facade object
@@ -1456,7 +1456,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `mouseLeave` events.
          *
          * @method _onMouseLeaveEvent
          * @param {Event.Facade} event Event Facade object
@@ -1471,7 +1471,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `mouseMoveTableCol` events.
          *
          * @method _onMouseMoveTableCol
          * @param {Event.Facade} event Event Facade object
@@ -1519,7 +1519,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `mouseUpTableCol` events.
          *
          * @method _onMouseUpTableCol
          * @param {Event.Facade} event Event Facade object
@@ -1547,7 +1547,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `scheduler` value change.
          *
          * @method _onSchedulerChange
          * @param {Event.Facade} event Event Facade object
