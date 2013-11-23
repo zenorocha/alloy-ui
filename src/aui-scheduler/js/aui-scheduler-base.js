@@ -332,7 +332,7 @@ var SchedulerBase = A.Component.create({
          * Contains the active view.
          *
          * @attribute activeView
-         * @type {SchedulerView}
+         * @type {A.SchedulerView}
          */
         activeView: {
             validator: isSchedulerView
@@ -624,10 +624,11 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders the `SchedulerView` based on the given `view` parameter
+         * under `instance.bodyNode`.
          *
          * @method renderView
-         * @param view
+         * @param {A.SchedulerView} view
          */
         renderView: function(view) {
             var instance = this;
