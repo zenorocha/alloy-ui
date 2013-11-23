@@ -524,7 +524,7 @@ var SchedulerBase = A.Component.create({
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the UI attributes.
      *
      * @property SchedulerBase.UI_ATTRS
      * @type {Array}

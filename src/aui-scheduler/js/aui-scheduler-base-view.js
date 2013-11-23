@@ -180,7 +180,8 @@ var SchedulerView = A.Component.create({
     AUGMENTS: [A.WidgetStdMod],
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the attributes
+     * for the bindUI lifecycle phase.
      *
      * @property SchedulerView.BIND_UI_ATTRS
      * @type {Array}
