@@ -900,10 +900,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Applies substitution to a given template.
          *
          * @method _processTemplate
-         * @param tpl
+         * @param {String} tpl
          * @protected
          */
         _processTemplate: function(tpl) {
