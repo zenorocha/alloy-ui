@@ -715,6 +715,7 @@ var SchedulerDayView = A.Component.create({
          *
          * @method calculateTop
          * @param {Date} date
+         * @return {Number}
          */
         calculateTop: function(date) {
             var instance = this;
