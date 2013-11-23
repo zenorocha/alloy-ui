@@ -696,10 +696,12 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Calculates and returns the height of an event based on a given
+         * `duration`.
          *
          * @method calculateEventHeight
-         * @param duration
+         * @param {Number} duration The duration of an event.
+         * @return {Number} The height of an event.
          */
         calculateEventHeight: function(duration) {
             var instance = this;
