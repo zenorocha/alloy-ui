@@ -311,7 +311,7 @@ var SchedulerView = A.Component.create({
         syncEventUI: function(evt) {},
 
         /**
-         * Set `date` on the UI.
+         * Sets `date` on the UI.
          *
          * @method _uiSetDate
          * @param val {Any} The value of the property.
@@ -336,7 +336,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets this `SchedulerView`'s `scheduler` object to the given value.
          *
          * @method _setScheduler
          * @param val {Any} The value of the property.
@@ -360,7 +360,7 @@ var SchedulerView = A.Component.create({
         }
 
         /**
-         * Set `scrollable` on the UI.
+         * Sets `scrollable` on the UI.
          *
          * @method _uiSetScrollable
          * @param val {Any} The value of the property.
