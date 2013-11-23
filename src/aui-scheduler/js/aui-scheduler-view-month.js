@@ -62,7 +62,7 @@ var SchedulerMonthView = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the number of Days to display in a month view.
          *
          * @attribute displayDaysInterval
          * @default 42
