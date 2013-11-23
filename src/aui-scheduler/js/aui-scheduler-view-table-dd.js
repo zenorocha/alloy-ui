@@ -359,11 +359,14 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Indicates whether the lasso value has changed given a XY position
+     * coordinate.
      *
      * @method _hasLassoChanged
      * @param position
      * @protected
+     * @return {Boolean} Whether the lasso value has changed given a XY position
+     * coordinate.
      */
     _hasLassoChanged: function(position) {
         var instance = this;
