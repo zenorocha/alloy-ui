@@ -737,7 +737,8 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Replaces this `SchedulerEventRecorder`'s `popover` component with the
+         *  given 'popover' value.
          *
          * @method _renderPopover
          * @protected
