@@ -1158,7 +1158,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Aligns the dragging `SchuddlerEvent` to the X axis while bound to the
+         * Aligns the dragging `SchedulerEvent` to the X axis while bound to the
          * Y axis on the `activeColumn`.
          *
          * @method _dragTickAlignX
@@ -1188,7 +1188,9 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Aligns the dragging `SchedulerEvent` to the Y axis by either setting
+         * the end date if the event is a `resize`, or moves the event
+         * otherwise.
          *
          * @method _dragTickAlignY
          * @param {Event.Facade} event Event Facade object
