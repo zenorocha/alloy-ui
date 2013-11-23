@@ -1562,7 +1562,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes the `SchedulerView`'s resizer `Node` from the DOM.
          *
          * @method _removeResizer
          * @protected
