@@ -519,7 +519,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handle `mouseUpGrid` events.
      *
      * @method _onMouseUpGrid
      * @param {Event.Facade} event Event Facade object
