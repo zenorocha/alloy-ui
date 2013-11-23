@@ -115,9 +115,10 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the next `Date` in the `SchedulerView`.
          *
          * @attribute nextDate
+         * @type {Date}
          * @readOnly
          */
         nextDate: {
@@ -126,9 +127,10 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the previous `Date` in the `SchedulerView`.
          *
          * @attribute prevDate
+         * @type {Date}
          * @readOnly
          */
         prevDate: {
