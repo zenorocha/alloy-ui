@@ -310,7 +310,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the width of a `SchedulerView` in pixels.
          *
          * @attribute eventWidth
          * @default 95
@@ -322,9 +322,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Applies a filter to `SchedulerEvent`s.
          *
          * @attribute filterFn
+         * @type {Function}
          */
         filterFn: {
             value: function(evt) {

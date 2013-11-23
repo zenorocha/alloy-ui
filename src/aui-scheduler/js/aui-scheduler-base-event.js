@@ -574,7 +574,7 @@ var SchedulerEvent = A.Component.create({
          * Copies the dates from the `event` parameter to the instance `event`.
          *
          * @method copyDates
-         * @param {Object} evt Scheduler event.
+         * @param {A.SchedulerEvent} evt A `Scheduler` event. Scheduler event.
          * @param [options] {Object} Zero or more options.
          */
         copyDates: function(evt, options) {
@@ -591,7 +591,7 @@ var SchedulerEvent = A.Component.create({
          * Copies the propagate attribute vales from an `event` to this `event`.
          *
          * @method copyPropagateAttrValues
-         * @param {Object} evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @param {Boolean} copyMap
          * @param [options] {Object} Zero or more options.
          */
@@ -670,7 +670,7 @@ var SchedulerEvent = A.Component.create({
          * Determines if an `event`'s end date is this same as this `event`.
          *
          * @method sameEndDate
-         * @param {Object} evt Scheduler Event
+         * @param {A.SchedulerEvent} evt A `Scheduler` event. Scheduler Event
          * @return {Boolean}
          */
         sameEndDate: function(evt) {
@@ -683,7 +683,7 @@ var SchedulerEvent = A.Component.create({
          * Determines if an `event`'s start date is this same as this `event`.
          *
          * @method sameStartDate
-         * @param {Object} evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @return {Boolean}
          */
         sameStartDate: function(evt) {
@@ -697,7 +697,7 @@ var SchedulerEvent = A.Component.create({
          * Determines if an `event` is after this `event`.
          *
          * @method isAfter
-         * @param {Object} evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @return {Boolean}
          */
         isAfter: function(evt) {
@@ -712,7 +712,7 @@ var SchedulerEvent = A.Component.create({
          * Determines if an `event` is before this `event`.
          *
          * @method isBefore
-         * @param {Object} evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @return {Boolean}
          */
         isBefore: function(evt) {
@@ -727,7 +727,7 @@ var SchedulerEvent = A.Component.create({
          * Determines if an `event` interescts with this `event`.
          *
          * @method intersects
-         * @param {Object} evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @return {Boolean}
          */
         intersects: function(evt) {
@@ -745,7 +745,7 @@ var SchedulerEvent = A.Component.create({
          * hours.
          *
          * @method intersectHours
-         * @param {Object} evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @return {Boolean}
          */
         intersectHours: function(evt) {
