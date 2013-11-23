@@ -753,10 +753,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the column `Node` determined by a given `Date`.
          *
          * @method getColumnByDate
          * @param {Date} date
+         * @return {Number} The column `Node` determined by a given `Date`.
          */
         getColumnByDate: function(date) {
             var instance = this;
