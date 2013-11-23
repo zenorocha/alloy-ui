@@ -290,7 +290,7 @@ var SchedulerView = A.Component.create({
         plotEvents: function() {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sync SchedulerBase StdContent.
          *
          * @method syncStdContent
          */
