@@ -555,7 +555,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Configures a `DD Delegate` that handles `DD` events for this
+     * `SchedulerTableViewDD`s.
      *
      * @method _setupDragDrop
      * @protected
@@ -585,7 +586,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Updates this `SchedulerTableViewDD`'s grid cell dimension properties.
      *
      * @method _syncCellDimensions
      * @protected
@@ -602,7 +603,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Updates this `SchedulerTableViewDD`'s proxyNode UI styles and content.
      *
      * @method _syncProxyNodeUI
      * @param {A.SchedulerEvent} evt A `Scheduler` event.
