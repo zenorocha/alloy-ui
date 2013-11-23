@@ -59,7 +59,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the height of a `SchedulerView` in pixels.
          *
          * @attribute height
          * @default 600
