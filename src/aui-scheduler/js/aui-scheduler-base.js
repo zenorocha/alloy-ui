@@ -351,9 +351,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the `Scheduler`'s `SchedulerEventRecorder` instance.
          *
          * @attribute eventRecorder
+         * @type {SchedulerEventRecorder}
          */
         eventRecorder: {
             setter: '_setEventRecorder'
