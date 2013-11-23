@@ -647,7 +647,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Plots all events for the current view.
          *
          * @method plotViewEvents
          * @param view
