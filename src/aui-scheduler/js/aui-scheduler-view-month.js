@@ -210,11 +210,12 @@ var SchedulerMonthView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the first day of the week with given `Date`.
          *
          * @method _findFirstDayOfWeek
          * @param {Date} date
          * @protected
+         * @return {Date} The first day of the week with given `Date`.
          */
         _findFirstDayOfWeek: function(date) {
             var instance = this;
