@@ -597,7 +597,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _syncProxyNodeUI
-     * @param {Object} evt
+     * @param {A.SchedulerEvent} evt A `Scheduler` event.
      * @protected
      */
     _syncProxyNodeUI: function(evt) {

@@ -904,7 +904,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the `SchedulerView` `columns` instance. Lifecycle.
          *
          * @method syncColumnsUI
          */
@@ -921,7 +921,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the `SchedulerView` `daysHeader` instance. Lifecycle.
          *
          * @method syncDaysHeaderUI
          */
@@ -945,10 +945,10 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the `SchedulerView` `eventsIntersection` instance. Lifecycle.
          *
          * @method syncEventsIntersectionUI
-         * @param columnEvents
+         * @param {Array} columnEvents
          */
         syncEventsIntersectionUI: function(columnEvents) {
             var instance = this;
@@ -987,7 +987,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the `SchedulerView` `eventHeight` instance. Lifecycle.
          *
          * @method syncEventHeightUI
          * @param {Object} evt
@@ -1016,7 +1016,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the `SchedulerView` `eventTop` instance. Lifecycle.
          *
          * @method syncEventTopUI
          * @param {Object} evt
@@ -1031,7 +1031,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the `SchedulerView` `headerView` instance. Lifecycle.
          *
          * @method syncHeaderViewUI
          */

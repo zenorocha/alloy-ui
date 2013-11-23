@@ -910,7 +910,7 @@ var SchedulerTableView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getEvtLabel
-         * @param {Object} evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @protected
          */
         _getEvtLabel: function(evt) {
@@ -925,7 +925,7 @@ var SchedulerTableView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getEvtSplitInfo
-         * @param {Object} evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @param celDate
          * @param {Date} rowStartDate
          * @param {Date} rowEndDate
@@ -1087,9 +1087,9 @@ var SchedulerTableView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _syncEventNodeContainerUI
-         * @param {Object} evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @param node
-         * @param {Object} evtSplitInfo
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.SplitInfo
          * @protected
          */
         _syncEventNodeContainerUI: function(evt, node, evtSplitInfo) {
@@ -1110,7 +1110,7 @@ var SchedulerTableView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _syncEventNodeUI
-         * @param {Object} evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @param container
          * @param celDate
          * @protected
