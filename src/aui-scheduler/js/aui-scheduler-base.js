@@ -676,7 +676,9 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders a new `ButtonGroup` and attaches it to the `Scheduler`
+         * instances as a property `instance.buttonGroup`. It is rendered under
+         * the `Scheduler` instance's `viewsNode`.
          *
          * @method renderButtonGroup
          */
