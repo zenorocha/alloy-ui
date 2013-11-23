@@ -586,10 +586,11 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the `SchedulerView` that belongs to a given name.
          *
          * @method getViewByName
-         * @param name
+         * @param {String} name
+         * @return {A.SchedulerView}
          */
         getViewByName: function(name) {
             var instance = this;
