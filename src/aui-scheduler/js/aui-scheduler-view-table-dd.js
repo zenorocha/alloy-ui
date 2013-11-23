@@ -302,10 +302,11 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the grid cell position array for a given XY coordinate.
      *
      * @method _findPosition
-     * @param xy
+     * @param {Array} xy
+     * @return {Array} The grid cell position array for a given XY coordinate.
      * @protected
      */
     _findPosition: function(xy) {
@@ -374,7 +375,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _offsetXY
-     * @param xy, sign
+     * @param {Array} xy, sign
      * @protected
      */
     _offsetXY: function(xy, sign) {
