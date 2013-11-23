@@ -750,7 +750,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `render` events.
          *
          * @method _afterRender
          * @param {Event.Facade} event Event Facade object

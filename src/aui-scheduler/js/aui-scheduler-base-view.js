@@ -314,7 +314,7 @@ var SchedulerView = A.Component.create({
         _uiSetDate: function(val) {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `render` events.
          *
          * @method _afterRender
          * @param {Event.Facade} event Event Facade object
