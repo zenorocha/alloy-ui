@@ -399,7 +399,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the list of views belonging to this `Scheduler`.
          *
          * @attribute views
          * @default []
