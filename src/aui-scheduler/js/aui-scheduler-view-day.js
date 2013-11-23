@@ -1598,10 +1598,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the `colHeaderDaysNode` value.
          *
          * @method _valueColHeaderDaysNode
          * @protected
+         * @return {Node} The `colHeaderDaysNode` value.
          */
         _valueColHeaderDaysNode: function() {
             var instance = this;
@@ -1623,10 +1624,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the `markercellsNode` value.
          *
          * @method _valueMarkercellsNode
          * @protected
+         * @return {Node} The `markercellsNode` value.
          */
         _valueMarkercellsNode: function() {
             var instance = this;
@@ -1641,10 +1643,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the `timesNode` value.
          *
          * @method _valueTimesNode
          * @protected
+         * @return {Node} The `timesNode` value.
          */
         _valueTimesNode: function() {
             var instance = this;
