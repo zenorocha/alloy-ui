@@ -611,10 +611,11 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the string that matches the `key` type.
          *
          * @method getString
-         * @param key
+         * @param {String} key
+         * @return {String}
          */
         getString: function(key) {
             var instance = this;
