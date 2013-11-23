@@ -393,7 +393,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handle `eventDragEnd` events.
      *
      * @method _onEventDragEnd
      * @param {Event.Facade} event Event Facade object
@@ -426,7 +426,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handle `eventDragStart` events.
      *
      * @method _onEventDragStart
      * @param {Event.Facade} event Event Facade object
@@ -468,7 +468,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handle `mouseDownGrid` events.
      *
      * @method _onMouseDownGrid
      * @param {Event.Facade} event Event Facade object
@@ -498,7 +498,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handle `mouseMoveGrid` events.
      *
      * @method _onMouseMoveGrid
      * @param {Event.Facade} event Event Facade object
