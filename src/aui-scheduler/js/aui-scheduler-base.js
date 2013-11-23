@@ -783,11 +783,12 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates the given `SchedulerView`'s trigger `Node`.
          *
          * @method _createViewTriggerNode
-         * @param view
+         * @param {A.SchedulerView} view
          * @protected
+         * @return {Node} The `SchedulerView`'s trigger `Node`.
          */
         _createViewTriggerNode: function(view) {
             var instance = this;
