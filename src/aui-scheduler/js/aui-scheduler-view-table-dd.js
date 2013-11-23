@@ -341,11 +341,12 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Return the `Date` corresponding to a given position coordinate.
      *
      * @method _getPositionDate
-     * @param position
+     * @param {Array} position The XY position coordinate.
      * @protected
+     * @return {Date} The `Date` corresponding to a given position coordinate.
      */
     _getPositionDate: function(position) {
         var instance = this,
