@@ -1124,11 +1124,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Rounds a given Date to a given hour represented as time.
          *
          * @method roundToNearestHour
          * @param {Date} date
-         * @param time
+         * @param {Array} time Time value used to compute value
          */
         roundToNearestHour: function(date, time) {
             var instance = this;
