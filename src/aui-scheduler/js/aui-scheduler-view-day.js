@@ -1230,7 +1230,8 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Configures a `DD Delegate` that handles `DD` events for
+         * `SchedulerEvent`s.
          *
          * @method _setupDragDrop
          * @protected
