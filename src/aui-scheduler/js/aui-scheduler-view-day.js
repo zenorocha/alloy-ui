@@ -830,7 +830,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Plots a given event for the day view.
          *
          * @method plotEvent
          * @param {A.SchedulerEvent} evt A `Scheduler` event.
