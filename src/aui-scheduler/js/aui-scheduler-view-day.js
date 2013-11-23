@@ -1158,10 +1158,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Aligns the dragging `SchuddlerEvent` to the X axis while bound to the
+         * Y axis on the `activeColumn`.
          *
          * @method _dragTickAlignX
-         * @param activeColumn
+         * @param {Node} activeColumn
          * @protected
          */
         _dragTickAlignX: function(activeColumn) {
