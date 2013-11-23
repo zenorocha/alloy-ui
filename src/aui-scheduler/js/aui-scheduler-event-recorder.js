@@ -189,7 +189,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the `SchedulerEventRecorder`'s body template.
          *
          * @attribute bodyTemplate
          * @default ''
@@ -200,9 +200,10 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the `SchedulerEventRecorder`'s header template.
          *
          * @attribute headerTemplate
+         * @type {String}
          */
         headerTemplate: {
             value: TPL_HEADER_CONTENT
