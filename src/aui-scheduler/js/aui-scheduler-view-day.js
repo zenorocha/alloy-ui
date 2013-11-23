@@ -766,10 +766,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the column shim `Node` determined by a given `Date`.
          *
          * @method getColumnShimByDate
          * @param {Date} date
+         * @return {Number} The column shim `Node` determined by a given `Date`.
          */
         getColumnShimByDate: function(date) {
             var instance = this;
@@ -778,10 +779,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the `Date` determined by a given column `Node`.
          *
          * @method getDateByColumn
          * @param colNumber
+         * @return The `Date` determined by a given column `Node`.
          */
         getDateByColumn: function(colNumber) {
             var instance = this;
@@ -792,10 +794,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the number of offset days.
          *
          * @method getDateDaysOffset
          * @param {Date} date
+         * @return {Number} The number of offset days.
          */
         getDateDaysOffset: function(date) {
             var instance = this;
