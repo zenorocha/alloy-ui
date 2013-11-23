@@ -661,8 +661,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Plots the `activeView` events.
-         * value.
+         * Plots the `activeView` events value.
          *
          * @method syncEventsUI
          */
