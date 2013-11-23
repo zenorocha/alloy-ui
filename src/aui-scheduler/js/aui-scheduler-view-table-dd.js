@@ -319,11 +319,12 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Return the position coordinate of a given `Date`.
      *
      * @method _getDatePosition
      * @param {Date} date
      * @protected
+     * @return {Array} The position coordinate of a given `Date`.
      */
     _getDatePosition: function(date) {
         var instance = this;
