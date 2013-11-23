@@ -1092,7 +1092,8 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Calculates the XY delta between the `event.currentTarget` XY
+         * coordinates as well as the XY coordinates from the event page.
          *
          * @method getXYDelta
          * @param {Event.Facade} event Event Facade object
