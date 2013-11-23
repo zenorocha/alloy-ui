@@ -490,10 +490,11 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the current day's `eventMap`.
          *
          * @method _getDayEventsMap
          * @protected
+         * @return {Object} The current day's `eventMap`.
          */
         _getDayEventsMap: function() {
             var instance = this,
