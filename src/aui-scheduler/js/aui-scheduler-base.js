@@ -913,7 +913,8 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Replaces this `SchedulerBase`'s `eventRecorder` with the given
+         * `eventRecorder` value.
          *
          * @method _setEventRecorder
          * @param val {Any} The value of the property.
@@ -934,11 +935,12 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Replaces this `SchedulerBase`'s `views` with the given `views` value.
          *
          * @method _setViews
          * @param val {Any} The value of the property.
          * @protected
+         * @return The replaces `SchedulerBase`'s `views`.
          */
         _setViews: function(val) {
             var instance = this;
