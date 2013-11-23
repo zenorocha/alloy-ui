@@ -824,7 +824,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method plotEvent
-         * @param {Object} evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          */
         plotEvent: function(evt) {
             var instance = this;
@@ -990,7 +990,7 @@ var SchedulerDayView = A.Component.create({
          * Syncs the `SchedulerView` `eventHeight` instance. Lifecycle.
          *
          * @method syncEventHeightUI
-         * @param {Object} evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          */
         syncEventHeightUI: function(evt) {
             var instance = this;
@@ -1019,7 +1019,7 @@ var SchedulerDayView = A.Component.create({
          * Syncs the `SchedulerView` `eventTop` instance. Lifecycle.
          *
          * @method syncEventTopUI
-         * @param {Object} evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          */
         syncEventTopUI: function(evt) {
             var instance = this;
@@ -1057,11 +1057,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Calculates the Y delta between two XY coordinates.
          *
          * @method calculateYDelta
-         * @param startXY
-         * @param xy
+         * @param {Array} startXY The starting XY coords
+         * @param {Array} xy The XY coords to compare to the starting XY coords
          */
         calculateYDelta: function(startXY, xy) {
             var instance = this;
@@ -1073,7 +1073,7 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method findEventIntersections
-         * @param {Object} evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @param {Event.Facade} event Event Facade objects
          */
         findEventIntersections: function(evt, events) {
