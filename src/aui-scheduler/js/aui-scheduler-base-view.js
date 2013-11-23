@@ -46,9 +46,10 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Applies a filter to `SchedulerEvent`s.
          *
          * @attribute filterFn
+         * @type {Function} The function to filter a `SchedulerEvent`.
          */
         filterFn: {
             validator: isFunction,
