@@ -810,7 +810,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sync SchedulerView StdContent.
          *
          * @method syncStdContent
          */
