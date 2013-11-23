@@ -767,7 +767,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Binds click events to an event delegate.
          *
          * @method _bindDelegate
          * @protected
