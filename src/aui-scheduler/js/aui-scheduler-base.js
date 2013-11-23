@@ -599,9 +599,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns this `Scheduler`'s `strings` attribute value.
          *
          * @method getStrings
+         * @return {typeName}
          */
         getStrings: function() {
             var instance = this;
