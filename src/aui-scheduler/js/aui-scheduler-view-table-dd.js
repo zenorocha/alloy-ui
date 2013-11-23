@@ -377,11 +377,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the offset XY coordinate given an XY coordinate and a sign.
      *
      * @method _offsetXY
-     * @param {Array} xy, sign
+     * @param {Array} xy
+     * @param {Number} sign
      * @protected
+     * @return The offset XY coordinate given an XY coordinate and a sign.
      */
     _offsetXY: function(xy, sign) {
         var instance = this;
