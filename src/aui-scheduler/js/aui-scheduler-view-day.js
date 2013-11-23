@@ -811,10 +811,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the time at the Y coordinate from a given top position.
          *
          * @method getYCoordTime
-         * @param top
+         * @param {Number} top
+         * @return {Array}
          */
         getYCoordTime: function(top) {
             var instance = this;
