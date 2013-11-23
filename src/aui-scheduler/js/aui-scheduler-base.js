@@ -339,7 +339,8 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the date corresponding to the current date which is the
+         * value of the date set on the user's computer.
          *
          * @attribute date
          * @type {Date}
