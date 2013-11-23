@@ -150,7 +150,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether this `SchedulerView` is scrollable.
          *
          * @attribute scrollable
          * @default true
