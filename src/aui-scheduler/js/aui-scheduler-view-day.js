@@ -1109,9 +1109,12 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the nearest multiple of 10 to half the height of this
+         * `SchedulerView`.
          *
          * @method getTickY
+         * @return {Number} The nearest multiple of 10 to half the height of
+         * this `SchedulerView`.
          */
         getTickY: function() {
             var instance = this;
