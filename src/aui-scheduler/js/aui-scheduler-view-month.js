@@ -193,10 +193,13 @@ var SchedulerMonthView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the current interval start by finding the first day of the
+         * week with the `Scheduler`'s `viewDate`.
          *
          * @method _findCurrentIntervalStart
          * @protected
+         * @return {Date} The current interval start from the first day of the
+         * week with the `Scheduler`'s `viewDate`.
          */
         _findCurrentIntervalStart: function() {
             var instance = this;
