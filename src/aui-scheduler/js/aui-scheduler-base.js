@@ -811,10 +811,11 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the `SchedulerView`'s `date`.
          *
          * @method _getViewDate
          * @protected
+         * @return {Date} The `SchedulerView`'s `date`.
          */
         _getViewDate: function() {
             var instance = this,
