@@ -411,9 +411,11 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the `Scheduler`'s current date. If there is an `activeView`,
+         * this attribute will contain the `activeView`'s current date.
          *
          * @attribute viewDate
+         * @type {Date}
          * @readOnly
          */
         viewDate: {
