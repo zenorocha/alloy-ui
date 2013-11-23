@@ -830,7 +830,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `clickToday` events.
          *
          * @method _onClickToday
          * @param {Event.Facade} event Event Facade object
@@ -848,7 +848,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `clickNextIcon` events.
          *
          * @method _onClickNextIcon
          * @param {Event.Facade} event Event Facade object
@@ -866,7 +866,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `clickPrevIcon` events.
          *
          * @method _onClickPrevIcon
          * @param {Event.Facade} event Event Facade object
@@ -884,7 +884,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `buttonGroupSelectionChange` events.
          *
          * @method _onButtonGroupSelectionChange
          * @param {Event.Facade} event Event Facade object
