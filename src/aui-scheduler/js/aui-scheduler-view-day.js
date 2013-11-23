@@ -1070,11 +1070,13 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a collection of `SchedulerEvents` as the parameter `events`
+         * that intersect with `evt`.
          *
          * @method findEventIntersections
          * @param {A.SchedulerEvent} evt A `Scheduler` event.
-         * @param {Event.Facade} event Event Facade objects
+         * @param {A.SchedulerEvent[]} A collections of `SchedulerEvent`s.
+         * @return {Array}
          */
         findEventIntersections: function(evt, events) {
             var instance = this;
