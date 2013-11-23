@@ -1574,10 +1574,11 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of `colDaysNode`.
          *
          * @method _valueColDaysNode
          * @protected
+         * @return {Node} The value of `colDaysNode`.
          */
         _valueColDaysNode: function() {
             var instance = this;
