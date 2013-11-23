@@ -70,7 +70,8 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether this `SchedulerView` should use international
+         * standard time.
          *
          * @attribute isoTime
          * @default false
