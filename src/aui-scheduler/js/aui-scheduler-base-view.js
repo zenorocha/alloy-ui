@@ -162,7 +162,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the `Node` that triggers
          *
          * @attribute triggerNode
          */
@@ -234,7 +234,8 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes all data from `evtDateStack`, `evtRenderedStack` and
+         * `rowDateTableStack`.
          *
          * @method flushViewCache
          */
