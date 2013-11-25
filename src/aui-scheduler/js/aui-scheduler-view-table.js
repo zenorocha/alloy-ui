@@ -882,10 +882,11 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the display rows count.
          *
          * @method _getDisplayRowsCount
          * @protected
+         * @return {Number} The display rows count.
          */
         _getDisplayRowsCount: function() {
             var instance = this;
