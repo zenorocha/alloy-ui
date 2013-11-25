@@ -1007,10 +1007,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the table grid `Node` for a given `rowIndex`.
          *
          * @method _getTableGridNode
          * @param {Number} rowIndex
+         * @return {Node} tableGridNode The table grid `Node` from a given
+         * `rowIndex`.
          * @protected
          */
         _getTableGridNode: function(rowIndex) {
