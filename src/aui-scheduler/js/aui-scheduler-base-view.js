@@ -139,7 +139,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * References this `SchedulerView`'s `SchedulerBase' object.
+         * Contains this `SchedulerView`'s `SchedulerBase' object.
          *
          * @attribute scheduler
          * @type {A.SchedulerBase}

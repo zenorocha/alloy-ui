@@ -229,9 +229,10 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         },
 
         /**
-         * Contains the scheduler class.
+         * Contains this `SchedulerCalendar`'s `SchedulerBase' object.
          *
          * @attribute scheduler
+         * @type {A.SchedulerBase}
          */
         scheduler: {},
 

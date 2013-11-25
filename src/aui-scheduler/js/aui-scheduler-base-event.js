@@ -384,9 +384,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Contains the scheduler class.
+         * Contains this `SchedulerEvent`'s `SchedulerBase' object.
          *
          * @attribute scheduler
+         * @type {A.SchedulerBase}
          */
         scheduler: {},
 
