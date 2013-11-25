@@ -756,7 +756,8 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Updates the `SchedulerTableView`'s `colHeaderDaysNode` to reflect
+         * any changes made to the instance attributes.
          *
          * @method syncDaysHeaderUI
          */
@@ -910,11 +911,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the label that belongs to a given `A.SchedulerEvent`.
          *
          * @method _getEvtLabel
          * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @protected
+         * @return The label that belongs to a given `A.SchedulerEvent`.
          */
         _getEvtLabel: function(evt) {
             var instance = this;
@@ -1092,7 +1094,8 @@ var SchedulerTableView = A.Component.create({
          * @method _syncEventNodeContainerUI
          * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @param node
-         * @param {A.SchedulerEvent} evt A `Scheduler` event.SplitInfo
+         * @param {Object} evtSplitInfo An object containing the `colspan`,
+         * `left` and `right` values
          * @protected
          */
         _syncEventNodeContainerUI: function(evt, node, evtSplitInfo) {
