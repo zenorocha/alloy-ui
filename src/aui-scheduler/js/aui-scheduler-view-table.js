@@ -935,13 +935,16 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns nn object containing the `colspan`, `left` and
+         * `right` values that determine a `SchedulerEvent`'s split information.
          *
          * @method _getEvtSplitInfo
          * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @param celDate
          * @param {Date} rowStartDate
          * @param {Date} rowEndDate
+         * @return {Object} info An object containing the `colspan`, `left` and
+         * `right` values that determine a `SchedulerEvent`'s split information.
          * @protected
          */
         _getEvtSplitInfo: function(evt, celDate, rowStartDate, rowEndDate) {
@@ -1103,7 +1106,8 @@ var SchedulerTableView = A.Component.create({
          * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @param node
          * @param {Object} evtSplitInfo An object containing the `colspan`,
-         * `left` and `right` values
+         * `left` and `right` values that determine a `SchedulerEvent`'s split
+         * information.
          * @protected
          */
         _syncEventNodeContainerUI: function(evt, node, evtSplitInfo) {
