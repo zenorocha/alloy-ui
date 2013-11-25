@@ -552,6 +552,7 @@ var SchedulerTableView = A.Component.create({
          * @param {Node} tableNode
          * @param {Date} rowStartDate
          * @param {Date} rowEndDate
+         * @return {Node} titleRowNode The title row `Node`.
          */
         buildEventsTitleRow: function(tableNode, rowStartDate, rowEndDate) {
             var instance = this;
@@ -590,7 +591,7 @@ var SchedulerTableView = A.Component.create({
          *
          * @method buildGridRowNode
          * @param {Number} rowIndex
-         * @return {Node}
+         * @return {Node} A row `Node`.
          */
         buildGridRowNode: function(rowIndex) {
             var instance = this;
@@ -634,7 +635,8 @@ var SchedulerTableView = A.Component.create({
          *
          * @method getIntersectEvents
          * @param {Date} date
-         * @return {Array}
+         * @return {Array} The list of all events that intersect with a given
+         * date.
          */
         getIntersectEvents: function(date) {
             var instance = this;
@@ -654,11 +656,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Returns the value of the date that follows the `SchedulerTableView`'s current
-         * date.
+         * Returns the value of the date that follows the `SchedulerTableView`'s
+         current date.
          *
          * @method getNextDate
-         * @return {Date}
+         * @return {Date} The value of the date that follows the
+         * `SchedulerTableView`'scurrent date.
          */
         getNextDate: function() {
             var instance = this;
@@ -670,11 +673,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Returns the value of the date that preceeds the `SchedulerTableView`'s current
-         * date.
+         * Returns the value of the date that preceeds the
+         * `SchedulerTableView`'s current date.
          *
          * @method getPrevDate
-         * @return {Date}
+         * @return {Date} The value of the date that preceeds the
+         * `SchedulerTableView`'s current date.
          */
         getPrevDate: function() {
             var instance = this;
@@ -831,6 +835,7 @@ var SchedulerTableView = A.Component.create({
          *
          * @method _findCurrentIntervalEnd
          * @protected
+         * @return {Date} This `SchedulerTableView`'s date ending interval.
          */
         _findCurrentIntervalEnd: function() {
             var instance = this;
@@ -846,7 +851,7 @@ var SchedulerTableView = A.Component.create({
          *
          * @method _findCurrentIntervalStart
          * @protected
-         * @return This `SchedulerTableView`'s date starting interval.
+         * @return {Date} This `SchedulerTableView`'s date starting interval.
          */
         _findCurrentIntervalStart: function() {
             var instance = this;
@@ -856,11 +861,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the first day of the week.
          *
          * @method _findFirstDayOfWeek
          * @param {Date} date
          * @protected
+         * @return {Date} The first day of the week.
          */
         _findFirstDayOfWeek: function(date) {
             var instance = this;
