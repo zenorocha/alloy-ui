@@ -964,13 +964,18 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns either a `SchedulerEvent` that is not yet rendered and has a
+         * `startDate` that does not overlap with with a given `celDate` or is
+         * a continuation of an existing event.
          *
          * @method _getRenderableEvent
          * @param {Event.Facade} event Event Facade objects
          * @param {Date} rowStartDate
          * @param {Date} rowEndDate
-         * @param celDate
+         * @param {Date} celDate
+         * @return {A.SchedulerEvent|null} Either a `SchedulerEvent` that is not
+         * * yet rendered and has a`startDate` that does not overlap with with a
+         * given `celDate` or is a continuation of an existing event.
          * @protected
          */
         _getRenderableEvent: function(events, rowStartDate, rowEndDate, celDate) {
