@@ -779,7 +779,8 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Updates the `SchedulerTableView`'s column grid by moving styling to
+         * the current day cell `Node`.
          *
          * @method syncGridUI
          */
