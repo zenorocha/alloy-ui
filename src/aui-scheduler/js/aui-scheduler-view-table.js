@@ -1038,7 +1038,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `SchedulerEvent` `click` events for the `SchedulerViewTable`.
          *
          * @method _onClickMore
          * @param {Event.Facade} event Event Facade object
@@ -1107,7 +1107,8 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Updates a given `Node`'s UI with a given `evtSplitInfo` value.
+         * any changes made to the instance attributes.
          *
          * @method _syncEventNodeContainerUI
          * @param {A.SchedulerEvent} evt A `Scheduler` event.
