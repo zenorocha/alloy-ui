@@ -868,11 +868,12 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the cell index at a given `position`.
          *
          * @method _getCellIndex
-         * @param position
+         * @param {Array} position
          * @protected
+         * @return {Number} The cell index at a given `position`.
          */
         _getCellIndex: function(position) {
             var instance = this;
