@@ -827,7 +827,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns this `SchedulerTableView`'s date ending interval.
          *
          * @method _findCurrentIntervalEnd
          * @protected
@@ -842,10 +842,11 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns this `SchedulerTableView`'s date starting interval.
          *
          * @method _findCurrentIntervalStart
          * @protected
+         * @return This `SchedulerTableView`'s date starting interval.
          */
         _findCurrentIntervalStart: function() {
             var instance = this;
