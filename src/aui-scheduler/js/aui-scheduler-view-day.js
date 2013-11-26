@@ -711,11 +711,13 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Calculates and returns the value needed to get the `top` property
+         * give a `date`.
          *
          * @method calculateTop
          * @param {Date} date
-         * @return {Number}
+         * @return {Number} The value needed to get the `top` property give a
+         * `date`.
          */
         calculateTop: function(date) {
             var instance = this;
