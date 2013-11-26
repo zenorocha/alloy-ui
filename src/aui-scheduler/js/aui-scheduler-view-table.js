@@ -1133,7 +1133,8 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Updates a given `SchedulerEvent` `Node` with the given `celDate` and
+         * appends it to a given `container` `Node`.
          *
          * @method _syncEventNodeUI
          * @param {A.SchedulerEvent} evt A `Scheduler` event.
