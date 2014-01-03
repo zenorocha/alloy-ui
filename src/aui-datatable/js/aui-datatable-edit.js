@@ -144,7 +144,7 @@ var CellEditorSupport = function() {};
 CellEditorSupport.NAME = 'dataTableCellEditorSupport';
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Number which provides a `z-index` style value for the `BaseCellEditor`.
  *
  * @property EDITOR_ZINDEX
  * @default 9999
@@ -155,7 +155,7 @@ CellEditorSupport.EDITOR_ZINDEX = 9999;
 
 /**
  * Static property used to define the default attribute
- * configuration for the CellEditorSupport.
+ * configuration for the `CellEditorSupport`.
  *
  * @property ATTRS
  * @type Object
@@ -164,7 +164,7 @@ CellEditorSupport.EDITOR_ZINDEX = 9999;
 CellEditorSupport.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines the event which displays the `BaseCellEditor`.
      *
      * @attribute editEvent
      * @default 'click'
@@ -180,7 +180,7 @@ CellEditorSupport.ATTRS = {
 A.mix(CellEditorSupport.prototype, {
 
     /**
-     * Construction logic executed during CellEditorSupport instantiation.
+     * Construction logic executed during `CellEditorSupport` instantiation.
      * Lifecycle.
      *
      * @method initializer
@@ -202,15 +202,19 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the `BaseCellEditor` instance for the given `record` and `column`
+     * arguments.
      *
      * @method getEditor
-     * @param record
-     * @param column
+     * @param {Model} record
+     * @param {Object} column Column configuration.
+     * @static
+     * @return {BaseCellEditor} The `BaseCellEditor` instance.
+     *
+     * Will return `null` if both `column` and `record` editors are not found.
      */
     getEditor: function(record, column) {
-        var instance = this,
-            columnEditor = column.editor,
+        var columnEditor = column.editor,
             recordEditor = record.get(EDITOR);
 
         if (columnEditor === false || recordEditor === false) {
@@ -221,7 +225,8 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after the `CellEditorSupport` has rendered, and calls
+     * `_syncModelsReadOnlyUI`.
      *
      * @method _afterCellEditorSupportRender
      * @protected
@@ -235,10 +240,12 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * `render()` and `show()` the `BaseCellEditor`, of the active table cell.
+     *
+     * Called when active table cell is clicked (default).
      *
      * @method _onEditCell
-     * @param event
+     * @param {EventFacade} event The event defined in attribute `editEvent`.
      * @protected
      */
     _onEditCell: function(event) {
@@ -267,10 +274,11 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Saves the new value from the `BaseCellEditor` input to the `Model`, on
+     * the `save` event of the `BaseCellEditor`.
      *
      * @method _onEditorSave
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onEditorSave: function(event) {
@@ -294,10 +302,12 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Calls `_syncFocus` if the `BaseCellEditor` input has a new value.
+     *
+     * Called on the `visibleChange` event.
      *
      * @method _onEditorVisibleChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onEditorVisibleChange: function(event) {
@@ -310,10 +320,11 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Toggles the row's `read-only` class. Toggle determined by the `readOnly`
+     * attribute of the `Model`.
      *
      * @method _syncModelReadOnlyUI
-     * @param model
+     * @param {Model} model
      * @protected
      */
     _syncModelReadOnlyUI: function(model) {
@@ -324,7 +335,7 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Calls `_syncModelReadOnlyUI` for each `Model` in the `data` attribute.
      *
      * @method _syncModelsReadOnlyUI
      * @protected
@@ -337,24 +348,26 @@ A.mix(CellEditorSupport.prototype, {
         });
     },
 
-    // Deprecated methods
-    // Use getEditor
-
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Forwards method call to `getEditor`.
      *
+     * @deprecated Use `getEditor` instead.
      * @method getCellEditor
+     * @return {BaseCellEditor} See `getEditor`
+     * @static
      */
     getCellEditor: function() {
         return this.getEditor.apply(this, arguments);
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Syntactic sugar for `record.get(column.key)`.
      *
+     * @deprecated
      * @method getRecordColumnValue
-     * @param record
-     * @param column
+     * @param {Model} record
+     * @param {Object} column Column configuration.
+     * @return {String} Record column key.
      */
     getRecordColumnValue: function(record, column) {
         return record.get(column.key);
@@ -371,7 +384,7 @@ A.Base.mix(A.DataTable, [CellEditorSupport]);
  * @class A.BaseCellEditor
  * @extends Overlay
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @abstract
  */
 var BaseCellEditor = A.Component.create({
@@ -387,7 +400,7 @@ var BaseCellEditor = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the BaseCellEditor.
+     * configuration for the `BaseCellEditor`.
      *
      * @property ATTRS
      * @type Object
@@ -396,7 +409,8 @@ var BaseCellEditor = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether or not the `BaseCellEditor` is able to edit a
+         * cell's value.
          *
          * @attribute editable
          * @default false
@@ -408,7 +422,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the `name` of the `BaseCellEditor` input.
          *
          * @attribute elementName
          * @default 'value'
@@ -420,7 +434,9 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Overrides `footerContent`. Defaults to a blank string.
+         *
+         * Originally defined in `WidgetStdMod`.
          *
          * @attribute footerContent
          * @default ''
@@ -431,7 +447,8 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether or not the `BaseCellEditor` is hidden on the `save`
+         * event.
          *
          * @attribute hideOnSave
          * @default true
@@ -443,7 +460,9 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Function which modifies data values for HTML display.
+         *
+         * Default Function replaces line feeds (`[\r\n]`) with `<br>`.
          *
          * @attribute inputFormatter
          * @type Function
@@ -459,7 +478,13 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Function which modifies input values for data storage.
+         *
+         * Default Function unescapes HTML Entities as well as replaces `<br>`
+         * with line feeds (`\n`).
+         *
+         * Set attribute `unescapeValue` to 'false' to keep HTML Entities
+         * unchanged.
          *
          * @attribute outputFormatter
          * @type Function
@@ -481,7 +506,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether or not the `BaseCellEditor` toolbar is displayed.
          *
          * @attribute showToolbar
          * @default true
@@ -507,7 +532,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Number defining the `tabindex` of the `BaseCellEditor` input.
          *
          * @attribute tabIndex
          * @default 1
@@ -518,7 +543,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the `Toolbar` config for the `BaseCellEditor`.
          *
          * @attribute toolbar
          * @default null
@@ -531,7 +556,9 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether or not HTML Entities get unescaped on input.
+         *
+         * See `outputFormatter` for more details.
          *
          * @attribute unescapeValue
          * @default true
@@ -543,7 +570,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the `FormValidator` config for the `BaseCellEditor`.
          *
          * @attribute validator
          * @default null
@@ -556,7 +583,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Stores the input value of the `BaseCellEditor`.
          *
          * @attribute value
          * @default ''
@@ -567,7 +594,9 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether or not the `BaseCellEditor` is visible.
+         *
+         * Originally defined in `Widget`.
          *
          * @attribute visible
          * @default false
@@ -588,7 +617,7 @@ var BaseCellEditor = A.Component.create({
     EXTENDS: A.Overlay,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the UI attributes.
      *
      * @property UI_ATTRS
      * @type Array
@@ -606,8 +635,8 @@ var BaseCellEditor = A.Component.create({
         _hDocMouseDownEv: null,
 
         /**
-         * Construction logic executed during BaseCellEditor instantiation.
-         * Lifecycle.
+         * Construction logic executed during the `BaseCellEditor`
+         * instantiation. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -619,7 +648,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request. Lifecycle.
+         * Destructor lifecycle implementation for the `BaseCellEditor` class.
          *
          * @method destructor
          * @protected
@@ -644,7 +673,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * Bind the events on the BaseCellEditor UI. Lifecycle.
+         * Bind the events on the `BaseCellEditor` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -656,26 +685,29 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Utility method, which calls the passed `inputFormatter` Function,
+         * using `val` as an argument.
          *
          * @method formatValue
-         * @param formatter
-         * @param val
+         * @param {Function} inputFormatter See `inputFormatter` attribute.
+         * @param {mixed} val
+         * @return {mixed} Formated Value.
          */
-        formatValue: function(formatter, val) {
+        formatValue: function(inputFormatter, val) {
             var instance = this;
 
-            if (isFunction(formatter)) {
-                val = formatter.call(instance, val);
+            if (isFunction(inputFormatter)) {
+                val = inputFormatter.call(instance, val);
             }
 
             return val;
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets and formats the `BaseCellEditor` input value.
          *
          * @method getValue
+         * @return {mixed} Formated Value.
          */
         getValue: function() {
             var instance = this;
@@ -687,7 +719,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * `publish()` custom events during `initializer`.
          *
          * @method _initEvents
          * @protected
@@ -731,7 +763,8 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Bound Function which fires after the `render` event. Calls Functions
+         * which initialize validation and toolbar.
          *
          * @method _afterRender
          * @protected
@@ -744,7 +777,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Bound Function for the `cancel` event. Hides the `BaseCellEditor`.
          *
          * @method _defCancelFn
          * @param event
@@ -757,7 +790,8 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Bound Function which initializes the `FormValidator` using the
+         * config from the `validator` attribute.
          *
          * @method _defInitValidatorFn
          * @param event
@@ -772,7 +806,8 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Bound Function which initializes the `Toolbar` using the config from
+         * the `toolbar` attribute.
          *
          * @method _defInitToolbarFn
          * @param event
@@ -792,7 +827,8 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Bound Function for the `save` event. Conditionally hides the
+         * `BaseCellEditor` based off the `hideOnSave` attribute.
          *
          * @method _defSaveFn
          * @param event
@@ -807,10 +843,13 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Bound Function for the `visibleChange` event, which then binds the
+         * `mousedown` event.
+         *
+         *See: `_onDocMouseDownExt` for details.
          *
          * @method _debounceVisibleChange
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _debounceVisibleChange: function(event) {
@@ -830,7 +869,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Bound Function for the `click` event on the `Toolbar` Cancel button.
          *
          * @method _handleCancelEvent
          * @protected
@@ -842,7 +881,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Bound Function for the `click` event on the `BaseCellEditor` input.
          *
          * @method _handleEditEvent
          * @protected
@@ -854,7 +893,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires the `initEdit` event.
          *
          * @method _handleInitEditEvent
          * @protected
@@ -868,7 +907,9 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires the `initValidator` event.
+         *
+         * Called during the `after({render:...}...)` event.
          *
          * @method _handleInitValidatorEvent
          * @protected
@@ -882,7 +923,10 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Conditionally fires the `initToolbar` event, based off the
+         * `showToolbar` attribute.
+         *
+         * Called during the `after({render:...}...)` event.
          *
          * @method _handleInitToolbarEvent
          * @protected
@@ -896,7 +940,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Bound Function for the `click` event on the `Toolbar` Save button.
          *
          * @method _handleSaveEvent
          * @protected
@@ -913,10 +957,11 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Bound Function for the `mousedown` event of the `document`, which
+         * hides the `BaseCellEditor`.
          *
          * @method _onDocMouseDownExt
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _onDocMouseDownExt: function(event) {
@@ -929,7 +974,8 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Bound Function for the Esc `keydown` event, which hides the
+         * `BaseCellEditor`.
          *
          * @method _onEscKey
          * @param event
@@ -942,10 +988,11 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Bound Function for the `form-validator:submit` event, which prevents
+         * the form from submitting if the `FormValidator` doesn't validate.
          *
          * @method _onSubmit
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _onSubmit: function(event) {
@@ -958,13 +1005,15 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * `setter` Function for attribute `toolbar`, which merges passed
+         * `toolbarConfig` with additional properties.
          *
          * @method _setToolbar
-         * @param val
+         * @param {Object} toolbarConfig `Toolbar` config.
          * @protected
+         * @return {Object} Merged toolbarConfig `Toolbar` config.
          */
-        _setToolbar: function(val) {
+        _setToolbar: function(toolbarConfig) {
             var instance = this;
             var strings = instance.getStrings();
 
@@ -987,24 +1036,26 @@ var BaseCellEditor = A.Component.create({
                         }
                     ]
                 ]
-            }, val);
+            }, toolbarConfig);
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * `setter` Function for attribute `validator`, which merges the passed
+         * `validatorConfig` with additional properties.
          *
          * @method _setValidator
-         * @param val
+         * @param {Object} validatorConfig
          * @protected
+         * @return {Object} Merged validatorConfig
          */
-        _setValidator: function(val) {
+        _setValidator: function(validatorConfig) {
             var instance = this;
 
             return A.merge({
                     boundingBox: instance.get(CONTENT_BOX),
                     bubbleTargets: instance
                 },
-                val
+                validatorConfig
             );
         },
 
@@ -1012,7 +1063,7 @@ var BaseCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetShowToolbar
-         * @param val
+         * @param {Boolean} val
          * @protected
          */
         _uiSetShowToolbar: function(val) {
@@ -1030,12 +1081,13 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the `BaseCellEditor` input value.
          *
-         * NOTE FOR DEVELOPERS: Yoy *may* want to replace the methods from
-         * this section on your implementation.
+         * NOTE FOR DEVELOPERS: You *may* want to replace the methods from this
+         * section on your implementation.
          *
          * @method getElementsValue
+         * @return {String|Array} Input values.
          */
         getElementsValue: function() {
             var instance = this;
@@ -1049,7 +1101,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * Render the BaseCellEditor component instance. Lifecycle.
+         * Render the `BaseCellEditor` component instance. Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -1088,7 +1140,7 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the name attribute of the form input.
          *
          * @method _syncElementsName
          * @protected
@@ -1118,7 +1170,7 @@ var BaseCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetEditable
-         * @param val
+         * @param {Boolean} val
          * @protected
          */
         _uiSetEditable: function(val) {
@@ -1146,10 +1198,10 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets and formats the `BaseCellEditor` input value.
          *
          * @method _uiSetValue
-         * @param val
+         * @param {mixed} val
          * @protected
          */
         _uiSetValue: function(val) {
@@ -1168,12 +1220,12 @@ var BaseCellEditor = A.Component.create({
 A.BaseCellEditor = BaseCellEditor;
 
 /**
- * Abstract class BaseOptionsCellEditor for options attribute support.
+ * Abstract class `BaseOptionsCellEditor` for options attribute support.
  *
  * @class A.BaseOptionsCellEditor
  * @extends A.BaseCellEditor
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @abstract
  */
 var BaseOptionsCellEditor = A.Component.create({
@@ -1188,8 +1240,8 @@ var BaseOptionsCellEditor = A.Component.create({
     NAME: OPTIONS_CELL_EDITOR,
 
     /**
-     * Static property used to define the default attribute
-     * configuration for the BaseOptionsCellEditor.
+     * Static property used to define the default attribute configuration for
+     * the `BaseOptionsCellEditor`.
      *
      * @property ATTRS
      * @type Object
@@ -1198,7 +1250,9 @@ var BaseOptionsCellEditor = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Function which modifies data values for UI display.
+         *
+         * Default `null` Function will not modify the value.
          *
          * @attribute inputFormatter
          * @default null
@@ -1208,11 +1262,12 @@ var BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Array or Object which defines the available options for the
+         * `BaseOptionsCellEditor`.
          *
          * @attribute options
          * @default {}
-         * @type Object
+         * @type Object|Array
          */
         options: {
             setter: '_setOptions',
@@ -1221,7 +1276,9 @@ var BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Function which modifies input values for data storage.
+         *
+         * Default `null` Function will not modify the value.
          *
          * @attribute outputFormatter
          * @default null
@@ -1231,7 +1288,7 @@ var BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the selected state of an option.
          *
          * @attribute selectedAttrName
          * @default 'selected'
@@ -1274,7 +1331,7 @@ var BaseOptionsCellEditor = A.Component.create({
     EXTENDS: A.BaseCellEditor,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the UI attributes.
      *
      * @property UI_ATTRS
      * @type Array
@@ -1298,7 +1355,7 @@ var BaseOptionsCellEditor = A.Component.create({
         options: null,
 
         /**
-         * Construction logic executed during BaseOptionsCellEditor
+         * Construction logic executed during `BaseOptionsCellEditor`
          * instantiation. Lifecycle.
          *
          * @method initializer
@@ -1313,11 +1370,14 @@ var BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Adds a new option to the `BaseOptionsCellEditor`.
+         *
+         * If `name` or `value` is omitted, a blank string is used in it's
+         * place.
          *
          * @method addNewOption
-         * @param name
-         * @param value
+         * @param {String} [name='']
+         * @param {String} [value='']
          */
         addNewOption: function(name, value) {
             var instance = this;
@@ -1335,17 +1395,18 @@ var BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes the given `optionRow` Node from the `BaseOptionsCellEditor`.
          *
          * @method removeOption
-         * @param optionRow
+         * @param {Node} optionRow
+         * @static
          */
         removeOption: function(optionRow) {
             optionRow.remove();
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Saves the `BaseOptionsCellEditor` options.
          *
          * @method saveOptions
          */
@@ -1378,7 +1439,7 @@ var BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Toggles the display of the `BaseOptionsCellEditor`.
          *
          * @method toggleEdit
          */
@@ -1393,7 +1454,7 @@ var BaseOptionsCellEditor = A.Component.create({
          * TODO. Rewrite this method.
          *
          * @method _createOptions
-         * @param val
+         * @param  {Array} val
          * @protected
          */
         _createOptions: function(val) {
@@ -1443,6 +1504,7 @@ var BaseOptionsCellEditor = A.Component.create({
          *
          * @method _createEditBuffer
          * @protected
+         * @return {String} HTML string for the `BaseOptionsCellEditor`.
          */
         _createEditBuffer: function() {
             var instance = this;
@@ -1472,9 +1534,11 @@ var BaseOptionsCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _createEditOption
-         * @param name
-         * @param value
+         * @param {String} name
+         * @param {String} value
          * @protected
+         * @return {String} HTML string for a `BaseOptionsCellEditor` input
+         * option.
          */
         _createEditOption: function(name, value) {
             var instance = this;
@@ -1532,6 +1596,7 @@ var BaseOptionsCellEditor = A.Component.create({
          *
          * @method _getSelectedOptions
          * @protected
+         * @return {NodeList} Selected options.
          */
         _getSelectedOptions: function() {
             var instance = this;
@@ -1567,7 +1632,7 @@ var BaseOptionsCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onEditLinkClickEvent
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _onEditLinkClickEvent: function(event) {
@@ -1593,7 +1658,7 @@ var BaseOptionsCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onEditKeyEvent
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _onEditKeyEvent: function(event) {
@@ -1628,11 +1693,12 @@ var BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines the proper format for the `options` attribute.
          *
          * @method _setOptions
-         * @param val
+         * @param {Array|Object} val
          * @protected
+         * @return {Object} Options
          */
         _setOptions: function(val) {
             var options = {};
@@ -1665,7 +1731,7 @@ var BaseOptionsCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetOptions
-         * @param val
+         * @param {Array} val
          * @protected
          */
         _uiSetOptions: function(val) {
@@ -1677,11 +1743,12 @@ var BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `BaseOptionsCellEditor` option values.
          *
          * @method _uiSetValue
-         * @param val
+         * @param {Array} val
          * @protected
+         * @return {Array} Resulting new values.
          */
         _uiSetValue: function(val) {
             var instance = this;
@@ -1715,7 +1782,7 @@ A.BaseOptionsCellEditor = BaseOptionsCellEditor;
  * @class A.TextCellEditor
  * @extends A.BaseCellEditor
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 var TextCellEditor = A.Component.create({
@@ -1751,7 +1818,7 @@ A.TextCellEditor = TextCellEditor;
  * @class A.TextAreaCellEditor
  * @extends A.BaseCellEditor
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 var TextAreaCellEditor = A.Component.create({
@@ -1787,7 +1854,7 @@ A.TextAreaCellEditor = TextAreaCellEditor;
  * @class A.DropDownCellEditor
  * @extends A.BaseOptionsCellEditor
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 var DropDownCellEditor = A.Component.create({
@@ -1803,7 +1870,7 @@ var DropDownCellEditor = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the DropDownCellEditor.
+     * configuration for the `DropDownCellEditor`.
      *
      * @property ATTRS
      * @type Object
@@ -1812,7 +1879,7 @@ var DropDownCellEditor = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether or not multiple options are selectable.
          *
          * @attribute multiple
          * @default false
@@ -1834,7 +1901,7 @@ var DropDownCellEditor = A.Component.create({
     EXTENDS: A.BaseOptionsCellEditor,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the UI attributes.
      *
      * @property UI_ATTRS
      * @type Array
@@ -1847,9 +1914,10 @@ var DropDownCellEditor = A.Component.create({
         OPTION_TEMPLATE: '<option value="{value}">{label}</option>',
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the `DropDownCellEditor` input value.
          *
          * @method getElementsValue
+         * @return {String} Input value.
          */
         getElementsValue: function() {
             var instance = this;
@@ -1902,7 +1970,7 @@ A.DropDownCellEditor = DropDownCellEditor;
  * @class A.CheckboxCellEditor
  * @extends A.BaseOptionsCellEditor
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 var CheckboxCellEditor = A.Component.create({
@@ -1918,7 +1986,7 @@ var CheckboxCellEditor = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the CheckboxCellEditor.
+     * configuration for the `CheckboxCellEditor`.
      *
      * @property ATTRS
      * @type Object
@@ -1927,7 +1995,7 @@ var CheckboxCellEditor = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the selected state of an option.
          *
          * @attribute selectedAttrName
          * @default 'checked'
@@ -1953,9 +2021,10 @@ var CheckboxCellEditor = A.Component.create({
         OPTION_WRAPPER: '<label class="checkbox" for="{id}"> {label}</label>',
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the `CheckboxCellEditor` input value.
          *
          * @method getElementsValue
+         * @return {String} Input value.
          */
         getElementsValue: function() {
             var instance = this;
@@ -1979,7 +2048,7 @@ var CheckboxCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the name attribute of the form input.
          *
          * @method _syncElementsName
          * @protected
@@ -2003,7 +2072,7 @@ A.CheckboxCellEditor = CheckboxCellEditor;
  * @class A.RadioCellEditor
  * @extends A.CheckboxCellEditor
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 var RadioCellEditor = A.Component.create({
@@ -2031,9 +2100,10 @@ var RadioCellEditor = A.Component.create({
         OPTION_WRAPPER: '<label class="radio" for="{id}"> {label}</label>',
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the `RadioCellEditor` input value.
          *
          * @method getElementsValue
+         * @return {String} Input value.
          */
         getElementsValue: function() {
             var instance = this;
@@ -2051,7 +2121,7 @@ A.RadioCellEditor = RadioCellEditor;
  * @class A.DateCellEditor
  * @extends A.BaseCellEditor
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 var DateCellEditor = A.Component.create({
@@ -2076,7 +2146,7 @@ var DateCellEditor = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the DateCellEditor.
+     * configuration for the `DateCellEditor`.
      *
      * @property ATTRS
      * @type Object
@@ -2085,7 +2155,7 @@ var DateCellEditor = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the content of body.
          *
          * @attribute bodyContent
          * @default ''
@@ -2096,7 +2166,7 @@ var DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the `Calendar` object used for the `DateCellEditor` input.
          *
          * @attribute calendar
          * @default null
@@ -2109,7 +2179,8 @@ var DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the `DataType.Date` format used in input and output methods
+         * of the `DateCellEditor` input.
          *
          * @attribute dateFormat
          * @default '%Y-%m-%d'
@@ -2121,7 +2192,11 @@ var DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the Function which is used in `formatValue` to modify values
+         * for the `DateCellEditor` input.
+         *
+         * Default Function iterates and formats values using the `dateFormat`
+         * attribute.
          *
          * @attribute inputFormatter
          * @type Function
@@ -2140,7 +2215,11 @@ var DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the Function which is used in `formatValue` to modify values
+         * for the `DateCellEditor` input.
+         *
+         * Default Function iterates and formats values using the `dateFormat`
+         * attribute.
          *
          * @attribute outputFormatter
          * @type Function
@@ -2163,8 +2242,8 @@ var DateCellEditor = A.Component.create({
         ELEMENT_TEMPLATE: '<input class="' + CSS_CELLEDITOR_ELEMENT + '" type="hidden" />',
 
         /**
-         * Construction logic executed during DateCellEditor instantiation.
-         * Lifecycle.
+         * Construction logic executed during the `DateCellEditor`
+         * instantiation. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -2176,7 +2255,7 @@ var DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the `DateCellEditor` input value.
          *
          * @method getElementsValue
          */
@@ -2187,10 +2266,12 @@ var DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Formats the passed `date` using the format define in the `dateFormat`
+         * attribute.
          *
          * @method formatDate
-         * @param date
+         * @param {String} date
+         * @return {String} HTML formatted for display.
          */
         formatDate: function(date) {
             var instance = this,
@@ -2237,8 +2318,9 @@ var DateCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _setCalendar
-         * @param val
+         * @param {Object} val
          * @protected
+         * @return {Object} Merged `Calendar` object.
          */
         _setCalendar: function(val) {
             var instance = this;
@@ -2251,10 +2333,10 @@ var DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets and formats the `DateCellEditor` `Calendar` `date` attribute.
          *
          * @method _uiSetValue
-         * @param val
+         * @param {Array} val
          * @protected
          */
         _uiSetValue: function(val) {
