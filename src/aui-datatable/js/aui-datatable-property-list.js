@@ -66,9 +66,10 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Creates and returns a new `TextCellEditor`.
      *
      * @method getDefaultEditor
+     * @return {TextCellEditor}
      */
     getDefaultEditor: function() {
         return new A.TextCellEditor();
@@ -174,7 +175,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
 }, {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property provides a string to identify the CSS prefix.
      *
      * @property CSS_PREFIX
      * @type String
@@ -193,7 +194,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the `column` config for the `PropertyList`.
          *
          * @attribute columns
          * @type Function
@@ -234,7 +235,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines whether the `PropertyList` is scrollable.
          *
          * @attribute scrollable
          * @default true
@@ -245,7 +246,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the event used to edit a property.
          *
          * @attribute editEvent
          * @default 'dblclick'
@@ -256,19 +257,20 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the width of the `PropertyList`.
          *
-         * DataTable scroll breaks when width value is a number
+         * Note: DataTable scroll breaks when width value is a number
          * See http://yuilibrary.com/projects/yui3/ticket/2532600
          *
          * @attribute width
+         * @type String|Number
          */
         width: {
             setter: String
         },
 
         /**
-         * Colection of strings used to label elements of the UI.
+         * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type Object
