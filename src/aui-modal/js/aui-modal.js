@@ -54,10 +54,14 @@ A.Modal = A.Base.create('modal', A.Widget, [
         var instance = this,
             eventHandles;
 
+        instance._handleKeyboardEvent(instance.get('keyboard'));
+
         eventHandles = [
             A.after(instance._afterFillHeight, instance, 'fillHeight'),
+            A.on(instance._onAttachUIHandlesAutohide, instance, '_attachUIHandlesAutohide'),
             instance.after('resize:end', A.bind(instance._syncResizeDimensions, instance)),
             instance.after('draggableChange', instance._afterDraggableChange),
+            instance.after('keyboardChange', instance._afterKeyboardChange),
             instance.after('resizableChange', instance._afterResizableChange),
             instance.after('visibleChange', instance._afterVisibleChange)
         ];
@@ -65,6 +69,20 @@ A.Modal = A.Base.create('modal', A.Widget, [
         instance._applyPlugin(instance._onUserInitInteraction);
 
         instance._eventHandles = eventHandles;
+    },
+
+    /**
+     * Attach 'hideOn' only if `keyboard` is true.
+     *
+     * @method _onAttachUIHandlesAutohide
+     * @protected
+     */
+    _onAttachUIHandlesAutohide: function() {
+        var instance = this;
+
+        if (!instance.get('keyboard')) {
+            return new A.Do.Prevent();
+        }
     },
 
     /**
@@ -129,6 +147,37 @@ A.Modal = A.Base.create('modal', A.Widget, [
         }
         else {
             instance.unplug(A.Plugin.Drag);
+        }
+    },
+
+    /**
+     * Fire after `keyboard` attribute change.
+     *
+     * @method _afterKeyboardChange
+     * @param event
+     * @protected
+     */
+    _afterKeyboardChange: function(event) {
+        var instance = this;
+        
+        instance._handleKeyboardEvent(event.newVal);
+    },
+
+    /**
+     * Attach or detach 'hideOn' after `keyboard` event.
+     *
+     * @method _handleKeyboardEvent
+     * @param val
+     * @protected
+     */
+    _handleKeyboardEvent: function(val) {
+        var instance = this;
+
+        if (val) {
+            instance._attachUIHandlesAutohide();
+        }
+        else {
+            instance._detachUIHandlesAutohide();
         }
     },
 
@@ -355,6 +404,17 @@ A.Modal = A.Base.create('modal', A.Widget, [
                     }
                 ]
             }
+        },
+
+        /**
+         * Determine if Modal will hide on key event.
+         *
+         * @attribute keyboard
+         * @default true
+         * @type Boolean
+         */
+        keyboard: {
+            value: true
         },
 
         /**
