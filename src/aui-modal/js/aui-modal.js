@@ -54,8 +54,12 @@ A.Modal = A.Base.create('modal', A.Widget, [
         var instance = this,
             eventHandles;
 
+        instance._handleBackdropEvent(instance.get('backdrop'));
+
         eventHandles = [
+            instance.after('backdropChange', instance._afterBackdropChange),
             A.after(instance._afterFillHeight, instance, 'fillHeight'),
+            A.on(instance._onAttachUIHandlesAutohide, instance, '_attachUIHandlesAutohide'),
             instance.after('resize:end', A.bind(instance._syncResizeDimensions, instance)),
             instance.after('draggableChange', instance._afterDraggableChange),
             instance.after('resizableChange', instance._afterResizableChange),
@@ -99,6 +103,32 @@ A.Modal = A.Base.create('modal', A.Widget, [
         return A.mix(config, {
             bubbleTargets: instance
         });
+    },
+
+    /**
+     * Add object to hide the widget.
+     *
+     * @method _addObjetcToHideWidgetOn
+     * @param obj {Object}
+     * @protected
+     */
+    _addObjetcToHideWidgetOn: function(obj) {
+        var instance = this;
+
+        instance.get('hideOn').push(obj);
+    },
+
+    /**
+     * Fire after `keyboard` attribute change.
+     *
+     * @method _afterKeyboardChange
+     * @param event
+     * @protected
+     */
+    _afterBackdropChange: function(event) {
+        var instance = this;
+
+        instance._handleBackdropEvent(event.newVal);
     },
 
     /**
@@ -228,6 +258,20 @@ A.Modal = A.Base.create('modal', A.Widget, [
     },
 
     /**
+     * Attach 'hideOn' only if `keyboard` is true.
+     *
+     * @method _onAttachUIHandlesAutohide
+     * @protected
+     */
+    _onAttachUIHandlesAutohide: function() {
+        var instance = this;
+
+        if (!instance.get('backdrop') ) {
+            return new A.Do.Prevent();
+        }
+    },
+
+    /**
      * Plug draggable/resizable if enable.
      *
      * @method _onUserInitInteraction
@@ -247,6 +291,43 @@ A.Modal = A.Base.create('modal', A.Widget, [
         if (resizable) {
             instance._plugResize();
         }
+    },
+
+    /**
+     * Attach or detach 'hideOn' after `backdrop` event.
+     *
+     * @method _handleBackdropEvent
+     * @param val
+     * @protected
+     */
+    _handleBackdropEvent: function(val) {
+        var instance = this,
+            hideOn = instance.get('hideOn'),
+            hideOnClone = hideOn.slice(0);
+
+        if (val) {
+            instance.handleHideEvent({eventName: 'clickoutside'});
+        }
+        else {
+            instance.releaseHideEvent('clickoutside');
+        }
+
+        hideOn = hideOnClone;
+    },
+
+    /**
+     * Attach 'hideOn' after parameter `obj` event.
+     *
+     * @method handleHideEvent
+     * @param obj {Object}
+     * @public
+     */
+    handleHideEvent: function(obj) {
+        var instance = this;
+
+        instance._addObjetcToHideWidgetOn(obj);
+        instance._attachUIHandlesAutohide();
+
     },
 
     /**
@@ -275,6 +356,40 @@ A.Modal = A.Base.create('modal', A.Widget, [
         instance.plug(A.Plugin.Resize, instance._addBubbleTargets(resizable));
 
         A.before(instance._beforeResizeCorrectDimensions, instance.resize, '_correctDimensions', instance);
+    },
+
+    /**
+     * Detach 'hideOn' after parameter `obj` event.
+     *
+     * @method releaseHideEvent
+     * @param obj {Object}
+     * @public
+     */
+    releaseHideEvent: function(obj) {
+        var instance = this;
+
+        instance._removeObjetcsToHideWidgetOn(obj);
+        instance._detachUIHandlesAutohide();
+
+    },
+
+    /**
+     * Remove objects which eventName is the same as the one passed
+     * as argument from the list of objects that can be hidden.
+     *
+     * @method _removeObjetcsToHideWidgetOn
+     * @param eventName {String}
+     * @protected
+     */
+    _removeObjetcsToHideWidgetOn: function(eventName) {
+        var instance = this,
+            hideOn = instance.get('hideOn');
+
+        for (var i = 0; i < hideOn.length; i++) {
+            if (hideOn[i].eventName === eventName) {
+                hideOn.splice(i, 1);
+            }
+        }
     },
 
     /**
@@ -311,6 +426,18 @@ A.Modal = A.Base.create('modal', A.Widget, [
      * @static
      */
     ATTRS: {
+
+        /**
+         * Determine if Modal will hide when click on outside.
+         *
+         * @attribute backdrop
+         * @default false
+         * @type Boolean
+         */
+        backdrop: {
+            validator: Lang.isBoolean,
+            value: false
+        },
 
         /**
          * Determine the content of Modal's body section.
