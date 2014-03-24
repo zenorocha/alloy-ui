@@ -185,6 +185,21 @@ A.Modal = A.Base.create('modal', A.Widget, [
     },
 
     /**
+     * Fire before resizing to the correct dimensions.
+     *
+     * @method _beforeResizeCorrectDimensions
+     * @param event
+     * @protected
+     */
+    _beforeResizeCorrectDimensions: function() {
+        var instance = this;
+
+        if (instance.resize.proxy) {
+            return new A.Do.Prevent();
+        }
+    },
+
+    /**
      * Set `maxHeight` CSS property.
      *
      * @method _fillMaxHeight
@@ -210,21 +225,6 @@ A.Modal = A.Base.create('modal', A.Widget, [
      */
     _getStdModTemplate: function(section) {
         return A.Node.create(A.Modal.TEMPLATES[section], this._stdModNode.get('ownerDocument'));
-    },
-
-    /**
-     * Fire before resizing to the correct dimensions.
-     *
-     * @method _beforeResizeCorrectDimensions
-     * @param event
-     * @protected
-     */
-    _beforeResizeCorrectDimensions: function() {
-        var instance = this;
-
-        if (instance.resize.proxy) {
-            return new A.Do.Prevent();
-        }
     },
 
     /**
