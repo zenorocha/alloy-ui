@@ -177,9 +177,7 @@ var TogglerDelegate = A.Component.create({
         renderUI: function() {
             var instance = this;
 
-            if (instance.get('closeAllOnExpand') || instance.get('expanded')) {
-                instance.createAll();
-            }
+            instance.createAll();
         },
 
         /**
@@ -244,7 +242,7 @@ var TogglerDelegate = A.Component.create({
                     expanded = instance.get('expanded'),
                     closeAllOnExpand = instance.get('closeAllOnExpand');
  
-                if ((closeAllOnExpand && markupExpanded) ||
+                if ((closeAllOnExpand && !markupCollapsed) ||
                     (expanded && markupCollapsed) ||
                     (!expanded && !markupExpanded && !markupCollapsed) && !header.getData('toggler')) {
                     instance._create(header);
