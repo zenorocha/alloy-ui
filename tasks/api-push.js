@@ -18,17 +18,15 @@ var command = require('command');
 var fs = require('fs-extra');
 
 // -- Globals ------------------------------------------------------------------
-var ROOT = process.cwd();
 
 // -- Task ---------------------------------------------------------------------
 module.exports = function(grunt) {
     grunt.registerTask(TASK.name, TASK.description, function() {
         var done = this.async();
 
+        grunt.applyCliConfig(TASK.name);
+
         async.series([
-            function(mainCallback) {
-                    exports._setGruntConfig(mainCallback);
-            },
             function(mainCallback) {
                     grunt.log.ok('Go to branch');
                     exports._gitGoToBranch(mainCallback);
@@ -59,36 +57,6 @@ module.exports = function(grunt) {
             }
         );
     });
-
-    exports._setGruntConfig = function(mainCallback) {
-        var options = grunt.option.flags();
-
-        options.forEach(function(option) {
-            var key;
-            var value;
-            var valueIndex;
-
-            // Normalize option
-            option = option.replace(/^--(no-)?/, '');
-
-            valueIndex = option.lastIndexOf('=');
-
-            // String parameter
-            if (valueIndex !== -1) {
-                key = option.substring(0, valueIndex);
-                value = option.substring(valueIndex + 1);
-            }
-            // Boolean parameter
-            else {
-                key = option;
-                value = grunt.option(key);
-            }
-
-            grunt.config([TASK.name, key], value);
-        });
-
-        mainCallback();
-    };
 
     exports._gitGoToBranch = function(mainCallback) {
         var branch = grunt.config([TASK.name, 'branch']);

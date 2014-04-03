@@ -25,10 +25,9 @@ module.exports = function(grunt) {
         var target = this.target;
         var sha;
 
+        grunt.applyCliConfig(TASK.name, target);
+
         async.series([
-                function(mainCallback) {
-                    exports._setGruntConfig(mainCallback, target);
-                },
                 function(mainCallback) {
                     exports._getCurrentGitHashCommit(function(val) {
                         sha = val;
@@ -49,36 +48,6 @@ module.exports = function(grunt) {
             }
         );
     });
-
-    exports._setGruntConfig = function(mainCallback, target) {
-        var options = grunt.option.flags();
-
-        options.forEach(function(option) {
-            var key;
-            var value;
-            var valueIndex;
-
-            // Normalize option
-            option = option.replace(/^--(no-)?/, '');
-
-            valueIndex = option.lastIndexOf('=');
-
-            // String parameter
-            if (valueIndex !== -1) {
-                key = option.substring(0, valueIndex);
-                value = option.substring(valueIndex + 1);
-            }
-            // Boolean parameter
-            else {
-                key = option;
-                value = grunt.option(key);
-            }
-
-            grunt.config([TASK.name, target, key], value);
-        });
-
-        mainCallback();
-    };
 
     exports._getCurrentGitHashCommit = function(mainCallback) {
         command.open(ROOT)
