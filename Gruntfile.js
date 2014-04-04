@@ -78,8 +78,9 @@ module.exports = function(grunt) {
         compass: {
             dist: {
                 options: {
-                    sassDir: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'lib'),
-                    cssDir: 'build/aui-css/css/'
+                    sassDir: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'vendor/assets/stylesheets'),
+                    cssDir: 'build/aui-css/css',
+                    noLineComments: true
                 }
             }
         },
@@ -101,23 +102,13 @@ module.exports = function(grunt) {
                     }
                 ]
             },
-            css: {
+            fonts: {
                 files: [
                     {
-                        src: 'build/aui-css/css/responsive.css',
-                        dest: 'build/aui-css/css/bootstrap-responsive.css'
-                    }
-                ]
-            },
-            img: {
-                files: [
-                    {
-                        src: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'img/glyphicons-halflings-white.png'),
-                        dest: 'build/aui-css/img/glyphicons-halflings-white.png'
-                    },
-                    {
-                        src: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'img/glyphicons-halflings.png'),
-                        dest: 'build/aui-css/img/glyphicons-halflings.png'
+                        cwd: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'vendor/assets/fonts/bootstrap/'),
+                        src: '**',
+                        dest: 'build/aui-css/fonts/',
+                        expand: true
                     }
                 ]
             }
@@ -149,8 +140,8 @@ module.exports = function(grunt) {
             api: [
                 'api', 'temp'
             ],
-            css: [
-                'build/aui-css/css/responsive.css',
+            bootstrap: [
+                'build/aui-css/css/bootstrap'
             ],
             zip: [
                 'alloy-<%= pkg["version"] %>.zip',
@@ -165,8 +156,7 @@ module.exports = function(grunt) {
         cssmin: {
             dist: {
                 files: {
-                    'build/aui-css/css/bootstrap.min.css': ['build/aui-css/css/bootstrap.css'],
-                    'build/aui-css/css/bootstrap-responsive.min.css': ['build/aui-css/css/bootstrap-responsive.css']
+                    'build/aui-css/css/bootstrap.min.css': ['build/aui-css/css/bootstrap.css']
                 }
             }
         },
@@ -229,7 +219,7 @@ module.exports = function(grunt) {
     grunt.registerTask('all', ['bootstrap', 'build']);
     grunt.registerTask('api', ['copy:api', 'api-include', 'api-build']);
     grunt.registerTask('api-deploy', ['api', 'api-push', 'clean:api']);
-    grunt.registerTask('bootstrap', ['compass', 'copy:css', 'cssmin', 'copy:img', 'clean:css']);
+    grunt.registerTask('bootstrap', ['compass', 'clean:bootstrap', 'cssmin', 'copy:fonts']);
     grunt.registerTask('format', ['jsbeautifier']);
     grunt.registerTask('lint', ['jshint']);
     grunt.registerTask('release', ['clean:zip', 'all', 'zip:release']);
