@@ -194,6 +194,9 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-base"
         ]
     },
+    "aui-css": {
+        "type": "css"
+    },
     "aui-datatable": {
         "use": [
             "aui-datatable-edit",
