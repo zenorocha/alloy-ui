@@ -5,6 +5,14 @@
     <title></title>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
+    <style>
+    form {
+        margin: 0 20px;
+    }
+    .control-group {
+        margin-bottom: 10px;
+    }
+    </style>
 </head>
 <body>
     <h1>AlloyUI - Form Validator</h1>
@@ -22,7 +30,7 @@
                 <input name="email1" id="email1" class="field-email form-control" type="text">
             </div>
         </div>
-        <input type="submit">
+        <input type="submit" class="btn btn-primary">
     </form>
     <h2>Rules passed from JavaScript</h2>
     <form action="" id="fm2" name="fm2">
@@ -44,7 +52,7 @@
                 <input name="custom" id="custom" class="form-control" type="text">
             </div>
         </div>
-        <input type="submit">
+        <input type="submit" class="btn btn-primary">
     </form>
     <script>
     YUI({ filter:'raw' }).use('aui-form-validator', function(Y) {
