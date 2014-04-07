@@ -12,6 +12,7 @@ var Lang = A.Lang,
     getCN = A.getClassName,
 
     CSS_BTN = getCN('btn'),
+    CSS_BTN_DEFAULT = getCN('btn', 'default'),
     CSS_BTN_GROUP = getCN('btn', 'group'),
     CSS_BTN_GROUP_CHECKBOX = getCN('btn', 'group', 'checkbox'),
     CSS_BTN_GROUP_RADIO = getCN('btn', 'group', 'radio'),
@@ -39,7 +40,7 @@ A.Toolbar = A.Component.create({
      * @type String
      * @static
      */
-    NAME: 'toolbar',
+    NAME: 'btn-toolbar',
 
     /**
      * Static property used to define the default attribute
@@ -116,7 +117,7 @@ A.Toolbar = A.Component.create({
          */
         TEMPLATES: {
             button: '<button class="aui-btn">{content}</button>',
-            icon: '<i class="{cssClass}"></i>',
+            icon: '<span class="{cssClass}"></span>',
             group: '<div class="aui-btn-group {cssClass}"></div>'
         },
 
@@ -322,7 +323,7 @@ ToolbarRenderer.prototype = {
     TEMPLATES: {
         button: A.Button.prototype.TEMPLATE,
         group: '<div class="' + CSS_BTN_GROUP + ' {cssClass}"></div>',
-        icon: '<i class="{cssClass}" />'
+        icon: '<span class="{cssClass}"></span>'
     },
 
     /**
@@ -372,7 +373,7 @@ ToolbarRenderer.prototype = {
             }
 
             // Add cssClass support
-            cssClass = [CSS_BTN, value.cssClass];
+            cssClass = [CSS_BTN, CSS_BTN_DEFAULT, value.cssClass];
             if (value.primary) {
                 cssClass.push(A.ButtonCore.CLASS_NAMES.PRIMARY);
             }

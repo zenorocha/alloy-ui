@@ -14,6 +14,7 @@ var Lang = A.Lang,
 
     CLASS_NAMES = {
         BUTTON: getClassName('btn'),
+        BUTTON_DEFAULT: getClassName('btn', 'default'),
         BUTTON_GROUP: getClassName('btn', 'group'),
         DISABLED: getClassName('disabled'),
         LABEL: getClassName('label'),
@@ -70,10 +71,10 @@ ButtonExt.ATTRS = {
 
     /**
      * Defines markup template for icon, passed in as a node e.g.
-     * `Y.Node.create('<i></i>')`.
+     * `Y.Node.create('<span></span>')`.
      *
      * @attribute iconElement
-     * @default 'A.Node.create("<i></i>")'
+     * @default 'A.Node.create("<span></span>")'
      */
     iconElement: {
         valueFn: function() {
@@ -115,7 +116,7 @@ ButtonExt.ATTRS = {
  * @static
  */
 ButtonExt.HTML_PARSER = {
-    iconElement: 'i'
+    iconElement: 'span'
 };
 
 /**
@@ -137,7 +138,7 @@ ButtonExt.getTypedButtonTemplate = function(template, type) {
 
 ButtonExt.prototype = {
     TEMPLATE: '<button{type}></button>',
-    ICON_TEMPLATE: '<i></i>',
+    ICON_TEMPLATE: '<span></span>',
 
     /**
      * Construction logic executed during `ButtonExt` instantiation. Lifecycle.
@@ -296,7 +297,7 @@ var Button = A.Button;
 
 Button.NAME = 'btn';
 
-Button.CSS_PREFIX = CLASS_NAMES.BUTTON;
+Button.CSS_PREFIX = [CLASS_NAMES.BUTTON, CLASS_NAMES.BUTTON_DEFAULT].join(' ');
 
 Button.CLASS_NAMES = CLASS_NAMES;
 
@@ -311,15 +312,6 @@ Button.CLASS_NAMES = CLASS_NAMES;
  * @include http://alloyui.com/examples/button/basic.js
  */
 A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.WidgetToggle], {}, {
-
-    /**
-     * Static property provides a string to identify the CSS prefix.
-     *
-     * @property CSS_PREFIX
-     * @type {String}
-     * @static
-     */
-    CSS_PREFIX: CLASS_NAMES.BUTTON,
 
     /**
      * Returns an object literal containing widget constructor data specified in
@@ -449,6 +441,7 @@ A.mix(ButtonGroup.prototype, {
 
         instance.getButtons().each(function(button) {
             if (!button.button && !A.instanceOf(A.Widget.getByNode(button), A.Button)) {
+                button.addClass(ButtonCore.CLASS_NAMES.BUTTON_DEFAULT);
 
                 if (A.Button.hasWidgetLazyConstructorData(button)) {
                     new A.Button(A.Button.getWidgetLazyConstructorFromNodeData(button));
