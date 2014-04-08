@@ -186,11 +186,21 @@
     },
     "aui-datatable": {
         "use": [
+            "aui-datatable-body",
             "aui-datatable-edit",
             "aui-datatable-highlight",
             "aui-datatable-selection",
             "aui-datatable-property-list"
         ]
+    },
+    "aui-datatable-body": {
+        "requires": [
+            "aui-classnamemanager",
+            "datatable-base",
+            "event-key",
+            "aui-event-base"
+        ],
+        "skinnable": true
     },
     "aui-datatable-core": {
         "requires": [
