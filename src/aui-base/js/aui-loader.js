@@ -196,11 +196,21 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-datatable": {
         "use": [
+            "aui-datatable-body",
             "aui-datatable-edit",
             "aui-datatable-highlight",
             "aui-datatable-selection",
             "aui-datatable-property-list"
         ]
+    },
+    "aui-datatable-body": {
+        "requires": [
+            "aui-classnamemanager",
+            "datatable-base",
+            "event-key",
+            "aui-event-base"
+        ],
+        "skinnable": true
     },
     "aui-datatable-core": {
         "requires": [
@@ -1044,4 +1054,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '8d2112cfec7c545d4f53ed15310ca2ed';
+YUI.Env[Y.version].md5 = '3585a15cfec2b14d0fd5574ce83d82c0';
