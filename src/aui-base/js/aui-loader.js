@@ -847,7 +847,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "selector-css3",
             "tabview",
             "aui-component"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-text-data-unicode": {
         "requires": [
