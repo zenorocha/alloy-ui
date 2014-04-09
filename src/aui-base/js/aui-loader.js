@@ -836,7 +836,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "selector-css3",
             "tabview",
             "aui-component"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-text-data-unicode": {
         "requires": [
@@ -1044,4 +1045,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '8d2112cfec7c545d4f53ed15310ca2ed';
+YUI.Env[Y.version].md5 = 'd59de2e8fb5bb45ce2f4f4a9fc557dc3';
