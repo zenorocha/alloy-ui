@@ -5,7 +5,7 @@ Y.mix(YUI.Env.aliases, {
     "aui-base": ["oop","yui-throttle","aui-classnamemanager","aui-debounce","aui-base-core","aui-base-lang","aui-node-base"],
     "aui-button": ["aui-button-core"],
     "aui-collection": ["aui-map","aui-set","aui-linkedset"],
-    "aui-datatable": ["aui-datatable-edit","aui-datatable-highlight","aui-datatable-selection","aui-datatable-property-list"],
+    "aui-datatable": ["aui-datatable-body","aui-datatable-edit","aui-datatable-highlight","aui-datatable-selection","aui-datatable-property-list"],
     "aui-diagram-builder": ["aui-diagram-builder-base","aui-diagram-builder-connector","aui-diagram-builder-impl"],
     "aui-event": ["aui-event-base","aui-event-delegate-change","aui-event-delegate-submit"],
     "aui-form-builder": ["aui-form-builder-base","aui-form-builder-field-base","aui-form-builder-field-button","aui-form-builder-field-checkbox","aui-form-builder-field-fieldset","aui-form-builder-field-file-upload","aui-form-builder-field-multiple-choice","aui-form-builder-field-radio","aui-form-builder-field-select","aui-form-builder-field-text","aui-form-builder-field-textarea"],
