@@ -10,12 +10,12 @@ var Lang = A.Lang,
     isFunction = Lang.isFunction,
     isNumber = Lang.isNumber,
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_ACTIVE = getCN('active'),
-    CSS_DISABLED = getCN('disabled'),
-    CSS_HIDE = getCN('hide'),
-    CSS_PAGINATION_CONTROL = getCN('pagination', 'control');
+    CSS_ACTIVE = getClassName('active'),
+    CSS_DISABLED = getClassName('disabled'),
+    CSS_HIDE = getClassName('hide'),
+    CSS_PAGINATION_CONTROL = getClassName('pagination', 'control');
 
 /**
  * A base class for Pagination, providing:

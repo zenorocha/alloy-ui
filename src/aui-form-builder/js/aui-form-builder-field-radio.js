@@ -7,14 +7,14 @@
 
 var L = A.Lang,
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_FIELD = getCN('field'),
-    CSS_FIELD_CHOICE = getCN('field', 'choice'),
-    CSS_FIELD_RADIO = getCN('field', 'radio'),
-    CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
-    CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
-    CSS_FORM_BUILDER_FIELD_OPTIONS_CONTAINER = getCN('form-builder-field', 'options', 'container'),
+    CSS_FIELD = getClassName('field'),
+    CSS_FIELD_CHOICE = getClassName('field', 'choice'),
+    CSS_FIELD_RADIO = getClassName('field', 'radio'),
+    CSS_FORM_BUILDER_FIELD = getClassName('form-builder-field'),
+    CSS_FORM_BUILDER_FIELD_NODE = getClassName('form-builder-field', 'node'),
+    CSS_FORM_BUILDER_FIELD_OPTIONS_CONTAINER = getClassName('form-builder-field', 'options', 'container'),
 
     TPL_OPTIONS_CONTAINER = '<div class="' + CSS_FORM_BUILDER_FIELD_OPTIONS_CONTAINER + '"></div>',
     TPL_RADIO =

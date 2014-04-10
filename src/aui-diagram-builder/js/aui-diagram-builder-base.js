@@ -26,24 +26,24 @@ var Lang = A.Lang,
 
     AArray = A.Array,
 
-    AgetClassName = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_CLEARFIX = AgetClassName('clearfix'),
-    CSS_DIAGRAM_BUILDER_CANVAS = AgetClassName('diagram', 'builder', 'canvas'),
-    CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER = AgetClassName('diagram', 'builder', 'content', 'container'),
-    CSS_DIAGRAM_BUILDER_DROP_CONTAINER = AgetClassName('diagram', 'builder', 'drop', 'container'),
-    CSS_DIAGRAM_BUILDER_FIELD = AgetClassName('diagram', 'builder', 'field'),
-    CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = AgetClassName('diagram', 'builder', 'field', 'draggable'),
-    CSS_DIAGRAM_BUILDER_FIELD_ICON = AgetClassName('diagram', 'builder', 'field', 'icon'),
-    CSS_DIAGRAM_BUILDER_FIELD_LABEL = AgetClassName('diagram', 'builder', 'field', 'label'),
-    CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER = AgetClassName('diagram', 'builder', 'fields', 'container'),
-    CSS_DIAGRAM_BUILDER_TABS = AgetClassName('diagram', 'builder', 'tabs'),
-    CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER = AgetClassName('diagram', 'builder', 'toolbar', 'container'),
-    CSS_ICON = AgetClassName('icon'),
-    CSS_LAYOUT = AgetClassName('layout'),
-    CSS_TABBABLE = AgetClassName('tabbable'),
-    CSS_TABBABLE_CONTENT = AgetClassName('tabbable', 'content'),
-    CSS_TABLE_STRIPED = AgetClassName('table', 'striped');
+    CSS_CLEARFIX = getClassName('clearfix'),
+    CSS_DIAGRAM_BUILDER_CANVAS = getClassName('diagram', 'builder', 'canvas'),
+    CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER = getClassName('diagram', 'builder', 'content', 'container'),
+    CSS_DIAGRAM_BUILDER_DROP_CONTAINER = getClassName('diagram', 'builder', 'drop', 'container'),
+    CSS_DIAGRAM_BUILDER_FIELD = getClassName('diagram', 'builder', 'field'),
+    CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = getClassName('diagram', 'builder', 'field', 'draggable'),
+    CSS_DIAGRAM_BUILDER_FIELD_ICON = getClassName('diagram', 'builder', 'field', 'icon'),
+    CSS_DIAGRAM_BUILDER_FIELD_LABEL = getClassName('diagram', 'builder', 'field', 'label'),
+    CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER = getClassName('diagram', 'builder', 'fields', 'container'),
+    CSS_DIAGRAM_BUILDER_TABS = getClassName('diagram', 'builder', 'tabs'),
+    CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER = getClassName('diagram', 'builder', 'toolbar', 'container'),
+    CSS_ICON = getClassName('icon'),
+    CSS_LAYOUT = getClassName('layout'),
+    CSS_TABBABLE = getClassName('tabbable'),
+    CSS_TABBABLE_CONTENT = getClassName('tabbable', 'content'),
+    CSS_TABLE_STRIPED = getClassName('table', 'striped');
 
 /**
  * A base class for AvailableField.

@@ -21,15 +21,15 @@ var Lang = A.Lang,
 
     getRegExp = A.DOM._getRegExp,
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_CONTROL_GROUP = getCN('control', 'group'),
-    CSS_ERROR = getCN('error'),
-    CSS_ERROR_FIELD = getCN('error', 'field'),
-    CSS_SUCCESS = getCN('success'),
-    CSS_SUCCESS_FIELD = getCN('success', 'field'),
-    CSS_HELP_INLINE = getCN('help', 'inline'),
-    CSS_STACK = getCN('form-validator', 'stack'),
+    CSS_CONTROL_GROUP = getClassName('control', 'group'),
+    CSS_ERROR = getClassName('error'),
+    CSS_ERROR_FIELD = getClassName('error', 'field'),
+    CSS_SUCCESS = getClassName('success'),
+    CSS_SUCCESS_FIELD = getClassName('success', 'field'),
+    CSS_HELP_INLINE = getClassName('help', 'inline'),
+    CSS_STACK = getClassName('form-validator', 'stack'),
 
     TPL_MESSAGE = '<div role="alert"></div>',
     TPL_STACK_ERROR = '<div class="' + [CSS_STACK, CSS_HELP_INLINE].join(' ') + '"></div>';

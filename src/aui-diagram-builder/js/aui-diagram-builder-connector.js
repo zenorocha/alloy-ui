@@ -52,10 +52,10 @@ var Lang = A.Lang,
         return x === 0 ? 0 : (x < 0 ? -1 : 1);
     },
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_DIAGRAM_BUILDER_CONNECTOR_NAME = getCN('diagram', 'builder', 'connector', 'name'),
-    CSS_HIDE = getCN('hide');
+    CSS_DIAGRAM_BUILDER_CONNECTOR_NAME = getClassName('diagram', 'builder', 'connector', 'name'),
+    CSS_HIDE = getClassName('hide');
 
 A.PolygonUtil = {
     ARROW_POINTS: [

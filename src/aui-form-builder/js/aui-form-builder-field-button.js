@@ -13,11 +13,11 @@ var L = A.Lang,
         }
     ),
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_BTN = getCN('btn'),
-    CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
-    CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
+    CSS_BTN = getClassName('btn'),
+    CSS_FORM_BUILDER_FIELD = getClassName('form-builder-field'),
+    CSS_FORM_BUILDER_FIELD_NODE = getClassName('form-builder-field', 'node'),
 
     TPL_BUTTON = '<button id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_BTN].join(' ') +
         '" type="{type}">{value}</button>',

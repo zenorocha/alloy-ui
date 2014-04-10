@@ -12,16 +12,16 @@ var Lang = A.Lang,
 
     WEEK_LENGTH = DateMath.WEEK_LENGTH,
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_SCHEDULER_EVENT = getCN('scheduler-event'),
-    CSS_SCHEDULER_EVENT_DISABLED = getCN('scheduler-event', 'disabled'),
+    CSS_SCHEDULER_EVENT = getClassName('scheduler-event'),
+    CSS_SCHEDULER_EVENT_DISABLED = getClassName('scheduler-event', 'disabled'),
 
-    CSS_SVT_COLGRID = getCN('scheduler-view', 'table', 'colgrid'),
-    CSS_SVT_DRAGGING = getCN('scheduler-view', 'table', 'dragging'),
-    CSS_SVT_LASSO = getCN('scheduler-view', 'table', 'lasso'),
-    CSS_SVT_PROXY_NODE = getCN('scheduler-view', 'table', 'proxy', 'node'),
-    CSS_SVT_TABLE_DATA_COL = getCN('scheduler-view', 'table', 'data', 'col'),
+    CSS_SVT_COLGRID = getClassName('scheduler-view', 'table', 'colgrid'),
+    CSS_SVT_DRAGGING = getClassName('scheduler-view', 'table', 'dragging'),
+    CSS_SVT_LASSO = getClassName('scheduler-view', 'table', 'lasso'),
+    CSS_SVT_PROXY_NODE = getClassName('scheduler-view', 'table', 'proxy', 'node'),
+    CSS_SVT_TABLE_DATA_COL = getClassName('scheduler-view', 'table', 'data', 'col'),
 
     TPL_SVT_LASSO = '<div class="' + CSS_SVT_LASSO + '"></div>',
     TPL_SVT_PROXY_NODE = '<div class="' + CSS_SVT_PROXY_NODE + '"></div>';

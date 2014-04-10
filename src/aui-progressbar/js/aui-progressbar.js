@@ -16,11 +16,11 @@ var L = A.Lang,
         return parseFloat(v) || 0;
     },
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_BAR = getCN('bar'),
-    CSS_HORIZONTAL = getCN('horizontal'),
-    CSS_VERTICAL = getCN('vertical'),
+    CSS_BAR = getClassName('bar'),
+    CSS_HORIZONTAL = getClassName('horizontal'),
+    CSS_VERTICAL = getClassName('vertical'),
 
     TPL_TEXT = '<p></p>';
 

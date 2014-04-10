@@ -18,13 +18,13 @@ var Lang = A.Lang,
 
     DateMath = A.DataType.DateMath,
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_SCHEDULER_EVENT = getCN('scheduler-event'),
+    CSS_SCHEDULER_EVENT = getClassName('scheduler-event'),
 
-    CSS_SCHEDULER_EVENT_RECORDER = getCN('scheduler-event', 'recorder'),
-    CSS_SCHEDULER_EVENT_RECORDER_CONTENT = getCN('scheduler-event', 'recorder', 'content'),
-    CSS_SCHEDULER_EVENT_RECORDER_POP_OVER = getCN('scheduler-event', 'recorder', 'popover'),
+    CSS_SCHEDULER_EVENT_RECORDER = getClassName('scheduler-event', 'recorder'),
+    CSS_SCHEDULER_EVENT_RECORDER_CONTENT = getClassName('scheduler-event', 'recorder', 'content'),
+    CSS_SCHEDULER_EVENT_RECORDER_POP_OVER = getClassName('scheduler-event', 'recorder', 'popover'),
 
     TPL_FORM = '<form class="' + 'scheduler-event-recorder-form' + '" id="schedulerEventRecorderForm"></form>',
 

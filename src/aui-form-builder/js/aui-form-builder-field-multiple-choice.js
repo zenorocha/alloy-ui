@@ -11,7 +11,7 @@ var Lang = A.Lang,
 
     AArray = A.Array,
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
     getEditorOptions = function(val) {
         var options = {};
@@ -26,8 +26,8 @@ var Lang = A.Lang,
         return options;
     },
 
-    CSS_FORM_BUILDER_FIELD = getCN('form-builder', 'field'),
-    CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN = getCN('form-builder', 'options', 'editor', 'hidden');
+    CSS_FORM_BUILDER_FIELD = getClassName('form-builder', 'field'),
+    CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN = getClassName('form-builder', 'options', 'editor', 'hidden');
 
 /**
  * A base class for `A.OptionsEditor`.

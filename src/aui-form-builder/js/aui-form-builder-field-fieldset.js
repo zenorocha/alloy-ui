@@ -7,12 +7,12 @@
 
 var L = A.Lang,
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_FIELD_LABEL = getCN('form-builder-field', 'label'),
-    CSS_FORM_BUILDER_DROP_ZONE = getCN('form', 'builder', 'drop', 'zone'),
-    CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
-    CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
+    CSS_FIELD_LABEL = getClassName('form-builder-field', 'label'),
+    CSS_FORM_BUILDER_DROP_ZONE = getClassName('form', 'builder', 'drop', 'zone'),
+    CSS_FORM_BUILDER_FIELD = getClassName('form-builder-field'),
+    CSS_FORM_BUILDER_FIELD_NODE = getClassName('form-builder-field', 'node'),
 
     TPL_FIELDSET = '<fieldset id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(' ') + '"></fieldset>',
     TPL_LEGEND = '<legend class="' + CSS_FIELD_LABEL + '"></legend>';
