@@ -39,16 +39,16 @@ var Lang = A.Lang,
         return toInt(elem.getStyle(styleName));
     },
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_DRAG_INDICATOR = getCN('sortable-layout', 'drag', 'indicator'),
-    CSS_DRAG_INDICATOR_ICON = getCN('sortable-layout', 'drag', 'indicator', 'icon'),
-    CSS_DRAG_INDICATOR_ICON_LEFT = getCN('sortable-layout', 'drag', 'indicator', 'icon', 'left'),
-    CSS_DRAG_INDICATOR_ICON_RIGHT = getCN('sortable-layout', 'drag', 'indicator', 'icon', 'right'),
-    CSS_DRAG_TARGET_INDICATOR = getCN('sortable-layout', 'drag', 'target', 'indicator'),
-    CSS_ICON = getCN('icon'),
-    CSS_ICON_CIRCLE_TRIANGLE_L = getCN('icon', 'circle', 'triangle', 'l'),
-    CSS_ICON_CIRCLE_TRIANGLE_R = getCN('icon', 'circle', 'triangle', 'r'),
+    CSS_DRAG_INDICATOR = getClassName('sortable-layout', 'drag', 'indicator'),
+    CSS_DRAG_INDICATOR_ICON = getClassName('sortable-layout', 'drag', 'indicator', 'icon'),
+    CSS_DRAG_INDICATOR_ICON_LEFT = getClassName('sortable-layout', 'drag', 'indicator', 'icon', 'left'),
+    CSS_DRAG_INDICATOR_ICON_RIGHT = getClassName('sortable-layout', 'drag', 'indicator', 'icon', 'right'),
+    CSS_DRAG_TARGET_INDICATOR = getClassName('sortable-layout', 'drag', 'target', 'indicator'),
+    CSS_ICON = getClassName('icon'),
+    CSS_ICON_CIRCLE_TRIANGLE_L = getClassName('icon', 'circle', 'triangle', 'l'),
+    CSS_ICON_CIRCLE_TRIANGLE_R = getClassName('icon', 'circle', 'triangle', 'r'),
 
     TPL_PLACEHOLDER = '<div class="' + CSS_DRAG_INDICATOR + '">' +
         '<div class="' + concat(CSS_DRAG_INDICATOR_ICON, CSS_DRAG_INDICATOR_ICON_LEFT, CSS_ICON,

@@ -9,13 +9,13 @@ var L = A.Lang,
 
     AArray = A.Array,
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_FIELD = getCN('field'),
-    CSS_FIELD_CHECKBOX = getCN('field', 'checkbox'),
-    CSS_FIELD_CHOICE = getCN('field', 'choice'),
-    CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
-    CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
+    CSS_FIELD = getClassName('field'),
+    CSS_FIELD_CHECKBOX = getClassName('field', 'checkbox'),
+    CSS_FIELD_CHOICE = getClassName('field', 'choice'),
+    CSS_FORM_BUILDER_FIELD = getClassName('form-builder-field'),
+    CSS_FORM_BUILDER_FIELD_NODE = getClassName('form-builder-field', 'node'),
 
     TPL_CHECKBOX = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_CHECKBOX,
         CSS_FIELD_CHOICE].join(' ') + '" name="{name}" type="checkbox" value="{value}" {checked} />';

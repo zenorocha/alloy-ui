@@ -5,12 +5,12 @@
  * @module aui-rating
  */
 
-var getCN = A.getClassName,
+var getClassName = A.getClassName,
 
-    CSS_ICON_THUMBS_DOWN = getCN('icon', 'thumbs', 'down'),
-    CSS_ICON_THUMBS_UP = getCN('icon', 'thumbs', 'up'),
-    CSS_RATING_OFF = getCN('rating', 'off'),
-    CSS_RATING_ON = getCN('rating', 'on');
+    CSS_ICON_THUMBS_DOWN = getClassName('icon', 'thumbs', 'down'),
+    CSS_ICON_THUMBS_UP = getClassName('icon', 'thumbs', 'up'),
+    CSS_RATING_OFF = getClassName('rating', 'off'),
+    CSS_RATING_ON = getClassName('rating', 'on');
 
 /**
  * A base class for ThumbRating, providing:

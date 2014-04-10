@@ -9,13 +9,13 @@ var Lang = A.Lang,
     isString = Lang.isString,
     isFunction = Lang.isFunction,
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_BTN = getCN('btn'),
-    CSS_BTN_GROUP = getCN('btn', 'group'),
-    CSS_BTN_GROUP_CHECKBOX = getCN('btn', 'group', 'checkbox'),
-    CSS_BTN_GROUP_RADIO = getCN('btn', 'group', 'radio'),
-    CSS_BTN_GROUP_VERTICAL = getCN('btn', 'group', 'vertical');
+    CSS_BTN = getClassName('btn'),
+    CSS_BTN_GROUP = getClassName('btn', 'group'),
+    CSS_BTN_GROUP_CHECKBOX = getClassName('btn', 'group', 'checkbox'),
+    CSS_BTN_GROUP_RADIO = getClassName('btn', 'group', 'radio'),
+    CSS_BTN_GROUP_VERTICAL = getClassName('btn', 'group', 'vertical');
 
 /**
  * A base class for Toolbar.

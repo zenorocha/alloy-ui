@@ -10,6 +10,8 @@ var Lang = A.Lang,
 
     toInt = Lang.toInt,
 
+    getClassName = A.getClassName,
+
     CSS_CROP = A.getClassName('image-cropper', 'crop'),
     CSS_CROP_OUTLINE = A.getClassName('image-cropper', 'crop', 'outline'),
     CSS_OVERLAY = A.getClassName('image-cropper', 'overlay'),

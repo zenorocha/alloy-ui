@@ -15,15 +15,15 @@ var L = A.Lang,
         return Array.prototype.slice.call(arguments).join(' ');
     },
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_ICON_PAUSE = getCN('icon', 'pause'),
-    CSS_ICON_PLAY = getCN('icon', 'play'),
-    CSS_IMAGE_GALLERY_PAGINATION = getCN('image-gallery', 'pagination'),
-    CSS_IMAGE_GALLERY_PAGINATION_THUMB = getCN('image-gallery', 'pagination', 'thumb'),
-    CSS_IMAGE_GALLERY_PLAYER = getCN('image-gallery', 'player'),
-    CSS_IMAGE_GALLERY_PLAYER_CONTENT = getCN('image-gallery', 'player', 'content'),
-    CSS_WELL = getCN('well'),
+    CSS_ICON_PAUSE = getClassName('icon', 'pause'),
+    CSS_ICON_PLAY = getClassName('icon', 'play'),
+    CSS_IMAGE_GALLERY_PAGINATION = getClassName('image-gallery', 'pagination'),
+    CSS_IMAGE_GALLERY_PAGINATION_THUMB = getClassName('image-gallery', 'pagination', 'thumb'),
+    CSS_IMAGE_GALLERY_PLAYER = getClassName('image-gallery', 'player'),
+    CSS_IMAGE_GALLERY_PLAYER_CONTENT = getClassName('image-gallery', 'player', 'content'),
+    CSS_WELL = getClassName('well'),
 
     TPL_PAGINATION_CONTAINER = '<div class="' + CSS_IMAGE_GALLERY_PAGINATION + '"></div>',
     TPL_PAGINATION_THUMB = '<li><a class="' + concat(CSS_IMAGE_GALLERY_PAGINATION_THUMB, CSS_WELL) +

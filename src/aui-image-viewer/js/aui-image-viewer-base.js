@@ -23,25 +23,25 @@ var L = A.Lang,
         return Array.prototype.slice.call(arguments).join(' ');
     },
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_CAROUSEL_CONTROL = getCN('carousel', 'control'),
-    CSS_CLOSE = getCN('close'),
-    CSS_HELPER_SCROLL_LOCK = getCN('helper', 'scroll', 'lock'),
-    CSS_HIDE = getCN('hide'),
-    CSS_ICON_TIME = getCN('icon', 'time'),
-    CSS_IMAGE_VIEWER_BD = getCN('image-viewer', 'bd'),
-    CSS_IMAGE_VIEWER_CAPTION = getCN('image-viewer', 'caption'),
-    CSS_IMAGE_VIEWER_CLOSE = getCN('image-viewer', 'close'),
-    CSS_IMAGE_VIEWER_CONTROL = getCN('image-viewer', 'control'),
-    CSS_IMAGE_VIEWER_IMAGE = getCN('image-viewer', 'image'),
-    CSS_IMAGE_VIEWER_INFO = getCN('image-viewer', 'info'),
-    CSS_IMAGE_VIEWER_LINK = getCN('image-viewer', 'link'),
-    CSS_IMAGE_VIEWER_LOADER = getCN('image-viewer', 'loader'),
-    CSS_IMAGE_VIEWER_LOADING = getCN('image-viewer', 'loading'),
-    CSS_LEFT = getCN('left'),
-    CSS_RIGHT = getCN('right'),
-    CSS_WELL = getCN('well'),
+    CSS_CAROUSEL_CONTROL = getClassName('carousel', 'control'),
+    CSS_CLOSE = getClassName('close'),
+    CSS_HELPER_SCROLL_LOCK = getClassName('helper', 'scroll', 'lock'),
+    CSS_HIDE = getClassName('hide'),
+    CSS_ICON_TIME = getClassName('icon', 'time'),
+    CSS_IMAGE_VIEWER_BD = getClassName('image-viewer', 'bd'),
+    CSS_IMAGE_VIEWER_CAPTION = getClassName('image-viewer', 'caption'),
+    CSS_IMAGE_VIEWER_CLOSE = getClassName('image-viewer', 'close'),
+    CSS_IMAGE_VIEWER_CONTROL = getClassName('image-viewer', 'control'),
+    CSS_IMAGE_VIEWER_IMAGE = getClassName('image-viewer', 'image'),
+    CSS_IMAGE_VIEWER_INFO = getClassName('image-viewer', 'info'),
+    CSS_IMAGE_VIEWER_LINK = getClassName('image-viewer', 'link'),
+    CSS_IMAGE_VIEWER_LOADER = getClassName('image-viewer', 'loader'),
+    CSS_IMAGE_VIEWER_LOADING = getClassName('image-viewer', 'loading'),
+    CSS_LEFT = getClassName('left'),
+    CSS_RIGHT = getClassName('right'),
+    CSS_WELL = getClassName('well'),
 
     MAP_RESET_DIMENSIONS = {
         height: 'auto',
@@ -932,7 +932,7 @@ var ImageViewer = A.Base.create(
          * @type String
          * @static
          */
-        CSS_PREFIX: getCN('image-viewer'),
+        CSS_PREFIX: getClassName('image-viewer'),
 
         /**
          * Static property used to define the default attribute

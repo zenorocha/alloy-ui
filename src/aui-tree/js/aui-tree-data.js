@@ -19,9 +19,9 @@ var L = A.Lang,
         return (A.instanceOf(v, A.TreeView));
     },
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_TREE_NODE = getCN('tree', 'node');
+    CSS_TREE_NODE = getClassName('tree', 'node');
 
 /**
  * A base class for TreeData, providing:

@@ -23,17 +23,17 @@ var L = A.Lang,
         return (v instanceof A.FormBuilderField);
     },
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
     AVAILABLE_FIELDS_ID_PREFIX = 'availableFields' + '_' + 'field' + '_',
     FIELDS_ID_PREFIX = 'fields' + '_' + 'field' + '_',
 
-    CSS_DD_DRAGGING = getCN('dd', 'dragging'),
-    CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = getCN('diagram', 'builder', 'field', 'draggable'),
-    CSS_FIELD_HOVER = getCN('form', 'builder', 'field', 'hover'),
-    CSS_FORM_BUILDER_DROP_ZONE = getCN('form', 'builder', 'drop', 'zone'),
-    CSS_FORM_BUILDER_FIELD = getCN('form', 'builder', 'field'),
-    CSS_FORM_BUILDER_PLACEHOLDER = getCN('form', 'builder', 'placeholder'),
+    CSS_DD_DRAGGING = getClassName('dd', 'dragging'),
+    CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = getClassName('diagram', 'builder', 'field', 'draggable'),
+    CSS_FIELD_HOVER = getClassName('form', 'builder', 'field', 'hover'),
+    CSS_FORM_BUILDER_DROP_ZONE = getClassName('form', 'builder', 'drop', 'zone'),
+    CSS_FORM_BUILDER_FIELD = getClassName('form', 'builder', 'field'),
+    CSS_FORM_BUILDER_PLACEHOLDER = getClassName('form', 'builder', 'placeholder'),
 
     INVALID_CLONE_ATTRS = ['id', 'name'],
 

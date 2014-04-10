@@ -16,11 +16,11 @@ var Lang = A.Lang,
     Toggler = A.Toggler,
     CUBIC_BEZIER = 'cubic-bezier(0, 0.1, 0, 1.0)',
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_TOGGLER_CONTENT_WRAPPER = getCN('toggler', 'content', 'wrapper'),
-    CSS_TOGGLER_HEADER_COLLAPSED = getCN('toggler', 'header', 'collapsed'),
-    CSS_TOGGLER_HEADER_EXPANDED = getCN('toggler', 'header', 'expanded');
+    CSS_TOGGLER_CONTENT_WRAPPER = getClassName('toggler', 'content', 'wrapper'),
+    CSS_TOGGLER_HEADER_COLLAPSED = getClassName('toggler', 'header', 'collapsed'),
+    CSS_TOGGLER_HEADER_EXPANDED = getClassName('toggler', 'header', 'expanded');
 
 /**
  * A base class for Toggler Delegate.

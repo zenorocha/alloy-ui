@@ -18,29 +18,29 @@ var Lang = A.Lang,
         return (v instanceof A.TreeView);
     },
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_TREE_COLLAPSED = getCN('tree', 'collapsed'),
-    CSS_TREE_CONTAINER = getCN('tree', 'container'),
-    CSS_TREE_EXPANDED = getCN('tree', 'expanded'),
-    CSS_TREE_HITAREA = getCN('tree', 'hitarea'),
-    CSS_TREE_ICON = getCN('tree', 'icon'),
-    CSS_TREE_LABEL = getCN('tree', 'label'),
-    CSS_TREE_NODE = getCN('tree', 'node'),
-    CSS_TREE_NODE_CONTENT = getCN('tree', 'node', 'content'),
-    CSS_TREE_NODE_CONTENT_INVALID = getCN('tree', 'node', 'content', 'invalid'),
-    CSS_TREE_NODE_HIDDEN_HITAREA = getCN('tree', 'node', 'hidden', 'hitarea'),
-    CSS_TREE_NODE_LEAF = getCN('tree', 'node', 'leaf'),
-    CSS_TREE_NODE_OVER = getCN('tree', 'node', 'over'),
-    CSS_TREE_NODE_SELECTED = getCN('tree', 'node', 'selected'),
-    CSS_ICON_FOLDER_CLOSE = getCN('icon', 'folder', 'close'),
-    CSS_ICON_FOLDER_OPEN = getCN('icon', 'folder', 'open'),
-    CSS_ICON_ICON_PLUS = getCN('icon', 'plus'),
-    CSS_ICON_ICON_MINUS = getCN('icon', 'minus'),
-    CSS_ICON_ICON_FILE = getCN('icon', 'file'),
-    CSS_ICON_ICON_REFRESH = getCN('icon', 'refresh'),
-    CSS_ICON_OK_SIGN = getCN('icon', 'ok', 'sign'),
-    CSS_ICON_CHECK = getCN('icon', 'check'),
+    CSS_TREE_COLLAPSED = getClassName('tree', 'collapsed'),
+    CSS_TREE_CONTAINER = getClassName('tree', 'container'),
+    CSS_TREE_EXPANDED = getClassName('tree', 'expanded'),
+    CSS_TREE_HITAREA = getClassName('tree', 'hitarea'),
+    CSS_TREE_ICON = getClassName('tree', 'icon'),
+    CSS_TREE_LABEL = getClassName('tree', 'label'),
+    CSS_TREE_NODE = getClassName('tree', 'node'),
+    CSS_TREE_NODE_CONTENT = getClassName('tree', 'node', 'content'),
+    CSS_TREE_NODE_CONTENT_INVALID = getClassName('tree', 'node', 'content', 'invalid'),
+    CSS_TREE_NODE_HIDDEN_HITAREA = getClassName('tree', 'node', 'hidden', 'hitarea'),
+    CSS_TREE_NODE_LEAF = getClassName('tree', 'node', 'leaf'),
+    CSS_TREE_NODE_OVER = getClassName('tree', 'node', 'over'),
+    CSS_TREE_NODE_SELECTED = getClassName('tree', 'node', 'selected'),
+    CSS_ICON_FOLDER_CLOSE = getClassName('icon', 'folder', 'close'),
+    CSS_ICON_FOLDER_OPEN = getClassName('icon', 'folder', 'open'),
+    CSS_ICON_ICON_PLUS = getClassName('icon', 'plus'),
+    CSS_ICON_ICON_MINUS = getClassName('icon', 'minus'),
+    CSS_ICON_ICON_FILE = getClassName('icon', 'file'),
+    CSS_ICON_ICON_REFRESH = getClassName('icon', 'refresh'),
+    CSS_ICON_OK_SIGN = getClassName('icon', 'ok', 'sign'),
+    CSS_ICON_CHECK = getClassName('icon', 'check'),
 
     HIT_AREA_TPL = '<i class="' + CSS_TREE_HITAREA + '"></i>',
     ICON_TPL = '<i class="' + CSS_TREE_ICON + '"></i>',
@@ -1276,9 +1276,9 @@ A.TreeNodeIO = TreeNodeIO;
 /*
  * TreeNodeCheck
  */
-var CSS_TREE_NODE_CHECKBOX = getCN('tree', 'node', 'checkbox'),
-    CSS_TREE_NODE_CHECKBOX_CONTAINER = getCN('tree', 'node', 'checkbox', 'container'),
-    CSS_TREE_NODE_CHECKED = getCN('tree', 'node', 'checked'),
+var CSS_TREE_NODE_CHECKBOX = getClassName('tree', 'node', 'checkbox'),
+    CSS_TREE_NODE_CHECKBOX_CONTAINER = getClassName('tree', 'node', 'checkbox', 'container'),
+    CSS_TREE_NODE_CHECKED = getClassName('tree', 'node', 'checked'),
 
     CHECKBOX_CONTAINER_TPL = '<i class="' + CSS_TREE_NODE_CHECKBOX_CONTAINER + '"></i>',
     CHECKBOX_TPL = '<input class="' + CSS_TREE_NODE_CHECKBOX + '" type="checkbox" />';
@@ -1547,7 +1547,7 @@ A.TreeNodeCheck = TreeNodeCheck;
 /*
  * TreeNodeTask
  */
-var CSS_TREE_NODE_CHILD_UNCHECKED = getCN('tree', 'node', 'child', 'unchecked'),
+var CSS_TREE_NODE_CHILD_UNCHECKED = getClassName('tree', 'node', 'child', 'unchecked'),
 
     isTreeNodeTask = function(node) {
         return node instanceof A.TreeNodeCheck;
@@ -1669,7 +1669,7 @@ A.TreeNodeTask = TreeNodeTask;
  * TreeNodeRadio
  */
 
-var CSS_NODE_RADIO = getCN('tree', 'node', 'radio'),
+var CSS_NODE_RADIO = getClassName('tree', 'node', 'radio'),
 
     isTreeNodeRadio = function(node) {
         return node instanceof A.TreeNodeRadio;

@@ -9,9 +9,9 @@ var Lang = A.Lang,
     isFunction = Lang.isFunction,
     isString = Lang.isString,
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_TREE_NODE_IO_LOADING = getCN('tree', 'node', 'io', 'loading');
+    CSS_TREE_NODE_IO_LOADING = getClassName('tree', 'node', 'io', 'loading');
 
 /**
  * A base class for TreeViewIO.

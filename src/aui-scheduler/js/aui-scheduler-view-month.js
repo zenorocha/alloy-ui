@@ -10,10 +10,10 @@ var Lang = A.Lang,
 
     DateMath = A.DataType.DateMath,
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_SVM_TABLE_DATA_COL_NOMONTH = getCN('scheduler-view-month', 'table', 'data', 'col', 'nomonth'),
-    CSS_SVT_TABLE_DATA_COL_TITLE = getCN('scheduler-view', 'table', 'data', 'col', 'title');
+    CSS_SVM_TABLE_DATA_COL_NOMONTH = getClassName('scheduler-view-month', 'table', 'data', 'col', 'nomonth'),
+    CSS_SVT_TABLE_DATA_COL_TITLE = getClassName('scheduler-view', 'table', 'data', 'col', 'title');
 
 /**
  * A base class for `SchedulerMonthView`.

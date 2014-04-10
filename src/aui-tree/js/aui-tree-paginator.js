@@ -9,9 +9,9 @@ var Lang = A.Lang,
     isObject = Lang.isObject,
     isValue = Lang.isValue,
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_TREE_NODE_PAGINATOR = getCN('tree', 'node', 'paginator'),
+    CSS_TREE_NODE_PAGINATOR = getClassName('tree', 'node', 'paginator'),
 
     TPL_PAGINATOR = '<a class="' + CSS_TREE_NODE_PAGINATOR + '" hrsef="javascript:void(0);">{moreResultsLabel}</a>';
 

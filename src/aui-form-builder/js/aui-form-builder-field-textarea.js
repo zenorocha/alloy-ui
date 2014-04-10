@@ -9,13 +9,13 @@ var L = A.Lang,
 
     AArray = A.Array,
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_FIELD = getCN('field'),
-    CSS_FIELD_TEXT = getCN('field', 'text'),
-    CSS_FIELD_TEXTAREA = getCN('field', 'textarea'),
-    CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
-    CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
+    CSS_FIELD = getClassName('field'),
+    CSS_FIELD_TEXT = getClassName('field', 'text'),
+    CSS_FIELD_TEXTAREA = getClassName('field', 'textarea'),
+    CSS_FORM_BUILDER_FIELD = getClassName('form-builder-field'),
+    CSS_FORM_BUILDER_FIELD_NODE = getClassName('form-builder-field', 'node'),
 
     TPL_TEXTAREA = '<textarea id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_TEXT,
         CSS_FIELD_TEXTAREA].join(' ') + '" name="{name}">{value}</textarea>';

@@ -19,11 +19,11 @@ var Lang = A.Lang,
     },
     ENTER = 13,
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_STAR = getCN('icon', 'star'),
-    CSS_STAR_EMPTY = getCN('icon', 'star', 'empty'),
-    CSS_RATING_LABEL = getCN('rating', 'label'),
+    CSS_STAR = getClassName('icon', 'star'),
+    CSS_STAR_EMPTY = getClassName('icon', 'star', 'empty'),
+    CSS_RATING_LABEL = getClassName('rating', 'label'),
 
     TPL_ELEMENT = '<a class="{cssClasses}" tabindex="{tabindex}"></a>',
     TPL_LABEL = '<span class="' + CSS_RATING_LABEL + '"></span>';

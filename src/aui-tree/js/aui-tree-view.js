@@ -19,15 +19,15 @@ var L = A.Lang,
         return (v instanceof A.TreeNode);
     },
 
-    getCN = A.getClassName,
+    getClassName = A.getClassName,
 
-    CSS_TREE_HITAREA = getCN('tree', 'hitarea'),
-    CSS_TREE_ICON = getCN('tree', 'icon'),
-    CSS_TREE_LABEL = getCN('tree', 'label'),
-    CSS_TREE_NODE_CONTENT = getCN('tree', 'node', 'content'),
-    CSS_TREE_NODE_CONTENT_INVALID = getCN('tree', 'node', 'content', 'invalid'),
-    CSS_TREE_ROOT_CONTAINER = getCN('tree', 'root', 'container'),
-    CSS_TREE_VIEW_CONTENT = getCN('tree', 'view', 'content');
+    CSS_TREE_HITAREA = getClassName('tree', 'hitarea'),
+    CSS_TREE_ICON = getClassName('tree', 'icon'),
+    CSS_TREE_LABEL = getClassName('tree', 'label'),
+    CSS_TREE_NODE_CONTENT = getClassName('tree', 'node', 'content'),
+    CSS_TREE_NODE_CONTENT_INVALID = getClassName('tree', 'node', 'content', 'invalid'),
+    CSS_TREE_ROOT_CONTAINER = getClassName('tree', 'root', 'container'),
+    CSS_TREE_VIEW_CONTENT = getClassName('tree', 'view', 'content');
 
 /**
  * A base class for TreeView, providing:
@@ -275,7 +275,7 @@ var TreeView = A.Component.create({
             var contentBox = instance.get('contentBox');
             var children = instance.get('children');
             var type = instance.get('type');
-            var CSS_TREE_TYPE = getCN('tree', type);
+            var CSS_TREE_TYPE = getClassName('tree', type);
 
             contentBox.addClass(CSS_TREE_VIEW_CONTENT);
 
@@ -404,17 +404,17 @@ var isNumber = L.isNumber,
 
     DDM = A.DD.DDM,
 
-    CSS_CLEARFIX = getCN('clearfix'),
-    CSS_ICON = getCN('icon'),
-    CSS_TREE_DRAG_HELPER = getCN('tree', 'drag', 'helper'),
-    CSS_TREE_DRAG_HELPER_CONTENT = getCN('tree', 'drag', 'helper', 'content'),
-    CSS_TREE_DRAG_HELPER_LABEL = getCN('tree', 'drag', 'helper', 'label'),
-    CSS_TREE_DRAG_INSERT_ABOVE = getCN('tree', 'drag', 'insert', 'above'),
-    CSS_TREE_DRAG_INSERT_APPEND = getCN('tree', 'drag', 'insert', 'append'),
-    CSS_TREE_DRAG_INSERT_BELOW = getCN('tree', 'drag', 'insert', 'below'),
-    CSS_TREE_DRAG_STATE_APPEND = getCN('tree', 'drag', 'state', 'append'),
-    CSS_TREE_DRAG_STATE_INSERT_ABOVE = getCN('tree', 'drag', 'state', 'insert', 'above'),
-    CSS_TREE_DRAG_STATE_INSERT_BELOW = getCN('tree', 'drag', 'state', 'insert', 'below'),
+    CSS_CLEARFIX = getClassName('clearfix'),
+    CSS_ICON = getClassName('icon'),
+    CSS_TREE_DRAG_HELPER = getClassName('tree', 'drag', 'helper'),
+    CSS_TREE_DRAG_HELPER_CONTENT = getClassName('tree', 'drag', 'helper', 'content'),
+    CSS_TREE_DRAG_HELPER_LABEL = getClassName('tree', 'drag', 'helper', 'label'),
+    CSS_TREE_DRAG_INSERT_ABOVE = getClassName('tree', 'drag', 'insert', 'above'),
+    CSS_TREE_DRAG_INSERT_APPEND = getClassName('tree', 'drag', 'insert', 'append'),
+    CSS_TREE_DRAG_INSERT_BELOW = getClassName('tree', 'drag', 'insert', 'below'),
+    CSS_TREE_DRAG_STATE_APPEND = getClassName('tree', 'drag', 'state', 'append'),
+    CSS_TREE_DRAG_STATE_INSERT_ABOVE = getClassName('tree', 'drag', 'state', 'insert', 'above'),
+    CSS_TREE_DRAG_STATE_INSERT_BELOW = getClassName('tree', 'drag', 'state', 'insert', 'below'),
 
     HELPER_TPL = '<div class="' + CSS_TREE_DRAG_HELPER + '">' +
         '<div class="' + [CSS_TREE_DRAG_HELPER_CONTENT, CSS_CLEARFIX].join(' ') + '">' +
