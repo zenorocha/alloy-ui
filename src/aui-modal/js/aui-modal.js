@@ -13,7 +13,10 @@ var Lang = A.Lang,
 
     CSS_MODAL_BD = getClassName('modal-body'),
     CSS_MODAL_FT = getClassName('modal-footer'),
-    CSS_MODAL_HD = getClassName('modal-header');
+    CSS_MODAL_HD = getClassName('modal-header'),
+
+    RESIZE_PLUGIN_READY = 'resize-plugin-ready',
+    DRAG_PLUGIN_READY = 'drag-plugin-ready';
 
 /**
  * A base class for Modal.
@@ -66,6 +69,22 @@ A.Modal = A.Base.create('modal', A.Widget, [
         instance._applyPlugin(instance._onUserInitInteraction);
 
         instance._eventHandles = eventHandles;
+
+        /**
+         * Fired when the Resize plugin is ready to be used.
+         *
+         * @event modal:resize-plugin-ready
+         * @param {EventFacade} event The resize ready event.
+         */
+        instance.publish(RESIZE_PLUGIN_READY);
+
+        /**
+         * Fired when the Drag plugin is ready to be used.
+         *
+         * @event modal:drag-plugin-ready
+         * @param {EventFacade} event The drag ready event.
+         */
+        instance.publish(DRAG_PLUGIN_READY);
     },
 
     /**
@@ -261,6 +280,7 @@ A.Modal = A.Base.create('modal', A.Widget, [
             draggable = instance.get('draggable');
 
         instance.plug(A.Plugin.Drag, instance._addBubbleTargets(draggable));
+        instance.fire(DRAG_PLUGIN_READY);
     },
 
     /**
@@ -274,6 +294,7 @@ A.Modal = A.Base.create('modal', A.Widget, [
             resizable = instance.get('resizable');
 
         instance.plug(A.Plugin.Resize, instance._addBubbleTargets(resizable));
+        instance.fire(RESIZE_PLUGIN_READY);
 
         A.before(instance._beforeResizeCorrectDimensions, instance.resize, '_correctDimensions', instance);
     },

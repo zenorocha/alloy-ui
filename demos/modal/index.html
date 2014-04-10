@@ -5,17 +5,12 @@
     <title></title>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
-    <style>
-        .modal-content {
-            overflow: hidden;
-        }
-    </style>
 </head>
 <body class="yui3-skin-sam">
     <h1>AlloyUI - Modal</h1>
     <div id="content"></div>
     <script>
-    YUI({ filter:'raw' }).use('aui-modal', 'resize-proxy', function(Y) {
+    YUI({ filter:'raw' }).use('aui-modal', 'resize-proxy', 'resize-constrain', function(Y) {
 
         console.time('How long does it takes?');
 
@@ -65,6 +60,13 @@
                 primary: true
             }
         ]);
+
+        modal.on('modal:resize-plugin-ready', function() {
+            modal.resize.plug(Y.Plugin.ResizeConstrained, {
+                minWidth: 450,
+                minHeight: 220
+            });
+        });
 
         console.timeEnd('How long does it takes?');
 
