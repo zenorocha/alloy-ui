@@ -740,7 +740,7 @@ var Rating = A.Component.create({
          */
         _syncElements: function() {
             var instance = this,
-                selectedIndex = instance.get('defaultSelected') - 1;
+                selectedIndex = instance.get('defaultSelected') - 0.5;
 
             instance.set('selectedIndex', selectedIndex);
             instance.select();
