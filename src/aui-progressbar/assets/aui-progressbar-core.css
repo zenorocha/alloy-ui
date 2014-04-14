@@ -1,0 +1,8 @@
+.progress.vertical.bottom {
+    position: relative;
+}
+
+.progress.vertical.bottom .progress-bar {
+    position: absolute;
+    bottom: 0;
+}

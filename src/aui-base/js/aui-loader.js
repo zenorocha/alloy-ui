@@ -693,7 +693,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-node",
             "aui-component",
             "aui-aria"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-rating": {
         "use": [
@@ -1055,4 +1056,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'ff49314ec53be223f465502daf39f3fa';
+YUI.Env[Y.version].md5 = '57d5039ce599e3d766b685b9af2dd89d';
