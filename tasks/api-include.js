@@ -17,7 +17,6 @@ var fs = require('fs');
 var path = require('path');
 
 // -- Globals ------------------------------------------------------------------
-var ROOT = process.cwd();
 
 // -- Task ---------------------------------------------------------------------
 module.exports = function(grunt) {
@@ -26,10 +25,9 @@ module.exports = function(grunt) {
         var files = this.files[0].src;
         var target = this.target;
 
+        grunt.applyCliConfig(TASK.name, target);
+
         async.series([
-            function(mainCallback) {
-                exports._setGruntConfig(mainCallback, target);
-            },
             function(mainCallback) {
                 exports._replaceInclude(mainCallback, target, files);
             }],
@@ -43,36 +41,6 @@ module.exports = function(grunt) {
             }
         );
     });
-
-    exports._setGruntConfig = function(mainCallback, target) {
-        var options = grunt.option.flags();
-
-        options.forEach(function(option) {
-            var key;
-            var value;
-            var valueIndex;
-
-            // Normalize option
-            option = option.replace(/^--(no-)?/, '');
-
-            valueIndex = option.lastIndexOf('=');
-
-            // String parameter
-            if (valueIndex !== -1) {
-                key = option.substring(0, valueIndex);
-                value = option.substring(valueIndex + 1);
-            }
-            // Boolean parameter
-            else {
-                key = option;
-                value = grunt.option(key);
-            }
-
-            grunt.config([TASK.name, target, key], value);
-        });
-
-        mainCallback();
-    };
 
     exports._replaceInclude = function(mainCallback, target, files) {
         files.forEach(function(file) {
