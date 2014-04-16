@@ -5,16 +5,17 @@
  *
  * @author Zeno Rocha <zeno.rocha@liferay.com>
  * @author Eduardo Lundgren <eduardo.lundgren@liferay.com>
+ * @author Bruno Basto <bruno.basto@liferay.com>
  */
 
 var TASK = {
     name: 'test',
-    description: 'Run unit tests using Yogi'
+    description: 'Run unit tests using Yeti'
 };
 
 // -- Requires -----------------------------------------------------------------
 var async = require('async');
-var command = require('command');
+var cp = require('child_process');
 
 // -- Globals ------------------------------------------------------------------
 var ROOT = process.cwd();
@@ -28,7 +29,7 @@ module.exports = function(grunt) {
                     exports._setGruntConfig(mainCallback);
             },
             function(mainCallback) {
-                    exports._runYogi(mainCallback);
+                    exports._runYeti(mainCallback);
             }],
             function(err) {
                 if (err) {
@@ -71,19 +72,40 @@ module.exports = function(grunt) {
         mainCallback();
     };
 
-    exports._runYogi = function(mainCallback) {
-        var args = ['test'];
+    exports._runYeti = function(mainCallback) {
+        var browser,
+            server,
+            yeti;
 
-        if (grunt.config([TASK.name, 'coverage'])) {
-            args.push('--coverage');
-        }
+        server = cp.spawn(
+            'yeti',
+            ['--server']
+        );
 
-        command.open(ROOT)
-            .on('stdout', command.writeTo(process.stdout))
-            .on('stderr', command.writeTo(process.stderr))
-            .exec('yogi', args)
-            .then(function() {
-                mainCallback(this.lastOutput.stdout);
+        setTimeout(function() {
+            browser = cp.spawn(
+                'open',
+                ['-jg', 'http://localhost:9000/']
+            );
+        }, 2000)
+
+        setTimeout(function() {
+            yeti = cp.spawn(
+                'yeti',
+                [],
+                {
+                    cwd: ROOT,
+                    stdio: 'inherit'
+                }
+            );
+
+            yeti.on('exit', function() {
+                browser.kill();
+
+                server.kill();
+
+                mainCallback();
             });
+        }, 3000);
     };
 };
