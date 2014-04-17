@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <title>aui-dropdown</title>
+
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/tests.js"></script>
+    <meta charset="utf-8" />
+    <style>
+        .yui3-console-bd {
+            height: 400px !important;
+        }
+    </style>
+</head>
+<body class="yui3-skin-sam">
+	<div id="logger"></div>
+	<div id="dropdown1" class="dropdown">
+	    <a id="dropdown-toggle1" href="#" class="dropdown-toggle">Dropdown <b class="caret"></b></a>
+	    <ul id="dropdown-menu1" class="dropdown-menu">
+	        <li><a href="#">First Action</a></li>
+	        <li><a href="#">Second Action</a></li>
+	        <li class="divider"></li>
+	        <li><a href="#">Separated Action</a></li>
+	    </ul>
+	</div>
+	<div id="dropdown2" class="dropdown">
+	    <a id="dropdown-toggle2" href="#" class="dropdown-toggle">Dropdown <b class="caret"></b></a>
+    </div>
+    <div id="dropdown3" class="dropdown">
+        <a id="dropdown-toggle3" href="#" class="dropdown-toggle">Dropdown <b class="caret"></b></a>
+        <ul id="dropdown-menu3" class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </div>
+<script>
+YUI({
+    coverage: ['aui-dropdown'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-dropdown-tests', function(Y) {
+    
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('aui-dropdown');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>

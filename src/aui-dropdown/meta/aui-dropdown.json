@@ -1,0 +1,15 @@
+{
+    "aui-dropdown": {
+        "requires": [
+            "widget",
+            "widget-stack",
+            "dd-plugin",
+            "dd-constrain",
+            "resize-plugin",
+            "aui-classnamemanager",
+            "aui-widget-cssclass",
+            "aui-widget-toggle",
+            "aui-widget-trigger"
+        ]
+    }
+}
