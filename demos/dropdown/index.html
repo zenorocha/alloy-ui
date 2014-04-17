@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body>
+    <h1>AlloyUI - Dropdown</h1>
+       <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Dropdown <b class="caret"></b></a>
+        </div>
+    <script>
+    YUI({ filter: 'raw' }).use('aui-dropdown', function(Y) {
+
+        new Y.Dropdown({
+            trigger: '.dropdown-toggle',
+            contentBox: '.dropdown',
+            items: [
+                        {label: 'Leroy! Who\'s the masta?!',
+                          fn: function () {console.log('Sho\'nuff');}},
+                        {label: 'May the Force be with you.'},
+                        {divider: true},
+                        {label: 'Rosebud.'}
+                    ]
+        }).render();
+
+    });
+    </script>
+</body>
+</html> 
