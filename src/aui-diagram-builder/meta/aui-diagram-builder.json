@@ -49,6 +49,13 @@
         "skinnable": true
     },
 
+    "aui-diagram-node": {
+        "requires": [
+            "overlay",
+            "aui-diagram-node-manager-base"
+        ]
+    },
+
     "aui-field-support": {
     }
 }
