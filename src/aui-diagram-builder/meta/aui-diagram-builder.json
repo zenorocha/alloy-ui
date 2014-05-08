@@ -1,4 +1,12 @@
 {
+    "aui-available-field": {
+        "requires": [
+            "base",
+            "aui-component",
+            "aui-node"
+        ]
+    },
+
     "aui-diagram-builder": {
         "use": [
             "aui-diagram-builder-base",
@@ -11,6 +19,7 @@
         "requires": [
             "dd",
             "collection",
+            "aui-available-field",
             "aui-tabview",
             "aui-datatable-property-list"
         ],
