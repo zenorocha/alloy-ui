@@ -1526,9 +1526,7 @@ var DiagramBuilder = A.Component.create({
 
 A.DiagramBuilder = DiagramBuilder;
 
-A.DiagramBuilder.types = {};
-
-A.DiagramBuilder.types.node = A.DiagramNode;
+A.namespace('DiagramBuilder.types').node = A.DiagramNode;
 
 /**
  * A base class for DiagramNodeState.
@@ -1643,7 +1641,7 @@ A.DiagramNodeState = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types.state = A.DiagramNodeState;
+A.namespace('DiagramBuilder.types').state = A.DiagramNodeState;
 
 /**
  * A base class for DiagramNodeCondition.
@@ -1743,7 +1741,7 @@ A.DiagramNodeCondition = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types.condition = A.DiagramNodeCondition;
+A.namespace('DiagramBuilder.types').condition = A.DiagramNodeCondition;
 
 /**
  * A base class for DiagramNodeStart.
@@ -1797,7 +1795,7 @@ A.DiagramNodeStart = A.Component.create({
     EXTENDS: A.DiagramNodeState
 });
 
-A.DiagramBuilder.types.start = A.DiagramNodeStart;
+A.namespace('DiagramBuilder.types').start = A.DiagramNodeStart;
 
 /**
  * A base class for DiagramNodeEnd.
@@ -1851,7 +1849,7 @@ A.DiagramNodeEnd = A.Component.create({
     EXTENDS: A.DiagramNodeState
 });
 
-A.DiagramBuilder.types.end = A.DiagramNodeEnd;
+A.namespace('DiagramBuilder.types').end = A.DiagramNodeEnd;
 
 /**
  * A base class for DiagramNodeJoin.
@@ -1935,7 +1933,7 @@ A.DiagramNodeJoin = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types.join = A.DiagramNodeJoin;
+A.namespace('DiagramBuilder.types').join = A.DiagramNodeJoin;
 
 /**
  * A base class for DiagramNodeFork.
@@ -2019,7 +2017,7 @@ A.DiagramNodeFork = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types.fork = A.DiagramNodeFork;
+A.namespace('DiagramBuilder.types').fork = A.DiagramNodeFork;
 
 /**
  * A base class for `A.DiagramNodeTask`.
@@ -2136,4 +2134,4 @@ A.DiagramNodeTask = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types.task = A.DiagramNodeTask;
+A.namespace('DiagramBuilder.types').task = A.DiagramNodeTask;
