@@ -22,6 +22,11 @@
             "jsfiles": [
                 "js/aui-diagram-builder-impl.js"
             ]
+        },
+        "aui-field-support": {
+            "jsfiles": [
+                "js/aui-field-support.js"
+            ]
         }
     }
 }

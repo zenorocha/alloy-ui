@@ -20,6 +20,8 @@
             "dd",
             "collection",
             "aui-available-field",
+            "aui-diagram-node",
+            "aui-field-support",
             "aui-tabview",
             "aui-datatable-property-list"
         ],
@@ -45,5 +47,8 @@
             "aui-diagram-builder-connector"
         ],
         "skinnable": true
+    },
+
+    "aui-field-support": {
     }
 }
