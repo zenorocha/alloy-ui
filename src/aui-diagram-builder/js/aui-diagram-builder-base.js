@@ -37,13 +37,8 @@ var Lang = A.Lang,
     CSS_DIAGRAM_BUILDER_FIELD_ICON = aGetClassName('diagram', 'builder', 'field', 'icon'),
     CSS_DIAGRAM_BUILDER_FIELD_LABEL = aGetClassName('diagram', 'builder', 'field', 'label'),
     CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER = aGetClassName('diagram', 'builder', 'fields', 'container'),
-    CSS_DIAGRAM_BUILDER_TABS = aGetClassName('diagram', 'builder', 'tabs'),
-    CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER = aGetClassName('diagram', 'builder', 'toolbar', 'container'),
     CSS_ICON = aGetClassName('icon'),
-    CSS_LAYOUT = aGetClassName('layout'),
-    CSS_TABBABLE = aGetClassName('tabbable'),
-    CSS_TABBABLE_CONTENT = aGetClassName('tabbable', 'content'),
-    CSS_TABLE_STRIPED = aGetClassName('table', 'striped');
+    CSS_LAYOUT = aGetClassName('layout');
 
 /**
  * A base class for AvailableField.
@@ -614,77 +609,6 @@ var DiagramBuilderBase = A.Component.create({
             valueFn: function() {
                 return A.Node.create(this.FIELDS_CONTAINER_TEMPLATE);
             }
-        },
-
-        /**
-         * Stores an instance of `A.PropertyList`.
-         *
-         * @attribute propertyList
-         * @default null
-         * @type Object
-         */
-        propertyList: {
-            setter: '_setPropertyList',
-            validator: isObject,
-            value: null
-        },
-
-        /**
-         * Collection of strings used to label elements of the UI.
-         *
-         * @attribute strings
-         * @type Object
-         */
-        strings: {
-            value: {
-                addNode: 'Add node',
-                cancel: 'Cancel',
-                close: 'Close',
-                propertyName: 'Property Name',
-                save: 'Save',
-                settings: 'Settings',
-                value: 'Value'
-            }
-        },
-
-        /**
-         * Stores an instance of `A.TabView`.
-         *
-         * @attribute tabView
-         * @default null
-         * @type Object
-         * @writeOnce
-         */
-        tabView: {
-            setter: '_setTabView',
-            validator: isObject,
-            value: null,
-            writeOnce: true
-        },
-
-        /**
-         * Stores an instance of `A.Toolbar`.
-         *
-         * @attribute toolbar
-         * @default null
-         * @type Object
-         */
-        toolbar: {
-            setter: '_setToolbar',
-            validator: isObject,
-            value: null
-        },
-
-        /**
-         * Host node for toolbar created using the `TOOLBAR_CONTAINER_TEMPLATE`
-         * template.
-         *
-         * @attribute toolbarContainer
-         */
-        toolbarContainer: {
-            valueFn: function() {
-                return A.Node.create(this.TOOLBAR_CONTAINER_TEMPLATE);
-            }
         }
     },
 
@@ -699,7 +623,6 @@ var DiagramBuilderBase = A.Component.create({
         contentContainer: '.' + CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER,
         dropContainer: '.' + CSS_DIAGRAM_BUILDER_DROP_CONTAINER,
         fieldsContainer: '.' + CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER,
-        toolbarContainer: '.' + CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER,
         canvas: '.' + CSS_DIAGRAM_BUILDER_CANVAS
     },
 
@@ -727,13 +650,9 @@ var DiagramBuilderBase = A.Component.create({
         DROP_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_DROP_CONTAINER + '"></div>',
         FIELDS_CONTAINER_TEMPLATE: '<ul class="' + [CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER, CSS_CLEARFIX].join(' ') +
             '"></ul>',
-        TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER + '"></div>',
 
         fieldsNode: null,
-        propertyList: null,
         settingsNode: null,
-        tabView: null,
-        toolbar: null,
 
         /**
          * Construction logic executed during `A.DiagramBuilderBase`
@@ -744,12 +663,6 @@ var DiagramBuilderBase = A.Component.create({
          */
         initializer: function() {
             var instance = this;
-
-            instance.publish({
-                cancel: {
-                    defaultFn: instance._defCancelFn
-                }
-            });
 
             instance.after({
                 render: instance._afterRender,
@@ -762,7 +675,6 @@ var DiagramBuilderBase = A.Component.create({
             instance.contentContainer = instance.get('contentContainer');
             instance.dropContainer = instance.get('dropContainer');
             instance.fieldsContainer = instance.get('fieldsContainer');
-            instance.toolbarContainer = instance.get('toolbarContainer');
         },
 
         /**
@@ -802,7 +714,6 @@ var DiagramBuilderBase = A.Component.create({
         renderUI: function() {
             var instance = this;
 
-            instance._renderTabs();
             instance._renderCanvas();
 
             instance._uiSetAvailableFields(
@@ -827,19 +738,6 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * Fires after one or more attributes on the model are changed.
-         *
-         * @method _afterModelChange
-         * @param event
-         * @protected
-         */
-        _afterModelChange: function() {
-            var instance = this;
-
-            instance._handleSaveEvent();
-        },
-
-        /**
          * Fires after `A.DiagramBuilderBase` instance is rendered.
          *
          * @method _afterRender
@@ -850,27 +748,6 @@ var DiagramBuilderBase = A.Component.create({
             var instance = this;
 
             instance.plotFields();
-        },
-
-        /**
-         * Fires after `tabView` selection change.
-         *
-         * @method _afterSelectionChange
-         * @param event
-         * @protected
-         */
-        _afterSelectionChange: function(event) {
-            var instance = this,
-                tabview = event.newVal,
-                tabNode;
-
-            if (tabview) {
-                tabNode = tabview.get('panelNode');
-
-                if (instance.get('rendered') && (tabNode === instance.settingsNode)) {
-                    instance._renderSettings();
-                }
-            }
         },
 
         /**
@@ -885,43 +762,6 @@ var DiagramBuilderBase = A.Component.create({
 
             instance.contentContainer.setStyle('height', isNumber(val) ? val + instance.DEF_UNIT : val);
             instance.dropContainer.setStyle('height', isNumber(val) ? val + instance.DEF_UNIT : val);
-        },
-
-        /**
-         * Selects the `tabView` child at index zero.
-         *
-         * @method _defCancelFn
-         * @param event
-         * @protected
-         */
-        _defCancelFn: function() {
-            var instance = this;
-
-            instance.tabView.selectChild(0);
-        },
-
-        /**
-         * Fires a cancel event.
-         *
-         * @method _handleCancelEvent
-         * @protected
-         */
-        _handleCancelEvent: function() {
-            var instance = this;
-
-            instance.fire('cancel');
-        },
-
-        /**
-         * Fires a save event.
-         *
-         * @method _handleSaveEvent
-         * @protected
-         */
-        _handleSaveEvent: function() {
-            var instance = this;
-
-            instance.fire('save');
         },
 
         /**
@@ -950,74 +790,6 @@ var DiagramBuilderBase = A.Component.create({
             }
             else {
                 contentBox.appendChild(contentContainer);
-            }
-        },
-
-        /**
-         * Creates an instance of `A.PropertyList` in `propertyList` attribute
-         * and renders it.
-         *
-         * @method _renderPropertyList
-         * @protected
-         */
-        _renderPropertyList: function() {
-            var instance = this;
-
-            if (!instance.propertyList) {
-                var propertyList = instance.propertyList = new A.PropertyList(instance.get('propertyList'));
-
-                propertyList.render(instance.settingsNode);
-
-                propertyList.get('boundingBox').unselectable().addClass(CSS_TABLE_STRIPED);
-            }
-        },
-
-        /**
-         * Calls the `_renderPropertyList` and `_renderToolbar` functions.
-         *
-         * @method _renderSettings
-         * @protected
-         */
-        _renderSettings: function() {
-            var instance = this;
-
-            instance._renderPropertyList();
-
-            instance._renderToolbar();
-        },
-
-        /**
-         * Creates an instance of `A.TabView` in `tabView` attribute.
-         *
-         * @method _renderTabs
-         * @protected
-         */
-        _renderTabs: function() {
-            var instance = this;
-
-            if (!instance.tabView) {
-                var tabView = new A.TabView(instance.get('tabView'));
-
-                instance.tabView = tabView;
-                instance.fieldsNode = tabView.item(0).get('panelNode');
-                instance.settingsNode = tabView.item(1).get('panelNode');
-            }
-        },
-
-        /**
-         * Creates an instance of `A.Toolbar` in `toolbar` attribute and renders
-         * it.
-         *
-         * @method _renderToolbar
-         * @protected
-         */
-        _renderToolbar: function() {
-            var instance = this;
-
-            if (!instance.toolbar) {
-                instance.toolbar = new A.Toolbar(
-                    instance.get('toolbar')
-                ).render(instance.settingsNode);
             }
         },
 
@@ -1115,95 +887,6 @@ var DiagramBuilderBase = A.Component.create({
                     nodes: '.' + CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
                 },
                 val || {}
-            );
-        },
-
-        /**
-         * Sets the `propertyList` attribute.
-         *
-         * @method _setPropertyList
-         * @param val
-         * @protected
-         */
-        _setPropertyList: function(val) {
-            var instance = this;
-
-            return A.merge({
-                    bubbleTargets: instance,
-                    scroll: {
-                        height: 400,
-                        width: 'auto'
-                    },
-                    width: '99%'
-                },
-                val
-            );
-        },
-
-        /**
-         * Sets the `tabView` attribute.
-         *
-         * @method _setTabView
-         * @param val
-         * @protected
-         */
-        _setTabView: function(val) {
-            var instance = this,
-                boundingBox = instance.get('boundingBox'),
-                tabViewContentNode = boundingBox.one('.' + CSS_TABBABLE_CONTENT),
-                defaultValue;
-
-            defaultValue = {
-                after: {
-                    selectionChange: A.bind(instance._afterSelectionChange, instance)
-                },
-                boundingBox: boundingBox.one('.' + CSS_TABBABLE),
-                bubbleTargets: instance,
-                cssClass: CSS_DIAGRAM_BUILDER_TABS,
-                render: instance.get('contentBox'),
-                srcNode: tabViewContentNode
-            };
-
-            if (!tabViewContentNode) {
-                var strings = instance.getStrings();
-
-                defaultValue.children = [
-                    {
-                        label: strings.addNode
-                    },
-                    {
-                        label: strings.settings,
-                        disabled: true
-                    }
-                ];
-            }
-
-            return A.merge(defaultValue, val);
-        },
-
-        /**
-         * Sets the `toolbar` attribute.
-         *
-         * @method _setToolbar
-         * @param val
-         * @protected
-         */
-        _setToolbar: function(val) {
-            var instance = this;
-            var strings = instance.getStrings();
-
-            return A.merge({
-                    bubbleTargets: instance,
-                    children: [
-                        {
-                            on: {
-                                click: A.bind(instance._handleCancelEvent, instance)
-                            },
-                            label: strings.close
-                        }
-                    ]
-                },
-                val
             );
         },
 
