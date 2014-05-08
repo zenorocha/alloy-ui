@@ -56,6 +56,12 @@
         ]
     },
 
+    "aui-diagram-node-manager-base": {
+        "requires": [
+            "base"
+        ]
+    },
+
     "aui-field-support": {
     }
 }

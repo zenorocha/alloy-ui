@@ -29,6 +29,13 @@
                 "js/aui-diagram-node.js"
             ]
         },
+
+        "aui-diagram-node-manager-base": {
+            "jsfiles": [
+                "js/aui-diagram-node-manager-base.js"
+            ]
+        },
+
         "aui-field-support": {
             "jsfiles": [
                 "js/aui-field-support.js"
