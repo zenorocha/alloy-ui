@@ -44,7 +44,14 @@
             "overlay",
             "aui-map",
             "aui-diagram-builder-base",
-            "aui-diagram-builder-connector"
+            "aui-diagram-builder-connector",
+            "aui-diagram-node-condition",
+            "aui-diagram-node-end",
+            "aui-diagram-node-fork",
+            "aui-diagram-node-join",
+            "aui-diagram-node-start",
+            "aui-diagram-node-state",
+            "aui-diagram-node-task"
         ],
         "skinnable": true
     },
@@ -59,6 +66,48 @@
     "aui-diagram-node-manager-base": {
         "requires": [
             "base"
+        ]
+    },
+
+    "aui-diagram-node-condition": {
+        "requires": [
+            "aui-diagram-node-state"
+        ]
+    },
+
+    "aui-diagram-node-end": {
+        "requires": [
+            "aui-diagram-node-state"
+        ]
+    },
+
+    "aui-diagram-node-fork": {
+        "requires": [
+            "aui-diagram-node-state"
+        ]
+    },
+
+    "aui-diagram-node-join": {
+        "requires": [
+            "aui-diagram-node-state"
+        ]
+    },
+
+    "aui-diagram-node-start": {
+        "requires": [
+            "aui-diagram-node-state"
+        ]
+    },
+
+    "aui-diagram-node-state": {
+        "requires": [
+            "aui-diagram-node-state"
+        ]
+    },
+
+    "aui-diagram-node-task": {
+        "requires": [
+            "aui-diagram-node-state"
         ]
     },
 
