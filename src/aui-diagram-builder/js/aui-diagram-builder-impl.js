@@ -259,10 +259,6 @@ var DiagramBuilder = A.Component.create({
         renderUI: function() {
             var instance = this;
 
-            if (instance._renderTabs) {
-                instance._renderTabs();
-            }
-
             A.DiagramBuilder.superclass.renderUI.apply(this, arguments);
 
             instance._renderGraphic();

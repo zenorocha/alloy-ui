@@ -243,6 +243,10 @@ var DiagramBuilderBase = A.Component.create({
         renderUI: function() {
             var instance = this;
 
+            if (instance._renderTabs) {
+                instance._renderTabs();
+            }
+
             instance._renderCanvas();
 
             instance._uiSetAvailableFields(
