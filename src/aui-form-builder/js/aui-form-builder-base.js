@@ -21,6 +21,8 @@ var L = A.Lang,
         return (v instanceof A.FormBuilderField);
     },
 
+    formBuilderTypes = A.namespace('FormBuilderTypes'),
+
     getCN = A.getClassName,
 
     AVAILABLE_FIELDS_ID_PREFIX = 'availableFields' + '_' + 'field' + '_',
@@ -319,7 +321,7 @@ var FormBuilder = A.Component.create({
          * @return {Object | null}
          */
         getFieldClass: function(type) {
-            var clazz = A.FormBuilder.types[type];
+            var clazz = formBuilderTypes[type];
 
             if (clazz) {
                 return clazz;
@@ -978,5 +980,3 @@ var FormBuilder = A.Component.create({
 });
 
 A.FormBuilder = FormBuilder;
-
-A.FormBuilder.types = {};
