@@ -23,6 +23,7 @@
             "aui-button",
             "aui-collection",
             "aui-diagram-builder-base",
+            "aui-diagram-builder-settings",
             "aui-sortable-list",
             "aui-tabview"
         ],

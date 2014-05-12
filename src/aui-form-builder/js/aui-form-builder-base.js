@@ -272,6 +272,15 @@ var FormBuilder = A.Component.create({
     UI_ATTRS: ['allowRemoveRequiredFields'],
 
     /**
+     * Static property used to define the augmented classes.
+     *
+     * @property AUGMENTS
+     * @type Array
+     * @static
+     */
+    AUGMENTS: [A.DiagramBuilderSettings],
+
+    /**
      * Static property used to define which component it extends.
      *
      * @property EXTENDS
