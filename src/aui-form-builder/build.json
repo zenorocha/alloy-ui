@@ -13,6 +13,12 @@
             ]
         },
 
+        "aui-form-builder-impl": {
+            "jsfiles": [
+                "js/aui-form-builder-impl.js"
+            ]
+        },
+
         "aui-form-builder-field-base": {
             "jsfiles": [
                 "js/aui-form-builder-field-base.js"
