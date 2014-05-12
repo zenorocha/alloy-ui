@@ -6,10 +6,8 @@
  */
 
 var L = A.Lang,
-    isArray = L.isArray,
     isBoolean = L.isBoolean,
     isObject = L.isObject,
-    isString = L.isString,
 
     aArray = A.Array,
 
@@ -36,144 +34,6 @@ var L = A.Lang,
     CSS_FORM_BUILDER_PLACEHOLDER = getCN('form', 'builder', 'placeholder'),
 
     TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>';
-
-/**
- * A base class for `A.FormBuilderAvailableField`.
- *
- * @class A.FormBuilderAvailableField
- * @extends A.AvailableField
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
- * @constructor
- */
-
-var FormBuilderAvailableField = A.Component.create({
-
-    /**
-     * Static property provides a string to identify the class.
-     *
-     * @property NAME
-     * @type String
-     * @static
-     */
-    NAME: 'availableField',
-
-    /**
-     * Static property used to define the default attribute
-     * configuration for the `A.FormBuilderAvailableField`.
-     *
-     * @property ATTRS
-     * @type Object
-     * @static
-     */
-    ATTRS: {
-
-        /**
-         * List of hidden attributes.
-         *
-         * @attribute hiddenAttributes
-         * @type Array
-         */
-        hiddenAttributes: {
-            validator: isArray
-        },
-
-        /**
-         * The name of the input field.
-         *
-         * @attribute name
-         */
-        name: {},
-
-        /**
-         * Collection of options.
-         *
-         * @attribute options
-         * @type Object
-         */
-        options: {
-            validator: isObject
-        },
-
-        /**
-         * Specifies a predefined value for the input field.
-         *
-         * @attribute predefinedValue
-         */
-        predefinedValue: {},
-
-        /**
-         * List of read-only input fields.
-         *
-         * @attribute readOnlyAttributes
-         * @type Array
-         */
-        readOnlyAttributes: {
-            validator: isArray
-        },
-
-        /**
-         * Checks if an input field is required. In other words, it needs
-         * content to be valid.
-         *
-         * @attribute required
-         * @type Boolean
-         */
-        required: {
-            validator: isBoolean
-        },
-
-        /**
-         * If `true` the label is showed.
-         *
-         * @attribute showLabel
-         * @default true
-         * @type Boolean
-         */
-        showLabel: {
-            validator: isBoolean,
-            value: true
-        },
-
-        /**
-         * Hint to help the user to fill the input field.
-         *
-         * @attribute tip
-         * @type String
-         */
-        tip: {
-            validator: isString
-        },
-
-        /**
-         * Checks if the input field is unique or not.
-         *
-         * @attribute unique
-         * @type Boolean
-         */
-        unique: {
-            validator: isBoolean
-        },
-
-        /**
-         * The width of the input field.
-         *
-         * @attribute width
-         */
-        width: {}
-    },
-
-    /**
-     * Static property used to define which component it extends.
-     *
-     * @property EXTENDS
-     * @type String
-     * @static
-     */
-    EXTENDS: A.AvailableField
-});
-
-A.FormBuilderAvailableField = FormBuilderAvailableField;
 
 /**
  * A base class for `A.FormBuilder`.

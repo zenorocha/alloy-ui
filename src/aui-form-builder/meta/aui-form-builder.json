@@ -1,4 +1,10 @@
 {
+    "aui-form-builder-available-field": {
+        "requires": [
+            "aui-available-field"
+        ]
+    },
+
     "aui-form-builder": {
         "use": [
             "aui-form-builder-base",
@@ -25,7 +31,8 @@
             "aui-diagram-builder-base",
             "aui-diagram-builder-settings",
             "aui-sortable-list",
-            "aui-tabview"
+            "aui-tabview",
+            "aui-form-builder-available-field"
         ],
         "skinnable": true
     },
