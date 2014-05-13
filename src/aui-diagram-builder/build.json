@@ -1,11 +1,6 @@
 {
     "name": "aui-diagram-builder",
     "builds": {
-        "aui-available-field": {
-            "jsfiles": [
-                "js/aui-available-field.js"
-            ]
-        },
         "aui-diagram-builder-base": {
             "jsfiles": [
                 "js/aui-diagram-builder-base.js"

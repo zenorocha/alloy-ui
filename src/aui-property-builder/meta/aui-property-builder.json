@@ -1,4 +1,12 @@
 {
+    "aui-available-field": {
+        "requires": [
+            "base",
+            "aui-component",
+            "aui-node"
+        ]
+    },
+
     "aui-property-builder": {
         "requires": [
             "yui-base"

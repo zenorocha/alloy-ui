@@ -1,12 +1,4 @@
 {
-    "aui-available-field": {
-        "requires": [
-            "base",
-            "aui-component",
-            "aui-node"
-        ]
-    },
-
     "aui-diagram-builder": {
         "use": [
             "aui-diagram-builder-base",
