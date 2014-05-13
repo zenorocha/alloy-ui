@@ -193,6 +193,8 @@ var DiagramBuilderBase = A.Component.create({
         initializer: function() {
             var instance = this;
 
+            this.publish('render');
+
             instance.after({
                 render: instance._afterRender,
                 'model:change': instance._afterModelChange
@@ -243,9 +245,7 @@ var DiagramBuilderBase = A.Component.create({
         renderUI: function() {
             var instance = this;
 
-            if (instance._renderTabs) {
-                instance._renderTabs();
-            }
+            instance.fire('render');
 
             instance._renderCanvas();
 

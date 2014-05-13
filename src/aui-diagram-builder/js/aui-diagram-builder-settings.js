@@ -107,6 +107,10 @@ A.mix(DiagramBuilderSettings.prototype, {
                 defaultFn: this._defCancelFn
             }
         });
+
+        this.on('render', function () {
+            this._renderTabs();
+        });
     },
 
     /**
