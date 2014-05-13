@@ -1,0 +1,7 @@
+{
+    "aui-property-builder": {
+        "requires": [
+            "yui-base"
+        ]
+    }
+}

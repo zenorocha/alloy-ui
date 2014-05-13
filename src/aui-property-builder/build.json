@@ -1,0 +1,10 @@
+{
+    "name": "aui-property-builder",
+    "builds": {
+        "aui-property-builder": {
+            "jsfiles": [
+                "js/aui-property-builder.js"
+            ]
+        }
+    }
+}
