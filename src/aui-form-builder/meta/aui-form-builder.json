@@ -101,7 +101,7 @@
     "aui-form-builder-impl": {
         "requires": [
             "aui-tabview",
-            "aui-diagram-builder-settings"
+            "aui-property-builder-settings"
         ]
     }
 }

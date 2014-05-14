@@ -1,12 +1,12 @@
-var DiagramBuilderSettings;
+var PropertyBuilderSettings;
 
 /**
- * A base class for `A.DiagramBuilderSettings`.
+ * A base class for `A.PropertyBuilderSettings`.
  *
- * @class A.DiagramBuilderSettings
+ * @class A.PropertyBuilderSettings
  * @constructor
  */
-var DiagramBuilderSettings = function() {},
+var PropertyBuilderSettings = function() {},
     CSS_DIAGRAM_BUILDER_TABS = A.getClassName('diagram', 'builder', 'tabs'),
     CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER = A.getClassName('diagram', 'builder', 'toolbar', 'container'),
     CSS_TABBABLE = A.getClassName('tabbable'),
@@ -15,13 +15,13 @@ var DiagramBuilderSettings = function() {},
 
 /**
  * Static property used to define the default attribute
- * configuration for the `A.DiagramBuilderSettings`.
+ * configuration for the `A.PropertyBuilderSettings`.
  *
  * @property ATTRS
  * @type Object
  * @static
  */
-DiagramBuilderSettings.ATTRS = {
+PropertyBuilderSettings.ATTRS = {
     /**
      * Stores an instance of `A.PropertyList`.
      *
@@ -86,11 +86,11 @@ DiagramBuilderSettings.ATTRS = {
  * @extends A.DiagramBuilderBase.HTML_PARSER
  * @static
  */
-DiagramBuilderSettings.HTML_PARSER = A.mix(A.DiagramBuilderBase.HTML_PARSER, {
+PropertyBuilderSettings.HTML_PARSER = A.mix(A.DiagramBuilderBase.HTML_PARSER, {
     toolbarContainer: '.' + CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER
 });
 
-A.mix(DiagramBuilderSettings.prototype, {
+A.mix(PropertyBuilderSettings.prototype, {
     TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER + '"></div>',
 
     propertyList: null,
@@ -342,5 +342,5 @@ A.mix(DiagramBuilderSettings.prototype, {
     }
 });
 
-A.DiagramBuilderSettings = DiagramBuilderSettings;
-// A.DiagramBuilderSettings = A.Base.create('aui-diagram-builder-settings', A.Base, [DiagramBuilderSettings]);
+A.PropertyBuilderSettings = PropertyBuilderSettings;
+// A.PropertyBuilderSettings = A.Base.create('aui-property-builder-settings', A.Base, [PropertyBuilderSettings]);

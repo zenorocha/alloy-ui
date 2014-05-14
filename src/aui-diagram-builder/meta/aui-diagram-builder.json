@@ -36,7 +36,7 @@
             "aui-map",
             "aui-diagram-builder-base",
             "aui-diagram-builder-connector",
-            "aui-diagram-builder-settings",
+            "aui-property-builder-settings",
             "aui-diagram-node-condition",
             "aui-diagram-node-end",
             "aui-diagram-node-fork",
@@ -46,13 +46,6 @@
             "aui-diagram-node-task"
         ],
         "skinnable": true
-    },
-
-    "aui-diagram-builder-settings": {
-        "requires": [
-            "aui-tabview",
-            "aui-datatable-property-list"
-        ]
     },
 
     "aui-diagram-node": {

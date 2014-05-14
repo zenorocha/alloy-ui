@@ -11,5 +11,12 @@
         "requires": [
             "yui-base"
         ]
+    },
+
+    "aui-property-builder-settings": {
+        "requires": [
+            "aui-tabview",
+            "aui-datatable-property-list"
+        ]
     }
 }

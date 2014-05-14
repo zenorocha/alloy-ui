@@ -19,12 +19,6 @@
             ]
         },
 
-        "aui-diagram-builder-settings": {
-            "jsfiles": [
-                "js/aui-diagram-builder-settings.js"
-            ]
-        },
-
         "aui-diagram-node": {
             "jsfiles": [
                 "js/aui-diagram-node.js"

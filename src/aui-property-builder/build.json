@@ -7,6 +7,12 @@
             ]
         },
 
+        "aui-property-builder-settings": {
+            "jsfiles": [
+                "js/aui-property-builder-settings.js"
+            ]
+        },
+
         "aui-property-builder": {
             "jsfiles": [
                 "js/aui-property-builder.js"

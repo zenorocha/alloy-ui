@@ -162,7 +162,7 @@ var DiagramBuilder = A.Component.create({
      * @type Array
      * @static
      */
-    AUGMENTS: [A.DiagramBuilderSettings],
+    AUGMENTS: [A.PropertyBuilderSettings],
 
     /**
      * Static property used to define which component it extends.
