@@ -9,8 +9,14 @@
 
     "aui-property-builder": {
         "requires": [
-            "yui-base"
-        ]
+            "dd",
+            "collection",
+            "aui-available-field",
+            "aui-field-support",
+            "aui-tabview",
+            "aui-datatable-property-list"
+        ],
+        "skinnable": true
     },
 
     "aui-property-builder-settings": {

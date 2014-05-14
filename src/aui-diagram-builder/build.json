@@ -1,12 +1,6 @@
 {
     "name": "aui-diagram-builder",
     "builds": {
-        "aui-diagram-builder-base": {
-            "jsfiles": [
-                "js/aui-diagram-builder-base.js"
-            ]
-        },
-
         "aui-diagram-builder-connector": {
             "jsfiles": [
                 "js/aui-diagram-builder-connector.js"

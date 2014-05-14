@@ -7,8 +7,8 @@ var PropertyBuilderSettings;
  * @constructor
  */
 var PropertyBuilderSettings = function() {},
-    CSS_DIAGRAM_BUILDER_TABS = A.getClassName('diagram', 'builder', 'tabs'),
-    CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER = A.getClassName('diagram', 'builder', 'toolbar', 'container'),
+    CSS_PROPERTY_BUILDER_TABS = A.getClassName('property', 'builder', 'tabs'),
+    CSS_PROPERTY_BUILDER_TOOLBAR_CONTAINER = A.getClassName('property', 'builder', 'toolbar', 'container'),
     CSS_TABBABLE = A.getClassName('tabbable'),
     CSS_TABBABLE_CONTENT = A.getClassName('tabbable', 'content'),
     CSS_TABLE_STRIPED = A.getClassName('table', 'striped');
@@ -83,15 +83,15 @@ PropertyBuilderSettings.ATTRS = {
  *
  * @property HTML_PARSER
  * @type Object
- * @extends A.DiagramBuilderBase.HTML_PARSER
+ * @extends A.PropertyBuilder.HTML_PARSER
  * @static
  */
-PropertyBuilderSettings.HTML_PARSER = A.mix(A.DiagramBuilderBase.HTML_PARSER, {
-    toolbarContainer: '.' + CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER
+PropertyBuilderSettings.HTML_PARSER = A.mix(A.PropertyBuilder.HTML_PARSER, {
+    toolbarContainer: '.' + CSS_PROPERTY_BUILDER_TOOLBAR_CONTAINER
 });
 
 A.mix(PropertyBuilderSettings.prototype, {
-    TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER + '"></div>',
+    TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_PROPERTY_BUILDER_TOOLBAR_CONTAINER + '"></div>',
 
     propertyList: null,
 
@@ -293,7 +293,7 @@ A.mix(PropertyBuilderSettings.prototype, {
             },
             boundingBox: boundingBox.one('.' + CSS_TABBABLE),
             bubbleTargets: instance,
-            cssClass: CSS_DIAGRAM_BUILDER_TABS,
+            cssClass: CSS_PROPERTY_BUILDER_TABS,
             render: instance.get('contentBox'),
             srcNode: tabViewContentNode
         };

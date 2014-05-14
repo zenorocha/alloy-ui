@@ -4,10 +4,10 @@ var AvailableField,
         return A.instanceOf(val, A.Node);
     },
 
-    CSS_DIAGRAM_BUILDER_FIELD = A.getClassName('diagram', 'builder', 'field'),
-    CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = A.getClassName('diagram', 'builder', 'field', 'draggable'),
-    CSS_DIAGRAM_BUILDER_FIELD_ICON = A.getClassName('diagram', 'builder', 'field', 'icon'),
-    CSS_DIAGRAM_BUILDER_FIELD_LABEL = A.getClassName('diagram', 'builder', 'field', 'label'),
+    CSS_PROPERTY_BUILDER_FIELD = A.getClassName('property', 'builder', 'field'),
+    CSS_PROPERTY_BUILDER_FIELD_DRAGGABLE = A.getClassName('property', 'builder', 'field', 'draggable'),
+    CSS_PROPERTY_BUILDER_FIELD_ICON = A.getClassName('property', 'builder', 'field', 'icon'),
+    CSS_PROPERTY_BUILDER_FIELD_LABEL = A.getClassName('property', 'builder', 'field', 'label'),
     CSS_ICON = A.getClassName('icon');
 
 /**
@@ -176,9 +176,9 @@ AvailableField = A.Component.create({
     },
 
     prototype: {
-        FIELD_ITEM_TEMPLATE: '<li class="' + CSS_DIAGRAM_BUILDER_FIELD + '">' + '<span class="' + [CSS_ICON,
-            CSS_DIAGRAM_BUILDER_FIELD_ICON].join(' ') +
-            ' {iconClass}"></span>' + '<div class="' + CSS_DIAGRAM_BUILDER_FIELD_LABEL + '"></div>' + '</li>',
+        FIELD_ITEM_TEMPLATE: '<li class="' + CSS_PROPERTY_BUILDER_FIELD + '">' + '<span class="' + [CSS_ICON,
+            CSS_PROPERTY_BUILDER_FIELD_ICON].join(' ') +
+            ' {iconClass}"></span>' + '<div class="' + CSS_PROPERTY_BUILDER_FIELD_LABEL + '"></div>' + '</li>',
 
         /**
          * Construction logic executed during `A.AvailableField` instantiation.
@@ -197,7 +197,7 @@ AvailableField = A.Component.create({
                 labelChange: instance._afterLabelChange
             });
 
-            instance.labelNode = node.one('.' + CSS_DIAGRAM_BUILDER_FIELD_LABEL);
+            instance.labelNode = node.one('.' + CSS_PROPERTY_BUILDER_FIELD_LABEL);
 
             instance._uiSetDraggable(
                 instance.get('draggable')
@@ -278,7 +278,7 @@ AvailableField = A.Component.create({
         _uiSetDraggable: function(val) {
             var instance = this;
 
-            instance.get('node').toggleClass(CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE, val);
+            instance.get('node').toggleClass(CSS_PROPERTY_BUILDER_FIELD_DRAGGABLE, val);
         },
 
         /**

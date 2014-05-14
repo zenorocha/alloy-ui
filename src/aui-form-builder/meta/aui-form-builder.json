@@ -19,7 +19,7 @@
             "transition",
             "aui-button",
             "aui-collection",
-            "aui-diagram-builder-base",
+            "aui-property-builder",
             "aui-sortable-list",
             "aui-form-builder-available-field",
             "aui-form-builder-field-base",

@@ -14,7 +14,7 @@ var Lang = A.Lang,
 
     aGetClassName = A.getClassName,
 
-    CSS_DIAGRAM_BUILDER_FIELD = aGetClassName('diagram', 'builder', 'field'),
+    CSS_PROPERTY_BUILDER_FIELD = aGetClassName('property', 'builder', 'field'),
     CSS_DIAGRAM_NODE = aGetClassName('diagram', 'node'),
     CSS_DIAGRAM_NODE_CONTENT = aGetClassName('diagram', 'node', 'content'),
     CSS_DIAGRAM_NODE_EDITING = aGetClassName('diagram', 'node', 'editing'),
@@ -34,7 +34,7 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/diagram-builder/).
  *
  * @class A.DiagramBuilder
- * @extends A.DiagramBuilderBase
+ * @extends A.PropertyBuilder
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
@@ -171,7 +171,7 @@ var DiagramBuilder = A.Component.create({
      * @type String
      * @static
      */
-    EXTENDS: A.DiagramBuilderBase,
+    EXTENDS: A.PropertyBuilder,
 
     /**
      * The index of the fields tab.
@@ -1195,7 +1195,7 @@ var DiagramBuilder = A.Component.create({
                 boundingBox.addClass('popover');
 
                 boundingBox.delegate('click', A.bind(instance._onSuggestConnectorNodeClick, instance), '.' +
-                    CSS_DIAGRAM_BUILDER_FIELD);
+                    CSS_PROPERTY_BUILDER_FIELD);
             }
 
             return val;

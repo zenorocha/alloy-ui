@@ -28,7 +28,7 @@ var L = A.Lang,
     FIELDS_ID_PREFIX = 'fields' + '_' + 'field' + '_',
 
     CSS_DD_DRAGGING = getCN('dd', 'dragging'),
-    CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = getCN('diagram', 'builder', 'field', 'draggable'),
+    CSS_PROPERTY_BUILDER_FIELD_DRAGGABLE = getCN('property', 'builder', 'field', 'draggable'),
     CSS_FIELD_HOVER = getCN('form', 'builder', 'field', 'hover'),
     CSS_FORM_BUILDER_DROP_ZONE = getCN('form', 'builder', 'drop', 'zone'),
     CSS_FORM_BUILDER_FIELD = getCN('form', 'builder', 'field'),
@@ -40,7 +40,7 @@ var L = A.Lang,
  * A base class for `A.FormBuilderBase`.
  *
  * @class A.FormBuilderBase
- * @extends A.DiagramBuilderBase
+ * @extends A.PropertyBuilder
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
@@ -88,7 +88,7 @@ var FormBuilderBase = A.Component.create({
      * @type String
      * @static
      */
-    EXTENDS: A.DiagramBuilderBase,
+    EXTENDS: A.PropertyBuilder,
 
     /**
      * Static property used to define the fields tab.
@@ -755,7 +755,7 @@ var FormBuilderBase = A.Component.create({
 
             if (!instance.availableFieldsSortableList) {
                 var availableFieldsNodes = instance.fieldsContainer.all(
-                    '.' + CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
+                    '.' + CSS_PROPERTY_BUILDER_FIELD_DRAGGABLE
                 );
 
                 instance.availableFieldsSortableList = new A.SortableList(

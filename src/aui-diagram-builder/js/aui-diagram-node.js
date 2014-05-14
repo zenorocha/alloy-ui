@@ -51,7 +51,7 @@ var DiagramNode,
     },
 
     isDiagramBuilder = function(val) {
-        return A.instanceOf(val, A.DiagramBuilderBase);
+        return A.instanceOf(val, A.PropertyBuilder);
     },
 
     isMap = function(val) {
@@ -105,7 +105,7 @@ DiagramNode = A.Component.create({
     ATTRS: {
 
         /**
-         * Stores an instance of `A.DiagramBuilderBase`.
+         * Stores an instance of `A.PropertyBuilder`.
          *
          * @attribute builder
          * @type DiagramBuilder
