@@ -112,7 +112,6 @@ A.Modal = A.Base.create('modal', A.Widget, [
      * Fire after `backdrop` attribute change.
      *
      * @method _afterBackdropChange
-     * @param event
      * @protected
      */
     _afterBackdropChange: function() {
