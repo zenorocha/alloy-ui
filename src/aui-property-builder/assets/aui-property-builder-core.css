@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'property-builder-icons';
+    src:url('fonts/property-builder.eot');
+    src:url('fonts/property-builder.eot') format('embedded-opentype'),
+        url('fonts/property-builder.woff') format('woff'),
+        url('fonts/property-builder.ttf') format('truetype'),
+        url('fonts/property-builder.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .property-builder {
     margin: 0;
 }
