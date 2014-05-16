@@ -1,0 +1,61 @@
+.diagram-node {
+    cursor: move;
+    position: absolute;
+}
+
+.diagram-node-label {
+    text-align: center;
+}
+
+.property-builder-field .icon:before, .diagram-node-content:before {
+    font-family: 'property-builder-icons';
+}
+
+.property-builder-field .icon:before {
+    font-size: 200%;
+}
+
+.diagram-node-content:before {
+    font-size: 300%;
+}
+
+.diagram-builder-anchor-node {
+    content: "\e009";
+    font-size: 100%;
+}
+
+.diagram-builder-anchor-hover:hover, .diagram-builder-anchor-node.yui3-dd-drop-active-valid:hover {
+    content: "\e00b";
+}
+
+.diagram-builder-anchor-node.yui3-dd-drop-over {
+    opacity: 0.9;
+}
+
+.diagram-node-task-icon:before, .diagram-node-task .diagram-node-content:before {
+    content: "\e00d";
+}
+
+.diagram-node-fork-icon:before, .diagram-node-fork .diagram-node-content:before {
+    content: "\e00c";
+}
+
+.diagram-node-join-icon:before, .diagram-node-join .diagram-node-content:before {
+    content: "\e00f";
+}
+
+.diagram-node-state-icon:before, .diagram-node-state .diagram-node-content:before {
+    content: "\e009";
+}
+
+.diagram-node-end-icon:before, .diagram-node-end .diagram-node-content:before {
+    content: "\e00a";
+}
+
+.diagram-node-start-icon:before, .diagram-node-start .diagram-node-content:before {
+    content: "\e00b";
+}
+
+.diagram-node-condition-icon:before, .diagram-node-condition .diagram-node-content:before {
+    content: "\e00e";
+}

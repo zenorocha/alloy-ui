@@ -34,70 +34,55 @@
     background-repeat: no-repeat;
 }
 
-.form-builder-field-icon-button {
-    background-image: url(icon-button.png);
+.form-builder-field-icon:before {
+    font-family: 'property-builder-icons';
+    font-size: 200%;
 }
 
-.form-builder-field-icon-checkbox {
-    background-image: url(icon-checkbox.png);
+.form-builder-field-icon-button:before {
+    content: "\e010";
 }
 
-.form-builder-field-icon-date {
-    background-image: url(icon-date.png);
+.form-builder-field-icon-checkbox:before {
+    content: "\e008";
 }
 
-.form-builder-field-icon-decimal {
-    background-image: url(icon-decimal.png);
+.form-builder-field-icon-default:before {
+    content: "\e012";
 }
 
-.form-builder-field-icon-default {
-    background-image: url(icon-default.png);
+.form-builder-field-icon-fieldset:before {
+    content: "\e011";
 }
 
-.form-builder-field-icon-document {
-    background-image: url(icon-document.png);
+.form-builder-field-icon-fileupload:before {
+    content: "\e015";
 }
 
-.form-builder-field-icon-fieldset {
-    background-image: url(icon-fieldset.png);
+.form-builder-field-icon-integer:before {
+    content: "\e005";
 }
 
-.form-builder-field-icon-fileupload {
-    background-image: url(icon-fileupload.png);
+.form-builder-field-icon-number:before {
+    content: "\e004";
 }
 
-.form-builder-field-icon-integer {
-    background-image: url(icon-integer.png);
+.form-builder-field-icon-radio:before {
+    content: "\e003";
 }
 
-.form-builder-field-icon-number {
-    background-image: url(icon-number.png);
+.form-builder-field-icon-select:before {
+    content: "\e002";
 }
 
-.form-builder-field-icon-paragraph {
-    background-image: url(icon-paragraph.png);
+.form-builder-field-icon-separator:before {
+    content: "\e013";
 }
 
-.form-builder-field-icon-password {
-    background-image: url(icon-password.png);
+.form-builder-field-icon-text:before {
+    content: "\e000";
 }
 
-.form-builder-field-icon-radio {
-    background-image: url(icon-radio.png);
-}
-
-.form-builder-field-icon-select {
-    background-image: url(icon-select.png);
-}
-
-.form-builder-field-icon-separator {
-    background-image: url(icon-separator.png);
-}
-
-.form-builder-field-icon-text {
-    background-image: url(icon-text.png);
-}
-
-.form-builder-field-icon-textarea {
-    background-image: url(icon-textarea.png);
+.form-builder-field-icon-textarea:before {
+    content: "\e001";
 }
