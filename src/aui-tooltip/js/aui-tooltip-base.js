@@ -137,7 +137,8 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
             trigger,
             dataTitle,
             formatter,
-            title;
+            title,
+            value;
 
         formatter = instance.get('formatter');
         trigger = instance.get('trigger');
@@ -157,8 +158,13 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
             trigger.removeAttribute('title').setAttribute('data-title', title);
         }
 
-        instance.setStdModContent(
-            A.WidgetStdMod.BODY, trigger && title || instance.get('bodyContent'));
+        value = trigger && title || instance.get('bodyContent');
+
+        if (!instance.get('unescapeValue')) {
+            value = A.Escape.html(value);
+        }
+
+        instance.setStdModContent(A.WidgetStdMod.BODY, value);
     },
 
     /**
@@ -262,6 +268,19 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         triggerShowEvent: {
             validator: Lang.isString,
             value: 'mouseenter'
+        },
+
+        /**
+         * Unescape the tooltip content allowing arbitary HTML to be
+         * inserted inside the tooltip without being escaped as plain text.
+         *
+         * @attribute unescapeValue
+         * @default false
+         * @type Boolean
+         */
+        unescapeValue: {
+            value: false,
+            validator: A.Lang.isBoolean
         }
     },
 
