@@ -208,7 +208,8 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
         },
 
         /**
-         * Unescape value.
+         * Unescape the tooltip content allowing arbitary HTML to be
+         * inserted inside the tooltip without being escaped as plain text.
          *
          * @attribute unescapeValue
          * @default false
