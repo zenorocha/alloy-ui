@@ -1153,4 +1153,4 @@ var FormBuilderField = A.Component.create({
 
 A.FormBuilderField = FormBuilderField;
 
-A.FormBuilder.types.field = A.FormBuilderField;
+A.namespace('FormBuilderTypes').field = A.FormBuilderField;

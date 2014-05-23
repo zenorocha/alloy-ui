@@ -112,4 +112,4 @@ var FormBuilderTextAreaField = A.Component.create({
 
 A.FormBuilderTextAreaField = FormBuilderTextAreaField;
 
-A.FormBuilder.types.textarea = A.FormBuilderTextAreaField;
+A.namespace('FormBuilderTypes').textarea = A.FormBuilderTextAreaField;

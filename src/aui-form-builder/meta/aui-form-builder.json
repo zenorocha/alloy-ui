@@ -1,17 +1,14 @@
 {
+    "aui-form-builder-available-field": {
+        "requires": [
+            "aui-available-field"
+        ]
+    },
+
     "aui-form-builder": {
         "use": [
             "aui-form-builder-base",
-            "aui-form-builder-field-base",
-            "aui-form-builder-field-button",
-            "aui-form-builder-field-checkbox",
-            "aui-form-builder-field-fieldset",
-            "aui-form-builder-field-file-upload",
-            "aui-form-builder-field-multiple-choice",
-            "aui-form-builder-field-radio",
-            "aui-form-builder-field-select",
-            "aui-form-builder-field-text",
-            "aui-form-builder-field-textarea"
+            "aui-form-builder-impl"
         ],
         "skinnable": true
     },
@@ -22,9 +19,19 @@
             "transition",
             "aui-button",
             "aui-collection",
-            "aui-diagram-builder-base",
+            "aui-property-builder",
             "aui-sortable-list",
-            "aui-tabview"
+            "aui-form-builder-available-field",
+            "aui-form-builder-field-base",
+            "aui-form-builder-field-button",
+            "aui-form-builder-field-checkbox",
+            "aui-form-builder-field-fieldset",
+            "aui-form-builder-field-file-upload",
+            "aui-form-builder-field-multiple-choice",
+            "aui-form-builder-field-radio",
+            "aui-form-builder-field-select",
+            "aui-form-builder-field-text",
+            "aui-form-builder-field-textarea"
         ],
         "skinnable": true
     },
@@ -88,6 +95,13 @@
     "aui-form-builder-field-textarea": {
         "requires": [
             "aui-form-builder-field-base"
+        ]
+    },
+
+    "aui-form-builder-impl": {
+        "requires": [
+            "aui-tabview",
+            "aui-property-builder-settings"
         ]
     }
 }
