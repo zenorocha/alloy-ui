@@ -127,6 +127,21 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
     },
 
     /**
+     * If the HTML title attribute exists, copy its contents to data-title
+     * and remove it to prevent the browser's native tooltip.
+     *
+     * @private
+     */
+    _removeTitleHtmlAttribute: function() {
+        var trigger = this.get('trigger'),
+            title = trigger.getAttribute('title');
+
+        if (title) {
+            trigger.setAttribute('data-title', title).removeAttribute('title');
+        }
+    },
+
+    /**
      * Load tooltip content from trigger title attribute.
      *
      * @method _loadBodyContentFromTitle
@@ -135,9 +150,8 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
     _loadBodyContentFromTitle: function() {
         var instance = this,
             trigger,
-            dataTitle,
             formatter,
-            title;
+            value;
 
         formatter = instance.get('formatter');
         trigger = instance.get('trigger');
@@ -146,19 +160,19 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
             return;
         }
 
-        dataTitle = trigger.getAttribute('data-title');
-        title = trigger.getAttribute('title') || dataTitle;
+        this._removeTitleHtmlAttribute();
+
+        value = trigger.getAttribute('data-title') || this.get('title');
 
         if (formatter) {
-            title = formatter.call(instance, title);
+            value = formatter.call(instance, value);
         }
 
-        if (!dataTitle) {
-            trigger.removeAttribute('title').setAttribute('data-title', title);
+        if (!instance.get('unescapeValue')) {
+            value = A.Escape.html(value);
         }
 
-        instance.setStdModContent(
-            A.WidgetStdMod.BODY, trigger && title || instance.get('bodyContent'));
+        instance.setStdModContent(A.WidgetStdMod.BODY, value);
     },
 
     /**
@@ -253,6 +267,16 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         },
 
         /**
+         * Title of the tooltip.
+         *
+         * @type {String}
+         */
+        title: {
+            validator: Lang.isString,
+            value: ''
+        },
+
+        /**
          * DOM event to show the tooltip.
          *
          * @attribute triggerShowEvent
@@ -262,6 +286,19 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         triggerShowEvent: {
             validator: Lang.isString,
             value: 'mouseenter'
+        },
+
+        /**
+         * Unescape the tooltip content allowing arbitary HTML to be
+         * inserted inside the tooltip without being escaped as plain text.
+         *
+         * @attribute unescapeValue
+         * @default false
+         * @type Boolean
+         */
+        unescapeValue: {
+            value: false,
+            validator: A.Lang.isBoolean
         }
     },
 

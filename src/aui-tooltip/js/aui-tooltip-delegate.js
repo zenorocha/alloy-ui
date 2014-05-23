@@ -84,6 +84,7 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
                 formatter: instance.get('formatter'),
                 opacity: instance.get('opacity'),
                 position: instance.get('position'),
+                unescapeValue: instance.get('unescapeValue'),
                 visible: false,
                 zIndex: instance.get('zIndex')
             });
@@ -204,6 +205,18 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
             validator: Lang.isString,
             value: 'mouseenter',
             writeOnce: true
+        },
+
+        /**
+         * Unescape value.
+         *
+         * @attribute unescapeValue
+         * @default false
+         * @type Boolean
+         */
+        unescapeValue: {
+            value: false,
+            validator: A.Lang.isBoolean
         },
 
         /**
