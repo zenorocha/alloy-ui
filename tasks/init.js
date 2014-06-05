@@ -1,13 +1,11 @@
 var gulp = require('gulp');
-var shell = require('gulp-shell');
+var run = require('gulp-run');
 
 gulp.task('init-bower', function() {
     var cmd = 'bower install';
 
     return gulp.src('', { read: false })
-        .pipe(shell(cmd, {
-            ignoreErrors: true
-        }));
+        .pipe(run(cmd));
 });
 
 gulp.task('init', ['init-bower'], function() {

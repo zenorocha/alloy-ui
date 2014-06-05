@@ -1,7 +1,7 @@
 var alloy = require('../.alloy');
 var gulp = require('gulp');
 var path = require('path');
-var shell = require('gulp-shell');
+var run = require('gulp-run');
 
 gulp.task('build', ['init'], function() {
     var cmd = ['shifter'];
@@ -24,8 +24,7 @@ gulp.task('build', ['init'], function() {
     cmd = cmd.join(' ');
 
     return gulp.src('', { read: false })
-        .pipe(shell(cmd, {
-            cwd: cwd,
-            ignoreErrors: true
+        .pipe(run(cmd, {
+            cwd: cwd
         }));
 });
