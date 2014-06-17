@@ -154,9 +154,29 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "anim",
             "node-event-delegate",
-            "aui-component"
+            "aui-component",
+            "aui-widget-responsive"
         ],
         "skinnable": true
+    },
+    "aui-carousel-swipe": {
+        "requires": [
+            "aui-carousel",
+            "aui-widget-swipe",
+            "base-build"
+        ],
+        "skinnable": true
+    },
+    "aui-carousel-touch": {
+        "condition": {
+            "name": "aui-carousel-touch",
+            "trigger": "aui-carousel",
+            "ua": "touchEnabled"
+        },
+        "requires": [
+            "aui-carousel-swipe",
+            "base-build"
+        ]
     },
     "aui-char-counter": {
         "requires": [
@@ -578,6 +598,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-image-viewer-base": {
         "requires": [
             "anim",
+            "imageloader",
             "widget",
             "widget-modality",
             "widget-position",
@@ -588,6 +609,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-event",
             "aui-node-base",
             "aui-widget-cssclass",
+            "aui-widget-responsive",
             "aui-widget-toggle"
         ],
         "skinnable": true
@@ -607,6 +629,19 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-pagination",
             "aui-toolbar"
         ]
+    },
+    "aui-image-viewer-swipe": {
+        "condition": {
+            "name": "aui-image-viewer-swipe",
+            "trigger": "aui-image-viewer-base",
+            "ua": "touchEnabled"
+        },
+        "requires": [
+            "aui-image-viewer-base",
+            "aui-widget-swipe",
+            "event-resize"
+        ],
+        "skinnable": true
     },
     "aui-io": {
         "use": [
@@ -651,7 +686,6 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-stdmod",
             "dd-plugin",
             "dd-constrain",
-            "resize-plugin",
             "timers",
             "aui-classnamemanager",
             "aui-widget-cssclass",
@@ -659,6 +693,19 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-toolbars"
         ],
         "skinnable": true
+    },
+    "aui-modal-resize": {
+        "condition": {
+            "name": "aui-modal-resize",
+            "test": function(A) {
+    return !A.UA.mobile;
+},
+            "trigger": "aui-modal"
+        },
+        "requires": [
+            "aui-modal",
+            "resize-plugin"
+        ]
     },
     "aui-node": {
         "use": [
@@ -735,7 +782,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-component",
-            "aui-node-base"
+            "aui-node-base",
+            "event-resize"
         ],
         "skinnable": true
     },
@@ -1040,12 +1088,14 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-stdmod",
             "aui-classnamemanager",
             "aui-component",
+            "aui-debounce",
             "aui-widget-cssclass",
             "aui-widget-toggle",
             "aui-widget-transition",
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
-            "aui-node-base"
+            "aui-node-base",
+            "event-resize"
         ],
         "skinnable": true
     },
@@ -1154,6 +1204,19 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-stdmod"
         ]
     },
+    "aui-widget-responsive": {
+        "requires": [
+            "event-resize",
+            "widget-base"
+        ]
+    },
+    "aui-widget-swipe": {
+        "requires": [
+            "classnamemanager",
+            "scrollview-base",
+            "scrollview-paginator"
+        ]
+    },
     "aui-widget-toggle": {},
     "aui-widget-toolbars": {
         "requires": [
@@ -1172,4 +1235,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'f452b780b344519d5790e322b997d695';
+YUI.Env[Y.version].md5 = '2e46866c053a439706272e3ec55c778f';

@@ -144,9 +144,29 @@
         "requires": [
             "anim",
             "node-event-delegate",
-            "aui-component"
+            "aui-component",
+            "aui-widget-responsive"
         ],
         "skinnable": true
+    },
+    "aui-carousel-swipe": {
+        "requires": [
+            "aui-carousel",
+            "aui-widget-swipe",
+            "base-build"
+        ],
+        "skinnable": true
+    },
+    "aui-carousel-touch": {
+        "condition": {
+            "name": "aui-carousel-touch",
+            "trigger": "aui-carousel",
+            "ua": "touchEnabled"
+        },
+        "requires": [
+            "aui-carousel-swipe",
+            "base-build"
+        ]
     },
     "aui-char-counter": {
         "requires": [
@@ -554,6 +574,7 @@
     "aui-image-viewer-base": {
         "requires": [
             "anim",
+            "imageloader",
             "widget",
             "widget-modality",
             "widget-position",
@@ -564,6 +585,7 @@
             "aui-event",
             "aui-node-base",
             "aui-widget-cssclass",
+            "aui-widget-responsive",
             "aui-widget-toggle"
         ],
         "skinnable": true
@@ -583,6 +605,19 @@
             "aui-pagination",
             "aui-toolbar"
         ]
+    },
+    "aui-image-viewer-swipe": {
+        "condition": {
+            "name": "aui-image-viewer-swipe",
+            "trigger": "aui-image-viewer-base",
+            "ua": "touchEnabled"
+        },
+        "requires": [
+            "aui-image-viewer-base",
+            "aui-widget-swipe",
+            "event-resize"
+        ],
+        "skinnable": true
     },
     "aui-io": {
         "use": [
@@ -627,7 +662,6 @@
             "widget-stdmod",
             "dd-plugin",
             "dd-constrain",
-            "resize-plugin",
             "timers",
             "aui-classnamemanager",
             "aui-widget-cssclass",
@@ -635,6 +669,17 @@
             "aui-widget-toolbars"
         ],
         "skinnable": true
+    },
+    "aui-modal-resize": {
+        "condition": {
+            "name": "aui-modal-resize",
+            "test": "aui-modal-resize-test.js",
+            "trigger": "aui-modal"
+        },
+        "requires": [
+            "aui-modal",
+            "resize-plugin"
+        ]
     },
     "aui-node": {
         "use": [
@@ -711,7 +756,8 @@
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-component",
-            "aui-node-base"
+            "aui-node-base",
+            "event-resize"
         ],
         "skinnable": true
     },
@@ -1016,12 +1062,14 @@
             "widget-stdmod",
             "aui-classnamemanager",
             "aui-component",
+            "aui-debounce",
             "aui-widget-cssclass",
             "aui-widget-toggle",
             "aui-widget-transition",
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
-            "aui-node-base"
+            "aui-node-base",
+            "event-resize"
         ],
         "skinnable": true
     },
@@ -1128,6 +1176,19 @@
         "requires": [
             "widget-position-align",
             "widget-stdmod"
+        ]
+    },
+    "aui-widget-responsive": {
+        "requires": [
+            "event-resize",
+            "widget-base"
+        ]
+    },
+    "aui-widget-swipe": {
+        "requires": [
+            "classnamemanager",
+            "scrollview-base",
+            "scrollview-paginator"
         ]
     },
     "aui-widget-toggle": {},
