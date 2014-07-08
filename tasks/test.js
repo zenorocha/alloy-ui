@@ -13,6 +13,12 @@ gulp.task('test', function(callback) {
         .on('exit', callback);
 });
 
+gulp.task('coverage', function(callback) {
+    var args = ['test', '--coverage', '--coverdir', ROOT + '/coverage'];
+    var cmd = 'yogi';
+
+    spawn(cmd, args, CWD)
+        .on('exit', callback);
 });
 
 gulp.task('test-browser', function(callback) {
