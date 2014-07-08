@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var path = require('path');
 var spawn = require('spawn-local-bin');
 
@@ -12,6 +13,21 @@ gulp.task('test', function(callback) {
     spawn(cmd, args, CWD)
         .on('exit', function() {
             callback();
+        });
+});
+
+gulp.task('test-coverage', function(callback) {
+    var args = ['test', '--coverage',
+        '--coverdir', path.join(ROOT, 'coverage')];
+    var cmd = 'yogi';
+
+    spawn(cmd, args, CWD)
+        .on('exit', function(err) {
+            if (err === 0) {
+                gutil.log('See results with gulp report or gulp report-html');
+            }
+
+            callback(err);
         });
 });
 
