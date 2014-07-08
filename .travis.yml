@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+    - "0.10"
+install:
+    - "npm install -g codeclimate-test-reporter"
+    - "npm install -g istanbul"
+    - "npm install"
+    - "gulp init"
+    - "gulp build"
+script:
+    - "gulp lint"
+    - "gulp coverage"
+    - "istanbul report --root coverage text"
+after_script:
+    - "codeclimate < coverage/lcov.info"
+addons:
+    code_climate:
+        repo_token:
+            secure: "CODE-CLIMATE-ENCRYPTED-REPO-TOKEN"
+notifications:
+    irc: "chat.freenode.net#alloyui"
+    email: false
+    slack:
+        secure: "SLACK-ENCRYPTED-REPO-TOKEN"
