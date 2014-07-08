@@ -6,7 +6,7 @@ var ROOT = path.join(__dirname, '..');
 var CWD = process.env.INIT_CWD;
 
 gulp.task('test', function(callback) {
-    var args = ['test'];
+    var args = ['test', '--coverage'];
     var cmd = 'yogi';
 
     spawn(cmd, args, CWD)
