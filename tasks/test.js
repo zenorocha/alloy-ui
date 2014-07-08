@@ -10,9 +10,9 @@ gulp.task('test', function(callback) {
     var cmd = 'yogi';
 
     spawn(cmd, args, CWD)
-        .on('exit', function() {
-            callback();
-        });
+        .on('exit', callback);
+});
+
 });
 
 gulp.task('test-browser', function(callback) {
@@ -24,7 +24,6 @@ gulp.task('test-browser', function(callback) {
     }
 
     spawn(cmd, args, CWD)
-        .on('exit', function() {
-            callback();
-        });
+        .on('exit', callback);
 });
+
