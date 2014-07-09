@@ -4,17 +4,8 @@
  * @module aui-image-cropper
  */
 
-var Lang = A.Lang,
-    isBoolean = Lang.isBoolean,
-    isNumber = Lang.isNumber,
-
-    toInt = Lang.toInt,
-
-    CSS_CROP = A.getClassName('image-cropper', 'crop'),
-    CSS_CROP_OUTLINE = A.getClassName('image-cropper', 'crop', 'outline'),
-    CSS_OVERLAY = A.getClassName('image-cropper', 'overlay'),
-    CSS_OVERLAY_HOVER = A.getClassName('image-cropper', 'crop', 'hover');
-
+var CSS_IMAGE_CROPPER_CROP = A.getClassName('image', 'cropper', 'crop'),
+    CSS_IMAGE_CROPPER_IMAGE = A.getClassName('image', 'cropper', 'image');
 /**
  * A base class for Image Cropper.
  *
@@ -28,24 +19,503 @@ var Lang = A.Lang,
  * @include http://alloyui.com/examples/image-cropper/basic-markup.html
  * @include http://alloyui.com/examples/image-cropper/basic.js
  */
-var ImageCropper = A.Component.create({
-    /**
-     * Static property provides a string to identify the class.
-     *
-     * @property NAME
-     * @type String
-     * @static
-     */
-    NAME: 'image-cropper',
+
+var ImageCropper = A.Base.create('image-cropper', A.Widget, [
+    A.WidgetCssClass
+], {
+    CONTENT_TEMPLATE: null,
 
     /**
-     * Static property used to define the default attribute
-     * configuration for the Image Cropper.
+     * Binds the events on the `A.ImageCropper` UI. Lifecycle.
      *
-     * @property ATTRS
-     * @type Object
-     * @static
+     * @method bindUI
+     * @protected
      */
+    bindUI: function() {
+        var instance = this;
+
+        instance._fireCropEventTask = A.debounce(instance._fireCropEvent, 10, instance);
+
+        instance.after('xChange', instance._afterXChange);
+        instance.after('yChange', instance._afterYChange);
+
+        instance.after('cropHeightChange', instance._afterCropHeightChange);
+        instance.after('cropWidthChange', instance._afterCropWidthChange);
+
+        instance.after('minHeightChange', instance._afterMinHeightChange);
+        instance.after('minWidthChange', instance._afterMinWidthChange);
+
+        instance.after('movableChange', instance._afterMovableChange);
+        instance.after('resizableChange', instance._afterResizableChange);
+        instance.after('preserveRatioChange', instance._afterPreserveRatioChange);
+
+        instance.after(['drag:drag', 'resize:resize'], instance._syncRegion);
+
+        instance.after(
+                ['xChange', 'yChange', 'cropWidthChange', 'cropHeightChange'],
+            function(event) {
+                instance._fireCropEventTask(event);
+                instance._syncCropNodeUI();
+            }
+        );
+
+        instance._bindDrag();
+        instance._bindResize();
+
+        A.after('windowresize', function() {
+            instance._syncRegion();
+            instance.syncUI();
+        });
+    },
+
+    /**
+     * Syncs the `A.ImageCropper` UI. Lifecycle.
+     *
+     * @method syncUI
+     * @protected
+     */
+    syncUI: function() {
+
+        this._syncImageSize();
+
+        this._uiSetCropWidth(this.get('cropWidth'));
+        this._uiSetCropHeight(this.get('cropHeight'));
+
+        this._uiSetX(this.get('x'));
+        this._uiSetY(this.get('y'));
+
+        this._uiSetMovable(this.get('movable'));
+        this._uiSetResizable(this.get('resizable'));
+
+        this._syncBackgroundImage();
+        this._syncCropNodeUI();
+    },
+
+    /**
+     * Render the Image Cropper component instance. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
+    renderUI: function() {
+        var boundingBox = this.get('boundingBox');
+
+        this._cropNode = A.Node.create('<div class="' + CSS_IMAGE_CROPPER_CROP + '"></div>');
+        this.get('image').addClass(CSS_IMAGE_CROPPER_IMAGE);
+
+        boundingBox.append(this.get('image'));
+        boundingBox.append(this._cropNode);
+    },
+
+    /**
+     * Fires after the `minHeight` attribute changes.
+     *
+     * @method _afterMinHeightChange
+     * @protected
+     */
+    _afterMinHeightChange: function(event) {
+        this._uiSetMinHeight(event.newVal);
+    },
+
+    /**
+     * Fires after the `minWidth` attribute changes.
+     *
+     * @method _afterMinWidthChange
+     * @protected
+     */
+    _afterMinWidthChange: function(event) {
+        this._uiSetMinWidth(event.newVal);
+    },
+
+    /**
+     * Fires after `movable` attribute changes.
+     *
+     * @method _afterMovableChange
+     * @param event
+     * @protected
+     */
+    _afterMovableChange: function(event) {
+        this._uiSetMovable(event.newVal);
+    },
+
+    /**
+     * Fires after `preserveRatio` attribute changes.
+     *
+     * @method _afterPreserveRatioChange
+     * @param event
+     * @protected
+     */
+    _afterPreserveRatioChange: function(event) {
+        this._uiSetPreserveRatio(event.newVal);
+    },
+
+    /**
+     * Fires after `resizable` attribute changes.
+     *
+     * @method _afterResizableChange
+     * @param event
+     * @protected
+     */
+    _afterResizableChange: function(event) {
+        this._uiSetResizable(event.newVal);
+    },
+
+    /**
+     * Fire after `x` attribute changes.
+     *
+     * @method _afterXChange
+     * @param event
+     * @protected
+     */
+    _afterXChange: function(event) {
+        this._uiSetX(event.newVal);
+    },
+
+    /**
+     * Fire after `y` attribute changes.
+     *
+     * @method _afterYChange
+     * @param event
+     * @protected
+     */
+    _afterYChange: function(event) {
+        this._uiSetY(event.newVal);
+    },
+
+    /**
+     * Plug Drag into Image Cropper.
+     *
+     * @method _bindDrag
+     * @protected
+     */
+    _bindDrag: function() {
+        this._drag = new A.DD.Drag({
+            node: this._cropNode,
+            bubbleTargets: this
+        }).plug(
+            A.Plugin.DDConstrained, {
+                constrain: this.get('image')
+            }
+        );
+    },
+
+    /**
+     * Plug Resize into Image Cropper.
+     *
+     * @method _bindResize
+     * @protected
+     */
+    _bindResize: function() {
+        this._resize = new A.Resize({
+            node: this._cropNode,
+            bubbleTargets: this
+        }).plug(
+            A.Plugin.ResizeConstrained, {
+                constrain: this.get('image'),
+                preserveRatio: this.get('preserveRatio'),
+                minHeight: this.get('minHeight'),
+                minWidth: this.get('minWidth')
+            }
+        );
+    },
+
+    /**
+     * Fire event of cropping a selected area.
+     *
+     * @method _fireCropEvent
+     * @param event
+     * @protected
+     */
+    _fireCropEvent: function(event) {
+        this.fire('crop', {
+            cropType: event.type
+        });
+    },
+
+    /**
+     * Get crop region (width/height/x/y).
+     *
+     * @method _getCropRegion
+     * @return {Object}
+     * @protected
+     */
+    _getCropRegion: function() {
+        return {
+            height: this.get('cropHeight'),
+            width: this.get('cropWidth'),
+            x: this.get('x'),
+            y: this.get('y')
+        };
+    },
+
+    /**
+     * Set `cropHeight` attribute on the UI.
+     *
+     * @method _uiSetCropHeight
+     * @param value
+     * @protected
+     */
+    _uiSetCropHeight: function(value) {
+        this._cropNode.height(value);
+    },
+
+    /**
+     * Set `cropWidth` attribute on the UI.
+     *
+     * @method _uiSetCropWidth
+     * @param value
+     * @protected
+     */
+    _uiSetCropWidth: function(value) {
+        this._cropNode.width(value);
+    },
+
+    /**
+     * Set `minHeight` attribute on the UI.
+     *
+     * @method _uiSetMinHeight
+     * @param value
+     * @protected
+     */
+    _uiSetMinHeight: function(value) {
+        this._resize.con.set('minHeight', value);
+    },
+
+    /**
+     * Set `minWidth` attribute on the UI.
+     *
+     * @method _uiSetMinWidth
+     * @param value
+     * @protected
+     */
+    _uiSetMinWidth: function(value) {
+        this._resize.con.set('minWidth', value);
+    },
+
+    /**
+     * Set `movable` attribute on the UI.
+     *
+     * @method _uiSetMovable
+     * @param value
+     * @protected
+     */
+    _uiSetMovable: function(value) {
+        this._drag.set('lock', !value);
+    },
+
+    /**
+     * Set `preserveRatio` attribute on the UI.
+     *
+     * @method _uiSetPreserveRatio
+     * @param value
+     * @protected
+     */
+    _uiSetPreserveRatio: function(value) {
+        this._resize.con.set('preserveRatio', value);
+    },
+
+    /**
+     * Set `resizable` attribute on the UI.
+     *
+     * @method _uiSetResizable
+     * @param value
+     * @protected
+     */
+    _uiSetResizable: function(value) {
+        if (value) {
+            if (this._stopResizeHandle) {
+                this._stopResizeHandle.detach();
+            }
+        }
+        else if (!this._stopResizeHandle) {
+            this._stopResizeHandle = this._resize.on(
+                'resize:resize',
+                function(event) {
+                    event.halt();
+                }
+            );
+        }
+    },
+
+    /**
+     * Set `x` attribute on the UI.
+     *
+     * @method _uiSetX
+     * @param value
+     * @protected
+     */
+    _uiSetX: function(value) {
+        this._cropNode.setStyle('left', value);
+    },
+
+    /**
+     * Set `y` attribute on the UI.
+     *
+     * @method _uiSetY
+     * @param value
+     * @protected
+     */
+    _uiSetY: function(value) {
+        this._cropNode.setStyle('top', value);
+    },
+
+    /**
+     * Set `cropHeight` attribute on the UI.
+     *
+     * @method _setCropHeight
+     * @param value
+     * @protected
+     */
+    _setCropHeight: function(value) {
+        var maxHeight = this.get('image').get('offsetHeight'),
+            minHeight = this.get('minHeight');
+
+        if (value < minHeight) {
+            return minHeight;
+        }
+        else if (value >= maxHeight) {
+            return maxHeight;
+        }
+        return value;
+    },
+
+    /**
+     * Set `cropWidth` attribute on the UI.
+     *
+     * @method _setCropWidth
+     * @param value
+     * @protected
+     */
+    _setCropWidth: function(value) {
+        var maxWidth = this.get('image').get('offsetWidth'),
+            minWidth = this.get('minWidth');
+
+        if (value < minWidth) {
+            return minWidth;
+        }
+        else if (value >= maxWidth) {
+            return maxWidth;
+        }
+        return value;
+    },
+
+    /**
+     * Set `x` attribute on the UI.
+     *
+     * @method _setX
+     * @param value
+     * @protected
+     */
+    _setX: function(value) {
+        var maxWidth = this.get('image').get('offsetWidth'),
+            width = this.get('cropWidth');
+
+        if (value < 0) {
+            return 0;
+        }
+        else if (value + width > maxWidth) {
+            return maxWidth - width;
+        }
+
+        return Math.round(value);
+    },
+
+    /**
+     * Set `y` attribute on the UI.
+     *
+     * @method _setY
+     * @param value
+     * @protected
+     */
+    _setY: function(value) {
+        var maxHeight = this.get('image').get('offsetHeight'),
+            height = this.get('cropHeight');
+
+        if (value < 0) {
+            return 0;
+        }
+        else if (value + height > maxHeight) {
+            return maxHeight - height;
+        }
+
+        return Math.round(value);
+    },
+
+    /**
+     * Sync background image.
+     *
+     * @method _syncBackgroundImage
+     * @protected
+     */
+    _syncBackgroundImage: function() {
+        this._cropNode.setStyle('backgroundImage', 'url(' + this.get('image').get('src') + ')');
+    },
+
+    /**
+     * Sync crop node on the UI.
+     *
+     * @method _syncCropNodeUI
+     * @protected
+     */
+    _syncCropNodeUI: function() {
+        this._cropNode.setStyle('backgroundPosition', (-this.get('x')) + 'px ' + (-this.get('y')) +
+            'px');
+        this._cropNode.setStyle('backgroundSize', this.get('image').width() + 'px ' +
+            this.get('image').height() + 'px');
+    },
+
+    /**
+     * Sync the image width and height.
+     *
+     * @method _syncImageSize
+     */
+    _syncImageSize: function() {
+        this._imageWidth = this.get('image').width();
+        this._imageHeight = this.get('image').height();
+    },
+
+    /**
+     * Sync region (top/bottom/left/right).
+     *
+     * @method _syncRegion
+     * @param event
+     * @protected
+     */
+    _syncRegion: function() {
+        var nodeWidth = this.get('image').get('offsetWidth'),
+            nodeHeigth = this.get('image').get('offsetHeight');
+
+        this.set('cropHeight', Math.round(this._cropNode.get('offsetHeight') * nodeHeigth) / this._imageHeight);
+        this.set('cropWidth', Math.round(this._cropNode.get('offsetWidth') * nodeWidth) / this._imageWidth);
+
+        this.set('x', (A.Lang.toInt(this._cropNode.getStyle('left')) * nodeWidth / this._imageWidth));
+        this.set('y', (A.Lang.toInt(this._cropNode.getStyle('top')) * nodeHeigth / this._imageHeight));
+    },
+
+    /**
+     * Validates the value of cropWidth and cropHeight attributes.
+     *
+     * @method _validateDimension
+     * @param value
+     * @protected
+     * @return {Boolean} True if vaule is greater-than 0.
+     */
+    _validateDimension: function(value) {
+        if (A.Lang.isNumber(value)) {
+            return value >= 0;
+        }
+        return false;
+    }
+
+}, {
+    /**
+     * Static property provides a string to identify the CSS prefix.
+     *
+     * @property CSS_PREFIX
+     * @type String
+     */
+    CSS_PREFIX: A.getClassName('image-cropper'),
+
     ATTRS: {
 
         /**
@@ -56,8 +526,9 @@ var ImageCropper = A.Component.create({
          * @type Number
          */
         cropHeight: {
-            value: 100,
-            validator: isNumber
+            setter: '_setCropHeight',
+            validator: '_validateDimension',
+            value: 100
         },
 
         /**
@@ -68,30 +539,38 @@ var ImageCropper = A.Component.create({
          * @type Number
          */
         cropWidth: {
-            value: 100,
-            validator: isNumber
+            setter: '_setCropWidth',
+            validator: '_validateDimension',
+            value: 100
         },
 
+        image: {
+            setter: A.one
+        },
         /**
          * The minimum width of a selected area to crop.
          *
          * @attribute minWidth
-         * @default undefined
+         * @default 0
          * @type Number
          */
         minWidth: {
-            value: undefined
+            lazyAdd: false,
+            validator: '_validateDimension',
+            value: 0
         },
 
         /**
          * The minimum height of a selected area to crop.
          *
          * @attribute minHeight
-         * @default undefined
+         * @default 0
          * @type Number
          */
         minHeight: {
-            value: undefined
+            lazyAdd: false,
+            validator: '_validateDimension',
+            value: 0
         },
 
         /**
@@ -103,7 +582,7 @@ var ImageCropper = A.Component.create({
          */
         movable: {
             value: true,
-            validator: isBoolean
+            validator: A.Lang.isBoolean
         },
 
         /**
@@ -116,7 +595,7 @@ var ImageCropper = A.Component.create({
          */
         preserveRatio: {
             value: false,
-            validator: isBoolean
+            validator: A.Lang.isBoolean
         },
 
         /**
@@ -140,7 +619,7 @@ var ImageCropper = A.Component.create({
          */
         resizable: {
             value: true,
-            validator: isBoolean
+            validator: A.Lang.isBoolean
         },
 
         /**
@@ -152,8 +631,8 @@ var ImageCropper = A.Component.create({
          */
         x: {
             value: 0,
-            setter: Math.round,
-            validator: isNumber
+            setter: '_setX',
+            validator: A.Lang.isNumber
         },
 
         /**
@@ -165,712 +644,13 @@ var ImageCropper = A.Component.create({
          */
         y: {
             value: 0,
-            setter: Math.round,
-            validator: isNumber
+            setter: '_setY',
+            validator: A.Lang.isNumber
         }
     },
 
-    /**
-     * Static property used to define the UI attributes.
-     *
-     * @property UI_ATTRS
-     * @type Array
-     * @static
-     */
-    UI_ATTRS: [
-            'cropHeight',
-            'cropWidth',
-            'minWidth',
-            'minHeight',
-            'movable',
-            'resizable',
-            'x',
-            'y'
-        ],
+    HTML_PARSE: {
 
-    prototype: {
-
-        /**
-         * Render the Image Cropper component instance. Lifecycle.
-         *
-         * @method renderUI
-         * @protected
-         */
-        renderUI: function() {
-            var instance = this;
-
-            var boundingBox = instance.get('boundingBox');
-
-            instance.cropNode = A.Node.create('<div class="' + CSS_CROP + '"></div>');
-            instance.cropNode.append(A.Node.create('<div class="' + CSS_CROP_OUTLINE + '"></div>'));
-
-            instance.overlay = A.Node.create('<div class="' + CSS_OVERLAY + '"></div>');
-
-            A.all([instance.cropNode, instance.overlay]).appendTo(boundingBox);
-
-            instance._boundingBox = boundingBox;
-
-            instance._renderDrag();
-            instance._renderResize();
-        },
-
-        /**
-         * Bind the events on the Image Cropper UI. Lifecycle.
-         *
-         * @method bindUI
-         * @protected
-         */
-        bindUI: function() {
-            var instance = this;
-
-            instance._fireCropEventTask = A.debounce(instance._fireCropEvent, 10, instance);
-
-            instance.publish(
-                'crop', {
-                    defaultFn: instance._defCropFn
-                }
-            );
-
-            instance.on(['drag:start', 'resize:start'], A.debounce(instance._syncRegion, 25));
-
-            instance.after(['drag:drag', 'resize:resize'], instance._fireCropEvent, instance);
-
-            instance.after(
-                    ['xChange', 'yChange', 'cropWidthChange', 'cropHeightChange'],
-                function(event) {
-                    instance._fireCropEventTask(event);
-
-                    instance._syncCropNodeUI();
-                }
-            );
-
-            instance._createHover();
-        },
-
-        /**
-         * Sync the Image Cropper UI. Lifecycle.
-         *
-         * @method syncUI
-         * @protected
-         */
-        syncUI: function() {
-            var instance = this;
-
-            instance._uiSetPreserveRatio(instance.get('preserveRatio'));
-
-            instance.syncImageUI();
-            instance._syncCropNodeUI();
-        },
-
-        /**
-         * Destructor lifecycle implementation for the `ImageCropper` class.
-         *
-         * @method syncUI
-         * @protected
-         */
-        destructor: function() {
-            var instance = this;
-
-            instance._destroyDrag();
-            instance._destroyResize();
-        },
-
-        /**
-         * Sync the image on the UI.
-         *
-         * @method syncImageUI
-         */
-        syncImageUI: function() {
-            var instance = this;
-
-            var imageNode = instance.get('srcNode');
-
-            instance.cropNode.setStyle('backgroundImage', 'url(' + imageNode.attr('src') + ')');
-
-            instance._constrainValues();
-            instance._syncXY();
-
-            var origRegion = instance._getConstraintRegion();
-
-            var drag = instance.drag;
-            var resize = instance.resize;
-
-            if (drag) {
-                drag.con.set('constrain', origRegion);
-            }
-
-            if (resize) {
-                resize.con.set('constrain', origRegion);
-            }
-        },
-
-        /**
-         * Constrain to valid values.
-         *
-         * @method _constrainValues
-         * @protected
-         */
-        _constrainValues: function() {
-            var instance = this;
-
-            var imageNode = instance.get('srcNode');
-
-            var cropHeight = instance.get('cropHeight');
-            var cropWidth = instance.get('cropWidth');
-
-            var x = instance.get('x');
-            var y = instance.get('y');
-
-            var imageWidth = imageNode.width();
-            var imageHeight = imageNode.height();
-
-            // Find valid y
-
-            y = Math.max(y, 0);
-
-            if (y + cropHeight > imageHeight) {
-                y = Math.max(imageHeight - cropHeight, 0);
-            }
-
-            instance.set('y', y);
-
-            // Find valid cropHeight
-
-            if (y + cropHeight > imageHeight) {
-                cropHeight = Math.max(imageHeight - y, 0);
-            }
-
-            instance.set('cropHeight', cropHeight);
-
-            // Find valid x
-
-            x = Math.max(x, 0);
-
-            if (x + cropWidth > imageWidth) {
-                x = Math.max(imageWidth - cropWidth, 0);
-            }
-
-            instance.set('x', x);
-
-            // Find valid cropWidth
-
-            if (x + cropWidth > imageWidth) {
-                cropWidth = Math.max(imageWidth - x, 0);
-            }
-
-            instance.set('cropWidth', cropWidth);
-        },
-
-        /**
-         * Create mouse over effect.
-         *
-         * @method _createHover
-         * @protected
-         */
-        _createHover: function() {
-            var instance = this;
-
-            instance._destroyHover();
-
-            instance._hoverHandles = instance.cropNode.on(
-                'hover',
-                instance._hoverOverlay,
-                instance._unHoverOverlay,
-                instance
-            );
-        },
-
-        /**
-         * Define which function Image Cropper should execute.
-         *
-         * @method _defCropFn
-         * @protected
-         */
-        _defCropFn: function(event) {
-            var instance = this;
-
-            var cropType = event.cropType;
-
-            if (cropType === 'drag:drag') {
-                instance._syncXY();
-            }
-            else if (cropType === 'resize:resize') {
-                instance._syncCropSize();
-            }
-        },
-
-        /**
-         * Destroy the ability to drag.
-         *
-         * @method _destroyDrag
-         * @param object
-         * @protected
-         */
-        _destroyDrag: function() {
-            var instance = this;
-
-            if (instance.drag) {
-                instance.drag.destroy();
-
-                delete instance.drag;
-            }
-        },
-
-        /**
-         * Destroy the mouse over effect.
-         *
-         * @method _destroyHover
-         * @protected
-         */
-        _destroyHover: function() {
-            var instance = this;
-
-            if (instance._hoverHandles) {
-                instance._hoverHandles.detach();
-
-                instance._hoverHandles = null;
-            }
-        },
-
-        /**
-         * Destroy the ability to resize.
-         *
-         * @method _destroyResize
-         * @param object
-         * @protected
-         */
-        _destroyResize: function() {
-            var instance = this;
-
-            if (instance.resize) {
-                instance.resize.destroy();
-
-                delete instance.resize;
-            }
-        },
-
-        /**
-         * Fire event of cropping a selected area.
-         *
-         * @method _fireCropEvent
-         * @param event
-         * @protected
-         */
-        _fireCropEvent: function(event) {
-            var instance = this;
-
-            instance.fire('crop', {
-                cropType: event.type
-            });
-        },
-
-        /**
-         * Get contraint region.
-         *
-         * @method _getConstraintRegion
-         * @param force
-         * @protected
-         */
-        _getConstraintRegion: function(force) {
-            var instance = this;
-
-            var region = !force ? instance._origRegion : null;
-
-            if (!region) {
-                var imageNode = instance.get('srcNode');
-
-                var cropNode = instance.cropNode;
-
-                var imageXY = imageNode.getXY();
-
-                var imageX = imageXY[0];
-                var imageY = imageXY[1];
-
-                region = {
-                    bottom: imageY + imageNode.height() + cropNode.getBorderWidth('b'),
-                    left: imageX - cropNode.getBorderWidth('l'),
-                    right: imageX + imageNode.width() + cropNode.getBorderWidth('r'),
-                    top: imageY - cropNode.getBorderWidth('t')
-                };
-
-                if (!instance._origRegion) {
-                    instance._origRegion = region;
-                }
-            }
-
-            return region;
-        },
-
-        /**
-         * Get crop region (width/height/x/y).
-         *
-         * @method _getCropRegion
-         * @return {Object}
-         * @protected
-         */
-        _getCropRegion: function() {
-            var instance = this;
-
-            return {
-                height: instance.get('cropHeight'),
-                width: instance.get('cropWidth'),
-                x: instance.get('x'),
-                y: instance.get('y')
-            };
-        },
-
-        /**
-         * Add overlay class on mouse over event.
-         *
-         * @method _hoverOverlay
-         * @protected
-         */
-        _hoverOverlay: function() {
-            var instance = this;
-
-            if (!instance._isDragging() && !instance._isResizing()) {
-                instance._boundingBox.addClass(CSS_OVERLAY_HOVER);
-            }
-        },
-
-        /**
-         * Check if it's dragging.
-         *
-         * @method _isDragging
-         * @protected
-         */
-        _isDragging: function() {
-            var instance = this;
-
-            var drag = instance.drag;
-
-            return drag && drag.get('dragging');
-        },
-
-        /**
-         * Check if it's resizing.
-         *
-         * @method _isResizing
-         * @protected
-         */
-        _isResizing: function() {
-            var instance = this;
-
-            var resize = instance.resize;
-
-            return resize && resize.get('resizing');
-        },
-
-        /**
-         * Plug Drag into Image Cropper.
-         *
-         * @method _renderDrag
-         * @protected
-         */
-        _renderDrag: function() {
-            var instance = this;
-
-            var drag = new A.DD.Drag({
-                node: instance.cropNode
-            }).plug(
-                A.Plugin.DDConstrained, {
-                    constrain: instance._getConstraintRegion()
-                }
-            );
-
-            drag.addTarget(instance);
-
-            instance.drag = drag;
-        },
-
-        /**
-         * Plug Resize into Image Cropper.
-         *
-         * @method _renderResize
-         * @protected
-         */
-        _renderResize: function() {
-            var instance = this;
-
-            var resize = new A.Resize({
-                node: instance.cropNode
-            }).plug(
-                A.Plugin.ResizeConstrained, {
-                    constrain: instance._getConstraintRegion(),
-                    preserveRatio: instance.get('preserveRatio'),
-                    minHeight: instance.get('minHeight'),
-                    minWidth: instance.get('minWidth')
-                }
-            );
-
-            resize.addTarget(instance);
-
-            instance.resize = resize;
-        },
-
-        /**
-         * Sync crop node on the UI.
-         *
-         * @method _syncCropNodeUI
-         * @protected
-         */
-        _syncCropNodeUI: function() {
-            var instance = this;
-
-            instance.cropNode.setStyle('backgroundPosition', (-instance.get('x')) + 'px ' + (-instance.get('y')) +
-                'px');
-        },
-
-        /**
-         * Sync crop size (width/height).
-         *
-         * @method _syncCropSize
-         * @param event
-         * @protected
-         */
-        _syncCropSize: function() {
-            var instance = this;
-
-            var cropNode = instance.cropNode;
-
-            instance.set('cropHeight', cropNode.height());
-            instance.set('cropWidth', cropNode.width());
-        },
-
-        /**
-         * Sync region (top/bottom/left/right).
-         *
-         * @method _syncRegion
-         * @param event
-         * @protected
-         */
-        _syncRegion: function() {
-            var instance = this;
-
-            var region = instance._getConstraintRegion(true);
-
-            var origRegion = instance._origRegion;
-
-            if (
-                region.bottom !== origRegion.bottom ||
-                region.left !== origRegion.left ||
-                region.right !== origRegion.right ||
-                region.top !== origRegion.top
-            ) {
-
-                var drag = instance.drag;
-                var resize = instance.resize;
-
-                if (drag) {
-                    drag.con.set('constrain', region);
-                }
-
-                if (resize) {
-                    resize.con.set('constrain', region);
-                }
-
-                instance._origRegion = region;
-            }
-        },
-
-        /**
-         * Sync positions (x/y).
-         *
-         * @method _syncXY
-         * @param event
-         * @protected
-         */
-        _syncXY: function() {
-            var instance = this;
-
-            var cropNode = instance.cropNode;
-
-            instance.set('x', toInt(cropNode.getStyle('left')) + cropNode.getBorderWidth('l'));
-            instance.set('y', toInt(cropNode.getStyle('top')) + cropNode.getBorderWidth('t'));
-        },
-
-        /**
-         * Set `cropHeight` attribute on the UI.
-         *
-         * @method _uiSetCropHeight
-         * @param value
-         * @protected
-         */
-        _uiSetCropHeight: function(value) {
-            var instance = this;
-
-            instance.cropNode.height(value);
-        },
-
-        /**
-         * Set `cropWidth` attribute on the UI.
-         *
-         * @method _uiSetCropWidth
-         * @param value
-         * @protected
-         */
-        _uiSetCropWidth: function(value) {
-            var instance = this;
-
-            instance.cropNode.width(value);
-        },
-
-        /**
-         * Enable or disable mouse over effect on the UI.
-         *
-         * @method _uiSetDisabled
-         * @param value
-         * @protected
-         */
-        _uiSetDisabled: function(value) {
-            var instance = this;
-
-            ImageCropper.superclass._uiSetDisabled.apply(instance, arguments);
-
-            var enabled = !value;
-
-            instance.cropNode.toggle(enabled);
-
-            if (enabled) {
-                instance._createHover();
-            }
-            else {
-                instance._destroyHover();
-            }
-        },
-
-        /**
-         * Set `minHeight` attribute on the UI.
-         *
-         * @method _uiSetMinHeight
-         * @param value
-         * @protected
-         */
-        _uiSetMinHeight: function(value) {
-            var instance = this;
-
-            var resize = instance.resize;
-
-            if (resize) {
-                resize.con.set('minHeight', value);
-            }
-        },
-
-        /**
-         * Set `minWidth` attribute on the UI.
-         *
-         * @method _uiSetMinWidth
-         * @param value
-         * @protected
-         */
-        _uiSetMinWidth: function(value) {
-            var instance = this;
-
-            var resize = instance.resize;
-
-            if (resize) {
-                resize.con.set('minWidth', value);
-            }
-        },
-
-        /**
-         * Set `movable` attribute on the UI.
-         *
-         * @method _uiSetMovable
-         * @param value
-         * @protected
-         */
-        _uiSetMovable: function(value) {
-            var instance = this;
-
-            instance.drag.set('lock', !value);
-        },
-
-        /**
-         * Set `preserveRatio` attribute on the UI.
-         *
-         * @method _uiSetPreserveRatio
-         * @param value
-         * @protected
-         */
-        _uiSetPreserveRatio: function(value) {
-            var instance = this;
-
-            var resize = instance.resize;
-
-            if (resize) {
-                resize.con.set('preserveRatio', value);
-            }
-        },
-
-        /**
-         * Set `resizable` attribute on the UI.
-         *
-         * @method _uiSetResizable
-         * @param value
-         * @protected
-         */
-        _uiSetResizable: function(value) {
-            var instance = this;
-
-            if (value) {
-                if (instance._stopResizeHandle) {
-                    instance._stopResizeHandle.detach();
-                }
-            }
-            else if (!instance._stopResizeHandle) {
-                instance._stopResizeHandle = instance.resize.on(
-                    'resize:resize',
-                    function(event) {
-                        event.halt();
-                    }
-                );
-            }
-        },
-
-        /**
-         * Set `x` attribute on the UI.
-         *
-         * @method _uiSetX
-         * @param value
-         * @protected
-         */
-        _uiSetX: function(value) {
-            var instance = this;
-
-            var cropNode = instance.cropNode;
-
-            cropNode.setStyle('left', value - cropNode.getBorderWidth('l'));
-        },
-
-        /**
-         * Set `y` attribute on the UI.
-         *
-         * @method _uiSetY
-         * @param value
-         * @protected
-         */
-        _uiSetY: function(value) {
-            var instance = this;
-
-            var cropNode = instance.cropNode;
-
-            cropNode.setStyle('top', value - cropNode.getBorderWidth('t'));
-        },
-
-        /**
-         * Remove overlay class on mouse over event.
-         *
-         * @method _unHoverOverlay
-         * @protected
-         */
-        _unHoverOverlay: function() {
-            var instance = this;
-
-            if (!instance._isDragging() && !instance._isResizing()) {
-                instance._boundingBox.removeClass(CSS_OVERLAY_HOVER);
-            }
-        }
     }
 });
 
