@@ -13,8 +13,6 @@ gulp.task('test', function(callback) {
         .on('exit', callback);
 });
 
-});
-
 gulp.task('test-browser', function(callback) {
     var args = [];
     var cmd = 'yeti';
@@ -26,4 +24,3 @@ gulp.task('test-browser', function(callback) {
     spawn(cmd, args, CWD)
         .on('exit', callback);
 });
-
