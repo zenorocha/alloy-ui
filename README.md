@@ -132,10 +132,30 @@ gulp release-cdn
 gulp test
     ```
 
+* Run unit tests and create code coverage
+
+    ```
+gulp test-coverage
+    ```
+
 * Run tests in the browser using [Yeti](http://yeti.cx/):
 
     ```
 gulp test-browser
+    ```
+    
+### Code Coverage Report
+* Show code coverage summary
+
+   ```
+gulp report
+   ```
+
+
+* Open code coverage report (html)
+
+    ```
+gulp report-html
     ```
 
 ### Update
