@@ -295,6 +295,10 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     getWidgetLazyConstructorFromNodeData: function(node) {
         var config = node.getData('widgetConstructor') || {};
 
+        if (typeof config === 'string') {
+            config = A.JSON.parse(config);
+        }
+
         config.boundingBox = node;
         config.render = true;
         return config;
