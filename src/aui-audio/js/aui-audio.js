@@ -6,7 +6,6 @@
 
 var Lang = A.Lang,
     UA = A.UA,
-    DOC = A.config.doc,
 
     owns = A.Object.owns,
 
@@ -14,7 +13,10 @@ var Lang = A.Lang,
 
     CSS_AUDIO_NODE = getClassName('audio', 'node'),
 
-    DEFAULT_PLAYER_PATH = A.config.base + 'aui-audio/assets/player.swf',
+    TPL_AUDIO_FALLBACK = '<div class="' + CSS_AUDIO_NODE + '"></div>',
+    TPL_AUDIO = '<audio id="{0}" controls class="' + CSS_AUDIO_NODE + '"></audio>',
+    TPL_FLASH =
+    '<object id="{id}" {applicationType} height="{height}" width="{width}">{movie}{fixedAttributes}{flashVars}</object>',
 
     REGEX_FILE_EXTENSION = /\.([^\.]+)$/;
 
@@ -52,55 +54,6 @@ var AudioImpl = A.Component.create({
     ATTRS: {
 
         /**
-         * Variables used by Flash player.
-         *
-         * @attribute flashVars
-         * @default {}
-         * @type Object
-         */
-        flashVars: {
-            value: {},
-            validator: Lang.isObject
-        },
-
-        /**
-         * An additional list of attributes.
-         *
-         * @attribute fixedAttributes
-         * @default {}
-         * @type Object
-         */
-        fixedAttributes: {
-            value: {},
-            validator: Lang.isObject
-        },
-
-        /**
-         * URL (on .ogg format) used by Audio to play.
-         *
-         * @attribute oggUrl
-         * @default ''
-         * @type String
-         */
-        oggUrl: {
-            value: '',
-            validator: Lang.isString
-        },
-
-        /**
-         * If `true` the render phase will be automatically invoked
-         * preventing the `.render()` manual call.
-         *
-         * @attribute render
-         * @default true
-         * @type Boolean
-         */
-        render: {
-            value: true,
-            validator: Lang.isBoolean
-        },
-
-        /**
          * Sets the `aria-role` for Audio.
          *
          * @attribute role
@@ -108,18 +61,6 @@ var AudioImpl = A.Component.create({
          */
         role: {
             value: 'application',
-            validator: Lang.isString
-        },
-
-        /**
-         * The width of Audio's fallback using Flash.
-         *
-         * @attribute swfWidth
-         * @default 100%
-         * @type String
-         */
-        swfWidth: {
-            value: '100%',
             validator: Lang.isString
         },
 
@@ -136,15 +77,14 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * URL (on .swf format) used by Audio to create
-         * a fallback player with Flash.
+         * The width of Audio's fallback using Flash.
          *
-         * @attribute swfUrl
-         * @default aui-audio/assets/player.swf
+         * @attribute swfWidth
+         * @default 100%
          * @type String
          */
-        swfUrl: {
-            value: DEFAULT_PLAYER_PATH,
+        swfWidth: {
+            value: '100%',
             validator: Lang.isString
         },
 
@@ -157,18 +97,6 @@ var AudioImpl = A.Component.create({
          */
         type: {
             value: 'mp3',
-            validator: Lang.isString
-        },
-
-        /**
-         * URL used by Audio to play.
-         *
-         * @attribute url
-         * @default ''
-         * @type String
-         */
-        url: {
-            value: '',
             validator: Lang.isString
         },
 
@@ -188,6 +116,15 @@ var AudioImpl = A.Component.create({
     },
 
     /**
+     * Static property used to define which component it extends.
+     *
+     * @property EXTENDS
+     * @type String
+     * @static
+     */
+    EXTENDS: A.WidgetMedia,
+
+    /**
      * Static property used to define the attributes
      * for the bindUI lifecycle phase.
      *
@@ -197,55 +134,7 @@ var AudioImpl = A.Component.create({
      */
     BIND_UI_ATTRS: ['url', 'oggUrl', 'swfUrl', 'fixedAttributes', 'flashVars'],
 
-    /**
-     * Static property used to define the attributes
-     * for the syncUI lifecycle phase.
-     *
-     * @property SYNC_UI_ATTRS
-     * @type Array
-     * @static
-     */
-    SYNC_UI_ATTRS: ['url', 'oggUrl'],
-
     prototype: {
-
-        /**
-         * Render the Audio component instance. Lifecycle.
-         *
-         * @method renderUI
-         * @protected
-         */
-        renderUI: function() {
-            var instance = this;
-
-            instance._renderAudioTask = A.debounce(instance._renderAudio, 1, instance);
-            instance._renderSwfTask = A.debounce(instance._renderSwf, 1, instance);
-
-            instance._renderAudio(!instance.get('oggUrl'));
-        },
-
-        /**
-         * Bind the events on the Audio UI. Lifecycle.
-         *
-         * @method bindUI
-         * @protected
-         */
-        bindUI: function() {
-            var instance = this;
-
-            instance.publish({
-                audioReady: {
-                    fireOnce: true
-                },
-                pause: {},
-                play: {}
-            });
-
-            instance._audio.on({
-                pause: instance._onPause,
-                play: instance._onPlay
-            });
-        },
 
         /**
          * Sync the Audio UI. Lifecycle.
@@ -264,84 +153,30 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * Load audio track.
+         * Render Audio in DOM.
          *
-         * @method load
-         */
-        load: function() {
-            var instance = this;
-
-            if (instance._audio.hasMethod('load')) {
-                instance._audio.invoke('load');
-            }
-        },
-
-        /**
-         * Pause audio track.
-         *
-         * @method pause
-         */
-        pause: function() {
-            var instance = this;
-
-            if (instance._audio.hasMethod('pause')) {
-                instance._audio.invoke('pause');
-            }
-        },
-
-        /**
-         * Play audio track.
-         *
-         * @method play
-         */
-        play: function() {
-            var instance = this;
-
-            if (instance._audio.hasMethod('play')) {
-                instance._audio.invoke('play');
-            }
-        },
-
-        /**
-         * Fires on video pause event fires.
-         *
-         * @method _onPause
-         * @param {EventFacade} event
+         * @method _renderMedia
+         * @param fallback
          * @protected
          */
-        _onPause: function (event) {
-            this.fire('play', {
-                cropType: event.type
-            });
-        },
+        _renderMedia: function(fallback) {
+            var instance = this;
 
-        /**
-         * Fires on video play event fires.
-         *
-         * @method _onPlay
-         * @param {EventFacade} event
-         * @protected
-         */
-        _onPlay: function (event) {
-            this.fire('pause', {
-                cropType: event.type
-            });
-        },
+            var tpl = TPL_AUDIO;
 
-        /**
-         * Create `source` element
-         * using passed type attribute.
-         *
-         * @method _createSource
-         * @param type
-         * @protected
-         */
-        _createSource: function(type) {
-            var sourceNode = new A.Node(DOC.createElement('source'));
+            if (UA.gecko && fallback) {
+                tpl = TPL_AUDIO_FALLBACK;
+            }
 
-            sourceNode.attr('type', type);
+            var tplObj = Lang.sub(tpl, [A.guid()]);
 
-            return sourceNode;
+            var audio = A.Node.create(tplObj);
+
+            instance.get('contentBox').append(audio);
+
+            instance._media = audio;
+
+            return audio;
         },
 
         /**
@@ -363,9 +198,8 @@ var AudioImpl = A.Component.create({
                 var flashVarString = A.QueryString.stringify(flashVars);
 
                 if (instance._swfId) {
-                    instance._audio.removeChild(A.one('#' + instance._swfId));
-                }
-                else {
+                    instance._media.removeChild(A.one('#' + instance._swfId));
+                } else {
                     instance._swfId = A.guid();
                 }
 
@@ -401,7 +235,7 @@ var AudioImpl = A.Component.create({
                 var width = instance.get('swfWidth');
 
                 var tplObj = Lang.sub(
-                    AudioImpl.TPL_FLASH, {
+                    TPL_FLASH, {
                         applicationType: applicationType,
                         id: instance._swfId,
                         fixedAttributes: fixedAttributesParam.join(''),
@@ -412,35 +246,8 @@ var AudioImpl = A.Component.create({
                     }
                 );
 
-                instance._audio.append(tplObj);
+                instance._media.append(tplObj);
             }
-        },
-
-        /**
-         * Render Audio in DOM.
-         *
-         * @method _renderAudio
-         * @param fallback
-         * @protected
-         */
-        _renderAudio: function(fallback) {
-            var instance = this;
-
-            var tpl = AudioImpl.TPL_AUDIO;
-
-            if (UA.gecko && fallback) {
-                tpl = AudioImpl.TPL_AUDIO_FALLBACK;
-            }
-
-            var tplObj = Lang.sub(tpl, [A.guid()]);
-
-            var audio = A.Node.create(tplObj);
-
-            instance.get('contentBox').append(audio);
-
-            instance._audio = audio;
-
-            return audio;
         },
 
         /**
@@ -471,82 +278,14 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * Set the `fixedAttributes` on the UI.
-         *
-         * @method _uiSetFixedAttributes
-         * @param val
-         * @protected
-         */
-        _uiSetFixedAttributes: function() {
-            var instance = this;
-
-            instance._renderSwfTask();
-        },
-
-        /**
-         * Set the `flashVars` on the UI.
-         *
-         * @method _uiSetFlashVars
-         * @param val
-         * @protected
-         */
-        _uiSetFlashVars: function() {
-            var instance = this;
-
-            instance._renderSwfTask();
-        },
-
-        /**
          * Set the `oggUrl` on the UI.
          *
-         * @method _uiSetOggUrl
+         * @method _uiSetOgvUrl
          * @param val
          * @protected
          */
         _uiSetOggUrl: function(val) {
-            var instance = this;
-
-            if (UA.gecko || UA.opera) {
-                var audio = instance._audio;
-
-                var usingAudio = instance._usingAudio();
-
-                if ((!val && usingAudio) || (val && !usingAudio)) {
-                    audio.remove(true);
-
-                    audio = instance._renderAudio(!val);
-                }
-
-                if (!val) {
-                    instance._renderSwfTask();
-                }
-                else {
-                    var sourceOgg = instance._sourceOgg;
-
-                    if (!sourceOgg) {
-                        sourceOgg = instance._createSource('audio/ogg');
-
-                        audio.append(sourceOgg);
-
-                        instance._sourceOgg = sourceOgg;
-                    }
-
-                    sourceOgg.attr('src', val);
-                }
-            }
-        },
-
-        /**
-         * Set the `swfUrl` on the UI.
-         *
-         * @method _uiSetSwfUrl
-         * @param val
-         * @protected
-         */
-        _uiSetSwfUrl: function() {
-            var instance = this;
-
-            instance._renderSwfTask();
+            A.Audio.superclass._uiSetOggUrl(val, 'audio', 'audio/ogg');
         },
 
         /**
@@ -557,56 +296,20 @@ var AudioImpl = A.Component.create({
          * @protected
          */
         _uiSetUrl: function(val) {
-            var instance = this;
-
-            var oggUrl = instance.get('oggUrl');
-            var audio = instance._audio;
-
-            var sourceMp3 = instance._sourceMp3;
-
-            if (UA.gecko && !instance._usingAudio()) {
-                if (sourceMp3 !== null) {
-                    sourceMp3.remove(true);
-
-                    instance._sourceMp3 = null;
-                }
-            }
-            else {
-                if (audio || !oggUrl) {
-                    if (!sourceMp3) {
-                        sourceMp3 = instance._createSource('audio/mp3');
-
-                        audio.append(sourceMp3);
-
-                        instance._sourceMp3 = sourceMp3;
-                    }
-
-                    sourceMp3.attr('src', val);
-                }
-            }
-
-            instance._renderSwfTask();
+            A.Audio.superclass._uiSetUrl(this, val, 'audio', 'audio/mp3');
         },
 
         /**
-         * Check if it's a `video` node.
+         * Provides the default value for the `swfUrl` attribute.
          *
-         * @method _usingVideo
+         * @method _valueSwfUrl
+         * @return String
          * @protected
          */
-        _usingAudio: function() {
-            var instance = this;
-
-            return (instance._audio.get('nodeName').toLowerCase() === 'audio');
+        _valueSwfUrl: function() {
+            return A.config.base + 'aui-audio/assets/player.swf?t=' + Lang.now();
         }
     }
 });
-
-AudioImpl.TPL_AUDIO = '<audio id="{0}" controls class="' + CSS_AUDIO_NODE + '"></audio>';
-
-AudioImpl.TPL_AUDIO_FALLBACK = '<div class="' + CSS_AUDIO_NODE + '"></div>';
-
-AudioImpl.TPL_FLASH =
-    '<object id="{id}" {applicationType} height="{height}" width="{width}">{movie}{fixedAttributes}{flashVars}</object>';
 
 A.Audio = AudioImpl;

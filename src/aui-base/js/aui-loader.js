@@ -80,9 +80,8 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-audio": {
         "requires": [
+            "aui-widget-media",
             "aui-aria",
-            "aui-node",
-            "aui-component",
             "querystring-stringify-simple"
         ],
         "skinnable": true
@@ -1341,9 +1340,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "node-event-html5",
             "querystring-stringify-simple",
-            "aui-node",
-            "aui-component",
-            "aui-debounce"
+            "aui-debounce",
+            "aui-widget-media"
         ],
         "skinnable": true
     },
@@ -1367,6 +1365,12 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-widget-cssclass": {
         "requires": [
             "widget-base"
+        ]
+    },
+    "aui-widget-media": {
+        "requires": [
+            "aui-node",
+            "aui-component"
         ]
     },
     "aui-widget-position-align-suggestion": {
@@ -1407,4 +1411,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '13c0d691836e487bd1e66a1f26ca8706';
+YUI.Env[Y.version].md5 = '049e7ac00000455cdbd63eb974246f32';
