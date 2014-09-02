@@ -70,9 +70,8 @@
     },
     "aui-audio": {
         "requires": [
+            "aui-widget-media",
             "aui-aria",
-            "aui-node",
-            "aui-component",
             "querystring-stringify-simple"
         ],
         "skinnable": true
@@ -1313,9 +1312,8 @@
         "requires": [
             "node-event-html5",
             "querystring-stringify-simple",
-            "aui-node",
-            "aui-component",
-            "aui-debounce"
+            "aui-debounce",
+            "aui-widget-media"
         ],
         "skinnable": true
     },
@@ -1339,6 +1337,12 @@
     "aui-widget-cssclass": {
         "requires": [
             "widget-base"
+        ]
+    },
+    "aui-widget-media": {
+        "requires": [
+            "aui-node",
+            "aui-component"
         ]
     },
     "aui-widget-position-align-suggestion": {

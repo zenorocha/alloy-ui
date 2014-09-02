@@ -1,10 +1,10 @@
 {
     "aui-audio": {
         "requires": [
+            "aui-widget-media",
             "aui-aria",
-            "aui-node",
-            "aui-component",
             "querystring-stringify-simple"
+            
         ],
         "skinnable": true
     }

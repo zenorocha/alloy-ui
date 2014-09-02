@@ -18,6 +18,13 @@
         ]
     },
 
+    "aui-widget-media": {
+        "requires": [
+            "aui-node",
+            "aui-component"
+        ]
+    },
+
     "aui-widget-responsive": {
         "requires": [
             "event-resize",
