@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+    form {
+        margin: 0 20px;
+    }
+    </style>
+</head>
+<body>
+    <h1>AlloyUI - Form Validator</h1>
+    <form action="" id="form" name="form">
+        <div class="form-group">
+            <label class="control-label" for="image-url">Image URL</label>
+            <div class="controls">
+                <input name="image-url" id="image-url" class="form-control" type="text">
+            </div>
+
+            <label class="control-label" for="forty-two">Forty Two</label>
+            <div class="controls">
+                <input name="forty-two" id="forty-two" class="form-control" type="text">
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary">
+    </form>
+
+    <script>
+    YUI({ filter:'raw' }).use('aui-form-validator', function(Y) {
+
+        var isImageURL = function(val) {
+            var regex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
+            if (regex.test(val)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+
+        var isEqualTo42 = function(val) {
+            if (val == 42) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        // Old version:
+        // var functionName = 'imageURL';
+        // Y.config.FormValidator.RULES[functionName] = isImageURL;
+        // Y.config.FormValidator.STRINGS[functionName] = 'Please enter a valid URL that points to an image (jpg, jpeg, png, or gif).';
+
+        new Y.FormValidator({
+            boundingBox: Y.one('#form'),
+            showAllMessages: true,
+            customRules: { // New Attribute!
+                'imageURL': {
+                    condition: isImageURL,
+                    errorMessage: 'Please enter a valid URL that points to an image (jpg, jpeg, png, or gif).'
+                },
+                'fortytwo':{
+                    condition: isEqualTo42,
+                    errorMessage: 'Value must be 42'
+                }
+            },
+            rules: {
+                'image-url': {
+                    imageURL: true,
+                    required: true
+                },
+                'forty-two': {
+                    fortytwo: true
+                }
+            }
+        });
+    });
+    </script>
+</body>
+</html>
