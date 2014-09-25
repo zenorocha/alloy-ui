@@ -1385,4 +1385,3 @@ A.each(
 );
 
 A.FormValidator = FormValidator;
-
