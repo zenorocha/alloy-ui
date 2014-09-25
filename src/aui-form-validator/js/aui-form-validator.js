@@ -277,6 +277,19 @@ var FormValidator = A.Component.create({
         },
 
         /**
+         * Ability to add custom validation types
+         *
+         * @attribute customRules
+         * @default {}
+         * @type Object
+         */
+        customRules: {
+            setter: "_setCustomRules",
+            validator: isObject,
+            value: {}
+        },
+
+        /**
          * Defines the CSS error class.
          *
          * @attribute errorClass
@@ -503,6 +516,7 @@ var FormValidator = A.Component.create({
             instance._stackErrorContainers = {};
 
             instance.bindUI();
+            instance._setCustomRules(instance.get('customRules'));
             instance._uiSetValidateOnBlur(instance.get('validateOnBlur'));
             instance._uiSetValidateOnInput(instance.get('validateOnInput'));
         },
@@ -1274,6 +1288,25 @@ var FormValidator = A.Component.create({
                             field.attr('aria-required', true);
                         }
                     }
+                }
+            );
+        },
+
+        /**
+         * Creates custom form rules from user input.
+         *
+         * @method _setCustomRules
+         * @param val
+         * @protected
+         */
+        _setCustomRules: function(val) {
+            var instance = this;
+
+            A.each(
+                instance.get('customRules'),
+                function(rule, fieldName) {
+                    A.config.FormValidator.RULES[fieldName] = rule.condition;
+                    A.config.FormValidator.STRINGS[fieldName] = rule.errorMessage;
                 }
             );
         },
