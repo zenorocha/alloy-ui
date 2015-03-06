@@ -255,6 +255,19 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
+         * Contains the function that formats the navigation date.
+         *
+         * @attribute navigationDateFormatter
+         * @type {Function}
+         */
+        navigationDateFormatter: {
+            value: function() {
+                return '';
+            },
+            validator: isFunction
+        },
+
+        /**
          * Contains the collection of strings used to label elements of the UI.
          *
          * @attribute strings
@@ -291,6 +304,19 @@ var SchedulerAgendaView = A.Component.create({
 
             boundingBox.delegate('click', instance._onSchedulerEventClick, '.' + CSS_EVENT, instance);
             boundingBox.delegate('click', instance._onEventsHeaderClick, '.' + CSS_HEADER_EXTRA, instance);
+        },
+
+        /**
+         * Returns the date interval in which this view shows events for.
+         *
+         * @method getDateInterval
+         * @return {Object} Object with 2 keys: startDate and endDate. Undefined
+         *   keys are interpreted as unlimited sides of the interval.
+         */
+        getDateInterval: function() {
+            var interval = SchedulerAgendaView.superclass.getDateInterval.apply(this);
+            delete interval.endDate;
+            return interval;
         },
 
         /**

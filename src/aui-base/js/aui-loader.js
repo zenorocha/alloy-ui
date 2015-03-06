@@ -272,8 +272,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "datatable-base",
             "event-key",
             "aui-event-base"
-        ],
-        "skinnable": true
+        ]
     },
     "aui-datatable-cell-editor-support": {
         "requires": [
@@ -944,8 +943,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-component",
-            "aui-node-base",
-            "event-resize"
+            "aui-node-base"
         ],
         "skinnable": true
     },
@@ -1325,6 +1323,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-tree-data": {
         "requires": [
+            "array-invoke",
             "aui-base-core",
             "aui-base-lang",
             "aui-node-base",
@@ -1344,7 +1343,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "querystring-stringify",
             "aui-tree-data",
             "aui-tree-io",
-            "aui-tree-paginator"
+            "aui-tree-paginator",
+            "event-key"
         ]
     },
     "aui-tree-paginator": {
@@ -1453,4 +1453,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'c020db367f734a7c67833f6c4f421666';
+YUI.Env[Y.version].md5 = '371a234d5de3f7a4b548b3fe6cb5b272';

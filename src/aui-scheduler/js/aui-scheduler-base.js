@@ -27,6 +27,7 @@ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
     getCN = A.getClassName,
 
     CSS_SCHEDULER_NAV = getCN('scheduler-base', 'nav'),
+    CSS_SCHEDULER_NAV_DATE = getCN('scheduler-base', 'nav', 'date'),
     CSS_SCHEDULER_CONTROLS = getCN('scheduler-base', 'controls'),
     CSS_SCHEDULER_HD = getCN('scheduler-base', 'hd'),
     CSS_SCHEDULER_ICON_NEXT = getCN('scheduler-base', 'icon', 'next'),
@@ -42,19 +43,23 @@ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
     CSS_ICON_CHEVRON_LEFT = getCN('glyphicon', 'chevron', 'left'),
     CSS_SCHEDULER_VIEWS = getCN('scheduler-base', 'views'),
 
-    TPL_SCHEDULER_CONTROLS = '<div class="col col-lg-7 col-md-7 col-sm-7 ' + CSS_SCHEDULER_CONTROLS + '"></div>',
+    TPL_SCHEDULER_CONTROLS = '<div class="col-xs-7 ' + CSS_SCHEDULER_CONTROLS + '"></div>',
     TPL_SCHEDULER_HD = '<div class="row ' + CSS_SCHEDULER_HD + '"></div>',
-    TPL_SCHEDULER_ICON_NEXT = '<button aria-label="{ariaLabel}"" role="button" type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_NEXT, CSS_BTN,
-        CSS_BTN_DEFAULT].join(' ') + '"><span class="' + CSS_ICON_CHEVRON_RIGHT + '"></span></button>',
-    TPL_SCHEDULER_ICON_PREV = '<button aria-label="{ariaLabel}"" role="button" type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_PREV, CSS_BTN,
-        CSS_BTN_DEFAULT].join(' ') + '"><span class="' + CSS_ICON_CHEVRON_LEFT + '"></span></button>',
+    TPL_SCHEDULER_ICON_NEXT = '<button aria-label="{ariaLabel}"" role="button" type="button" class="' + [CSS_SCHEDULER_ICON_NEXT, CSS_BTN,
+        CSS_BTN_DEFAULT].join(' ') + '"><span class="' + [CSS_ICON, CSS_ICON_CHEVRON_RIGHT].join(' ') + '"></span></button>',
+    TPL_SCHEDULER_ICON_PREV = '<button aria-label="{ariaLabel}"" role="button" type="button" class="' + [CSS_SCHEDULER_ICON_PREV, CSS_BTN,
+        CSS_BTN_DEFAULT].join(' ') + '"><span class="' + [CSS_ICON, CSS_ICON_CHEVRON_LEFT].join(' ') + '"></span></button>',
     TPL_SCHEDULER_NAV = '<div class="btn-group"></div>',
+    TPL_SCHEDULER_NAV_DATE = '<div class="' + CSS_SCHEDULER_NAV_DATE + ' hidden-xs"></div>',
     TPL_SCHEDULER_TODAY = '<button aria-label="{ariaLabel}" role="button" type="button" class="' +
         [CSS_SCHEDULER_TODAY, CSS_BTN, CSS_BTN_DEFAULT].join(' ') + '">{today}</button>',
-    TPL_SCHEDULER_VIEW = '<button aria-label="{ariaLabel}" aria-pressed="false" type="button" class="' +
+    TPL_SCHEDULER_VIEW_BUTTON = '<button aria-label="{ariaLabel}" aria-pressed="false" type="button" class="hidden-xs ' +
         [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(' ') + '{name}" data-view-name="{name}">{label}</button>',
-    TPL_SCHEDULER_VIEW_DATE = '<div class="' + CSS_SCHEDULER_VIEW_DATE + '"></div>',
-    TPL_SCHEDULER_VIEWS = '<div class="col col-lg-5 col-md-5 col-sm-5 ' + CSS_SCHEDULER_VIEWS + '"></div>';
+    TPL_SCHEDULER_VIEW_LIST = '<option aria-label="{ariaLabel}" aria-pressed="false" class="' +
+        [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(' ') + '{name}" data-view-name="{name}">{label}</option>',
+    TPL_SCHEDULER_VIEW_DATE = '<div class="' + CSS_SCHEDULER_VIEW_DATE + ' visible-xs"></div>',
+    TPL_SCHEDULER_VIEWS = '<div class="col-xs-5 form-inline ' + CSS_SCHEDULER_VIEWS + '"></div>',
+    TPL_SCHEDULER_VIEWS_SELECT = '<select class="form-control visible-xs"></select>';
 
 /**
  * A base class for `SchedulerEvents`.
@@ -66,6 +71,18 @@ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
  * @constructor
  */
 A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
+    /**
+     * Constructor for the `A.SchedulerEvents`. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
+    initializer: function() {
+        this._remainingItems = this.get('originalItems');
+
+        this.after('originalItemsChange', this._afterOriginalItemsChange);
+        this.get('scheduler').on('plotViewEvents', A.bind(this._onPlotViewEvents, this));
+    },
 
     /**
      * Compares the inputs of a start and end date to see if adding `1` to the
@@ -83,6 +100,92 @@ A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
         return startDateTime + 1 / (endDateTime - startDateTime);
     },
 
+    /**
+     * Fired after the `originalItems` attribute changes.
+     *
+     * @method _afterOriginalItemsChange
+     * @protected
+     */
+    _afterOriginalItemsChange: function() {
+        this._remainingItems = this.get('originalItems');
+        this.remove(this.toArray());
+        this._updateEventsForView();
+    },
+
+    /**
+     * Fired when the `plotViewEvents` event is triggered.
+     *
+     * @method _onPlotViewEvents
+     * @protected
+     */
+    _onPlotViewEvents: function() {
+        this._updateEventsForView();
+    },
+
+    /**
+     * Sets the `originalItems` attribute.
+     *
+     * @method _setOriginalItems
+     * @param {Array} originalItems
+     * @protected
+     */
+    _setOriginalItems: function(val) {
+        var originalItems = [];
+
+        for (var i = 0; i < val.length; i++) {
+            if (A.instanceOf(val[i], this.model)) {
+                this.add(val[i]);
+            }
+            else {
+                val[i].startDate = val[i].startDate || new Date();
+                if (!val[i].endDate) {
+                    val[i].endDate = DateMath.clone(val[i].startDate);
+                    val[i].endDate.setHours(val[i].endDate.getHours() + 1);
+                }
+
+                originalItems.push(val[i]);
+            }
+        }
+
+        return originalItems;
+    },
+
+    /**
+     * Adds the necessary events for the view to the model list.
+     *
+     * @method _updateEventsForView
+     * @protected
+     */
+    _updateEventsForView: function() {
+        var dateInterval,
+            eventEndDate,
+            eventStartDate,
+            i,
+            remainingItems = [],
+            view = this.get('scheduler').get('activeView');
+
+        if (!view) {
+            return;
+        }
+
+        dateInterval = view.getDateInterval();
+
+        for (i = 0; i < this._remainingItems.length; i++) {
+            eventStartDate = this._remainingItems[i].startDate;
+            eventEndDate = this._remainingItems[i].endDate;
+
+            if ((!dateInterval.startDate || eventEndDate >= dateInterval.startDate) &&
+                (!dateInterval.endDate || eventStartDate <= dateInterval.endDate)) {
+                this.add(this._remainingItems[i]);
+            }
+            else {
+                remainingItems.push(this._remainingItems[i]);
+            }
+        }
+
+        this._remainingItems = remainingItems;
+    },
+
     model: A.SchedulerEvent
 }, {
 
@@ -95,6 +198,19 @@ A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
      * @static
      */
     ATTRS: {
+        /**
+         * The original list of items.
+         *
+         * @attribute originalItems
+         * @default []
+         * @type {Array}
+         */
+        originalItems: {
+            setter: '_setOriginalItems',
+            validator: A.Lang.isArray,
+            value: []
+        },
+
         scheduler: {}
     }
 });
@@ -135,17 +251,21 @@ A.mix(SchedulerEventSupport.prototype, {
      * @protected
      */
     initializer: function(config) {
-        var instance = this;
+        var instance = this,
+            events = instance._toSchedulerEvents(config.items || config.events);
 
         instance._events = new instance.eventsModel({
             after: {
                 add: A.bind(instance._afterAddEvent, instance)
             },
             bubbleTargets: instance,
+            originalItems: this.get('pagination') ? events : [],
             scheduler: instance
         });
 
-        instance.addEvents(config.items || config.events);
+        if (!this.get('pagination')) {
+            this._events.add(events);
+        }
     },
 
     /**
@@ -207,16 +327,19 @@ A.mix(SchedulerEventSupport.prototype, {
      * @method getEvents
      * @param {Function} filterFn (optional) Filters `events` and returns a list
      *     of events.
+     * @param {Boolean} skipSort
      * @return {Array}
      */
-    getEvents: function(filterFn) {
+    getEvents: function(filterFn, skipSort) {
         var instance = this,
             events = instance._events;
 
         // TODO: Check why the items are not being sorted on add
-        events.sort({
-            silent: true
-        });
+        if (!skipSort) {
+            events.sort({
+                silent: true
+            });
+        }
 
         if (filterFn) {
             events = events.filter(filterFn);
@@ -353,6 +476,13 @@ A.mix(SchedulerEventSupport.prototype, {
 A.SchedulerEventSupport = SchedulerEventSupport;
 
 /**
+ * Fired when the current image will be animated in.
+ *
+ * @event plotViewEvents
+ * @preventable _defPlotViewEventsFn
+ */
+
+/**
  * A base class for `SchedulerBase`.
  *
  * @class A.SchedulerBase
@@ -470,6 +600,7 @@ var SchedulerBase = A.Component.create({
                 agenda: 'Agenda',
                 day: 'Day',
                 month: 'Month',
+                table: 'Table',
                 today: 'Today',
                 week: 'Week',
                 year: 'Year'
@@ -495,6 +626,19 @@ var SchedulerBase = A.Component.create({
                 );
             },
             validator: isFunction
+        },
+
+        /**
+         * If the model items should be lazily loaded through pagination or not.
+         *
+         * @attribute pagination
+         * @default true
+         * @type {Boolean}
+         */
+        pagination: {
+            validator: A.Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
         },
 
         /**
@@ -543,18 +687,37 @@ var SchedulerBase = A.Component.create({
             }
         },
 
+        /**
+         * Contains the node that displays `Scheduler`'s current date in the `SchedulerView`.
+         * This node is only visible on mobile.
+         *
+         * @attribute viewDateNode
+         * @type {Node}
+         */
         viewDateNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_VIEW_DATE);
             }
         },
 
+        /**
+         * Contains `Scheduler`'s header node.
+         *
+         * @attribute headerNode
+         * @type {Node}
+         */
         headerNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_HD);
             }
         },
 
+        /**
+         * Contains the node that goes to the next date in the `activeView`.
+         *
+         * @attribute iconNextNode
+         * @type {Node}
+         */
         iconNextNode: {
             valueFn: function() {
                 var instance = this;
@@ -567,6 +730,12 @@ var SchedulerBase = A.Component.create({
             }
         },
 
+        /**
+         * Contains the node that goes to the previous date in the `activeView`.
+         *
+         * @attribute iconPrevNode
+         * @type {Node}
+         */
         iconPrevNode: {
             valueFn: function() {
                 var instance = this;
@@ -579,9 +748,41 @@ var SchedulerBase = A.Component.create({
             }
         },
 
+        /**
+         * Contains `Scheduler`'s header navigation node.
+         *
+         * @attribute navNode
+         * @type {Node}
+         */
         navNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_NAV);
+            }
+        },
+
+        /**
+         * Contains the node that displays `Scheduler`'s current date in `Scheduler`'s header.
+         * This node is hidden on mobile.
+         *
+         * @attribute navDateNode
+         * @type {Node}
+         */
+        navDateNode: {
+            valueFn: function() {
+                return A.Node.create(TPL_SCHEDULER_NAV_DATE);
+            }
+        },
+
+        /**
+         * Contains the node for the select dropdown for `Scheduler`'s views.
+         * This node is only visible on mobile.
+         *
+         * @attribute viewsSelectNode
+         * @type {Node}
+         */
+        viewsSelectNode: {
+            valueFn: function() {
+                return A.Node.create(TPL_SCHEDULER_VIEWS_SELECT);
             }
         },
 
@@ -598,6 +799,12 @@ var SchedulerBase = A.Component.create({
             validator: isDate
         },
 
+        /**
+         * Contains the node that goes to today date in the `activeView`.
+         *
+         * @attribute todayNode
+         * @type {Node}
+         */
         todayNode: {
             valueFn: function() {
                 var instance = this;
@@ -610,6 +817,13 @@ var SchedulerBase = A.Component.create({
             }
         },
 
+        /**
+         * Contains the node container that holds the nodes to change `Scheduler`'s
+         * `activeView`.
+         *
+         * @attribute viewsNode
+         * @type {Node}
+         */
         viewsNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_VIEWS);
@@ -632,6 +846,7 @@ var SchedulerBase = A.Component.create({
         iconNextNode: '.' + CSS_SCHEDULER_ICON_NEXT,
         iconPrevNode: '.' + CSS_SCHEDULER_ICON_PREV,
         navNode: '.' + CSS_SCHEDULER_NAV,
+        navDateNode: '.' + CSS_SCHEDULER_NAV_DATE,
         todayNode: '.' + CSS_SCHEDULER_TODAY,
         viewsNode: '.' + CSS_SCHEDULER_VIEWS
     },
@@ -675,12 +890,20 @@ var SchedulerBase = A.Component.create({
             instance.iconNextNode = instance.get('iconNextNode');
             instance.iconPrevNode = instance.get('iconPrevNode');
             instance.navNode = instance.get('navNode');
+            instance.navDateNode = instance.get('navDateNode');
+            instance.viewsSelectNode = instance.get('viewsSelectNode');
             instance.todayNode = instance.get('todayNode');
             instance.viewsNode = instance.get('viewsNode');
 
             instance.after({
                 activeViewChange: instance._afterActiveViewChange,
                 render: instance._afterRender
+            });
+
+            this.publish({
+                plotViewEvents: {
+                    defaultFn: this._defPlotViewEventsFn
+                }
             });
         },
 
@@ -719,6 +942,25 @@ var SchedulerBase = A.Component.create({
             var instance = this;
 
             return instance.viewStack[name];
+        },
+
+        /**
+         * Returns the trigger node for the given `SchedulerView`.
+         *
+         * @method getViewTriggerNode
+         * @param {A.SchedulerView} view
+         * @return {Node} The `SchedulerView`'s trigger `Node`.
+         */
+        getViewTriggerNode: function(view) {
+            var instance = this,
+                name = view.get('name'),
+                viewportWidth = A.DOM.winWidth() + Y.DOM.getScrollbarWidth();
+
+            if (viewportWidth >= 768) {
+                return instance.viewsNode.one('.' + CSS_SCHEDULER_VIEW_ + name);
+            }
+
+            return instance.viewsSelectNode.one('.' + CSS_SCHEDULER_VIEW_ + name);
         },
 
         /**
@@ -778,6 +1020,7 @@ var SchedulerBase = A.Component.create({
                         instance.setStdModContent(WidgetStdMod.BODY, '');
                     }
 
+                    instance.bodyNode.prepend(instance.viewDateNode);
                     view.render(instance.bodyNode);
                 }
             }
@@ -807,7 +1050,7 @@ var SchedulerBase = A.Component.create({
                 activeView = instance.get('activeView');
 
             if (activeView) {
-                instance.plotViewEvents(activeView);
+                this.fire('plotViewEvents');
             }
         },
 
@@ -830,6 +1073,17 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
+         * Renders a dropdown list under the `Scheduler` instance's `viewsNode`.
+         *
+         * @method renderDropdownList
+         */
+        renderDropdownList: function() {
+            var instance = this;
+
+            instance.viewsSelectNode.on('change', A.bind(instance._onSelectionChange, instance));
+        },
+
+        /**
          * Sync `SchedulerBase` StdContent.
          *
          * @method syncStdContent
@@ -839,15 +1093,18 @@ var SchedulerBase = A.Component.create({
             var views = instance.get('views');
 
             instance.navNode.append(instance.iconPrevNode);
+            instance.navNode.append(instance.todayNode);
             instance.navNode.append(instance.iconNextNode);
 
-            instance.controlsNode.append(instance.todayNode);
             instance.controlsNode.append(instance.navNode);
-            instance.controlsNode.append(instance.viewDateNode);
+            instance.controlsNode.append(instance.navDateNode);
 
             A.Array.each(views, function(view) {
-                instance.viewsNode.append(instance._createViewTriggerNode(view));
+                instance.viewsSelectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
+                instance.viewsNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_BUTTON));
             });
+
+            instance.viewsNode.append(instance.viewsSelectNode);
 
             instance.header.append(instance.controlsNode);
             instance.header.append(instance.viewsNode);
@@ -898,6 +1155,7 @@ var SchedulerBase = A.Component.create({
 
             instance.renderView(activeView);
             instance.renderButtonGroup();
+            instance.renderDropdownList();
 
             instance._uiSetDate(instance.get('date'));
             instance._uiSetActiveView(activeView);
@@ -926,28 +1184,30 @@ var SchedulerBase = A.Component.create({
          *
          * @method _createViewTriggerNode
          * @param {A.SchedulerView} view
+         * @param {String} tpl
          * @protected
          * @return {Node} The `SchedulerView`'s trigger `Node`.
          */
-        _createViewTriggerNode: function(view) {
+        _createViewTriggerNode: function(view, tpl) {
             var instance = this;
+            var name = view.get('name');
 
-            if (!view.get('triggerNode')) {
-                var name = view.get('name');
+            return A.Node.create(
+                    A.Lang.sub(tpl, {
+                        name: name,
+                        label: (instance.getString(name) || name),
+                        ariaLabel: instance.getAriaLabel(name)
+                    }));
+        },
 
-                view.set(
-                    'triggerNode',
-                    A.Node.create(
-                        A.Lang.sub(TPL_SCHEDULER_VIEW, {
-                            name: name,
-                            label: (instance.getString(name) || name),
-                            ariaLabel: instance.getAriaLabel(name)
-                        })
-                    )
-                );
-            }
-
-            return view.get('triggerNode');
+        /**
+         * Default behavior for the `plotViewEvents` event.
+         *
+         * @method _defPlotViewEventsFn
+         * @protected
+         */
+        _defPlotViewEventsFn: function() {
+            this.plotViewEvents(this.get('activeView'));
         },
 
         /**
@@ -967,6 +1227,24 @@ var SchedulerBase = A.Component.create({
             }
 
             return date;
+        },
+
+        /**
+         * Handles `buttonGroupSelectionChange` events.
+         *
+         * @method _onButtonGroupSelectionChange
+         * @param {EventFacade} event
+         * @protected
+         */
+        _onButtonGroupSelectionChange: function(event) {
+            var instance = this,
+                viewName = event.originEvent.target.attr('data-view-name');
+
+            instance.set('activeView', instance.getViewByName(viewName));
+
+            instance.viewsSelectNode.one('[data-view-name=' + viewName + ']').set('selected', true);
+
+            event.preventDefault();
         },
 
         /**
@@ -1024,19 +1302,19 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Handles `buttonGroupSelectionChange` events.
+         * Handles select tag's change events.
          *
-         * @method _onButtonGroupSelectionChange
+         * @method _onSelectionChange
          * @param {EventFacade} event
          * @protected
          */
-        _onButtonGroupSelectionChange: function(event) {
+        _onSelectionChange: function(event) {
             var instance = this,
-                viewName = event.originEvent.target.attr('data-view-name');
+                target = event.target,
+                index = target.get('selectedIndex'),
+                viewName = target.get('options').item(index).attr('data-view-name');
 
             instance.set('activeView', instance.getViewByName(viewName));
-
-            event.preventDefault();
         },
 
         /**
@@ -1135,6 +1413,7 @@ var SchedulerBase = A.Component.create({
 
                 if (activeNav) {
                     instance.viewsNode.all('button').removeClass(CSS_SCHEDULER_VIEW_SELECTED).setAttribute('aria-pressed', false);
+                    instance.viewsSelectNode.one('[data-view-name=' + activeView + ']').set('selected', true);
                     activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED).setAttribute('aria-pressed', true);
                 }
             }
@@ -1163,6 +1442,7 @@ var SchedulerBase = A.Component.create({
                     navigationTitle = formatter.call(activeView, date);
                 }
 
+                instance.navDateNode.html(navigationTitle);
                 instance.viewDateNode.html(navigationTitle);
 
                 instance.syncEventsUI();

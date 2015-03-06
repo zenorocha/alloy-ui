@@ -5,6 +5,46 @@ YUI.add('aui-tree-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'Tree View',
 
+        assertExpandCollapseAction: function(actionTriggerFn) {
+            var content = Y.Node.create('<div id="createFromHTMLMarkupWithoutClassesTest"><ul><li>' +
+                '<span>Fruits</span><ul><li><span>Tomato</span></li></ul></li></ul></div>'),
+                originalListElements,
+                originalListElementsCount,
+                treeNodes,
+                treeNodesCount,
+                treeView;
+
+            Y.one('#container').append(content);
+
+            originalListElements = Y.all('#createFromHTMLMarkupWithoutClassesTest li'),
+            originalListElementsCount = originalListElements.size(),
+
+            treeView = new Y.TreeView({
+                boundingBox: '#createFromHTMLMarkupWithoutClassesTest',
+                contentBox: '#createFromHTMLMarkupWithoutClassesTest > ul'
+            }).render();
+
+            treeNodes = Y.all('#createFromHTMLMarkupWithoutClassesTest .tree-node');
+            treeNodesCount = treeNodes.size();
+
+            Y.Assert.areSame(treeNodesCount, originalListElementsCount);
+
+            treeNodes.each(function(node) {
+                var expand = node.one('.tree-hitarea'),
+                    content = node.one('.tree-node-content');
+
+                if (expand) {
+                    actionTriggerFn(expand);
+                    Y.Assert.isTrue(content.hasClass('tree-expanded'));
+
+                    actionTriggerFn(expand);
+                    Y.Assert.isTrue(content.hasClass('tree-collapsed'));
+                }
+            });
+
+           content.remove();
+        },
+
         'TreeView constructor should work without a config object': function() {
             var treeView = new Y.TreeView();
 
@@ -425,7 +465,7 @@ YUI.add('aui-tree-tests', function(Y) {
                 treeViewComponent.remove();
             }, lazyRenderTimeout);
 
-            test.wait(lazyRenderTimeout);
+            test.wait();
         },
 
         'TreeNodeView created from HTML Markup should display glyphicon-plus when collapsed': function() {
@@ -456,7 +496,7 @@ YUI.add('aui-tree-tests', function(Y) {
                 treeViewComponent.remove();
             }, lazyRenderTimeout);
 
-            test.wait(lazyRenderTimeout);
+            test.wait();
         },
 
         // Tests: AUI-1156
@@ -734,36 +774,60 @@ YUI.add('aui-tree-tests', function(Y) {
         },
 
         'TreeView generated from HTML markup without CSS classes should expand and collapse': function() {
+            this.assertExpandCollapseAction(function (target) {
+                target.simulate('click');
+            });
+        },
+
+        'TreeView generated from HTML markup without CSS classes should expand and collapse on enter key': function() {
+            this.assertExpandCollapseAction(function (target) {
+                target.simulate('keydown', {
+                    keyCode: 13
+                });
+            });
+        },
+
+        'TreeView generated from HTML markup without CSS classes should expand and collapse on space key': function() {
+            this.assertExpandCollapseAction(function (target) {
+                target.simulate('keydown', {
+                    keyCode: 32
+                });
+            });
+        },
+
+        'should fire expandedChange event on click': function() {
             var treeView,
-                originalListElements = Y.all('#createFromHTMLMarkupWithoutClassesTest li'),
-                originalListElementsCount = originalListElements.size(),
-                treeNodes,
-                treeNodesCount;
+                expanded = false;
 
             treeView = new Y.TreeView({
-                boundingBox: '#createFromHTMLMarkupWithoutClassesTest',
-                contentBox: '#createFromHTMLMarkupWithoutClassesTest > ul'
+                children: [
+                    {
+                        children: [
+                            {
+                                id: 'one-one'
+                            },
+                            {
+                                id: 'one-two'
+                            },
+                            {
+                                id: 'one-three'
+                            },
+                            {
+                                id: 'one-four'
+                            }
+                        ],
+                        id: 'one'
+                    }
+                ],
+                lazyLoad: false
             }).render();
 
-            treeNodes = Y.all('#createFromHTMLMarkupWithoutClassesTest .tree-node');
-            treeNodesCount = treeNodes.size();
-
-            Y.Assert.areSame(treeNodesCount, originalListElementsCount);
-
-            treeNodes.each(function(node) {
-                var expand = node.one('.tree-hitarea'),
-                    content = node.one('.tree-node-content');
-
-                if (expand) {
-                    expand.simulate('click');
-
-                    Y.Assert.isTrue(content.hasClass('tree-expanded'));
-
-                    expand.simulate('click');
-
-                    Y.Assert.isTrue(content.hasClass('tree-collapsed'));
-                }
+            treeView.after('tree-node:expandedChange', function () {
+                expanded = true;
             });
+
+            Y.one('.tree-hitarea').simulate('click');
+            Y.Assert.isTrue(expanded);
         }
     }));
 
