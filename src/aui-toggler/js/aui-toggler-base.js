@@ -275,7 +275,7 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Expand `A.Toggler` with an animation.
+         * Expand/collapse `A.Toggler` with an animation.
          *
          * @method animate
          * @param config
@@ -295,6 +295,8 @@ var Toggler = A.Component.create({
          * Hide `A.Toggler` content.
          *
          * @method collapse
+         * @param {Object} payload
+         * @return {Boolean} expand
          */
         collapse: function(payload) {
             var instance = this;
@@ -306,6 +308,8 @@ var Toggler = A.Component.create({
          * Show `A.Toggler` content.
          *
          * @method expand
+         * @param {Object} payload
+         * @return {Boolean} expand
          */
         expand: function(payload) {
             var instance = this;
@@ -351,7 +355,9 @@ var Toggler = A.Component.create({
          * Show or hide content.
          *
          * @method toggle
-         * @param expand
+         * @param {Boolean} expand
+         * @param {Object} payload
+         * @return {Boolean} expand
          */
         toggle: function(expand, payload) {
             var instance = this,
@@ -368,15 +374,17 @@ var Toggler = A.Component.create({
                 expand = !expanded;
             }
 
-            if (instance.get('animated') && (expand !== expanded)) {
-                if (instance.get('animating')) {
-                    return expand;
-                }
+            if (expand !== expanded) {
+                if (instance.get('animated')) {
+                    if (instance.get('animating')) {
+                        return expand;
+                    }
 
-                instance._animation(expand, payload);
-            }
-            else {
-                instance.set('expanded', expand, payload);
+                    instance._animation(expand, payload);
+                }
+                else {
+                    instance.set('expanded', expand, payload);
+                }
             }
 
             return expand;
@@ -401,18 +409,17 @@ var Toggler = A.Component.create({
             }
 
             if (!instance.wrapped) {
-                content.wrap(TPL_CONTENT_WRAPPER);
+                instance._uiSetExpandedContent();
 
                 if (expand) {
                     content.setStyle('marginTop', -(height + gutter));
                 }
-
-                instance.wrapped = true;
             }
 
             instance.set('animating', true);
 
-            instance.animate({
+            instance.animate(
+                {
                     marginTop: (expand ? gutter : -(height + gutter)) + 'px'
                 },
                 function() {
@@ -437,17 +444,36 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Set the `expanded` attribute on the UI.
+         * Set the "expanded"/"collapsed" classes on the UI.
          *
          * @method _uiSetExpanded
-         * @param val
+         * @param {Boolean} val
          * @protected
          */
         _uiSetExpanded: function(val) {
-            var instance = this;
+            var instance = this,
+                expanded = instance.get('expanded');
+
+            if (expanded && !instance.wrapped) {
+                instance._uiSetExpandedContent();
+            }
 
             instance.get('content').replaceClass(CSS_TOGGLER_CONTENT_STATE[!val], CSS_TOGGLER_CONTENT_STATE[val]);
             instance.get('header').replaceClass(CSS_TOGGLER_HEADER_STATE[!val], CSS_TOGGLER_HEADER_STATE[val]);
+        },
+
+        /**
+         * Wrap the content HTML if `expanded` attribute is true.
+         *
+         * @method _uiSetExpandedContent
+         * @protected
+         */
+        _uiSetExpandedContent: function() {
+            var instance = this;
+
+            instance.get('content').wrap(TPL_CONTENT_WRAPPER);
+
+            instance.wrapped = true;
         }
 
     }

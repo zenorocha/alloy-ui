@@ -13,6 +13,7 @@ var Lang = A.Lang,
     isDate = Lang.isDate,
     isEmpty = AObject.isEmpty,
     isFunction = Lang.isFunction,
+    isNode = Lang.isNode,
     isObject = Lang.isObject,
     isString = Lang.isString,
     trim = Lang.trim,
@@ -169,6 +170,20 @@ A.mix(defaults, {
             return comparator && (trim(comparator.val()) === val);
         },
 
+        hasValue: function(val, node) {
+            var instance = this;
+
+            if (A.FormValidator.isCheckable(node)) {
+                var name = node.get('name'),
+                    elements = A.all(instance.getFieldsByName(name));
+
+                return (elements.filter(':checked').size() > 0);
+            }
+            else {
+                return !!val;
+            }
+        },
+
         max: function(val, node, ruleValue) {
             return (Lang.toFloat(val) <= ruleValue);
         },
@@ -197,17 +212,14 @@ A.mix(defaults, {
             return (length >= ruleValue[0]) && (length <= ruleValue[1]);
         },
 
-        required: function(val, node) {
+        required: function(val, node, ruleValue) {
             var instance = this;
 
-            if (A.FormValidator.isCheckable(node)) {
-                var name = node.get('name'),
-                    elements = A.all(instance.getFieldsByName(name));
-
-                return (elements.filter(':checked').size() > 0);
+            if (ruleValue === true) {
+                return defaults.RULES.hasValue.apply(instance, [val, node]);
             }
             else {
-                return !!val;
+                return true;
             }
         }
     }
@@ -531,6 +543,8 @@ var FormValidator = A.Component.create({
 
             instance.errors = {};
             instance._blurHandlers = null;
+            instance._fileBlurHandlers = null;
+            instance._fileInputHandlers = null;
             instance._inputHandlers = null;
             instance._rulesAlreadyExtracted = false;
             instance._stackErrorContainers = {};
@@ -583,7 +597,7 @@ var FormValidator = A.Component.create({
          * Adds a validation error in the field.
          *
          * @method addFieldError
-         * @param field
+         * @param {Node} field
          * @param ruleName
          */
         addFieldError: function(field, ruleName) {
@@ -599,15 +613,17 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * Removes a validation error in the field.
+         * Deletes the field from the errors property object.
          *
          * @method clearFieldError
-         * @param field
+         * @param {Node|String} field
          */
         clearFieldError: function(field) {
-            var instance = this;
+            var fieldName = isNode(field) ? field.get('name') : field;
 
-            delete instance.errors[field.get('name')];
+            if (isString(fieldName)) {
+                delete this.errors[fieldName];
+            }
         },
 
         /**
@@ -633,7 +649,7 @@ var FormValidator = A.Component.create({
          * Gets the ancestor of a given field.
          *
          * @method findFieldContainer
-         * @param field
+         * @param {Node} field
          * @return {Node}
          */
         findFieldContainer: function(field) {
@@ -670,21 +686,21 @@ var FormValidator = A.Component.create({
          * Gets a field from the form.
          *
          * @method getField
-         * @param fieldOrFieldName
+         * @param {Node|String} field
          * @return {Node}
          */
-        getField: function(fieldOrFieldName) {
+        getField: function(field) {
             var instance = this;
 
-            if (isString(fieldOrFieldName)) {
-                fieldOrFieldName = instance.getFieldsByName(fieldOrFieldName);
+            if (isString(field)) {
+                field = instance.getFieldsByName(field);
 
-                if (fieldOrFieldName && fieldOrFieldName.length && !fieldOrFieldName.name) {
-                    fieldOrFieldName = fieldOrFieldName[0];
+                if (field && field.length && !field.name) {
+                    field = field[0];
                 }
             }
 
-            return A.one(fieldOrFieldName);
+            return A.one(field);
         },
 
         /**
@@ -705,7 +721,7 @@ var FormValidator = A.Component.create({
          * Gets a list of fields with errors.
          *
          * @method getFieldError
-         * @param field
+         * @param {Node} field
          * @return {String}
          */
         getFieldError: function(field) {
@@ -718,7 +734,8 @@ var FormValidator = A.Component.create({
          * Gets the stack error container of a field.
          *
          * @method getFieldStackErrorContainer
-         * @param field
+         * @param {Node} field
+         * @return {Node}
          */
         getFieldStackErrorContainer: function(field) {
             var instance = this,
@@ -736,7 +753,7 @@ var FormValidator = A.Component.create({
          * Gets the error message of a field.
          *
          * @method getFieldErrorMessage
-         * @param field
+         * @param {Node} field
          * @param rule
          * @return {String}
          */
@@ -785,26 +802,40 @@ var FormValidator = A.Component.create({
          * Highlights a field with error or success.
          *
          * @method highlight
-         * @param field
+         * @param {Node} field
          * @param valid
          */
         highlight: function(field, valid) {
             var instance = this,
                 fieldContainer = instance.findFieldContainer(field);
 
-            instance._highlightHelper(
-                field,
-                instance.get('errorClass'),
-                instance.get('validClass'),
-                valid
-            );
+            if (field) {
+                if (this.validatable(field)) {
+                    instance._highlightHelper(
+                        field,
+                        instance.get('errorClass'),
+                        instance.get('validClass'),
+                        valid
+                    );    
 
-            instance._highlightHelper(
-                fieldContainer,
-                instance.get('containerErrorClass'),
-                instance.get('containerValidClass'),
-                valid
-            );
+                    if (fieldContainer) {
+                        instance._highlightHelper(
+                            fieldContainer,
+                            instance.get('containerErrorClass'),
+                            instance.get('containerValidClass'),
+                            valid
+                        );
+                    }
+                }
+                else if (!field.val()) {
+                    field.removeClass('errorClass');
+                    field.removeAttribute('aria-invalid');
+                    if (fieldContainer) {
+                        fieldContainer.removeClass('containerErrorClass');
+                        fieldContainer.removeAttribute('aria-invalid');
+                    }
+                }
+            }
         },
 
         /**
@@ -812,18 +843,19 @@ var FormValidator = A.Component.create({
          *
          * @method normalizeRuleValue
          * @param ruleValue
+         * @param {Node} field
          */
-        normalizeRuleValue: function(ruleValue) {
+        normalizeRuleValue: function(ruleValue, field) {
             var instance = this;
 
-            return isFunction(ruleValue) ? ruleValue.apply(instance) : ruleValue;
+            return isFunction(ruleValue) ? ruleValue.apply(instance, [field]) : ruleValue;
         },
 
         /**
          * Removes the highlight of a field.
          *
          * @method unhighlight
-         * @param field
+         * @param {Node} field
          */
         unhighlight: function(field) {
             var instance = this;
@@ -835,15 +867,20 @@ var FormValidator = A.Component.create({
          * Prints the stack error messages into a container.
          *
          * @method printStackError
-         * @param field
-         * @param container
-         * @param errors
+         * @param {Node} field
+         * @param {Node} container
+         * @param {Array} errors
          */
         printStackError: function(field, container, errors) {
             var instance = this;
 
             if (!instance.get('showAllMessages')) {
-                errors = errors.slice(0, 1);
+                if (errors.indexOf('required') !== -1) {
+                    errors = ['required'];
+                }
+                else {
+                    errors = errors.slice(0, 1);
+                }
             }
 
             container.empty();
@@ -871,33 +908,37 @@ var FormValidator = A.Component.create({
 
             instance.eachRule(
                 function(rule, fieldName) {
-                    var field = instance.getField(fieldName);
-
-                    instance.resetField(field);
+                    instance.resetField(fieldName);
                 }
             );
         },
 
         /**
-         * Resets the CSS class and content of a field.
+         * Resets the CSS class and error status of a field.
          *
          * @method resetField
-         * @param field
+         * @param {Node|String} field
          */
         resetField: function(field) {
-            var instance = this,
-                stackContainer = instance.getFieldStackErrorContainer(field);
+            var fieldNode,
+                stackContainer;
 
-            stackContainer.remove();
-            instance.resetFieldCss(field);
-            instance.clearFieldError(field);
+            this.clearFieldError(field);
+            fieldNode = isString(field) ? this.getField(field) : field;
+
+            if (isNode(fieldNode)) {
+                stackContainer = this.getFieldStackErrorContainer(fieldNode);
+                stackContainer.remove();
+                this.resetFieldCss(fieldNode);
+                this.unhighlight(fieldNode);
+            }
         },
 
         /**
          * Removes the CSS classes of a field.
          *
          * @method resetFieldCss
-         * @param field
+         * @param {Node} field
          */
         resetFieldCss: function(field) {
             var instance = this,
@@ -921,7 +962,7 @@ var FormValidator = A.Component.create({
          * Checks if a field can be validated or not.
          *
          * @method validatable
-         * @param field
+         * @param {Node} field
          * @return {Boolean}
          */
         validatable: function(field) {
@@ -930,10 +971,8 @@ var FormValidator = A.Component.create({
                 fieldRules = instance.get('rules')[field.get('name')];
 
             if (fieldRules) {
-                var required = instance.normalizeRuleValue(fieldRules.required);
-
-                validatable = (required || (!required && defaults.RULES.required.apply(instance, [field.val(),
-                    field])) || fieldRules.custom);
+                validatable = instance.normalizeRuleValue(fieldRules.required, field) ||
+                    defaults.RULES.hasValue.apply(instance, [field.val(), field]);
             }
 
             return !!validatable;
@@ -960,19 +999,20 @@ var FormValidator = A.Component.create({
          * Validates a single field.
          *
          * @method validateField
-         * @param field
+         * @param {Node|String} field
          */
         validateField: function(field) {
-            var instance = this,
-                fieldNode = instance.getField(field);
+            var fieldNode,
+                validatable;
 
-            if (fieldNode) {
-                var validatable = instance.validatable(fieldNode);
+            this.resetField(field);
+            fieldNode = isString(field) ? this.getField(field) : field;
 
-                instance.resetField(fieldNode);
+            if (isNode(fieldNode)) {
+                validatable = this.validatable(fieldNode);
 
                 if (validatable) {
-                    instance.fire('validateField', {
+                    this.fire('validateField', {
                         validator: {
                             field: fieldNode
                         }
@@ -995,19 +1035,6 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * Fires after `validateOnInput` attribute change.
-         *
-         * @method _afterValidateOnInputChange
-         * @param event
-         * @protected
-         */
-        _afterValidateOnInputChange: function(event) {
-            var instance = this;
-
-            instance._uiSetValidateOnInput(event.newVal);
-        },
-
-        /**
          * Fires after `validateOnBlur` attribute change.
          *
          * @method _afterValidateOnBlurChange
@@ -1018,6 +1045,19 @@ var FormValidator = A.Component.create({
             var instance = this;
 
             instance._uiSetValidateOnBlur(event.newVal);
+        },
+
+        /**
+         * Fires after `validateOnInput` attribute change.
+         *
+         * @method _afterValidateOnInputChange
+         * @param event
+         * @protected
+         */
+        _afterValidateOnInputChange: function(event) {
+            var instance = this;
+
+            instance._uiSetValidateOnInput(event.newVal);
         },
 
         /**
@@ -1100,7 +1140,7 @@ var FormValidator = A.Component.create({
                     var rule = defaults.RULES[ruleName];
                     var fieldValue = trim(field.val());
 
-                    ruleValue = instance.normalizeRuleValue(ruleValue);
+                    ruleValue = instance.normalizeRuleValue(ruleValue, field);
 
                     if (isFunction(rule) && !rule.apply(instance, [fieldValue, field, ruleValue])) {
 
@@ -1132,7 +1172,7 @@ var FormValidator = A.Component.create({
          * Finds the label text of a field if existing.
          *
          * @method _findFieldLabel
-         * @param field
+         * @param {Node} field
          * @return {String}
          */
         _findFieldLabel: function(field) {
@@ -1158,27 +1198,25 @@ var FormValidator = A.Component.create({
          * field.
          *
          * @method _highlightHelper
-         * @param field
-         * @param errorClass
-         * @param validClass
-         * @param valid
+         * @param {Node} field
+         * @param {String} errorClass
+         * @param {String} validClass
+         * @param {Boolean} valid
          * @protected
          */
         _highlightHelper: function(field, errorClass, validClass, valid) {
-            if (field) {
-                if (valid) {
-                    field.removeClass(errorClass).addClass(validClass);
+            if (valid) {
+                field.removeClass(errorClass).addClass(validClass);
 
-                    if (validClass === CSS_SUCCESS_FIELD) {
-                        field.removeAttribute('aria-invalid');
-                    }
+                if (validClass === CSS_SUCCESS_FIELD) {
+                    field.removeAttribute('aria-invalid');
                 }
-                else {
-                    field.removeClass(validClass).addClass(errorClass);
+            }
+            else {
+                field.removeClass(validClass).addClass(errorClass);
 
-                    if (errorClass === CSS_ERROR_FIELD) {
-                        field.set('aria-invalid', true);
-                    }
+                if (errorClass === CSS_ERROR_FIELD) {
+                    field.set('aria-invalid', true);
                 }
             }
         },
@@ -1300,9 +1338,11 @@ var FormValidator = A.Component.create({
 
             instance.eachRule(
                 function(rule, fieldName) {
-                    if (rule.required) {
-                        var field = instance.getField(fieldName);
+                    var field = instance.getField(fieldName);
 
+                    var required = instance.normalizeRuleValue(rule.required, field);
+
+                    if (required) {
                         if (field && !field.attr('aria-required')) {
                             field.attr('aria-required', true);
                         }
@@ -1339,12 +1379,21 @@ var FormValidator = A.Component.create({
             if (val) {
                 if (!instance._inputHandlers) {
                     instance._inputHandlers = boundingBox.delegate('input', instance._onFieldInput,
-                        'input,select,textarea,button', instance);
+                        'input:not([type="file"]),select,textarea,button', instance);
+                }
+
+                if (!instance._fileInputHandlers) {
+                    instance._fileInputHandlers = boundingBox.delegate('change', instance._onFieldInput,
+                        'input[type="file"]', instance);
                 }
             }
             else {
                 if (instance._inputHandlers) {
                     instance._inputHandlers.detach();
+                }
+
+                if (instance._fileInputHandlers) {
+                    instance._fileInputHandlers.detach();
                 }
             }
         },
@@ -1363,12 +1412,21 @@ var FormValidator = A.Component.create({
             if (val) {
                 if (!instance._blurHandlers) {
                     instance._blurHandlers = boundingBox.delegate('blur', instance._onFieldInput,
-                        'input,select,textarea,button', instance);
+                        'input:not([type="file"]),select,textarea,button', instance);
+                }
+
+                if (!instance._fileBlurHandlers) {
+                    instance._fileBlurHandlers = boundingBox.delegate('change', instance._onFieldInput,
+                        'input[type="file"]', instance);
                 }
             }
             else {
                 if (instance._blurHandlers) {
                     instance._blurHandlers.detach();
+                }
+
+                if (instance._fileBlurHandlers) {
+                    instance._fileBlurHandlers.detach();
                 }
             }
         }

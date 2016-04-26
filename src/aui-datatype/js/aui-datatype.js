@@ -369,20 +369,33 @@ A.mix(A.DataType.DateMath, {
      * March 29, 2015 and the second one is April 4, 2015, then the returned
      * value should be 6.
      *
-     * This method iterates over all days between the dates so it can be slow
-     * for dates that are too much far from one another.
-     *
      * @method countDays
      * @param d1 One of the days
      * @param d2 The other day
      * @return the number of days between the two dates.
      */
     countDays: function(d1, d2) {
-        var count = 0,
-            d,
-            step = this.before(d1, d2) ? 1 : -1;
+        var checkDate,
+            count,
+            first,
+            diff,
+            second;
 
-        for (d = d1; this.isDayOverlap(d, d2); d = this.add(d, this.DAY, step)) {
+        if (this.before(d1, d2)) {
+            first = d1;
+            second = d2;
+        }
+        else {
+            first = d2;
+            second = d1;
+        }
+
+        diff = second.getTime() - first.getTime();
+        count = Math.floor(diff / this.ONE_DAY_MS);
+        checkDate = this.toMidnight(this.add(first, this.DAY, count));
+        second = this.toMidnight(second);
+
+        if (this.before(checkDate, second)) {
             count++;
         }
 
@@ -840,28 +853,32 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Sets the time fields from a given date to the last possible hour.
+     * Given a date, returns a {Date} object pointing to the last moment of the
+     * day.
      *
      * @method toLastHour
-     * @param {Date} date The JavaScript Date for which the time fields will be
-     *     set to the last possible hour
-     * @return {Date} The JavaScript Date set to the last possible hour
+     * @param {Date} date The date from which it will return the last moment.
+     * @return {Date} The last moment (23:59:59:999) of the given date.
      */
     toLastHour: function(date) {
+        date = this.clone(date);
         date.setHours(23, 59, 59, 999);
+
         return date;
     },
 
     /**
-     * Sets the time fields from a given date to midnight.
+     * Given a date, returns a {Date} object pointing to the first moment of the
+     * day (i.e. the midnight of that date).
      *
      * @method toMidnight
-     * @param {Date} date The JavaScript Date for which the time fields will be
-     *     set to midnight
-     * @return {Date} The JavaScript Date set to midnight
+     * @param {Date} date The date from which it will return the midnight.
+     * @return {Date} The midnight of the given date.
      */
     toMidnight: function(date) {
+        date = this.clone(date);
         date.setHours(0, 0, 0, 0);
+
         return date;
     },
 

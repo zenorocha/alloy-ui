@@ -4,6 +4,18 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
+
+No changes.
+
+## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
+
+* [AUI-2044](https://issues.liferay.com/browse/AUI-2044) Add zIndex to AUI Image Viewer
+
+## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
+
 * [AUI-1669](https://issues.liferay.com/browse/AUI-1669) Image Viewer Base throws error when no images or sources are provided
 
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)

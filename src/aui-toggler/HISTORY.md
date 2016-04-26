@@ -4,11 +4,24 @@
 
 ## @VERSION@
 
+* [AUI-2071](https://issues.liferay.com/browse/AUI-2071) AUI toggler animation could be corrupted.
+
+## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
+
+No changes.
+
+## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
+
+No changes.
+
+## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
+
+* [AUI-1900](https://issues.liferay.com/browse/AUI-1900) Toggler should wrap content when expanded attr is set to true
 * [AUI-1627](https://issues.liferay.com/browse/AUI-1627) Remove DOM content added by toggler on destroyed
 * [AUI-1624](https://issues.liferay.com/browse/AUI-1624) Add unit test for toggler module
 * [AUI-1364](https://issues.liferay.com/browse/AUI-1364) Make aui-toggler accessible
 
-## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
+## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
 
 * [AUI-1388](https://issues.liferay.com/browse/AUI-1388) Make aui-toggler responsive
 * [AUI-1287](https://issues.liferay.com/browse/AUI-1287) Wrong css formatting when running "grunt format"

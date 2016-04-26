@@ -4,6 +4,21 @@
 
 ## @VERSION@
 
+* [AUI-2057](https://issues.liferay.com/browse/AUI-2057) Fix bug with aui-widget-transition's stickDuration attribute overriding delay by default
+
+## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
+
+* [AUI-2052](https://issues.liferay.com/browse/AUI-2052) Allows changing the value of WidgetTransition's "delay" attribute
+* [AUI-2051](https://issues.liferay.com/browse/AUI-2051) Allows changing the value of WidgetTransition's "animated" attribute
+
+## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
+
+* [AUI-2021](https://issues.liferay.com/browse/AUI-2021) AUI-Popover should choose the best position according to its constrain element
+
+## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
+
+No changes.
+
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
 * [AUI-1305](https://issues.liferay.com/browse/AUI-1305) Make aui-image-gallery responsive

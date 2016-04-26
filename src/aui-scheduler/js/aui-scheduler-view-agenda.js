@@ -7,6 +7,7 @@
 
 var Lang = A.Lang,
     isFunction = Lang.isFunction,
+    isNumber  = Lang.isNumber,
 
     AArray = A.Array,
     DateMath = A.DataType.DateMath,
@@ -124,6 +125,18 @@ var SchedulerAgendaView = A.Component.create({
          */
         bodyContent: {
             value: ''
+        },
+
+        /**
+         * The amount of days to be displayed in agenda view.
+         *
+         * @attribute daysCount
+         * @default 30
+         * @type {Number}
+         */
+        daysCount: {
+            value: 30,
+            validator: isNumber
         },
 
         /**
@@ -289,6 +302,8 @@ var SchedulerAgendaView = A.Component.create({
      */
     EXTENDS: A.SchedulerView,
 
+    UI_ATTRS: ['daysCount'],
+
     prototype: {
 
         /**
@@ -425,7 +440,7 @@ var SchedulerAgendaView = A.Component.create({
                                         color: schedulerEvent.get('color'),
                                         content: schedulerEvent.get('content'),
                                         dates: eventsDateFormatter.call(instance, startDate, endDate),
-                                        eventClassName: (startDate.getTime() < today.getTime()) ?
+                                        eventClassName: ((date.getTime() < today.getTime()) || (endDate.getTime() < today.getTime())) ?
                                             CSS_EVENT_PAST : '',
                                         firstClassName: (seIndex === 0) ? CSS_EVENT_FIRST : '',
                                         lastClassName: (seIndex === schedulerEventsLength - 1) ? CSS_EVENT_LAST : ''
@@ -463,31 +478,46 @@ var SchedulerAgendaView = A.Component.create({
         _getDayEventsMap: function() {
             var instance = this,
 
+                daysCount = instance.get('daysCount'),
+
                 scheduler = instance.get('scheduler'),
 
                 viewDate = DateMath.toMidnight(scheduler.get('viewDate')),
+
+                limitDate = DateMath.add(viewDate, DateMath.DAY, daysCount-1),
 
                 eventsMap = {};
 
             scheduler.eachEvent(
                 function(schedulerEvent) {
-                    var startDate = schedulerEvent.get('startDate'),
+                    var endDate = schedulerEvent.get('endDate'),
+                        startDate = schedulerEvent.get('startDate'),
                         visible = schedulerEvent.get('visible'),
                         dayTS;
 
-                    if (!visible ||
-                        (startDate.getTime() < viewDate.getTime())) {
-
+                    if (!visible) {
                         return;
                     }
 
-                    dayTS = DateMath.safeClearTime(startDate).getTime();
+                    var displayDate = startDate;
 
-                    if (!eventsMap[dayTS]) {
-                        eventsMap[dayTS] = [];
+                    if (DateMath.before(limitDate, endDate)) {
+                        endDate = limitDate;
                     }
 
-                    eventsMap[dayTS].push(schedulerEvent);
+                    while (displayDate.getTime() <= endDate.getTime()) {
+                        if (displayDate.getTime() >= viewDate.getTime()) {
+                            dayTS = DateMath.safeClearTime(displayDate).getTime();
+
+                            if (!eventsMap[dayTS]) {
+                                eventsMap[dayTS] = [];
+                            }
+
+                            eventsMap[dayTS].push(schedulerEvent);
+                        }
+
+                        displayDate = DateMath.add(displayDate, DateMath.DAY, 1);
+                    }
                 }
             );
 
@@ -551,6 +581,24 @@ var SchedulerAgendaView = A.Component.create({
                 });
                 recorder.showPopover(currentTarget);
             }
+        },
+
+        /**
+         * Updated the plotted events to display the new, right amount of days.
+         *
+         * Note that the events should still be set into the scheduler. If, for
+         * example, one sets events pertaining to 30 days into the scheduler and
+         * then set `daysCount` to 60, obviously there is no way to the view to
+         * know about more events.
+         *
+         * @method _uiSetDaysCount
+         * @param {Number} daysCount number of days to be displayed.
+         * @protected
+         */
+        _uiSetDaysCount: function() {
+            var instance = this;
+
+            instance.plotEvents();
         }
     }
 });

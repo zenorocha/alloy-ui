@@ -17,7 +17,8 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 'should display event in month view in the week DST begins': NO_DST_OFFSET,
                 'should display event in month view in the last day of first week under DST': NO_DST_OFFSET,
                 'should not display "Show n more" link with only two events': NO_DST_OFFSET,
-                'should display last day of event spanning to DST from one week before': NO_DST_OFFSET
+                'should display last day of event spanning to DST from one week before': NO_DST_OFFSET,
+                'should display events spanning into DST correctly in week view when last day of week is the first day under DST': NO_DST_OFFSET
             }
         },
 
@@ -33,6 +34,33 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 this._scheduler.destroy();
                 delete this._scheduler;
             }
+        },
+
+        _clickColgrid: function(index) {
+            var colgrid = Y.all('.scheduler-view-table-colgrid').item(index),
+                offsetXY = colgrid.getXY();
+
+            // "event-simulate" module does not support pageX/pageY values
+            this._monthView._onMouseDownGrid({
+                pageX: offsetXY[0]+1,
+                pageY: offsetXY[1]+1,
+                target: colgrid,
+            });
+            this._monthView._onMouseUpGrid();
+        },
+
+        _clickColShim: function(x, y) {
+            var colShim = Y.one('.scheduler-view-day-table-col-shim'),
+                offsetXY = colShim.getXY();
+
+            this._dayView._onGestureMoveStartTableCol({
+                pageX: offsetXY[0]+x,
+                pageY: offsetXY[1]+y,
+                currentTarget: colShim,
+                target: colShim,
+                halt: Y.Lang.emptyFn,
+                _event: {}
+            });
         },
 
         _createScheduler: function(config) {
@@ -56,6 +84,21 @@ YUI.add('aui-scheduler-tests', function(Y) {
                     this._agendaView
                 ]
             }, config));
+
+            this._eventRecorder = this._scheduler.get('eventRecorder');
+        },
+
+        _dragOverColShim: function(x, y) {
+            var colShim = Y.one('.scheduler-view-day-table-col-shim'),
+                offsetXY = colShim.getXY();
+
+            this._dayView._onGestureMoveTableCol({
+                pageX: offsetXY[0]+x,
+                pageY: offsetXY[1]+y,
+                currentTarget: colShim,
+                target: colShim,
+                halt: Y.Lang.emptyFn
+            });
         },
 
         _getLocalTimeZoneDSTFirstDay: function() {
@@ -109,6 +152,10 @@ YUI.add('aui-scheduler-tests', function(Y) {
             );
 
             return curDate;
+        },
+
+        _releaseColShim: function() {
+            this._dayView._onGestureMoveEndTableCol();
         },
 
         'should be able to switch views': function() {
@@ -371,11 +418,792 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 WEEK_LENGTH, column.getAttribute('colspan'),
                 'Event should fill entire week.'
             );
+        },
+
+        'should update popover (first click an event, then an empty day)': function() {
+            var descriptionHint,
+                event = {
+                    allDay: true,
+                    color: '#8D8',
+                    content: 'Existing event',
+                    endDate: new Date(2013, 11, 2),
+                    startDate: new Date(2013, 11, 2)
+                },
+                formattedEventStartDate,
+                formattedFirstDay;
+
+            this._createScheduler({
+                activeView: this._monthView,
+                items: [event]
+            });
+
+            // Values to check
+            descriptionHint = this._eventRecorder.get('strings')['description-hint'];
+            formattedEventStartDate = Y.DataType.Date.format(
+                event.startDate,
+                {
+                    format: this._eventRecorder.get('dateFormat'),
+                    locale: this._scheduler.get('locale')
+                }
+            );
+            formattedFirstDay = Y.DataType.Date.format(
+                new Date(2013, 11, 1),
+                {
+                    format: this._eventRecorder.get('dateFormat'),
+                    locale: this._scheduler.get('locale')
+                }
+            );
+
+            Y.one('.scheduler-event').simulate('click');
+            Y.Assert.areEqual(
+                event.content,
+                Y.one('.scheduler-event-recorder-content').getAttribute('value'),
+                'The recorder content should be the event content'
+            );
+            Y.Assert.areEqual(
+                formattedEventStartDate,
+                Y.one('.scheduler-event-recorder-date').get('text'),
+                'The recorder date should display the event date'
+            );
+
+            this._clickColgrid(0);
+            Y.Assert.areEqual(
+                descriptionHint,
+                Y.one('.scheduler-event-recorder-content').getAttribute('value'),
+                'The recorder content should be the default content'
+            );
+            Y.Assert.areEqual(
+                formattedFirstDay,
+                Y.one('.scheduler-event-recorder-date').get('text'),
+                'The recorder date should NOT display the event date'
+            );
+        },
+
+        'should update popover (first click an empty day, then another)': function() {
+            var descriptionHint,
+                formattedFirstDay,
+                formattedSecondDay;
+
+            this._createScheduler({
+                activeView: this._monthView,
+                items: []
+            });
+
+            // Values to check
+            descriptionHint = this._eventRecorder.get('strings')['description-hint'];
+            formattedFirstDay = Y.DataType.Date.format(
+                new Date(2013, 11, 1),
+                {
+                    format: this._eventRecorder.get('dateFormat'),
+                    locale: this._scheduler.get('locale')
+                }
+            );
+            formattedSecondDay = Y.DataType.Date.format(
+                new Date(2013, 11, 2),
+                {
+                    format: this._eventRecorder.get('dateFormat'),
+                    locale: this._scheduler.get('locale')
+                }
+            );
+
+            this._clickColgrid(0);
+            Y.Assert.areEqual(
+                descriptionHint,
+                Y.one('.scheduler-event-recorder-content').getAttribute('value'),
+                'The recorder content should be the default content'
+            );
+            Y.Assert.areEqual(
+                formattedFirstDay,
+                Y.one('.scheduler-event-recorder-date').get('text'),
+                'The recorder date should display the first day'
+            );
+
+            this._clickColgrid(1);
+            Y.Assert.areEqual(
+                descriptionHint,
+                Y.one('.scheduler-event-recorder-content').getAttribute('value'),
+                'The recorder content should be the default content'
+            );
+            Y.Assert.areEqual(
+                formattedSecondDay,
+                Y.one('.scheduler-event-recorder-date').get('text'),
+                'The recorder date should NOT display the second day'
+            );
+        },
+
+        'should display events spanning into DST correctly in week view when last day of week is the first day under DST': function() {
+            var columns,
+            	currentDate,
+            	dstDate,
+                previousDate,
+                schedulerEvents;
+
+            dstDate = this._getLocalTimeZoneDSTFirstDay(),
+            currentDate = DateMath.toMidnight(DateMath.subtract(dstDate, DateMath.DAY, 1)),
+            previousDate = DateMath.toMidnight(DateMath.subtract(dstDate, DateMath.DAY, 2));
+
+            this._createScheduler({
+                activeView: this._weekView,
+                date: previousDate,
+                firstDayOfWeek: dstDate.getDay(),
+                items: [
+                    {
+                        content: 'Event 1',
+                        startDate: DateMath.add(new Date(previousDate.getTime()), DateMath.HOUR, 23),
+                        endDate: DateMath.add(new Date(previousDate.getTime()), DateMath.HOUR, 25)
+                    },
+                    {
+                        content: 'Event 2',
+                        startDate: DateMath.add(new Date(currentDate.getTime()), DateMath.HOUR, 23),
+                        endDate: DateMath.add(new Date(currentDate.getTime()), DateMath.HOUR, 25)
+                    }
+                ]
+            });
+
+            schedulerEvents = Y.all('.scheduler-event');
+
+            Y.Assert.areEqual(
+                3, schedulerEvents.size(),
+                '3 SchedulerEvent nodes should be in week view.'
+            );
+
+            columns = Y.all('.scheduler-view-day-table-colday');
+
+            Y.Assert.areEqual(
+                1, columns.item(5).all('.scheduler-event').size(),
+                '1 SchedulerEvent node should be in column1Events column.'
+            );
+
+            Y.Assert.areEqual(
+                2, columns.item(6).all('.scheduler-event').size(),
+                '2 SchedulerEvent nodes should be in column2Events column.'
+            );
+        },
+
+        'should display overlapping events correctly in week view': function() {
+            var column1,
+                column1Events,
+                column2,
+                column2Events,
+                intersectingEvents,
+                schedulerEvents;
+
+            this._createScheduler({
+                activeView: this._weekView,
+                date: new Date(2015, 02, 22),
+                firstDayOfWeek: 0,
+                items: [
+                    {
+                        content: 'Event 1',
+                        startDate: new Date(2015, 2, 25, 11, 0),
+                        endDate: new Date(2015, 2, 25, 16, 30)
+                    },
+                    {
+                        content: 'Event 2',
+                        startDate: new Date(2015, 2, 25, 15, 30),
+                        endDate: new Date(2015, 2, 25, 17, 0),
+                    },
+                    {
+                        content: 'Event 3',
+                        startDate: new Date(2015, 2, 25, 16, 0),
+                        endDate: new Date(2015, 2, 26, 11, 0),
+                    },
+                    {
+                        content: 'Event 4',
+                        startDate: new Date(2015, 2, 25, 18, 0),
+                        endDate: new Date(2015, 2, 26, 12, 30),
+                    }
+                ]
+            });
+
+            schedulerEvents = Y.all('.scheduler-event');
+
+            Y.Assert.areEqual(
+                6, schedulerEvents.size(),
+                '6 SchedulerEvent nodes should be in week view.'
+            );
+
+            intersectingEvents = Y.all('.scheduler-event.scheduler-event-intersecting');
+
+            Y.Assert.areEqual(
+                6, intersectingEvents.size(),
+                '6 intersecting SchedulerEvent nodes should be in week view.'
+            );
+
+            column1 = intersectingEvents.item(0).ancestor('.scheduler-view-day-table-colday');
+
+            column1Events = column1.all('.scheduler-event.scheduler-event-intersecting');
+
+            Y.Assert.areEqual(
+                4, column1Events.size(),
+                '4 intersecting SchedulerEvent nodes should be in column1Events column.'
+            );
+
+            column2 = intersectingEvents.item(4).ancestor('.scheduler-view-day-table-colday');
+
+            column2Events = column2.all('.scheduler-event.scheduler-event-intersecting');
+
+            Y.Assert.areEqual(
+                2, column2Events.size(),
+                '2 intersecting SchedulerEvent nodes should be in column2Events column.'
+            );
+
+            Y.Assert.areNotEqual(
+                column2Events.item(0).getStyle('left'), column2Events.item(1).getStyle('left'),
+                '2 SchedulerEvents which are intersecting with each other can not have the same left style value.'
+            );
+        },
+
+        'should display the events overlay entirely': function() {
+            var events = [];
+
+            var displayDate = new Date(2014, 2, 8);
+            var eventDate = new Date(2014, 3, 5);
+
+            for (var i = 0; i < 10; i++) {
+                events.push(
+                    {
+                        color: 'c2a374',
+                        content: 'dummy ' + i,
+                        endDate: eventDate,
+                        startDate: eventDate,
+                        allDay: true
+                    }
+                );
+            }
+
+            this._createScheduler({
+              items: events,
+              date: displayDate,
+              activeView: this._monthView
+            });
+
+            Y.one('.scheduler-view-table-more').simulate('click');
+
+            var schedulerBB = this._scheduler.get('boundingBox');
+            var schedulerRect = schedulerBB._node.getBoundingClientRect();
+
+            var overlay = this._monthView.eventsOverlay;
+            var overlayBB = overlay.get('boundingBox');
+            var overlayRect = overlayBB._node.getBoundingClientRect();
+
+            Y.Assert.isTrue(
+                schedulerRect.top >= 0,
+                'The top of the events overlay should be inside the viewport.'
+            );
+            Y.Assert.isTrue(
+                overlayRect.bottom <= Y.one('body').get('winHeight'),
+                'The bottom of the events overlay should be inside the viewport.'
+            );
+            Y.Assert.isTrue(
+                schedulerRect.left >= 0,
+                'The left of the events overlay should be inside the viewport.'
+            );
+            Y.Assert.isTrue(
+                overlayRect.right <= Y.one('body').get('winWidth'),
+                'The right of the events overlay should be inside the viewport.'
+            );
+        },
+
+        'should not prevent "syncEventsUI" from being called if the skipSyncUI event property is not present': function() {
+            var displayDate = new Date(2015, 9, 24);
+            var eventDate = new Date(2015, 9, 24);
+
+            var additionalEvents = [
+                {
+                    content: 'Event 2',
+                    endDate: eventDate,
+                    startDate: eventDate
+                }
+            ];
+
+            var initialEvents = [
+                {
+                    content: 'Event 1',
+                    endDate: eventDate,
+                    startDate: eventDate
+                }
+            ];
+
+            this._createScheduler({
+                date: displayDate,
+                activeView: this._monthView,
+                items: initialEvents
+            });
+
+            var schedulerCalendar = new Y.SchedulerCalendar({
+                scheduler: this._scheduler
+            });
+
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-event').size(),
+                '1 event should display.'
+            );
+
+            schedulerCalendar.reset(additionalEvents);
+
+            Y.Assert.areEqual(
+                2, Y.all('.scheduler-event').size(),
+                '2 events should display.'
+            );
+        },
+
+        'should prevent "syncEventsUI" from being called if the skipSyncUI event property is present': function() {
+
+            var displayDate = new Date(2015, 9, 24);
+            var eventDate = new Date(2015, 9, 24);
+
+            var additionalEvents = [
+                {
+                    content: 'Event 2',
+                    endDate: eventDate,
+                    startDate: eventDate
+                }
+            ];
+
+            var initialEvents = [
+                {
+                    content: 'Event 1',
+                    endDate: eventDate,
+                    startDate: eventDate
+                }
+            ];
+
+            this._createScheduler({
+                date: displayDate,
+                activeView: this._monthView,
+                items: initialEvents
+            });
+
+            var schedulerCalendar = new Y.SchedulerCalendar({
+                scheduler: this._scheduler
+            });
+
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-event').size(),
+                '1 events should display.'
+            );
+
+            schedulerCalendar.reset(additionalEvents, { skipSyncUI: true });
+
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-event').size(),
+                '1 event should display.'
+            );
+
+            this._scheduler.syncEventsUI();
+
+            Y.Assert.areEqual(
+                2, Y.all('.scheduler-event').size(),
+                '2 events should display.'
+            );
+        },
+
+        'should sort events by date and time': function() {
+            var testText = 'Event Sept. 1 @ 6';
+
+            var events = [
+                {
+                    content: 'Event Sept. 30 @ 6',
+                    startDate: new Date(2015, 8, 30, 6),
+                    endDate: new Date(2015, 8, 30, 7)
+                },
+
+                {
+                    content: testText,
+                    startDate: new Date(2015, 8, 1, 6),
+                    endDate: new Date(2015, 8, 1, 7)
+                },
+                {
+                    content: 'Event Sept. 1 @ 7',
+                    startDate: new Date(2015, 8, 1, 7),
+                    endDate: new Date(2015, 8, 1, 8)
+                },
+                {
+                    content: 'Event Sept. 1 @ 8',
+                    startDate: new Date(2015, 8, 1, 8),
+                    endDate: new Date(2015, 8, 1, 9)
+                },
+
+                {
+                    content: 'Event Sept. 2 @ 6',
+                    startDate: new Date(2015, 8, 2, 6),
+                    endDate: new Date(2015, 8, 2, 7)
+                },
+                {
+                    content: 'Event Sept. 2 @ 7',
+                    startDate: new Date(2015, 8, 2, 7),
+                    endDate: new Date(2015, 8, 2, 8)
+                },
+                {
+                    content: 'Event Sept. 2 @ 8',
+                    startDate: new Date(2015, 8, 2, 8),
+                    endDate: new Date(2015, 8, 2, 9)
+                },
+
+                {
+                    content: 'Event Sept. 3 @ 6',
+                    startDate: new Date(2015, 8, 3, 6),
+                    endDate: new Date(2015, 8, 3, 7)
+                },
+                {
+                    content: 'Event Sept. 3 @ 7',
+                    startDate: new Date(2015, 8, 3, 7),
+                    endDate: new Date(2015, 8, 3, 8)
+                },
+                {
+                    content: 'Event Sept. 3 @ 8',
+                    startDate: new Date(2015, 8, 3, 8),
+                    endDate: new Date(2015, 8, 3, 9)
+                },
+
+                {
+                    content: 'Event Sept. 4 @ 6',
+                    startDate: new Date(2015, 8, 4, 6),
+                    endDate: new Date(2015, 8, 4, 7)
+                }
+            ];
+
+            var displayDate = new Date(2015, 8, 1);
+
+            this._createScheduler({
+                date: displayDate,
+                activeView: this._monthView,
+                items: events
+            });
+
+            Y.Assert.areEqual(
+                testText, Y.one('.scheduler-event .scheduler-event-content').text(),
+                'First event should be: ' + testText
+            );
+        },
+
+        'should display all-day event in day view': function() {
+            var displayDate = new Date(2015, 9, 24),
+                startDate = new Date(2015, 9, 24),
+                endDate =  new Date(2015, 9, 24, 23, 59, 59);
+
+            var events = [
+                {
+                    allDay: true,
+                    content: 'Event 2',
+                    endDate: endDate,
+                    startDate: startDate,
+                }
+            ];
+
+            this._createScheduler({
+                date: displayDate,
+                views: [this._dayView],
+                items: events
+            });
+
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-event').size(),
+                'The all-day event should be displayed.'
+            );
+        },
+
+        'should limit number of days in agenda view': function() {
+            var startDate = new Date(2016, 3, 1);
+            var endDate = new Date(2016, 6, 1);
+
+            var events = [
+                {
+                    content: 'Event',
+                    endDate: endDate,
+                    startDate: startDate,
+                }
+            ];
+
+            this._agendaView.set('daysCount', 10);
+
+            this._createScheduler({
+              date: startDate,
+              items: events,
+              views: [this._agendaView]
+            });
+
+            Y.Assert.areEqual(
+                10, Y.all('.scheduler-view-agenda-event').size(),
+                'Should show at most 10 events.'
+            );
+        },
+
+        'should display all instances of event in agenda view regardless of start time': function() {
+            var startDate = new Date(2016, 3, 1);
+            var endDate = new Date(2016, 6, 1);
+
+            var events = [
+                {
+                    content: 'Event 1',
+                    endDate: DateMath.add(endDate, DateMath.MONTH, 1),
+                    startDate: DateMath.subtract(startDate, DateMath.MONTH, 1),
+                },
+                {
+                    content: 'Event 2',
+                    endDate: endDate,
+                    startDate: startDate,
+                }
+            ];
+
+            this._agendaView.set('daysCount', 10);
+
+            this._createScheduler({
+              date: startDate,
+              items: events,
+              views: [this._agendaView]
+            });
+
+            Y.Assert.areEqual(
+                20, Y.all('.scheduler-view-agenda-event').size(),
+                'Should show exactly 20 events.'
+            );
+        },
+
+        'should refresh number of displayed events if days count is updated': function() {
+            var startDate = new Date(2016, 3, 1);
+            var endDate = new Date(2016, 6, 1);
+
+            var events = [
+                {
+                    content: 'Event',
+                    endDate: endDate,
+                    startDate: startDate,
+                }
+            ];
+
+            this._agendaView.set('daysCount', 10);
+
+            this._createScheduler({
+              date: startDate,
+              items: events,
+              views: [this._agendaView]
+            });
+
+            Y.Assert.areEqual(
+                10, Y.all('.scheduler-view-agenda-event').size(),
+                'Should show at most 10 events.'
+            );
+
+            this._agendaView.set('daysCount', 20);
+
+            Y.Assert.areEqual(
+                20, Y.all('.scheduler-view-agenda-event').size(),
+                'Should show at most 20 events.'
+            );
+        },
+
+        'should create event with default recorder duration': function() {
+            var date = new Date(),
+                eventNode,
+                height1,
+                height2,
+                hourHeight = this._dayView.get('hourHeight'),
+                x = 100,
+                y;
+
+            this._createScheduler({
+              date: date,
+              views: [this._dayView]
+            });
+
+            // To plot event in visible part of scheduler.
+            y = (date.getHours()+2)*hourHeight;
+
+            this._eventRecorder.set('duration', 60);
+            this._clickColShim(x, y);
+            this._releaseColShim();
+
+            eventNode = Y.one('.scheduler-event-recorder');
+            height1 = parseInt(eventNode.getStyle('height'));
+
+            // To not click on already plotted recorder
+            y = (date.getHours()+5)*hourHeight;
+
+            this._eventRecorder.set('duration', 120);
+            this._clickColShim(x, y);
+            this._releaseColShim();
+
+            eventNode = Y.one('.scheduler-event-recorder');
+            height2 = parseInt(eventNode.getStyle('height'));
+
+            Y.Assert.areEqual(
+                height2, 2*height1,
+                'Some of the plotted events did not use the recorder duration.'
+            );
+        },
+
+        'should create event with dragged duration': function() {
+            var date = new Date(),
+                eventNode,
+                height,
+                hourHeight = this._dayView.get('hourHeight'),
+                x = 100,
+                y;
+
+            this._createScheduler({
+              date: date,
+              views: [this._dayView]
+            });
+
+            // To plot event in visible part of scheduler.
+            y = (date.getHours()+2)*hourHeight;
+
+            this._eventRecorder.set('duration', 60);
+            this._clickColShim(x, y);
+            this._dragOverColShim(0, y+4*hourHeight-1);
+
+            eventNode = Y.one('.scheduler-event-recorder');
+            height = parseInt(eventNode.getStyle('height'));
+
+            Y.Assert.areEqual(
+                4*hourHeight, height,
+                'Event is not as long as expected.'
+            );
+        },
+
+        'should create event with dragged duration in the past': function() {
+            var date = new Date(),
+                eventNode,
+                height,
+                hourHeight = this._dayView.get('hourHeight'),
+                x = 100,
+                y;
+
+            this._createScheduler({
+              date: date,
+              views: [this._dayView]
+            });
+
+            // To plot event in visible part of scheduler.
+            y = (date.getHours()+4)*hourHeight;
+
+            this._eventRecorder.set('duration', 60);
+            this._clickColShim(x, y);
+            this._dragOverColShim(0, y-2*hourHeight-1);
+
+            eventNode = Y.one('.scheduler-event-recorder');
+            height = parseInt(eventNode.getStyle('height'));
+
+            // We need half an hour more than the difference between the clicked
+            // times.
+            Y.Assert.areEqual(
+                2.5*hourHeight, height,
+                'Event is not as long as expected.'
+            );
+        },
+
+        'should hide header if disabled, but then display it if requested': function() {
+            this._createScheduler({
+                showHeader: false
+            });
+
+            Y.Assert.areEqual(
+                0, Y.all('.scheduler-base-controls:visible').size(),
+                'No controls should be visible.'
+            );
+            Y.Assert.areEqual(
+                0, Y.all('.scheduler-base-views:visible').size(),
+                'No view buttons should be visible.'
+            );
+
+            this._scheduler.set('showHeader', true);
+
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-base-controls:visible').size(),
+                'Controls should be visible.'
+            );
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-base-views:visible').size(),
+                'View buttons should be visible.'
+            );
+        },
+
+        'should display header if enabled, but then hide it if requested': function() {
+            this._createScheduler({
+                showHeader: true
+            });
+
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-base-controls:visible').size(),
+                'Controls should be visible.'
+            );
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-base-views:visible').size(),
+                'Ciew buttons should be visible.'
+            );
+
+            this._scheduler.set('showHeader', false);
+
+            Y.Assert.areEqual(
+                0, Y.all('.scheduler-base-controls:visible').size(),
+                'Controls should not be visible.'
+            );
+            Y.Assert.areEqual(
+                0, Y.all('.scheduler-base-views:visible').size(),
+                'View buttons should not be visible.'
+            );
+        },
+
+        'should not replicate view buttons': function() {
+            this._createScheduler({
+                showHeader: true
+            });
+
+            Y.Assert.areEqual(
+                4, Y.all('button.scheduler-base-view').size(),
+                'There should be 4 view buttons.'
+            );
+
+            this._scheduler.set('showHeader', false);
+            this._scheduler.set('showHeader', true);
+
+            Y.Assert.areEqual(
+                4, Y.all('button.scheduler-base-view').size(),
+                'There should be 4 view buttons.'
+            );
+        },
+
+        'should be able to switch views after showing previously hidden header': function() {
+            this._createScheduler({
+                activeView: this._weekView,
+                showHeader: false
+            });
+
+            this._scheduler.set('showHeader', true);
+
+            Y.Assert.areSame(
+                this._weekView,
+                this._scheduler.get('activeView'),
+                'The initial view should be week view'
+            );
+
+            Y.one('button.scheduler-base-view-day').simulate('click');
+            Y.Assert.areSame(
+                this._dayView,
+                this._scheduler.get('activeView'),
+                'The day view should have become active'
+            );
+
+            Y.one('button.scheduler-base-view-month').simulate('click');
+            Y.Assert.areSame(
+                this._monthView,
+                this._scheduler.get('activeView'),
+                'The month view should have become active'
+            );
+
+            Y.one('button.scheduler-base-view-agenda').simulate('click');
+            Y.Assert.areSame(
+                this._agendaView,
+                this._scheduler.get('activeView'),
+                'The agenda view should have become active'
+            );
         }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['node-event-simulate', 'test', 'aui-scheduler', 'aui-datatype']
+    requires: ['aui-selector', 'node-event-simulate', 'test', 'aui-scheduler', 'aui-datatype']
 });

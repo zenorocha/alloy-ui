@@ -4,6 +4,18 @@
 
 ## @VERSION@
 
+* [AUI-2092](https://issues.liferay.com/browse/AUI-2092) Tooltip Delegate should accept both String and Array as a valid value to triggerHideEvent and triggerShowEvent attributes
+
+## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
+
+No changes.
+
+## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
+
+* [AUI-1894](https://issues.liferay.com/browse/AUI-1894) Problems with text sizes in Popovers
+
+## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
+
 * [AUI-998](https://issues.liferay.com/browse/AUI-998) TooltipDelegate appears to ignore cssClass option
 
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
