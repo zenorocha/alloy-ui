@@ -110,7 +110,8 @@ var TogglerDelegate = A.Component.create({
          */
         expanded: {
             validator: isBoolean,
-            value: true
+            value: true,
+            writeOnce: true
         },
 
         /**
@@ -190,9 +191,7 @@ var TogglerDelegate = A.Component.create({
         renderUI: function() {
             var instance = this;
 
-            if (instance.get('closeAllOnExpand')) {
-                instance.createAll();
-            }
+            instance._createAll();
         },
 
         /**
@@ -238,7 +237,7 @@ var TogglerDelegate = A.Component.create({
         collapseAll: function(payload) {
             var instance = this;
 
-            instance.createAll();
+            instance._createAll();
 
             A.Array.invoke(instance.items, 'collapse', payload);
         },
@@ -246,13 +245,21 @@ var TogglerDelegate = A.Component.create({
         /**
          * Forces toggler creation on delegated header elements.
          *
-         * @method createAll
+         * @method _createAll
+         * @protected
          */
-        createAll: function() {
+        _createAll: function() {
             var instance = this;
-
+ 
             instance.get('container').all(instance.get('header')).each(function(header) {
-                if (!header.getData('toggler')) {
+                var markupCollapsed = header.hasClass(CSS_TOGGLER_HEADER_COLLAPSED),
+                    markupExpanded = header.hasClass(CSS_TOGGLER_HEADER_EXPANDED),
+                    expanded = instance.get('expanded'),
+                    closeAllOnExpand = instance.get('closeAllOnExpand');
+ 
+                if ((closeAllOnExpand && !markupCollapsed) ||
+                    (expanded && markupCollapsed) ||
+                    (!expanded && !markupExpanded && !markupCollapsed) && !header.getData('toggler')) {
                     instance._create(header);
                 }
             });
@@ -266,7 +273,7 @@ var TogglerDelegate = A.Component.create({
         expandAll: function(payload) {
             var instance = this;
 
-            instance.createAll();
+            instance._createAll();
 
             A.Array.invoke(instance.items, 'expand', payload);
         },
