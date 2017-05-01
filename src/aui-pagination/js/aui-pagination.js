@@ -144,7 +144,7 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Text used on Pagination.
+         * Colection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type Object
