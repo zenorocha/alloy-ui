@@ -16,6 +16,15 @@ var Lang = A.Lang,
     CSS_MODAL_HD = getClassName('modal-header'),
     CSS_MODAL_OPEN = getClassName('modal-open');
 
+A.Name = A.Base.create(Name.NAME, Y.Base, [],
+    {
+
+    },
+    {
+
+    }
+);
+
 /**
  * A base class for Modal.
  *
